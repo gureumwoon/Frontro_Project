@@ -6,30 +6,34 @@
 - 문호균 / 박경서 / 이시안 / 이우성
 
 
-## 1. 요구사항 Requirements 
+## 1. 목표와 기능
 
-## 2. 목차 Table of Contents
 
-## 3. 실행 방법
+## 2. 개발 환경 및 배포 URL
 
 
 ## 3. 프로젝트 구조와 개발 일정
   ### 3.1 프로젝트 구조
-  ```
+  
     ├─ css
     │   ├─ default.css
-    │   ├─ reset.css 
+    │   ├─ reset.css
+    │   ├─ font.css   
     │   └─ style.css
     ├─ font
     │   ├─ font.css   
     │   └─ style.css
-    └─ js   
+    └─ js
+        ├─ font.css   
         └─ style.css
     index.html
-  ```
+    palette.html
+    gradient.html
+  
+
   ### 3.2 개발일정
   - 기간 : 2021.01.03(월) ~ 2021.01.17(월)
-  - 기획 : -일 (기간)
+  - 기획 및 디자인 : -일 (기간)
   - 
 
 ## 4. 역할분담
@@ -45,11 +49,7 @@
 ## 6. 메인 기능
 
 
-## 7. Tips
+## 7. 추가 기능
 
 
-## 8. 느낀점
-
-
-
-
+## 8. 개발하며 느낀점
