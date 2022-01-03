@@ -14,7 +14,7 @@
 
 ## 3. 프로젝트 구조와 개발 일정
   ### 3.1 프로젝트 구조
-  
+<pre>
 ├── README.md
 ├── add_product.html
 ├── chat_list.html
@@ -100,6 +100,7 @@
 ├── upload.html
 ├── w_modules.html
 └── your_profile.html
+</pre>
 
 
   ### 3.2 개발일정
