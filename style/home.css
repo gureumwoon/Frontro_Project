@@ -1,0 +1,100 @@
+.html {
+    font-size: 62.5%;
+}
+
+.body {
+    position: relative;
+    background-color: #767676;
+
+}
+.container {
+    width: 39em;
+    height: 100vh;
+    background-color: white;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.header {
+    border-bottom: 1px solid #DBDBDB;
+    height: 4.8em;
+    position: relative;
+}
+.header .tit-intro {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 1.8em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+    text-align: left;
+    padding: 13px 16px;
+} 
+
+.header .icon-search {
+    position: absolute;
+    top: 1em;
+    right: 1.3em;
+}
+
+.main  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.main .main-icon{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    align-items: center;
+}
+
+.main .main-icon .p-intro {
+    font-size: 1.4em;
+    color: #767676;
+}
+
+.main .main-icon .btn-search {
+    width: 120px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 32px;
+    background-color: #FFC022;
+}
+
+.main .main-icon .btn-search a {
+    color: #806011;
+    text-decoration: none;
+}
+
+.main .main-icon .img-slime {
+    width: 10em;
+    height: 10em;
+}
+
+.footer {
+    height: 6em;
+}
+
+.footer .icon-item-list {
+    display: flex;
+    justify-content: space-around;
+}
+
+.item-footer {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+    font-size: 10px;
+    line-height: 14px;
+    color: #767676;
+    gap: 4px;
+    text-align: center;
+}

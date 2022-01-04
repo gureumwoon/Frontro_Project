@@ -1,12 +1,23 @@
-@media (max-width: 390px) {
-    /* join merbership_2 */
-    
+    html {
+        font-size: 62.5%;
+    }
+
     body {
         position: relative;
-        background-color: #fff;
+        background-color: #767676;
+        font-size: 62.5%;
     }
-    .set-profile {
-        /* background-color: wheat; */
+
+    a {
+        color: rgba(128, 96, 17, 0.6);
+        text-decoration: none;
+    }
+    .container {
+        width: 390px;
+        height: 100vh;
+        position: relative;
+        margin: 0 auto;
+        background-color: white;
     }
 
     .set-profile .title {
@@ -17,7 +28,7 @@
         line-height: 30px;
         letter-spacing: 0em;
         text-align: center;
-        margin-top: 30px;
+        padding-top: 30px;
     }
     .set-profile .intro {
         font-size: 14px;
@@ -39,9 +50,7 @@
         display: block;
         margin: 0 auto;
         box-sizing: border-box;
-        /* position: absolute;
-        left: 8.7em;
-        top: 8.7em; */
+        width: 110px;
     }
 
     .set-profile .set-picture .icon-gallery-base {
@@ -52,6 +61,7 @@
         right: 8.5em;
         border-radius: 50%;
         background-color: #FFC022;
+        ;
     }
 
     .set-profile .set-picture .icon-pict {
@@ -104,4 +114,4 @@
         display: block;
         margin: 0 auto;
     }
-}
+/* } */
