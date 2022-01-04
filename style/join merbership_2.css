@@ -5,6 +5,11 @@
         position: relative;
         background-color: #fff;
     }
+
+    a {
+        color: rgba(128, 96, 17, 0.6);
+        text-decoration: none;
+    }
     .set-profile {
         /* background-color: wheat; */
     }
@@ -52,6 +57,7 @@
         right: 8.5em;
         border-radius: 50%;
         background-color: #FFC022;
+        ;
     }
 
     .set-profile .set-picture .icon-pict {
