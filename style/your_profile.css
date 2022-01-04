@@ -1,0 +1,123 @@
+@font-face {
+    font-family: "SpoqaHanSansNeo-Regular";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: "SpoqaHanSansNeo-Regular";
+}
+
+/* utility */
+/* 요소를 완전히 없애면 안되고.. 글자만 없애는 걸로.. */
+.ir {
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    font-size: 1px;
+    line-height: 0;
+    color: transparent;
+    text-indent: -9999px;
+}
+.button-noneBackground {
+    background-color: transparent;
+    border: none;
+}
+
+/* top bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px #dbdbdb;
+}
+.button-back {
+    margin: 13px 0 13px 16px;
+    padding: 0;
+}
+.button-more {
+    margin: 12px 12px 12px 0;
+    padding: 0;
+}
+
+/* profile information */
+.profile_info {
+    padding-top: 30px;
+    text-align: center;
+}
+.profile_header {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 16px;
+}
+.profile_followers,
+.profile_followings {
+    position: absolute;
+    top: 50%;
+    right: calc(100% + 41px);
+    transform: translateY(-50%);
+    margin: 0;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    color: #767676;
+    text-align: center;
+}
+.profile_followings {
+    left: calc(100% + 37px);
+}
+.profile_followers .followers_number,
+.profile_followings .followings_number {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 18px;
+    line-height: 23px;
+    font-weight: 700;
+}
+.profile_followers .followers_number {
+    color: #000000;
+}
+
+.profile_info .profile_name {
+    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+}
+.profile_info .profile_email {
+    margin-bottom: 16px;
+    color: #767676;
+    font-size: 12px;
+    line-height: 14px;
+}
+.profile_info .profile_explain {
+    color: #767676;
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 24px;
+}
+
+.profile_footer {
+    /* display: inline-block; */
+    height: 34px;
+    /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+.button-profile {
+    border: 5px solid black;
+    /* width: 34px;
+  height: 34px;
+  padding: 6px;
+  background-color: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 30px; */
+}
+.button-follow {
+    border: 5px solid black;
+    /* height: 34px;
+  padding: 0px;
+  margin: 0 10px; */
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/frontend/resource/styles/reset.css" />
+        <link
+            rel="stylesheet"
+            href="/frontend/resource/styles/chatting/chat_room.css"
+        />
+        <title>Chat Room</title>
+    </head>
+    <body>
+        <h1 class="ir">oo님과의 채팅방</h1>
+
+        <!-- 프로필 헤더, 채팅방 헤더 -->
+        <header class="top-bar">
+            <!-- 뒤로가기 버튼 -->
+            <button type="button" class="button-noneBackground button-back">
+                <img
+                    src="/frontend/resource/img/profile/icon-arrow-left.svg"
+                    alt="뒤로가기 버튼"
+                />
+            </button>
+            <p class="bar-title">애월읍 위니브 감귤농장</p>
+            <!-- 햄버거 버튼 -->
+            <button type="button" class="button-noneBackground button-more">
+                <img
+                    src="/frontend/resource/img/profile/icon- more-vertical.svg"
+                    alt="더보기 버튼"
+                />
+            </button>
+        </header>
+        <section class="chat_content">
+            <h2 class="ir">채팅 방 내용</h2>
+
+            <!-- 상대 채팅 내용 -->
+
+            <div class="content_message other_message">
+                <img
+                    src="/frontend/resource/img/chatting/Ellipse 1.svg"
+                    alt=""
+                    class="message_image"
+                />
+                <p class="message_text">
+                    <!-- JS로 내용받아오기 -->
+                    옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여,
+                    뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 악동하다. 대고,
+                    못할 넣는 풍푸하게 뛰노는 인생의 힘있다.
+                </p>
+                <p class="message_date">12:39</p>
+            </div>
+            <div class="content_message other_message">
+                <img
+                    src="/frontend/resource/img/chatting/Ellipse 1.svg"
+                    alt=""
+                    class="message_image"
+                />
+                <p class="message_text">
+                    <!-- JS로 내용받아오기 -->
+                    옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여,
+                    뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 악동하다. 대고,
+                    못할 넣는 풍푸하게 뛰노는 인생의 힘있다.
+                </p>
+                <p class="message_date">12:39</p>
+            </div>
+
+            <!-- 내 채팅 내용 -->
+            <div class="content_message my_message">
+                <p class="message_date">12:39</p>
+                <p class="message_text">
+                    <!-- JS로 내용받아오기 -->
+                    네 말씀하세요.
+                </p>
+            </div>
+        </section>
+        <!-- 채팅창 입력 -->
+        <section class="chat_input">
+            <h2 class="ir">채팅 방 입력</h2>
+            <form method="get" action="index.html" class="input_chatting">
+                <img
+                    src="/frontend/resource/img/chatting/img-button.svg"
+                    alt="사진 첨부하기"
+                    class="input_image"
+                />
+                <label for="input_text"></label>
+                <input
+                    type="text"
+                    name=""
+                    id="input_text"
+                    placeholder="댓글 입력하기..."
+                />
+                <button class="input_submit-button">전송</button>
+            </form>
+        </section>
+        <!-- 가상요소로 작은 이미지('ㅡ') 표현 -->
+        <!-- <div class="post-modal">
+            <ul class="modal_item-container">
+                <li class="modal_item">채팅방 나가기</li>
+            </ul>
+        </div> -->
+    </body>
+</html>
+
+<!-- 
+    필요한 기능
+    1. 채팅방 무한 스크롤 -> 스로틀 적용해보기
+    2. 들어갔을 때 스크롤 제일 마지막 대화를 기준으로 보여줘야 한다.
+    3. 채팅방에 사진을 올릴 수 있도록 작성
+    4. 더보기 기능으로 채팅방 나가기 기능 제공
+    5. 입력한 텍스트가 작성자에 따라서 스타일이 다르게 나와야 한다.
+-->

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your_Profile(프로필 페이지)</title>
+    <link rel="stylesheet" href="../../resource/styles/profile/your_profile.css">
+    <link rel="stylesheet" href="../../resource/styles/reset.css">
+    <script src="../resource/js/yout_profile.js"></script>
+</head>
+
+<body>
+    <!-- 페이지 설명: 홈 화면에 표시되는 게시물을 클릭했을때 나오는 페이지 -->
+    <main>
+        <h1 class="ir">
+            <!-- 
+                필요한 JS 처리: 
+                필요한 html 요소(이름) fetch를 이용해서 받아온 데이터를 추가해서 넣어주기
+            -->
+            <span>oo</span>님의 프로필 페이지 입니다.
+        </h1>
+        <!-- 모듈화될 수 있는 부분: header 자체. 뒤로가기 버튼, 햄버거 버튼도 별도로 가능 -->
+        <header class="top-bar">
+            <!-- 뒤로가기 버튼 -->
+            <button type="button" class="button-noneBackground button-back"><img src="../../resource/img/profile/icon-arrow-left.svg"
+                    alt="뒤로가기 버튼"></button>
+            <!-- 햄버거 버튼 -->
+            <button type="button" class="button-noneBackground button-more"><img src="../../resource/img/profile/icon- more-vertical.svg" alt="더보기 버튼"></button>
+        </header>
+            <!-- profile-info -->
+            <article class="profile_info">
+                <!-- 
+                    필요한 JS 처리: 
+                    - 필요한 html 요소(이름) fetch를 이용해서 받아온 데이터를 추가해서 넣어주기
+                -->
+                <h2 class="ir"><span>oo</span>님의 프로필 정보</h2>
+                <!-- 
+                    여기도 js로 처리해야할까? js로 받아와야할 것들이 뭐가 있을까?
+                    필요한 JS 처리: 
+                    - 이미지 등록여부를 통해서 기본 이미지를 보여줄 지 안보여줄 지 처리 필요
+                    - 팔로워, 팔로잉 숫자도 JS로 받아와야 함
+                -->
+                <div class="profile_header">
+                    <!-- followers & followings -->
+                    <p class="profile_followers">
+                        <!--2950은 나중에 js로 처리-->
+                        <span class="followers_number">2950</span>followers
+                    </p>
+                    <p class="profile_followings">
+                        <!-- 128은 나중에 js로 처리 -->
+                        <span class="followings_number">128</span>followings
+                    </p>
+                    <img src="../../resource/img/profile/basic-profile-img.svg" alt="">
+                </div>
+                <p class="profile_name">애월읍 위니브 감귤농장</p>
+                <p class="profile_email">@ weniv_Madarin</p>
+                <p class="profile_explain">애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장</p>
+                <div class="profile_footer">
+                    <!-- 
+                        필요한 JS 처리: 
+                        - 필요한 html 요소(alt값 채워주기: 00님과 채팅 시작하기, 00님의 프로필 공유하기) fetch를 이용해서 받아온 데이터를 추가해서 넣어주기
+                        - 클릭에 따라서 버튼 이미지 변경
+                    -->
+                    <button type="button" class="button-noneBackground button-profile">
+                        <img src="../../resource/img/profile/icon-message-circle.svg" alt="">
+                    </button>
+                    <button type="button" class="button-noneBackground button-follow">
+                        <img src="../../resource/img/profile/M-button.svg" alt="">
+                    </button>
+                    <button type="button" class="button-noneBackground button-profile">
+                        <!-- <img src="../../resource/img/profile/icon-share.svg" alt=""> -->
+                    </button>
+                </div>
+            </article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <article class=on-sale>
+            <h2 class="ir">판매 중인 상품</h2>
+            <p>판매 중인 상품</p>
+            <!-- 
+                필요한 JS 처리: 
+                필요한 html 요소 fetch를 이용해서 받아온 데이터를 추가해서 넣어주기
+            -->
+            <ul class="on-sale_list">
+                <!-- js에서 사용할 html 예시 -->
+                <li>
+                    <!-- 판매 상품 사진 -->
+                    <!-- 판매 상품 이름 -->
+                    <!-- 판매 상품 가격 -->
+                </li>
+            </ul>
+        </article>
+
+        <!-- 모듈화될 수 있는 부분: Home 기본 화면과 모듈화 -->
+        <section class="">
+            <h2 class="ir">게시물 정보</h2>
+            <div class="content-view-style">
+                <!-- 
+                    필요한 JS 처리: 
+                    click에 따라서 이미지 on, off 상태를 변경해주어야한다.
+                -->
+                <!-- 리스트형 콘텐츠 보여주기 -->
+                <button type="button"><img src="../resource/img/profile/icon-post-list-on.svg" alt=""></button>
+                <!-- 사진형 콘텐츠 보여주기 -->
+                <button type="button"><img src="../resource/img/profile/icon-post-album-off.svg" alt=""></button>
+            </div>
+            <article>
+                <h3>게시물 상세정보</h3>
+                <!-- 
+                    필요한 JS 처리: 
+                    click에 따라서 리스트에 표시되는 html을 변경해주어야한다.
+                -->
+                <ul>
+                    <li>
+                        <!-- <article></article> -->
+                        <!-- ↑ case 1: js에서 사용할 html 예시: 리스트형 컨텐츠 보여줄 때 표시되는 html ↑-->
+                        <article>
+
+                        </article>
+                        <!-- ↑ case 2: js에서 사용할 html 예시: 사진형 html ↑ -->
+                        <article>
+
+                        </article>
+                    </li>
+                </ul>
+            </article>
+        </section>
+        <!-- 모듈화될 수 있는 부분: 화면 공통 네비게이션 -->
+        <nav class="">
+
+        </nav>
+    </main>
+</body>
+
+</html>
