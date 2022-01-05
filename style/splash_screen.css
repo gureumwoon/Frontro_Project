@@ -1,0 +1,55 @@
+@media (max-width: 390px) {
+
+  html {
+    font-size: 62.5%;
+  }
+
+  @font-face {
+    font-family: 'SDSamliphopangche_Basic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  * {
+    color: #806B37;
+    background: #F5F4F0;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    padding-top: 14.37em;
+    padding-bottom: 3em;
+  }
+
+  #splash-page {
+    font-family: 'SDSamliphopangche_Basic';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sub-txt {
+    font-size: 1.1em;
+    margin-bottom: 2.3em;
+  }
+
+  .main-logo {
+    width: 8.137em;
+    margin-bottom: 3.7em;
+  }
+
+  .main-txt {
+    font-size: 4em;
+  }
+
+  .footer-txt {
+    display: flex;
+    justify-content: center;
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 2.6em;
+    text-align: center;
+    margin-top: 8.8em;
+  }
+}
