@@ -66,6 +66,7 @@
     font-weight: 500;
     border-radius: 32px;
     background-color: #FFC022;
+    border: none;
 }
 
 .main .main-icon .btn-search a {
