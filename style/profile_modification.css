@@ -1,0 +1,65 @@
+html {
+    font-size: 62.5%;
+}
+
+body {
+    width: 39em;
+    height: 100vh;
+}
+
+.nav .btn-back {
+    float: left;
+    padding: 1.3em 1.6em;
+}
+
+.nav .Ms-disabled-button {
+    float: right;
+    margin: 0.8em 1.6em;
+}
+
+.nav {
+    overflow: hidden;
+    border-bottom: 0.05em solid #DBDBDB;
+}
+
+.img-profile {
+    display: flex;
+    justify-content: center;
+}
+
+.img-profile .img-profile-empty {
+    margin: 3em 0;
+}
+
+.img-profile .btn-upload {
+    width: 3.6em;
+    height: 3.6em;
+}
+
+.txt-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.txt-profile .module-inp {
+    margin-bottom: 1.6em;
+}
+
+.txt-profile .explanation {
+    font-weight: 500;
+    font-size: 1.2em;
+    color: #767676;
+    margin-bottom: 1em;
+}
+
+.txt-profile .inp-profile {
+    border-bottom: 0.1em solid #DBDBDB;
+    width: 32.2em;
+}
+
+.inp-profile input::placeholder {
+    font-size: 1.4em;
+    color: #DBDBDB;
+    margin-bottom: 0.8em;
+}
