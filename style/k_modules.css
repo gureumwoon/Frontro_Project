@@ -1,6 +1,9 @@
 *{
     border-style: none;
 }
+button {
+    margin: 10px 0 20px;
+}
 
 .LMbutton-font {
     font-size: 14px;
@@ -27,7 +30,7 @@
     top: 0px;
     border-radius: 44px;
     background-color: #FFC022;
-    color: #fff;
+    color: #806011;
 }
 
 .L-disabled-button {
@@ -36,8 +39,8 @@
     left: 0px;
     top: 0px;
     border-radius: 44px;
-    background-color:  #FFC022;
-    color: #fff;
+    background-color:  rgba(255, 192, 34, 0.6);
+    color: rgba(128, 96, 17, 0.6);
 }
 
 .M-button {
@@ -46,8 +49,8 @@
     left: 0px;
     top: 0px;
     border-radius: 30px;
-    background-color: #F26E22;
-    color: #fff;
+    background-color: #FFC022;
+    color: #806011;
 }
 
 .M-disabled-button {
@@ -56,10 +59,11 @@
     left: 0px;
     top: 0px;
     border-radius: 30px;
-    background-color: #FFC7A7;
-    color: #fff;
+    background-color: rgba(255, 192, 34, 0.6);
+    color: rgba(128, 96, 17, 0.6);
 }
 
+/* 19.언팔로우 버튼 */
 .M-Activ-button{
     width: 120px;
     height: 34px;
@@ -71,14 +75,15 @@
     color: #767676;
 }
 
+/* 저장 */
 .Ms-button {
     width: 90px;
     height: 32px;
     left: 0px;
     top: 0px;
     border-radius: 32px;
-    background-color: #F26E22;
-    color: #fff;
+    background-color: #FFC022;
+    color: #806011;
 }
 
 .Ms-disabled-button {
@@ -87,20 +92,20 @@
     left: 0px;
     top: 0px;
     border-radius: 32px;
-    background-color: #FFC7A7;
-    color: #fff;
+    background-color: rgba(255, 192, 34, 0.6);
+    color: rgba(128, 96, 17, 0.6);
 }
-
+/* 팔로우 */
 .S-button{
     width: 56px;
     height: 28px;
     left: 0px;
     top: 0px;
     border-radius: 26px;
-    background-color: #F26E22;
-    color: #fff;
+    background-color: #FFC022;
+    color: #806011;
 }
-
+/* 취소 */
 .S-Activ-button{
     width: 56px;
     height: 28px;

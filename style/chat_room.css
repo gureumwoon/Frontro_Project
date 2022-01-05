@@ -1,0 +1,196 @@
+/* utility */
+/* 요소를 완전히 없애면 안되고.. 글자만 없애는 걸로.. */
+.ir {
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    font-size: 1px;
+    line-height: 0;
+    color: transparent;
+    text-indent: -9999px;
+}
+.button-noneBackground {
+    background-color: transparent;
+    border: none;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+/* top bar */
+.top-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px #dbdbdb;
+    background: #ffffff;
+    z-index: 1;
+}
+.top-bar .button-back {
+    height: 22px;
+    margin: 13px 10px 13px 16px;
+    padding: 0;
+}
+.top-bar .bar-title {
+    flex: 1;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+}
+.top-bar .button-more {
+    height: 24px;
+    margin: 12px 12px 12px 0;
+    padding: 0;
+}
+
+/* chat content */
+.chat_content {
+    display: block;
+    position: relative;
+    height: 100%;
+    background: #f2f2f2;
+    /* margin-top: 48px;
+    margin-bottom: 61px; */
+    box-sizing: border-box;
+    padding: 68px 16px 61px;
+    overflow-y: scroll;
+}
+
+/* chatting message */
+.content_message {
+    display: flex;
+    margin-bottom: 9px;
+    /* js 처리 필요 */
+}
+.content_message + .other_message {
+    justify-content: flex-start;
+    /* margin-left: 16px; */
+}
+.content_message + .my_message {
+    justify-content: flex-end;
+}
+
+.content_message .message_image {
+    align-self: flex-start;
+    margin-right: 12px;
+}
+.content_message .message_text {
+    max-width: 216px;
+    /* flex-grow: 1; */
+    padding: 12px;
+    font-size: 14px;
+    line-height: 18px;
+}
+.other_message .message_text {
+    background: #ffffff;
+    border: 1px solid #c4c4c4;
+    border-radius: 15px;
+    border-top-left-radius: 0;
+}
+.my_message .message_text {
+    background: #f26e22;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    border-top-right-radius: 0;
+}
+
+.content_message .message_date,
+.content_message .message_date {
+    align-self: flex-end;
+    font-size: 10px;
+    line-height: 13px;
+    color: #767676;
+}
+.other_message .message_date {
+    margin-left: 6px;
+}
+.my_message .message_date {
+    margin-right: 6px;
+}
+
+/* chat_input */
+.comment,
+.input_chatting {
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    line-height: 18px;
+    background: #ffffff;
+}
+.comment_profile-image,
+.input_image {
+    width: 36px;
+    height: 36px;
+    margin: 13px 18px 12px 16px;
+}
+
+#comment_write,
+#input_text {
+    flex-grow: 1;
+    border: none;
+    align-self: stretch;
+}
+
+#comment_write::placeholder,
+#input_text::placeholder {
+    color: #c4c4c4;
+}
+
+.comment_submit-button,
+.input_submit-button {
+    margin: 23px 16px 20px 18px;
+    padding: 0;
+    width: 26px;
+    height: 18px;
+    font-weight: 500;
+    color: #c4c4c4;
+    text-align: right;
+    background-color: transparent;
+    border: none;
+}
+
+/* post-modal */
+.post-modal {
+    /* margin-top: -200px; */
+    border: 0.5px solid #dbdbdb;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: black;
+}
+.post-modal:after {
+    display: inline-block;
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translate(-50%);
+    content: "";
+    width: 50px;
+    height: 4px;
+    background: 100% 100% url("/frontend/resource/img/module/Rectangle\ 70.svg");
+}
+.post-modal .modal_item-container {
+    margin-top: 36px;
+    margin-bottom: 10px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.modal_item-container .modal_item {
+    padding-left: 26px;
+    height: 46px;
+    line-height: 46px;
+    font-size: 14px;
+}

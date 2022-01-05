@@ -1,0 +1,33 @@
+/* utility */
+/* 요소를 완전히 없애면 안되고.. 글자만 없애는 걸로.. */
+.ir {
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    font-size: 1px;
+    line-height: 0;
+    color: transparent;
+    text-indent: -9999px;
+}
+.button-noneBackground {
+    background-color: transparent;
+    border: none;
+}
+
+/* top bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px #dbdbdb;
+}
+.button-back {
+    height: 22px;
+    margin: 13px 0 13px 16px;
+    padding: 0;
+}
+.button-more {
+    height: 24px;
+    margin: 12px 12px 12px 0;
+    padding: 0;
+}
