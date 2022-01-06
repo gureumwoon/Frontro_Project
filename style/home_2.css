@@ -5,8 +5,11 @@
 .body {
     position: relative;
     background-color: #767676;
-
+    -ms-overflow-style: none;
 }
+
+::-webkit-scrollbar { display: none; }
+
 .container {
     width: 39em;
     height: 100vh;
@@ -14,44 +17,38 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
 }
 
 .header {
-    height: 5.2rem;
+    border-bottom: 1px solid #DBDBDB;
+    height: 4.8em;
     position: relative;
-    border-bottom: 1px solid #dbdbdb;
 }
 
-.header .box-search {
-    padding: 8px 19px 8px 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 390px;
-    /* width: 100%; */
-}
+.header .tit-intro {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 1.8em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+    text-align: left;
+    padding: 13px 16px;
+} 
 
-.form-search {
-    width: 31.6rem;
-    background: #F2F2F2;
-    border-radius: 32px;
-    padding-left: 1rem;
-    margin-left: 2.4rem;
-}
-
-.inp-search {
-    width: 96%;
-    padding-top: 0.7rem;
-    background: #f2f2f2;
-    padding-left: 1.6rem;
-    padding-bottom: 0.7rem;
-    border-style: none;
+.header .icon-search {
+    position: absolute;
+    top: 1em;
+    right: 1.3em;
 }
 
 .main {
-    height: 100%;
+    overflow: scroll;
+    scroll-behavior: smooth;
+}
+
+.main .post {
+    overflow: hidden;
+    margin: 2rem auto;
 }
 
 .footer {
