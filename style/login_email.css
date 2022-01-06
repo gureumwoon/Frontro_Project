@@ -1,0 +1,7 @@
+@media (max-width: 390px) {
+
+  html {
+    font-size: 62.5%;
+    font-family: 'Noto Sans', sans-serif;
+  }
+}

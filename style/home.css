@@ -23,6 +23,7 @@
     height: 4.8em;
     position: relative;
 }
+
 .header .tit-intro {
     font-family: Spoqa Han Sans Neo;
     font-size: 1.8em;
@@ -66,6 +67,7 @@
     font-weight: 500;
     border-radius: 32px;
     background-color: #FFC022;
+    border: none;
 }
 
 .main .main-icon .btn-search a {
@@ -80,10 +82,12 @@
 
 .footer {
     height: 6em;
+    border-top: 1px solid #dbdbdb;
 }
 
 .footer .icon-item-list {
     display: flex;
+    margin-top: 0.8rem;
     justify-content: space-around;
 }
 
