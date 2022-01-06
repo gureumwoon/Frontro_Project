@@ -152,6 +152,13 @@ input {
     border-bottom: 1px solid #dbdbdb;
     font-size: 14px;
     line-height: 14px;
+    border: none;
+}
+#input-id:active,
+#input-id:focus {
+    outline: none;
+    border-bottom: 1px solid var(--yeon-no);
+    margin-bottom: 5px;
 }
 
 /* js 처리를 통해 에러가 발생한 경우 */

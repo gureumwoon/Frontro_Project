@@ -196,16 +196,49 @@
                 <button type="button" class="button-noneBackground"><img src="./src/png/icon-post-album-off.png"
                         alt=""></button>
             </div>
-            <article class="cont_user-contents">
+            <!-- <article class="cont_user-contents list-style"> -->
+            <article class="cont_user-contents picture-style">
                 <h3 class="ir">게시물 상세정보</h3>
                 <!-- 
                     필요한 JS 처리: 
                     click에 따라서 리스트에 표시되는 html을 변경해주어야한다.
                 -->
+                <!-- case 1. 리스트형: js에서 사용할 html 예시: 리스트형 컨텐츠 보여줄 때 표시되는 html-->
                 <ul class="ul_user-contents">
+                    <!-- picture-style로 보여주기 -->
                     <li class="li_user-contents">
-                        <!-- <article></article> -->
-                        <!-- ↑ case 1: js에서 사용할 html 예시: 리스트형 컨텐츠 보여줄 때 표시되는 html ↑-->
+                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
+                    </li>
+                    <li class="li_user-contents">
+                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
+                    </li>
+                    <li class="li_user-contents">
+                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
+                    </li>
+                    <li class="li_user-contents">
+                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
+                    </li>
+                    <li class="li_user-contents">
+                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
+                    </li>
+                    <li class="li_user-contents">
+                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
+                    </li>
+                    <li class="li_user-contents">
+                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
+                    </li>
+                    <li class="li_user-contents">
+                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
+                    </li>
+                    <li class="li_user-contents">
+                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
+                    </li>
+                    <li class="li_user-contents">
+                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
+                    </li>
+                    <!-- ↓ css should be updated ↓ -->
+                    <!-- list-style로 보여주기 -->
+                    <!-- <li class="li_user-contents">
                         <article class="content_user-contents">
                             <div class="cont_content-info">
                                 <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="img_content-info" />
@@ -235,8 +268,6 @@
                         </article>
                     </li>
                     <li class="li_user-contents">
-                        <!-- <article></article> -->
-                        <!-- ↑ case 1: js에서 사용할 html 예시: 리스트형 컨텐츠 보여줄 때 표시되는 html ↑-->
                         <article class="content_user-contents">
                             <div class="cont_content-info">
                                 <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="img_content-info" />
@@ -264,30 +295,31 @@
                                 </div>
                             </div>
                         </article>
-                    </li>
+                    </li> -->
                 </ul>
             </article>
         </article>
         <!-- 모듈화될 수 있는 부분: 화면 공통 네비게이션 -->
+        <!-- p tag는 가상요소로 처리 -->
         <nav class="tap-menu">
             <button class="tap-menu-home">
                 <img src="./src/svg/icon-home.svg" alt="홈으로 가기" class="home-icon">
-                <p class="tap-menu-home-title">홈</p>
+                <!-- <p class="tap-menu-home-title">홈</p> -->
             </button>
 
             <button class="tap-menu-chat">
                 <img src="./src/svg/icon-message-circle.svg" alt="채팅으로 가기" class="chat-icon">
-                <p class="tap-menu-chat-title">채팅</p>
+                <!-- <p class="tap-menu-chat-title">채팅</p> -->
             </button>
 
             <button class="tap-menu-edit">
                 <img src="./src/svg/icon-edit.svg" alt="게시물 작성하기" class="edit-icon">
-                <p class="tap-menu-edit-title">게시물 작성</p>
+                <!-- <p class="tap-menu-edit-title">게시물 작성</p> -->
             </button>
 
             <button class="tap-menu-user">
                 <img src="./src/svg/icon-user.svg" alt="프로필로 가기" class="user-icon">
-                <p class="tap-menu-user-title">프로필</p>
+                <!-- <p class="tap-menu-user-title">프로필</p> -->
             </button>
         </nav>
     </main>
