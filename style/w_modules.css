@@ -6,15 +6,17 @@
     font-style: normal;
 }
 
+html {
+    background-color: bisque;
+    /* font-size: 62.5%; */
+}
+
 /* 해당 내용은 reset.css에 작성 */
 body,
 button,
 input {
     font-family: "SpoqaHanSansNeo-Regular";
 }
-/* * {
-    font-family: "SpoqaHanSansNeo-Regular";
-} */
 
 /* 10. comment */
 .comment,
@@ -24,6 +26,7 @@ input {
     align-items: center;
     font-size: 14px;
     line-height: 18px;
+    background: #ffffff;
 }
 .comment_profile-image,
 .input_image {
@@ -168,11 +171,9 @@ input {
 
 /* 14. delete-alert */
 .alert-box {
-    /* .delete-alert { */
-    display: inline-block;
-    /* 사용할 때는 얘는 제거해 주셔야합니다. */
-    border: 0.5px solid #dbdbdb;
+    background-color: #ffffff;
     border-radius: 10px;
+    display: inline-block;
     overflow: hidden;
     text-align: center;
     font-weight: 600;
@@ -212,27 +213,28 @@ input {
 /* 모달 3. post-modal (3) */
 
 .post-modal {
+    background-color: #ffffff;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
     position: relative;
-    border: 0.5px solid #dbdbdb;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    overflow: auto; /*마진 겹친 현상을 해결하기 위한 코드*/
 }
 .post-modal:after {
+    background-color: #dbdbdb;
+    border-radius: 0.5em;
     display: inline-block;
     position: absolute;
-    top: 16px;
+    top: 1.6em;
     left: 50%;
-    /* left: 170px; */
     transform: translate(-50%);
     content: "";
-    width: 50px;
-    height: 4px;
-    background: 100% 100% url("../resource/img/module/Rectangle\ 70.svg");
+    width: 5em;
+    height: 0.4em;
+    /* background: 100% 100% url("../resource/img/module/Rectangle\ 70.svg"); */
 }
 .post-modal .modal_item-container {
-    margin-top: 36px;
-    margin-bottom: 10px;
-    list-style: none;
+    margin-top: 3.6em;
+    margin-bottom: 1em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -240,10 +242,10 @@ input {
 }
 
 .modal_item-container .modal_item {
-    padding-left: 26px;
-    height: 46px;
-    line-height: 46px;
-    font-size: 14px;
+    padding-left: 2.6em;
+    height: 4.6em;
+    line-height: 4.6em;
+    font-size: 1.4em;
 }
 
 /* top bar */
