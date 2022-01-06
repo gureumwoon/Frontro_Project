@@ -2,55 +2,87 @@ html {
     font-size: 62.5%;
 }
 
+body {
+    background-color: wheat;
+    
+}
+
+.font-gray {
+    color: #767676;
+}
+
+.module-name {
+    font-size: 2rem;
+}
+
 .post {
-    width: 35.8em;
-    height: 43.4em;
+    width: 35.8rem;
+
     display: flex; 
     justify-content: space-between;
+    background-color: white;
 }
 
 .post .profile-pic {
-    width: 4.2em;
-    height: 4.2em;
+    width: 4.2rem;
+    height: 4.2rem;
 }
 
 .container .profile .nickname {
-    font-size: 1.4em;
+    font-size: 1.4rem;
     font-weight: 500;
-    margin: 0.4em 0 0.2em 1.2em; 
+    margin: 0.4rem 0 0.2rem 1.2rem; 
 }
 
 .container .profile .id {
-    font-size: 1.4em;
+    font-size: 1.4rem;
     color: #767676;
-    margin: 0 0 1.6em 1.2em;
+    margin: 0 0 1.6rem 1.2rem;
 }
 
 .container .desc {
-    font-size: 1.4em;
+    font-size: 1.4rem;
     clear: both;
-    margin: 0 0 1.6em 1.2em;
-    line-height: 1.753em;
+    margin: 0 0 1.6rem 1.2rem;
+    line-height: 1.75rem;
+    width: 30.4rem;
 }
 
 .container .picture {
-    width: 30.4em;
-    height: 22.8em;
-    margin: 0 0 1.45em 1.2em;
+    width: 30.4rem;
+    height: 22.8rem;
+    margin: 0 0 1.45rem 1.2rem;
+}
+.container .icon-box {
+    display: inline-block;
+    margin-left: 1rem;
+
 }
 
-.container .like, .container .comment {
-    font-size: 1.2em;
-    color: #767676;
-    float: left;
-    margin: 0 1.85em 2em 0;
+.icon-box .icon-box-like {
+    display: inline;
 }
+
+.container .btn {
+    border: none;
+    background: #fff;
+    padding: 0px 0.5rem 0px 0.8rem;
+    cursor: pointer;
+}
+
+.container .count, .post .font-gray {
+    font-size: 1.3rem;
+    vertical-align: 0.5rem;
+}
+
 
 .container .date {
-    font-size: 1em;
+    font-size: 10px;
+    font-weight: 400;
     color: #767676;
     clear: both;
-    margin-left: 1.2em;
+    margin-left: 1.2rem;
+    display: block;
 }
 
 .container .profile {
@@ -59,31 +91,35 @@ html {
 
 .container .see-more {
     float: right;
-    margin: 0.4em 0;
+    margin: 0.4rem 0;
 }
 
 .container .like-icon {
     float: left;
-    margin: 0 0.782em 1.873em 1.2em;
+    margin: 0 0.782rem 1.873rem 1.2rem;
 }
 
 .container .comment-icon {
     float: left;
-    margin: 0 0.85em 1.85em 0;
+    margin: 0 0.85rem 1.85rem 0;
 }
 
+.product-box {
+    width: 140px;
+    background-color: white;
+}
 .thumbnail {
-    border-radius: 0.8em;
+    border-radius: 0.8rem;
 }
 
 .title {
-    font-size: 1.4em;
-    margin: 0.6em 0 0.4em 0.2em;
+    font-size: 1.4rem;
+    margin: 0.6rem 0 0.4rem 0.2rem;
 }
 
 .price {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     color: #F26E22;
-    margin-left: 0.2em;
+    margin-left: 0.2rem;
     font-weight: 700;
 }
