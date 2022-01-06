@@ -1,0 +1,101 @@
+  #html {
+    font-size: 62.5%;
+    font-family: 'Noto Sans', sans-serif;
+  }
+
+  #body {
+    position: relative;
+    background-color: #767676;
+  }
+
+  .container {
+    width: 39em;
+    height: 100vh;
+    background-color: #FFDB81;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .img-box {
+    display: flex;
+    justify-content: center;
+    margin: 20rem 13rem;
+  }
+
+  .login-img {
+    display: block;
+    margin: 0rem auto;
+    height: 11.6rem;
+  }
+
+  .login-box {
+    background-color: #FFF;
+    border-radius: 2rem 2rem 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 0 12.5em;
+    width: 100%;
+  }
+
+  .login-box-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 4.4rem;
+    width: 32.2rem;
+    height: 4.4rem;
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    color: #767676;
+  }
+
+  .sns-img {
+    position: absolute;
+    width: 2.4rem;
+    left: 1.4rem;
+  }
+
+  .kakao-box {
+    background: #FFF;
+    border: 0.1rem solid #F2C94C;
+  }
+
+  .google-box {
+    background: #FFF;
+    border: 0.1rem solid #767676;
+  }
+
+  .fb-box {
+    background: #FFF;
+    border: 0.1rem solid #2D9CDB;
+  }
+
+  .link-btn {
+    display: flex;
+    margin-top: 2rem;
+    /* padding-bottom: 12.5rem; */
+    font-size: 1.2rem;
+  }
+
+  .link-btn-email {
+    text-decoration: none;
+    color: #767676;
+  }
+
+  .link-btn-signIn {
+    text-decoration: none;
+    color: #767676;
+  }
+
+  .link-btn-email::after {
+    content: "|";
+    float: right;
+    display: block;
+    margin: 0 1.2rem 0;
+  }
