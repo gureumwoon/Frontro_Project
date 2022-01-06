@@ -1,197 +1,192 @@
-html {
+#html {
   font-size: 62.5%;
 }
 
-@media (max-width: 390px) {
+body {
+  background-color: rgba(216, 216, 216, 0.534);
+}
+
+/* 4. top-basic-nav */
+.top-basic-nav {
+  font-family: 'Noto Sans', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4.8rem;
+  width: 39rem;
+  padding: 0.8rem 1.6rem;
+  background: #FFFFFF;
+  box-sizing: border-box;
+}
+
+.back-icon {
+  height: 2.2rem;
+}
+
+.more-icon {
+  height: 2.4rem;
+}
+
+/* 5. top-search-nav */
+.top-search-nav {
+  font-family: 'Noto Sans', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4.8rem;
+  width: 39rem;
+  padding: 0.8rem 1.6rem;
+  background: #FFFFFF;
+  box-sizing: border-box;
+}
+
+.top-search-nav-accountSearch {
+  background: #F2F2F2;
+  border-radius: 3.2rem;
+  border-style: none;
+  font-size: 1.4rem;
+  color: #C4C4C4;
+  width: 31.6rem;
+  padding: 0.6rem 0 0.7rem 1.6rem;
+}
+
+/* 6. top-main-nav */
+.top-main-nav {
+  font-family: 'Noto Sans', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  height: 4.8rem;
+  width: 39rem;
+  padding: 0.8rem 1.6rem;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.top-main-nav-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.search-icon {
+  height: 2.4rem;
+}
+
+/* 7. top-upload-nav */
+.top-upload-nav {
+  font-family: 'Noto Sans', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4.8rem;
+  width: 39rem;
+  padding: 0.8rem 1.6rem;
+  background: #FFFFFF;
+  box-sizing: border-box;
+}
+
+.top-upload-nav-saveButton {
+  background: var(--yeon-no);
+  border-radius: 3.2rem;
+  border-style: none;
+  padding: 0.6rem 3.2rem;
+  font-size: 1.4rem;
+  color: var(--yeon-no-word);
+}
+
+/* 8. top-chat-nav */
+.top-chat-nav {
+  font-family: 'Noto Sans', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  height: 4.8rem;
+  width: 39rem;
+  padding: 0.8rem 1.6rem;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.top-chat-nav-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.top-chat-nav-title {
+  margin-left: 1rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* ///////////////////////////////// */
+
+/* 9. tap-menu */
+.tap-menu {
+  font-family: 'Noto Sans', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  height: 4.8rem;
+  width: 39rem;
+  padding: 1.2rem 3.5rem 0.6rem;
+  background: #FFFFFF;
+  box-sizing: border-box;
+}
+
+.tap-menu-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  font-size: 1rem;
+}
+
+.tap-menu-home-title {
+  padding-top: 0.4rem;
+}
 
 
-  body {
-    background-color: gray;
-  }
+.tap-menu-chat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  font-size: 1rem;
+}
 
-  /* 4. top-basic-nav */
-  .top-basic-nav {
-    font-family: 'Noto Sans', sans-serif;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 3rem;
-    background: #FFFFFF;
-    padding: 0.6rem 0.6rem 0.6rem 0.8rem;
-    box-sizing: border-box;
-  }
+.tap-menu-chat-title {
+  padding-top: 0.4rem;
+}
 
-  .back-icon {
-    height: 1rem;
-  }
+.tap-menu-edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  font-size: 1rem;
+}
 
-  .more-icon {
-    height: 1.2rem;
-  }
+.tap-menu-edit-title {
+  padding-top: 0.4rem;
+  text-align: center;
+}
 
-  /* 5. top-search-nav */
-  .top-search-nav {
-    font-family: 'Noto Sans', sans-serif;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 3.2rem;
-    background: #FFFFFF;
-    padding: 0.4rem 0.8rem;
-    box-sizing: border-box;
-  }
+.tap-menu-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  font-size: 1rem;
+}
 
-  .top-search-nav-accountSearch {
-    background: #F2F2F2;
-    border-radius: 2rem;
-    border-style: none;
-    font-size: 0.7rem;
-    color: #C4C4C4;
-    width: 19rem;
-    padding-left: 0.8rem;
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
-  }
+.tap-menu-user-title {
+  padding-top: 0.4rem;
+}
 
-  /* ///////////////////////////////// */
-
-  /* 6. top-main-nav */
-  .top-main-nav {
-    font-family: 'Noto Sans', sans-serif;
-    display: flex;
-    justify-content: space-between;
-    height: 3.2rem;
-    background: #FFFFFF;
-    padding: 0.6rem 0.8rem;
-    box-sizing: border-box;
-    align-items: center;
-  }
-
-  .top-main-nav-title {
-    font-size: 0.9rem;
-  }
-
-  .search-icon {
-    height: 1.2rem;
-  }
-
-  /* ///////////////////////////////// */
-
-
-  /* 7. top-upload-nav */
-  .top-upload-nav {
-    font-family: 'Noto Sans', sans-serif;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 3rem;
-    background: #FFFFFF;
-    padding: 0.4rem 0.8rem;
-    box-sizing: border-box;
-  }
-
-  .top-upload-nav-saveButton {
-    background: var(--yeon-no);
-    border-radius: 2rem;
-    border-style: none;
-    padding: 0.3rem 1.6rem 0.3rem;
-    font-size: 0.7rem;
-    color: var(--yeon-no-word);
-  }
-
-  /* ///////////////////////////////// */
-
-  /* 8. top-chat-nav */
-  .top-chat-nav {
-    font-family: 'Noto Sans', sans-serif;
-    display: flex;
-    justify-content: space-between;
-    height: 3rem;
-    background: #FFFFFF;
-    padding: 0.6rem 0.8rem 0.6rem;
-    box-sizing: border-box;
-    align-items: center;
-  }
-
-  .top-chat-nav-left {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .top-chat-nav-title {
-    margin-left: 0.5rem;
-    font-size: 0.7rem;
-  }
-
-  /* ///////////////////////////////// */
-
-  /* 9. tap-menu */
-  .tap-menu {
-    font-family: 'Noto Sans', sans-serif;
-    display: flex;
-    justify-content: space-between;
-    height: 3rem;
-    background: #FFFFFF;
-    box-sizing: border-box;
-    padding: 0.6rem 1.7rem 0.3rem;
-  }
-
-  .tap-menu-home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    font-size: 0.5rem;
-  }
-
-  .tap-menu-home-title {
-    padding-top: 0.2rem;
-  }
-
-
-  .tap-menu-chat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    font-size: 0.5rem;
-  }
-
-  .tap-menu-chat-title {
-    padding-top: 0.2rem;
-  }
-
-  .tap-menu-edit {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    font-size: 0.5rem;
-  }
-
-  .tap-menu-edit-title {
-    padding-top: 0.2rem;
-    text-align: center;
-  }
-
-  .tap-menu-user {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    font-size: 0.5rem;
-  }
-
-  .tap-menu-user-title {
-    padding-top: 0.2rem;
-  }
-
-  .tap-menu-icon {
-    width: 1.2rem;
-  }
+.tap-menu-icon {
+  width: 2.4rem;
 }

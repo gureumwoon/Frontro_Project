@@ -35,10 +35,20 @@ h2 {
   margin-bottom: 1.6rem;
 }
 
-#input-box {
+.input-box {
   border-style: none;
   border-bottom: 0.1rem solid #DBDBDB;
-  height: 3.3rem;
+  height: 3.4rem;
+}
+
+.alert {
+  margin-bottom: 0.6rem;
+  border-bottom: 0.1rem solid #EB5757;
+}
+
+.input_alert {
+  font-size: 1.2rem;
+  color: #EB5757;
 }
 
 #next_btn {

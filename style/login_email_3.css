@@ -41,7 +41,17 @@ h2 {
   height: 3.3rem;
 }
 
-#next_btn {
+.input_alert {
+  margin-top: 0.6rem;
+  color: #EB5757;
+  font-size: 1.2rem;
+}
+
+.emailBox-margin {
+  margin-bottom: 1.6rem;
+}
+
+#login_btn {
   width: 32.2rem;
   height: 4.4rem;
   background: var(--yeon-no);
@@ -50,4 +60,12 @@ h2 {
   color: var(--yeon-no-word);
   font-size: 1.4rem;
   margin-top: 1.4rem;
+}
+
+#email_signIn {
+  color: #767676;
+  text-decoration: none;
+  margin-top: 1.9rem;
+  text-align: center;
+  font-size: 1.2rem;
 }
