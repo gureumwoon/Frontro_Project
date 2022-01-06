@@ -51,10 +51,10 @@ body {
 .desc {
     font-size: 1.4rem;
     clear: both;
-    padding-bottom: 1.6rem;
     line-height: 1.75rem;
     width: 30.4rem;
-    margin: 0;
+    margin-bottom: 16px;
+    
 }
 
 .picture {
@@ -65,7 +65,6 @@ body {
 .icon-box {
     display: inline-block;
     padding-top: 1.4rem;
-
 }
 
 .icon-box .icon-box-like {
@@ -100,7 +99,7 @@ body {
     position: relative;
 }
 
-.see-more {
+.icon-more {
     position: absolute;
     top: 1rem;
     right: -17.5rem;
@@ -120,18 +119,16 @@ body {
     width: 140px;
     background-color: white;
 }
-.thumbnail {
+.product-box .img-product {
     border-radius: 0.8rem;
 }
 
-.title {
-    /* font-size: 1.4rem; */
-    /* margin: 0.6rem 0 0.4rem 0.2rem; */
+.product-box .tit-product {
+    font-size: 1.4rem;
 }
 
-.price {
+.product-box .price {
     font-size: 1.2rem;
-    color: #F26E22;
-    /* margin-left: 0.2rem; */
+    color: #ffc022;
     font-weight: 700;
 }
