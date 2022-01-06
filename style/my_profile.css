@@ -16,14 +16,6 @@ button {
     font-size: 62.5%;
 }
 
-/* 코드 리뷰 때 여쭤보기 */
-/* main {
-    -ms-overflow-style: none;
-}
-::-webkit-scrollbar {
-    display: none;
-} */
-
 /* utility */
 /* 요소를 완전히 없애면 안되고.. 글자만 없애는 걸로.. */
 .ir {
@@ -173,13 +165,17 @@ main {
     background-color: var(--zzin-no);
     color: var(--zzin-no-word);
 }
-.profile_footer .S-Activ-button {
+.profile_footer .S-Active-button {
     padding: 0.8rem 0;
+    margin: 0;
     font-weight: 500;
     border: 0.1rem solid #dbdbdb;
     border-radius: 2.6rem;
     background-color: #ffffff;
     color: #767676;
+}
+.profile_footer .S-Active-button:first-child {
+    margin-right: 1.2rem;
 }
 
 /* 판매 상품, on-sale */

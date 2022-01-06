@@ -1,3 +1,21 @@
+@font-face {
+    font-family: "SpoqaHanSansNeo-Regular";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    background-color: #f2f2f2;
+}
+
+html,
+button {
+    font-family: "SpoqaHanSansNeo-Regular";
+    font-size: 62.5%;
+}
+
 /* utility */
 /* 요소를 완전히 없애면 안되고.. 글자만 없애는 걸로.. */
 .ir {
@@ -50,7 +68,9 @@ body {
 
 /* chat content */
 .chat_content {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     position: relative;
     height: 100%;
     background: #f2f2f2;
@@ -75,9 +95,11 @@ body {
     justify-content: flex-end;
 }
 
-.content_message .message_image {
+.content_message .profile_message {
     align-self: flex-start;
     margin-right: 12px;
+    width: 42px;
+    height: 42px;
 }
 .content_message .message_text {
     max-width: 216px;
