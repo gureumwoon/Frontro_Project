@@ -1,0 +1,119 @@
+.html {
+    font-size: 62.5%;
+}
+body {
+    position: relative;
+    background-color: #767676;
+    font-size: 62.5%;
+}
+
+a {
+    color: rgba(128, 96, 17, 0.6);
+    text-decoration: none;
+}
+
+.container {
+    width: 39rem;
+    height: 100vh;
+    position: relative;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.set-profile .title {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 2.4rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 3rem;
+    letter-spacing: 0rem;
+    text-align: center;
+    padding-top: 3rem;
+}
+
+.set-profile .intro {
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.4rem;
+    letter-spacing: 0rem;
+    text-align: center;
+    color: #767676;
+    margin-top: 1.2rem;
+}
+
+.set-profile .set-picture {
+    margin-top: 1.9rem;
+    position: relative;
+}
+
+.set-profile .set-picture .picture {
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
+    width: 11rem;
+}
+
+.set-profile .set-picture .icon-gallery-base {
+    position: absolute;
+    height: 3.6rem;
+    width: 3.6rem;
+    bottom: 0rem;
+    right: 14rem;
+    border-radius: 50%;
+    background-color: #FFC022;
+    ;
+}
+
+.set-profile .set-picture .icon-pict {
+    padding-top: 0.7rem;
+    padding-left: 0.7rem;
+}
+
+
+/* 사용자이름,계정아이디,소개 폼 */
+.form-setProfile {
+    margin-top: 1.8rem;
+}
+
+.form-setProfile .module-inp {
+    width: 32.2rem;
+    margin: 0 auto 1.6rem; 
+}
+
+.form-setProfile .module-inp .inpName {
+    display: block;
+    padding-bottom: 0.6rem;
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    color: #767676;
+}
+
+.form-setProfile .inp-login {
+    border-bottom: 0.1rem solid #DBDBDB;
+    width: 100%;
+    padding-bottom: 0.5rem;
+}
+
+::placeholder {
+    color: #DBDBDB;
+}
+
+/* 아이디를 입력안하면 나오는 에러 줄 */
+.form-setProfile .error .inp-login {
+    border-bottom: 0.1rem solid red;
+}
+
+.form-setProfile .error .inp-error {
+    display: block;
+    margin-top: 0.6rem;
+    color: #EB5757;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 0.8rem;
+}
+.form-setProfile .btn {
+    display: block;
+    margin: 3rem auto;
+}

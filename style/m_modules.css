@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 html {
   font-size: 62.5%;
 }
@@ -11,6 +12,96 @@ html {
   /* 4. top-basic-nav */
   .top-basic-nav {
     font-family: 'Noto Sans', sans-serif;
+=======
+body {
+    background-color: gray;
+}
+
+/* 4. top-basic-nav */
+.top-basic-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 390px;
+    height: 48px;
+    background: #ffffff;
+    padding: 12px 12px 12px 16px;
+    box-sizing: border-box;
+}
+
+.back-icon {
+    width: 22px;
+}
+
+.more-icon {
+    width: 24px;
+}
+
+/* 5. top-search-nav */
+.top-search-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 390px;
+    height: 48px;
+    background: #ffffff;
+    padding: 12px 19px 8px;
+    box-sizing: border-box;
+}
+
+.top-search-nav-accountSearch {
+    background: #f2f2f2;
+    border-radius: 32px;
+    border-style: none;
+    font-size: 14px;
+    color: #c4c4c4;
+    width: 316px;
+    padding-left: 16px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+/* ///////////////////////////////// */
+
+/* 6. top-main-nav */
+.top-main-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 390px;
+    height: 48px;
+    background: #ffffff;
+    padding: 12px 16px;
+    box-sizing: border-box;
+}
+
+.top-main-nav-title {
+    font-size: 18px;
+}
+
+.search-icon {
+    width: 16px;
+}
+
+/* ///////////////////////////////// */
+
+/* 7. top-upload-nav */
+.top-upload-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 390px;
+    height: 48px;
+    background: #ffffff;
+    padding: 8px 16px;
+    box-sizing: border-box;
+}
+
+.top-upload-nav-saveButton {
+    background: #ffc7a7;
+    border-radius: 32px;
+    border-style: none;
+    padding: 7px 31px 7px 33px;
+    font-size: 14px;
+    color: #ffffff;
+}
+>>>>>>> 0cc88c1fab00b35de4aa7cc85a6310cbf294b803
 
     display: flex;
     justify-content: space-between;
@@ -21,6 +112,7 @@ html {
     box-sizing: border-box;
   }
 
+<<<<<<< HEAD
   .back-icon {
     height: 1rem;
   }
@@ -32,6 +124,29 @@ html {
   /* 5. top-search-nav */
   .top-search-nav {
     font-family: 'Noto Sans', sans-serif;
+=======
+/* 8. top-chat-nav */
+.top-chat-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 390px;
+    height: 48px;
+    background: #ffffff;
+    padding: 12px 12px 12px 16px;
+    box-sizing: border-box;
+}
+
+.top-chat-nav-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.top-chat-nav-title {
+    margin-left: 10px;
+    font-size: 14px;
+}
+>>>>>>> 0cc88c1fab00b35de4aa7cc85a6310cbf294b803
 
     display: flex;
     justify-content: space-between;
@@ -42,6 +157,7 @@ html {
     box-sizing: border-box;
   }
 
+<<<<<<< HEAD
   .top-search-nav-accountSearch {
     background: #F2F2F2;
     border-radius: 2rem;
@@ -196,3 +312,86 @@ html {
     width: 1.2rem;
   }
 }
+=======
+/* 9. tap-menu */
+.tap-menu {
+    display: flex;
+    justify-content: space-between;
+    width: 390px;
+    height: 60px;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+.tap-menu-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    padding: 12px 30px 6px;
+    font-size: 10px;
+}
+
+.tap-menu-home-title {
+    padding-top: 6px;
+}
+
+.tap-menu-chat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    padding: 12px 30px 6px;
+    font-size: 10px;
+}
+
+.tap-menu-chat-title {
+    padding-top: 6px;
+}
+
+.tap-menu-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    padding: 12px 30px 6px;
+    font-size: 10px;
+}
+
+.tap-menu-edit-title {
+    padding-top: 6px;
+}
+
+.tap-menu-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    padding: 12px 30px 6px;
+    font-size: 10px;
+}
+
+.tap-menu-user-title {
+    padding-top: 6px;
+}
+
+.home-icon {
+    width: 24px;
+}
+
+.chat-icon {
+    width: 24px;
+}
+
+.edit-icon {
+    width: 24px;
+}
+
+.user-icon {
+    width: 24px;
+}
+>>>>>>> 0cc88c1fab00b35de4aa7cc85a6310cbf294b803
