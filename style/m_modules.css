@@ -1,202 +1,198 @@
-body {
-  background-color: gray;
+html {
+  font-size: 62.5%;
 }
-
-/* 4. top-basic-nav */
-.top-basic-nav {
-  display: flex;
-  justify-content: space-between;
-  width: 390px;
-  height: 48px;
-  background: #FFFFFF;
-  padding: 12px 12px 12px 16px;
-  box-sizing: border-box;
-}
-
-.back-icon {
-  width: 22px;
-}
-
-.more-icon {
-  width: 24px;
-}
-
-/* 5. top-search-nav */
-.top-search-nav {
-  display: flex;
-  justify-content: space-between;
-  width: 390px;
-  height: 48px;
-  background: #FFFFFF;
-  padding: 12px 19px 8px;
-  box-sizing: border-box;
-}
-
-.top-search-nav-accountSearch {
-  background: #F2F2F2;
-  border-radius: 32px;
-  border-style: none;
-  font-size: 14px;
-  color: #C4C4C4;
-  width: 316px;
-  padding-left: 16px;
-  padding-top: 7px;
-  padding-bottom: 7px;
-}
-
-/* ///////////////////////////////// */
-
-/* 6. top-main-nav */
-.top-main-nav {
-  display: flex;
-  justify-content: space-between;
-  width: 390px;
-  height: 48px;
-  background: #FFFFFF;
-  padding: 12px 16px;
-  box-sizing: border-box;
-}
-
-.top-main-nav-title {
-  font-size: 18px;
-}
-
-.search-icon {
-  width: 16px;
-}
-
-/* ///////////////////////////////// */
+@media (max-width: 390px) {
 
 
-/* 7. top-upload-nav */
-.top-upload-nav {
-  display: flex;
-  justify-content: space-between;
-  width: 390px;
-  height: 48px;
-  background: #FFFFFF;
-  padding: 8px 16px;
-  box-sizing: border-box;
-}
+  body {
+    background-color: gray;
+  }
 
-.top-upload-nav-saveButton {
-  background: #FFC7A7;
-  border-radius: 32px;
-  border-style: none;
-  padding: 7px 31px 7px 33px;
-  font-size: 14px;
-  color: #FFFFFF;
-}
+  /* 4. top-basic-nav */
+  .top-basic-nav {
+    font-family: 'Noto Sans', sans-serif;
 
-/* ///////////////////////////////// */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    background: #FFFFFF;
+    padding: 0.6rem 0.6rem 0.6rem 0.8rem;
+    box-sizing: border-box;
+  }
 
-/* 8. top-chat-nav */
-.top-chat-nav {
-  display: flex;
-  justify-content: space-between;
-  width: 390px;
-  height: 48px;
-  background: #FFFFFF;
-  padding: 12px 12px 12px 16px;
-  box-sizing: border-box;
-}
+  .back-icon {
+    height: 1rem;
+  }
 
-.top-chat-nav-left {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
+  .more-icon {
+    height: 1.2rem;
+  }
 
-.top-chat-nav-title {
-  margin-left: 10px;
-  font-size: 14px;
-}
+  /* 5. top-search-nav */
+  .top-search-nav {
+    font-family: 'Noto Sans', sans-serif;
 
-/* ///////////////////////////////// */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3.2rem;
+    background: #FFFFFF;
+    padding: 0.4rem 0.8rem;
+    box-sizing: border-box;
+  }
 
-/* 9. tap-menu */
-.tap-menu {
-  display: flex;
-  justify-content: space-between;
-  width: 390px;
-  height: 60px;
-  background: #FFFFFF;
-  box-sizing: border-box;
-}
+  .top-search-nav-accountSearch {
+    background: #F2F2F2;
+    border-radius: 2rem;
+    border-style: none;
+    font-size: 0.7rem;
+    color: #C4C4C4;
+    width: 19rem;
+    padding-left: 0.8rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+  }
 
-.tap-menu-home {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  padding: 12px 30px 6px;
-  font-size: 10px;
-}
+  /* ///////////////////////////////// */
 
-.tap-menu-home-title {
-  padding-top: 6px;
-}
+  /* 6. top-main-nav */
+  .top-main-nav {
+    font-family: 'Noto Sans', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    height: 3.2rem;
+    background: #FFFFFF;
+    padding: 0.6rem 0.8rem;
+    box-sizing: border-box;
+    align-items: center;
+  }
+
+  .top-main-nav-title {
+    font-size: 0.9rem;
+  }
+
+  .search-icon {
+    height: 1.2rem;
+  }
+
+  /* ///////////////////////////////// */
 
 
-.tap-menu-chat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  padding: 12px 30px 6px;
-  font-size: 10px;
-}
+  /* 7. top-upload-nav */
+  .top-upload-nav {
+    font-family: 'Noto Sans', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    background: #FFFFFF;
+    padding: 0.4rem 0.8rem;
+    box-sizing: border-box;
+  }
 
-.tap-menu-chat-title {
-  padding-top: 6px;
-}
+  .top-upload-nav-saveButton {
+    background: var(--yeon-no);
+    border-radius: 2rem;
+    border-style: none;
+    padding: 0.3rem 1.6rem 0.3rem;
+    font-size: 0.7rem;
+    color: var(--yeon-no-word);
+  }
 
-.tap-menu-edit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  padding: 12px 30px 6px;
-  font-size: 10px;
-}
+  /* ///////////////////////////////// */
 
-.tap-menu-edit-title {
-  padding-top: 6px;
-}
+  /* 8. top-chat-nav */
+  .top-chat-nav {
+    font-family: 'Noto Sans', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    height: 3rem;
+    background: #FFFFFF;
+    padding: 0.6rem 0.8rem 0.6rem;
+    box-sizing: border-box;
+    align-items: center;
+  }
 
-.tap-menu-user {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  padding: 12px 30px 6px;
-  font-size: 10px;
-}
+  .top-chat-nav-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 
-.tap-menu-user-title {
-  padding-top: 6px;
-}
+  .top-chat-nav-title {
+    margin-left: 0.5rem;
+    font-size: 0.7rem;
+  }
 
-.home-icon {
-  width: 24px;
+  /* ///////////////////////////////// */
 
-}
+  /* 9. tap-menu */
+  .tap-menu {
+    font-family: 'Noto Sans', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    height: 3rem;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    padding: 0.6rem 1.7rem 0.3rem;
+  }
 
-.chat-icon {
-  width: 24px;
+  .tap-menu-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    font-size: 0.5rem;
+  }
 
-}
+  .tap-menu-home-title {
+    padding-top: 0.2rem;
+  }
 
-.edit-icon {
-  width: 24px;
 
-}
+  .tap-menu-chat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    font-size: 0.5rem;
+  }
 
-.user-icon {
-  width: 24px;
+  .tap-menu-chat-title {
+    padding-top: 0.2rem;
+  }
 
+  .tap-menu-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    font-size: 0.5rem;
+  }
+
+  .tap-menu-edit-title {
+    padding-top: 0.2rem;
+    text-align: center;
+  }
+
+  .tap-menu-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    font-size: 0.5rem;
+  }
+
+  .tap-menu-user-title {
+    padding-top: 0.2rem;
+  }
+
+  .tap-menu-icon{
+    width: 1.2rem;
+  }
 }

@@ -6,29 +6,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./style/reset.css">
-  <link rel="stylesheet" href="./style/login_email.css">
+  <link rel="stylesheet" href="./style/join_membership_1.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <title>login_email</title>
+  <title>join membership 1</title>
 </head>
 
 <body>
-  <h2>로그인</h2>
-  
+  <h2>이메일로 회원가입</h2>
+
   <section id="input_info">
     <label for="">이메일</label>
-    <input type="email" id="input-box">
+    <input type="email" id="input-box" placeholder="이메일 주소를 입력해 주세요.">
   </section>
-  
+
   <section id="input_info">
     <label for="">비밀번호</label>
-    <input type="password" id="input-box">
+    <input type="password" id="input-box" placeholder="비밀번호를 설정해 주세요.">
   </section>
 
-  <button id="login_btn">로그인</button>
-  <a href="./join_membership_1.html" id="email_signIn">이메일로 회원가입 </a>
-
+  <button type="button" id="next_btn" onClick="location.href='join membership_2.html'">다음</button>
 </body>
 
 </html>

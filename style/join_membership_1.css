@@ -29,11 +29,13 @@
     border-bottom: 1px solid #DBDBDB;
     height: 32px;
     margin-bottom: 16px;
+    font-size: 14px;
+    color: #DBDBDB;
   }
 
-  #login_btn {
+  #next_btn {
     height: 44px;
-    background: var(--yeon-no);
+    background:  var(--yeon-no);
     border-radius: 44px;
     border-style: none;
     color: #806B37;
@@ -41,10 +43,4 @@
     margin-top: 14px;
   }
 
-  #email_signIn {
-    color: #767676;
-    text-decoration: none;
-    margin-top: 19px;
-    text-align: center;
-  }
 }

@@ -6,7 +6,7 @@
   }
 
   body {
-    background: #FFDB81;
+    background: var(--yeon-no);
     display: flex;
     flex-direction: column;
   }
@@ -14,22 +14,22 @@
   .img-box {
     display: flex;
     justify-content: center;
-    margin: 13.25em 8.8em 11em;
+    margin: 12.563rem 13.7rem;
   }
 
   .login-img {
     display: block;
-    margin: 0em auto;
-    width: 82%;
+    margin: 0rem auto;
+    width: 11.6rem;
   }
 
   .login-box {
     background-color: #FFF;
-    border-radius: 1.25em 1.25em 0 0;
+    border-radius: 1.25rem 1.25rem 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2.5em 2em 7.8em;
+    padding: 3.125rem 2.125rem 7.813rem;
   }
 
   .login-box-btn {
@@ -37,9 +37,10 @@
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    border-radius: 1.6em;
+    border-radius: 2.75rem;
     width: 100%;
-    height: 3.52em;
+    height: 2.75rem;
+    padding: 0.75rem 5.375rem;
     margin-top: 0.8em;
     font-size: 1.12em;
     color: #767676;
@@ -72,7 +73,18 @@
     margin-top: 1.6em;
     margin-bottom: 10em;
     font-size: 0.96em;
+  }
+
+  .link-btn-email {
+    text-decoration: none;
     color: #767676;
+
+  }
+
+  .link-btn-signIn {
+    text-decoration: none;
+    color: #767676;
+
   }
 
   .link-btn-email::after {
