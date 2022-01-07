@@ -38,23 +38,26 @@ body {
     background-color: #ffffff;
     z-index: 10;
 }
+
 .top-bar .button-back {
     margin: 1.3rem 0 1.3rem 1.6rem;
     padding: 0;
     width: 2.2rem;
     height: 2.2rem;
 }
-.top-bar .button-more {
-    margin: 1.2rem 1.2rem 1.2rem 0;
-    padding: 0;
-    width: 2.4rem;
-    height: 2.4rem;
-}
-.button-back img,
-.button-more img {
+.button-back img {
     width: 100%;
     height: 100%;
 }
+
+.top-bar .tit_top-bar {
+    margin-left: 0.8rem;
+    flex: 1;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+/*  팔로워 */
 
 .cont-followers {
     background: #ffffff;
@@ -64,31 +67,17 @@ body {
     text-align: center;
 }
 
-/*  팔로워 */
-
 .list-followers .user-follow {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     margin-bottom: 1.6rem;
-    position: relative;
 }
 
 .user-follow .follow_profile-image {
-    width: 4.2rem;
-    height: 4.2rem;
+    width: 50px;
+    height: 50px;
     float: left;
-}
-.user-follow .on-air_chat-room {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: "";
-    width: 1.2rem;
-    height: 1.2rem;
-    background-color: var(--zzin-no);
-    border-radius: 1.2rem;
 }
 
 .user-follow .follow_text-info {
@@ -105,19 +94,34 @@ body {
     line-height: 18px;
 }
 
-.user-follow .follow_user-email {
+.user-follow .follow_user-introduce {
     display: inline-block;
     margin: 0 0 6px 12px;
     font-size: 12px;
     line-height: 15px;
     color: #767676;
 }
-.date_chat-room {
-    align-self: flex-end;
-    margin-bottom: 0.3rem;
-    font-size: 10px;
-    line-height: 13px;
-    color: #dbdbdb;
+
+/* 팔로우 */
+.user-follow .Sbutton-font {
+    width: 5.6rem;
+    height: 2.8rem;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    border: none;
+    padding: 0;
+    /* margin: 0 1rem; */
+}
+.user-follow .S-button {
+    border-radius: 2.6rem;
+    background-color: var(--zzin-no);
+    color: var(--zzin-no-word);
+}
+.user-follow .S-Activ-button {
+    border: 0.1rem solid #dbdbdb;
+    border-radius: 2.6rem;
+    background-color: #ffffff;
+    color: #767676;
 }
 
 /* 하단 탭 메뉴, tab menu */
