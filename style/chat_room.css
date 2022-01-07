@@ -1,3 +1,21 @@
+@font-face {
+    font-family: "SpoqaHanSansNeo-Regular";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    background-color: #f2f2f2;
+}
+
+html,
+button {
+    font-family: "SpoqaHanSansNeo-Regular";
+    font-size: 62.5%;
+}
+
 /* utility */
 /* 요소를 완전히 없애면 안되고.. 글자만 없애는 걸로.. */
 .ir {
@@ -50,7 +68,9 @@ body {
 
 /* chat content */
 .chat_content {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     position: relative;
     height: 100%;
     background: #f2f2f2;
@@ -75,9 +95,11 @@ body {
     justify-content: flex-end;
 }
 
-.content_message .message_image {
+.content_message .profile_message {
     align-self: flex-start;
     margin-right: 12px;
+    width: 42px;
+    height: 42px;
 }
 .content_message .message_text {
     max-width: 216px;
@@ -93,7 +115,7 @@ body {
     border-top-left-radius: 0;
 }
 .my_message .message_text {
-    background: #f26e22;
+    background: var(--zzin-no);
     color: #ffffff;
     border: none;
     border-radius: 15px;
@@ -124,10 +146,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
     background: #ffffff;
 }
+
 .comment_profile-image,
 .input_image {
     width: 36px;
@@ -145,6 +168,12 @@ body {
 #comment_write::placeholder,
 #input_text::placeholder {
     color: #c4c4c4;
+}
+.input_chatting #input_text:focus {
+    outline: 0;
+}
+#input_text:focus + .input_submit-button {
+    color: var(--zzin-no);
 }
 
 .comment_submit-button,
