@@ -65,6 +65,7 @@ body {
 .icon-box {
     display: inline-block;
     padding-top: 1.4rem;
+    padding-bottom: 1.6rem;
 }
 
 .icon-box .icon-box-like {
@@ -75,6 +76,13 @@ body {
     border: none;
     background: #fff;
     cursor: pointer;
+    padding-left: 0;
+}
+
+.btn-comment {
+    margin-left: 1.2rem;
+    vertical-align: -1px;
+
 }
 
 .icon-box .count, .post .font-gray {
