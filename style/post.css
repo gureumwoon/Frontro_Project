@@ -1,0 +1,206 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body{
+    background-color: #767676;
+}
+
+button{
+    border: none;
+    background: none;
+    padding:0;
+}
+.container {
+    position: relative;
+    width: 39rem;
+    height: 100vh;
+    background-color: white;
+    margin: auto;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4.8rem;
+    padding: 1.2rem 1.2rem 1.2rem 1.6rem;
+    border-bottom: 0.1rem solid #DBDBDB;
+}
+
+/* 업로드된 게시물 */
+
+.post {
+    width: 35.8rem;
+    height: 43.4rem;
+    margin: 1.2rem 1.6rem 2rem;
+}
+
+.profile {
+    display: flex;
+}
+
+.profile-pic {
+    width: 4.2rem;
+    height: 4.2rem;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.4rem;
+    margin-left: 1.2rem;
+}
+
+.tit-post {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.user-id {
+    margin-top: 0.2rem;
+    font-size: 1.2rem;
+}
+
+.cont-following{
+    width: 30.4rem;
+    margin-left: 5.4rem;
+}
+
+.desc {
+    font-size: 1.4rem;
+    line-height: 1.753rem;
+}
+
+.picture {
+    margin: 1.6rem 0;
+}
+
+.icon-box {
+    width: 9.8rem;
+    height: 2rem;
+    margin-bottom: 1.85rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    margin-right: 0.6rem;
+}
+
+.btn-comment {
+    margin-left: 1.6rem;
+}
+
+.font-gray {
+    color: #767676;
+}
+
+.date {
+    font-size: 1rem;
+}
+
+.more-btn2 {
+    position: absolute;
+    left: 35.7rem;
+    top:6.2rem;
+}
+
+/* 댓글 게시하기 */
+
+.comment-container {
+    border-top: 0.1rem solid #DBDBDB;
+    width: 39rem;
+    padding: 2rem 1.6rem;
+    height: calc(100vh - 57.4rem);
+    overflow: scroll;
+    scroll-behavior: smooth;
+}
+
+.comment-container::-webkit-scrollbar {
+    display: none;
+}
+
+.comment-view {
+    width: 35.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.6rem;
+}
+
+.txt-container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    margin-left: 1.2rem;
+}
+
+.txt-container div {
+    margin-top: 0.6rem;
+    margin-bottom: 1.6rem;
+    display: flex;
+}
+
+.comment ,
+.user-nic {
+    font-size: 1.4rem;
+}
+
+.comment {
+    font-weight: 400;
+    line-height: 1.753rem;
+}
+
+.user-nic {
+    margin-right: 0.6rem;
+    font-weight: 500;
+}
+
+.comment-time {
+    font-size: 1rem;
+    color: #767676;
+    line-height:1.3rem ;
+}
+
+.comment-upload {
+    position: absolute;
+    left:0;
+    border-top: 0.1rem solid #DBDBDB;
+    padding: 1.3rem 2rem 1.2rem 1.6rem;
+    bottom: 0;
+    width: 39rem;
+    height: 6.1rem;
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.comment-upload.comment-user-profile {
+    margin-right:1.6rem;
+}
+
+.comment-inp {
+    flex-grow: 1;
+    padding-left: 1.6rem;
+    border: none;
+}
+
+.comment-inp:focus + .comment-upload-btn {
+    color: var(--zzin-no);
+}
+
+.comment-upload-btn,
+.comment-inp::placeholder{
+    color: #C4C4C4;
+}
+
+.more-btn3{
+    height: 1.8rem;
+    margin-top: 0.5rem;
+}
