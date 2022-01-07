@@ -1,12 +1,123 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Followers(팔로워)</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/reset.css" />
+    <link rel="stylesheet" href="./style/followers.css" />
+    <title>Followers</title>
 </head>
+
 <body>
-    
+    <h1></h1>
+    <!-- 프로필 헤더, 채팅방 헤더 -->
+    <header class="top-bar">
+        <!-- 뒤로가기 버튼 -->
+        <button type="button" class="button-noneBackground button-back"><img src="./src/png/icon-arrow-left.png"
+                alt="뒤로가기 버튼"></button>
+        <!-- 햄버거 버튼 -->
+        <p class="tit_top-bar">Followers</p>
+        <!-- <button type="button" class="button-noneBackground button-more"><img src="./src/png/icon-more-vertical.png"
+                alt="더보기 버튼"></button> -->
+    </header>
+
+    <main class="cont-followers">
+        <h2></h2>
+        <ul class="list-followers">
+            <li class="user-follow">
+                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="follow_profile-image" />
+                <div class="follow_text-info">
+                    <p class="follow_user-name">애월읍 위니브 감귤농장</p>
+                    <p class="follow_user-introduce">정성을 다해 농사짓는 한라봉</p>
+                </div>
+                <button type="button" class="S-button Sbutton-font">팔로우</button>
+                <!-- <button type="button" class="S-Activ-button Sbutton-font">취소</button> -->
+            </li>
+            <li class="user-follow">
+                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="follow_profile-image" />
+                <div class="follow_text-info">
+                    <p class="follow_user-name">애월읍 위니브 감귤농장</p>
+                    <p class="follow_user-introduce">정성을 다해 농사짓는 한라봉</p>
+                </div>
+                <button type="button" class="S-button Sbutton-font">팔로우</button>
+                <!-- <button type="button" class="S-Activ-button Sbutton-font">취소</button> -->
+            </li>
+            <li class="user-follow">
+                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="follow_profile-image" />
+                <div class="follow_text-info">
+                    <p class="follow_user-name">애월읍 위니브 감귤농장</p>
+                    <p class="follow_user-introduce">정성을 다해 농사짓는 한라봉</p>
+                </div>
+                <button type="button" class="S-button Sbutton-font">팔로우</button>
+                <!-- <button type="button" class="S-Activ-button Sbutton-font">취소</button> -->
+            </li>
+            <li class="user-follow">
+                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="follow_profile-image" />
+                <div class="follow_text-info">
+                    <p class="follow_user-name">애월읍 위니브 감귤농장</p>
+                    <p class="follow_user-introduce">정성을 다해 농사짓는 한라봉</p>
+                </div>
+                <button type="button" class="S-button Sbutton-font">팔로우</button>
+                <!-- <button type="button" class="S-Activ-button Sbutton-font">취소</button> -->
+            </li>
+            <li class="user-follow">
+                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="follow_profile-image" />
+                <div class="follow_text-info">
+                    <p class="follow_user-name">애월읍 위니브 감귤농장</p>
+                    <p class="follow_user-introduce">정성을 다해 농사짓는 한라봉</p>
+                </div>
+                <button type="button" class="S-button Sbutton-font">팔로우</button>
+                <!-- <button type="button" class="S-Activ-button Sbutton-font">취소</button> -->
+            </li>
+            <li class="user-follow">
+                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="follow_profile-image" />
+                <div class="follow_text-info">
+                    <p class="follow_user-name">애월읍 위니브 감귤농장</p>
+                    <p class="follow_user-introduce">정성을 다해 농사짓는 한라봉</p>
+                </div>
+                <!-- <button type="button" class="S-button Sbutton-font">팔로우</button> -->
+                <button type="button" class="S-Activ-button Sbutton-font">취소</button>
+            </li>
+            <li class="user-follow">
+                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="follow_profile-image" />
+                <div class="follow_text-info">
+                    <p class="follow_user-name">애월읍 위니브 감귤농장</p>
+                    <p class="follow_user-introduce">정성을 다해 농사짓는 한라봉</p>
+                </div>
+                <button type="button" class="S-button Sbutton-font">팔로우</button>
+                <!-- <button type="button" class="S-Activ-button Sbutton-font">취소</button> -->
+            </li>
+
+        </ul>
+    </main>
+
+
+
+    <!-- 모듈화될 수 있는 부분: 화면 공통 네비게이션 -->
+    <!-- p tag는 가상요소로 처리 -->
+    <nav class="tap-menu">
+        <button class="tap-menu-home">
+            <img src="./src/svg/icon-home.svg" alt="홈으로 가기" class="home-icon">
+            <!-- <p class="tap-menu-home-title">홈</p> -->
+        </button>
+
+        <button class="tap-menu-chat">
+            <img src="./src/svg/icon-message-circle.svg" alt="채팅으로 가기" class="chat-icon">
+            <!-- <p class="tap-menu-chat-title">채팅</p> -->
+        </button>
+
+        <button class="tap-menu-edit">
+            <img src="./src/svg/icon-edit.svg" alt="게시물 작성하기" class="edit-icon">
+            <!-- <p class="tap-menu-edit-title">게시물 작성</p> -->
+        </button>
+
+        <button class="tap-menu-user">
+            <img src="./src/svg/icon-user.svg" alt="프로필로 가기" class="user-icon">
+            <!-- <p class="tap-menu-user-title">프로필</p> -->
+        </button>
+    </nav>
 </body>
+
 </html>
