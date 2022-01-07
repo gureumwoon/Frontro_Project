@@ -1,11 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
 html {
     font-size: 62.5%;
 }
 
 body {
+    background-color: #767676;
+}
+
+.container {
     width: 39rem;
     height: 100vh;
-    box-sizing: border-box;
+    margin: auto;
+    background-color: white;
 }
 
 .nav .btn-back {
@@ -23,22 +32,31 @@ body {
     border-bottom: 0.05rem solid #DBDBDB;
 }
 
+/* 프로필 이미지 업로드 */
+
 .img-profile {
+    position: relative;
     display: flex;
     justify-content: center;
 }
 
 .img-profile .img-profile-empty {
     margin: 3rem 0;
+    width: 11rem;
+}
+.image_inputType_file {
+    display: none;
 }
 
 .img-profile .btn-upload {
     width: 3.6rem;
     height: 3.6rem;
-    position: fixed;
+    position: absolute;
     left: 21.4rem;
-    top: 15.15rem;
+    top: 10.7rem;
 }
+
+/* 프로필 입력란 */
 
 .txt-profile {
     display: flex;
@@ -65,6 +83,16 @@ body {
     border-bottom: 0.1rem solid #DBDBDB;
     padding-bottom: 0.9rem;
     font-size: 1.4rem;
+}
+
+.warning-text {
+    margin-top: 0.6rem;
+    color: #EB5757;
+    font-size: 1.2rem;
+}
+
+.inp-profile:focus {
+    border-bottom: 0.1rem solid var(--zzin-no);
 }
 
 .txt-profile .inp-profile::placeholder {
