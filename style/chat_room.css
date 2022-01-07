@@ -70,7 +70,7 @@ body {
 .chat_content {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     position: relative;
     height: 100%;
     background: #f2f2f2;
@@ -115,7 +115,7 @@ body {
     border-top-left-radius: 0;
 }
 .my_message .message_text {
-    background: #f26e22;
+    background: var(--zzin-no);
     color: #ffffff;
     border: none;
     border-radius: 15px;
@@ -146,10 +146,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
     background: #ffffff;
 }
+
 .comment_profile-image,
 .input_image {
     width: 36px;
@@ -167,6 +168,12 @@ body {
 #comment_write::placeholder,
 #input_text::placeholder {
     color: #c4c4c4;
+}
+.input_chatting #input_text:focus {
+    outline: 0;
+}
+#input_text:focus + .input_submit-button {
+    color: var(--zzin-no);
 }
 
 .comment_submit-button,
