@@ -7,8 +7,9 @@
     background-color: #767676;
 
 }
+
 .container {
-    width: 39em;
+    width: 39rem;
     height: 100vh;
     background-color: white;
     margin: 0 auto;
@@ -18,15 +19,20 @@
     /* align-items: center; */
 }
 
+.btn-nonebackground {
+    border: none;
+    background: transparent;
+}
+
 .header {
     border-bottom: 1px solid #DBDBDB;
-    height: 4.8em;
+    height: 4.8rem;
     position: relative;
 }
 
 .header .tit-intro {
     font-family: Spoqa Han Sans Neo;
-    font-size: 1.8em;
+    font-size: 1.8rem;
     font-style: normal;
     font-weight: 500;
     line-height: 22px;
@@ -34,10 +40,10 @@
     padding: 13px 16px;
 } 
 
-.header .icon-search {
+.header .btn-search {
     position: absolute;
-    top: 1em;
-    right: 1.3em;
+    top: 1rem;
+    right: 1.3rem;
 }
 
 .main  {
@@ -51,12 +57,12 @@
 .main .main-icon{
     display: flex;
     flex-direction: column;
-    gap: 0.8em;
+    gap: 1.5rem;
     align-items: center;
 }
 
 .main .main-icon .p-intro {
-    font-size: 1.4em;
+    font-size: 1.4rem;
     color: #767676;
 }
 
@@ -76,12 +82,12 @@
 }
 
 .main .main-icon .img-slime {
-    width: 10em;
-    height: 10em;
+    width: 10rem;
+    height: 10rem;
 }
 
 .footer {
-    height: 6em;
+    height: 6rem;
     border-top: 1px solid #dbdbdb;
 }
 
