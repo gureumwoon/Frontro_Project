@@ -10,6 +10,14 @@ body {
     background-color: #767676;
 }
 
+.invisible {
+    display: none;
+}
+
+.active {
+    font-weight: bold;
+}
+
 .container {
     width: 39rem;
     height: 100vh;
