@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,14 +9,59 @@
     <link rel="stylesheet" href="style/k_modules.css">
     <link rel="stylesheet" href="style/upload.css">
     <title>upload</title>
+    <script defer src="js/upload.js"></script>
 </head>
+
 <body>
-    <section>
-        <img src="src/png/icon-arrow-left.png" alt="뒤로가기">
-        <button type="button" class="Ms-disabled-button LMbutton-font">업로드</button>
-    </section>
-    <img src="src/png/Ellipse-1.png" alt="내 프로필 이미지">
-    <textarea  cols="30" rows="10" placeholder="게시글 입력하기..."></textarea>
-    <img src="src/png/upload-file.png" alt="사진 업로드하기">
+    <div class="container">
+        <header class="nav">
+            <a href="#">
+                <img src="src/png/icon-arrow-left.png" alt="뒤로가기">
+            </a>
+            <button type="button" class="Ms-disabled-button LMbutton-font">업로드</button>
+        </header>
+        <section class="post-section">
+            <h1 class="sr-only">게시물 업로드하기</h1>
+            <img class="profile-pic" src="src/png/Ellipse-1.png" alt="내 프로필 이미지">
+            <form method="post" class="post-content">
+                <textarea cols="30" rows="10" placeholder="게시글 입력하기..." class="upload-txt" onkeyup="resize(this)"
+                    onkeydown="resize(this)"></textarea>
+                <img src="src/png/post-img-example.png" alt="업로드 할 이미지" class="picture">
+                <button class="img-cancle-btn">
+                    <img src="src/png/x.png" alt="사진 업로드 취소 버튼">
+                </button>
+                <!-- 이미지 3장 선택시 -->
+                <!-- <ul class="prev-img">
+                    <li>
+                        <img src="src/png/upload-photo-small.png" alt="업로드 할 이미지1">
+                        <button class="img-cancle-btn1">
+                            <img src="src/png/x.png" alt="사진 업로드 취소 버튼">
+                        </button>
+                    </li>
+                    <li>
+                        <img src="src/png/upload-photo-small.png" alt="업로드 할 이미지2">
+                        <button class="img-cancle-btn2">
+                            <img src="src/png/x.png" alt="사진 업로드 취소 버튼">
+                        </button>
+                    </li>
+                    <li>
+                        <img src="src/png/upload-photo-small.png" alt="업로드 할 이미지3">
+                        <button class="img-cancle-btn3">
+                            <img src="src/png/x.png" alt="사진 업로드 취소 버튼">
+                        </button>
+                    </li>
+                </ul> -->
+            </form>
+        </section>
+        <form method="post">
+            <label for="real-input">
+                <img class="btn-upload" src="src/png/upload-file.png" alt="사진 업로드하기">
+            </label>
+            <input type="file" id="real-input" class="image_inputType_file" accept="img/*" onchange="loadFile" required
+                multiple>
+        </form>
+    </div>
+
 </body>
+
 </html>
