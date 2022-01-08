@@ -151,3 +151,8 @@ table {
     border: 0;
     clip: rect(0,0,0,0);
 }
+
+input:focus,
+textarea:focus{
+    outline:none; 
+}
