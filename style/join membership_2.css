@@ -1,6 +1,7 @@
 .html {
     font-size: 62.5%;
 }
+
 body {
     position: relative;
     background-color: #767676;
@@ -42,6 +43,7 @@ a {
     margin-top: 1.2rem;
 }
 
+/* 프로필 사진 등록 */
 .set-profile .set-picture {
     margin-top: 1.9rem;
     position: relative;
@@ -54,6 +56,10 @@ a {
     width: 11rem;
 }
 
+.set-profile .set-picture .profile-input {
+    display: none;
+}
+
 .set-profile .set-picture .icon-gallery-base {
     position: absolute;
     height: 3.6rem;
@@ -62,14 +68,12 @@ a {
     right: 14rem;
     border-radius: 50%;
     background-color: #FFC022;
-    ;
 }
 
 .set-profile .set-picture .icon-pict {
     padding-top: 0.7rem;
     padding-left: 0.7rem;
 }
-
 
 /* 사용자이름,계정아이디,소개 폼 */
 .form-setProfile {
