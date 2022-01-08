@@ -7,16 +7,33 @@
     <link rel="stylesheet" href="./style/join membership_2.css">
     <link rel="stylesheet" href="./style/k_modules.css">
     <link rel="stylesheet" href="./style/reset.css">
-    <title> 프로필 설정 창</title>
+    <title>은이네 문방구</title>
 </head>
 <body class="body">
     <article class="set-profile container">
         <h1 class="title">프로필 설정</h1>
         <p class="intro">나중에 언제든지 변경할 수 있습니다.</p>
+        <!-- 
+            js 구현: input file로 사진 등록하면 picture에 등록
+         -->
         <div class="set-picture">
-            <img src="./src/svg/basic-profile-img.svg" alt="프로필사진" class="picture">
-            <div class="icon-gallery-base"><img src="./src/svg/icon_pict.svg" class="icon-pict"></div>
+            <img src="./src/svg/basic-profile-img.svg" alt="프로필 사진" class="picture">
+            <input type="file" id="profile-input" class="profile-input" accept="imp/*" onchange="loadFile" required multiple>
+            <label for="profile-input">
+                <div class="icon-gallery-base">
+                    <img src="./src/svg/icon_pict.svg" alt="프로필 업로드 버튼" class="icon-pict">
+                </div>
+            </label> 
         </div>
+        <!-- 
+            js 구현 :
+                - 사용자 이름 ->  2~10 글자수 제한 걸기
+                - 계정 ID -> 경고 문구 
+                    영문, 숫자, 밑줄, 마침표 이외의 것이 들어오면 "*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다."
+                    중복된 id가 들어오면 "*이미 사용 중인 ID입니다."
+                - 사용자이름, 계정 id, 소개 모두 입력되면 시작하기 버튼 활성화
+                - 시작하기 버튼에  home.html 페이지 이동 
+         -->
         <form class="form-setProfile"> 
             <fieldset class="module-inp">
                 <label for="inpName" class="inpName">사용자 이름</label>

@@ -11,6 +11,10 @@ body {
     color: #767676;
 }
 
+.btn-nonebackground {
+    border: none;
+    background: transparent;
+}
 
 
 .module-name {
@@ -33,7 +37,7 @@ body {
     margin-left: 1.2rem;
 }
 
-.profile .tit-post {
+.cont-following .profile .tit-post {
     font-size: 1.4rem;
     font-weight: 500;
     padding-top: 0.4rem;
@@ -41,14 +45,14 @@ body {
     margin: 0;
 }
 
-.profile .id {
+.cont-following .profile .id {
     font-size: 1.4rem;
     color: #767676;
     padding-bottom: 1.6rem;
     margin: 0;
 }
 
-.desc {
+.cont-following .desc {
     font-size: 1.4rem;
     clear: both;
     line-height: 1.75rem;
@@ -57,7 +61,7 @@ body {
     
 }
 
-.picture {
+.cont-following .picture {
     width: 30.4rem;
     height: 22.8rem;
 }
@@ -79,7 +83,7 @@ body {
     padding-left: 0;
 }
 
-.btn-comment {
+.icon-box .btn-comment {
     margin-left: 1.2rem;
     vertical-align: -1px;
 
@@ -90,12 +94,21 @@ body {
     vertical-align: 0.5rem;
 }
 
-
 .post .date {
     font-size: 1rem;
     color: #767676;
     display: block;
     margin: 0;
+}
+
+.post .div-icon {
+    position: relative;
+}
+
+.post .div-icon .btn-icon-more {
+    position: absolute;
+    top: 1rem;
+    left: -2rem
 }
 
 .example {
@@ -107,20 +120,12 @@ body {
     position: relative;
 }
 
-.icon-more {
-    position: absolute;
-    top: 1rem;
-    right: -17.5rem;
-}
-
 .like-icon {
     float: left;
-    /* margin: 0 0.782rem 1.873rem 1.2rem; */
 }
 
 .comment-icon {
     float: left;
-    /* margin: 0 0.85rem 1.85rem 0; */
 }
 
 .product-box {
