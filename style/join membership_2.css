@@ -13,6 +13,10 @@ a {
     text-decoration: none;
 }
 
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
 .container {
     width: 39rem;
     height: 100vh;

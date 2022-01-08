@@ -5,8 +5,12 @@
 .body {
     position: relative;
     background-color: #767676;
-
 }
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
 .container {
     width: 39rem;
     height: 100vh;
