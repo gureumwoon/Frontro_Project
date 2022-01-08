@@ -108,10 +108,16 @@ input:focus, textarea:focus, select:focus{
     color: #DBDBDB;
 }
 
+input.inp-login:focus { 
+    outline: none !important;
+    border-color: #EB5757;
+    ;
+ }
+
 /* 아이디를 입력안하면 나오는 에러 줄 */
-.form-setProfile .error .inp-login {
+/* .form-setProfile .error .inp-login {
     border-bottom: 0.1rem solid red;
-}
+} */
 
 .form-setProfile .error .inp-error {
     display: block;
