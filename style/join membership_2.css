@@ -13,6 +13,10 @@ a {
     text-decoration: none;
 }
 
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
 .container {
     width: 39rem;
     height: 100vh;
@@ -104,10 +108,16 @@ a {
     color: #DBDBDB;
 }
 
+input.inp-login:focus { 
+    outline: none !important;
+    border-color: #EB5757;
+    ;
+ }
+
 /* 아이디를 입력안하면 나오는 에러 줄 */
-.form-setProfile .error .inp-login {
+/* .form-setProfile .error .inp-login {
     border-bottom: 0.1rem solid red;
-}
+} */
 
 .form-setProfile .error .inp-error {
     display: block;
