@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/k_modules.css">
     <link rel="stylesheet" href="style/add_product.css">
+    <script defer src="js/add_product.js"></script>
 </head>
 
 <body>
@@ -19,7 +20,7 @@
             </a>
             <button type="submit" class="Ms-disabled-button LMbutton-font">저장</button>
         </nav>
-        <form method="get" class="contents-post">
+        <form method="POST" class="contents-post">
             <div class="img-post">
                 <div class="module-inp">
                     <span class="explanation">이미지 등록</span>
@@ -33,16 +34,16 @@
             </div>
             <div class="txt-post">
                 <div class="module-inp">
-                    <label for="inpId" class="explanation">상품명</label>
-                    <input type="text" class="inp-post" id="inpId" placeholder="2~15자 이내여야 합니다.">
+                    <label for="product-name" class="explanation">상품명</label>
+                    <input type="text" class="inp-post" id="product-name" placeholder="2~15자 이내여야 합니다.">
                 </div>
                 <div class="module-inp">
-                    <label for="inpId" class="explanation">가격</label>
-                    <input type="text" class="inp-post" id="inpId" placeholder="숫자만 입력 가능합니다.">
+                    <label for="product-price" class="explanation">가격</label>
+                    <input type="text" class="inp-post" id="product-price" placeholder="숫자만 입력 가능합니다.">
                 </div>
                 <div class="module-inp">
-                    <label for="inpId" class="explanation">판매 링크</label>
-                    <input type="text" class="inp-post" id="inpId" placeholder="URL을 입력해 주세요.">
+                    <label for="product-link" class="explanation">판매 링크</label>
+                    <input type="text" class="inp-post" id="product-link" placeholder="URL을 입력해 주세요.">
                 </div>
             </div>
         </form>
