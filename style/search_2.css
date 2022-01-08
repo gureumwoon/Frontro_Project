@@ -8,14 +8,12 @@
 
 }
 .container {
-    width: 39em;
+    width: 39rem;
     height: 100vh;
     background-color: white;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
 }
 
 .header {
@@ -25,18 +23,17 @@
 }
 
 .header .box-search {
-    padding: 8px 19px 8px 16px;
+    padding: 0.8rem 1.9rem 0.8rem 1.6rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 390px;
-    /* width: 100%; */
+    max-width: 39rem;
 }
 
 .form-search {
     width: 31.6rem;
     background: #F2F2F2;
-    border-radius: 32px;
+    border-radius: 3.2rem;
     padding-left: 1rem;
     margin-left: 2.4rem;
 }
@@ -62,13 +59,13 @@
 .user-search {
     display: flex;
     justify-content: space-between;
-    height: 50px;
+    height: 5rem;
     margin-bottom: 1.6rem;
 }
 
 .search_profile-image {
-    width: 50px;
-    height: 50px;
+    width: 5rem;
+    height: 5rem;
 }
 
 .search_text-info {
@@ -79,10 +76,10 @@
 
 .search_searched-word {
     display: inline-block;
-    margin: 5px 0 6px 12px;
+    margin: 0.5rem 0 0.6rem 1.2rem;
     font-weight: 500;
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
 }
 
 .search_search-word {
@@ -91,15 +88,14 @@
 
 .search_user-email {
     display: inline-block;
-    margin: 0 0 6px 12px;
-
-    font-size: 12px;
-    line-height: 15px;
+    margin: 0 0 0.6rem 1.2rem;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
     color: #767676;
 }
 
 .footer {
-    height: 6em;
+    height: 6rem;
     border-top: 1px solid #dbdbdb;
 }
 
@@ -112,9 +108,9 @@
 .item-footer {
     display: flex;
     flex-direction: column;
-    font-size: 10px;
-    line-height: 14px;
+    font-size: 1rem;
+    line-height: 1.4rem;
     color: #767676;
-    gap: 4px;
+    gap: 0.4rem;
     text-align: center;
 }
