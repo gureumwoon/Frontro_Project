@@ -50,3 +50,19 @@ h2 {
   font-size: 1.4rem;
   margin-top: 1.4rem;
 }
+
+#input-box:focus {
+  border-style: none;
+  border-bottom: 0.1rem solid var(--zzin-no);
+  height: 3.3rem;
+}
+
+.alert {
+  margin-bottom: 0.6rem;
+  border-bottom: 0.1rem solid #EB5757;
+}
+
+.input_alert {
+  font-size: 1.2rem;
+  color: #EB5757;
+}

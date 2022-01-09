@@ -61,3 +61,15 @@
     text-align: center;
     font-size: 1.2rem;
   }
+
+  #input-box:focus {
+    border-style: none;
+    border-bottom: 0.1rem solid var(--zzin-no);
+    height: 3.3rem;
+  }
+
+  .input_alert {
+    margin-top: 0.6rem;
+    color: #EB5757;
+    font-size: 1.2rem;
+  }
