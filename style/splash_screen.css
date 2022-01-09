@@ -12,11 +12,11 @@
 #body {
   position: relative;
   background-color: #767676;
-
 }
+
 .container {
   font-family: 'SDSamliphopangche_Basic';
-  width: 39em;
+  width: 39rem;
   height: 100vh;
   background-color: #F5F4F0;
   color: var(--yeon-no-word);
@@ -49,4 +49,45 @@
   font-size: 2.6rem;
   text-align: center;
   margin-top: 14.2rem;
+}
+
+.fade-out{
+  animation: fadeout 5s;
+  -moz-animation: fadeout 5s; /* Firefox */
+  -webkit-animation: fadeout 5s; /* Safari and Chrome */
+  -o-animation: fadeout 5s; /* Opera */
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeout {
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0.4;
+  }
+}
+@-moz-keyframes fadeout { /* Firefox */
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0.4;
+  }
+}
+@-webkit-keyframes fadeout { /* Safari and Chrome */
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0.4;
+  }
+}
+@-o-keyframes fadeout { /* Opera */
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0.4;
+  }
 }
