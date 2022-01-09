@@ -129,3 +129,29 @@ label {
 .image_inputType_file {
     display: none;
 }
+
+/* 모달창 */
+
+.modal-container {
+    width: 39rem;
+    height: 11rem;
+    margin: 3.6rem auto;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    background-color: white;
+}
+
+.modal-txt-report,
+.modal-txt-delete {
+    font-size: 1.4rem;
+    padding: 1.4rem 2.6rem
+}
+
+.modal-container::before {
+    content: '';
+    display: inline-block;
+    width: 5rem;
+    height: 0.4rem;
+    background-color: #DBDBDB;
+    margin: 1.6rem 17rem;
+}
