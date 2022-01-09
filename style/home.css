@@ -89,8 +89,9 @@
     height: 10rem;
 }
 
+/* 우성님 footer 에 맞추려면 7rem해야됨 */
 .footer {
-    height: 6rem;
+    height: 7rem;
     border-top: 1px solid #dbdbdb;
 }
 
@@ -108,4 +109,9 @@
     color: #767676;
     gap: 0.4rem;
     text-align: center;
+}
+
+.icon-add {
+    width: 25px;
+    padding-left: 1rem;
 }

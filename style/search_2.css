@@ -119,3 +119,8 @@ input:focus, textarea:focus, select:focus{
     gap: 0.4rem;
     text-align: center;
 }
+
+.icon-add {
+    width: 25px;
+    padding-left: 1rem;
+}
