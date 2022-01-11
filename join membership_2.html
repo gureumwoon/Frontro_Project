@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="./style/join membership_2.css">
     <link rel="stylesheet" href="./style/k_modules.css">
     <link rel="stylesheet" href="./style/reset.css">
-    <title>은이네 문방구</title>
+    <script defer src="js/join membership_2.js"></script>
+    <title>joinmemb2</title>
 </head>
 <body class="body">
     <article class="set-profile container">
@@ -34,21 +35,22 @@
                 - 사용자이름, 계정 id, 소개 모두 입력되면 시작하기 버튼 활성화
                 - 시작하기 버튼에  home.html 페이지 이동 
          -->
-        <form class="form-setProfile"> 
+        <form class="form-setProfile error"> 
             <fieldset class="module-inp">
                 <label for="inpName" class="inpName">사용자 이름</label>
-                <input type="text" class="inp-login" id="inpName" placeholder="2~10자 이내여야 합니다.">
+                <input type="text" minlength="2" maxlength="10" class="inp-login" id="inpName" placeholder="2~10자 이내여야 합니다.">
+                <strong class="inp-error warning-text invisible">2~10자 이내여야 합니다.</strong>
             </fieldset>
             <fieldset class="module-inp error">
                 <label for="inpID" class="inpName">계정 ID</label>
                 <input type="text" class="inp-login" id="inpId" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다.">
-                <strong class="inp-error">경고 문구 들어갈 자리</strong>
+                <strong class="inp-error warning-text invisible">*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.</strong>
             </fieldset>
             <fieldset class="module-inp">
                 <label for="inpIntroduce" class="inpName">소개</label>
                 <input type="text" class="inp-login" id="inpIntroduce" placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
             </fieldset>
-            <button type="button" class="btn L-disabled-button LMbutton-font"><a href="./home.html">은이네 문방구 시작하기</a></button>
+            <button type="button" class="btn L-disabled-button LMbutton-font">은이네 문방구 시작하기</button>
         </form>
     </article>
 </body>
