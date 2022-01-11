@@ -3,8 +3,7 @@ html {
 }
 
 body {
-    background-color: wheat;
-    
+    background-color: wheat; 
 }
 
 .font-gray {
@@ -15,7 +14,6 @@ body {
     border: none;
     background: transparent;
 }
-
 
 .module-name {
     font-size: 2rem;
@@ -64,6 +62,7 @@ body {
 .cont-following .picture {
     width: 30.4rem;
     height: 22.8rem;
+    border-radius: 2rem;
 }
 
 .icon-box {
@@ -86,7 +85,6 @@ body {
 .icon-box .btn-comment {
     margin-left: 1.2rem;
     vertical-align: -1px;
-
 }
 
 .icon-box .count, .post .font-gray {
@@ -132,6 +130,7 @@ body {
     width: 140px;
     background-color: white;
 }
+
 .product-box .img-product {
     border-radius: 0.8rem;
 }

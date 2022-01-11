@@ -8,11 +8,6 @@ body {
     font-size: 62.5%;
 }
 
-a {
-    color: rgba(128, 96, 17, 0.6);
-    text-decoration: none;
-}
-
 input:focus, textarea:focus, select:focus{
     outline: none;
 }
@@ -111,15 +106,9 @@ input:focus, textarea:focus, select:focus{
 input.inp-login:focus { 
     outline: none !important;
     border-color: #EB5757;
-    ;
- }
+}
 
-/* 아이디를 입력안하면 나오는 에러 줄 */
-/* .form-setProfile .error .inp-login {
-    border-bottom: 0.1rem solid red;
-} */
-
-.form-setProfile .error .inp-error {
+.form-setProfile .inp-error {
     display: block;
     margin-top: 0.6rem;
     color: #EB5757;
@@ -127,7 +116,12 @@ input.inp-login:focus {
     font-size: 1.2rem;
     line-height: 0.8rem;
 }
+
 .form-setProfile .btn {
     display: block;
     margin: 3rem auto;
+}
+
+.form-setProfile .invisible {
+    display: none;
 }
