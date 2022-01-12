@@ -10,6 +10,16 @@ body {
     background-color: #767676;
 }
 
+.invisible {
+    display: none;
+}
+
+.active {
+    background-color: var(--zzin-no);
+    color:  var(--zzin-no-word);
+}
+
+
 .explanation {
     font-weight: 500;
     font-size: 1.2rem;
@@ -94,4 +104,10 @@ button {
 .inp-post::placeholder {
     font-size: 1.4rem;
     color: #DBDBDB;
+}
+
+.warning-text {
+    margin-top: 0.6rem;
+    color: #EB5757;
+    font-size: 1.2rem;
 }
