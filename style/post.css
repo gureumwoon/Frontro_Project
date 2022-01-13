@@ -78,6 +78,43 @@ button{
 
 .picture {
     margin: 1.6rem 0;
+    position: relative;
+    width: 304px;
+    height: 228px;
+    border-radius: 10px;
+    background-color: #DBDBDB;
+    outline: 1px solid red;
+}
+
+.blind {
+	position: absolute;
+	clip: rect(0 0 0 0);
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+}
+
+.indicator {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 30px;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+}
+
+.indicator .list-slide {
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+}
+
+.indicator .list-slide.on {
+    background-color: #F26E22;
 }
 
 .icon-box {
@@ -191,7 +228,7 @@ button{
     border: none;
 }
 
-.comment-inp:focus + .comment-upload-btn {
+.active {
     color: var(--zzin-no);
 }
 
@@ -203,4 +240,36 @@ button{
 .more-btn3{
     height: 1.8rem;
     margin-top: 0.5rem;
+}
+
+.post-modal {
+    background-color: #ffffff;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    position: fixed;
+    bottom: -100px;
+    width: 390px;
+    height: 110px;
+    overflow: auto;
+    /*마진겹친현상을해결하기위한코드*/
+    transition:all 0.5s ease-out;
+}
+
+.modal-open {
+    bottom: 0;
+}
+
+.modal-txt-report,
+.modal-txt-delete {
+    font-size: 1.4rem;
+    padding: 1.4rem 2.6rem
+}
+
+.post-modal::before {
+    content: '';
+    display: inline-block;
+    width: 5rem;
+    height: 0.4rem;
+    background-color: #DBDBDB;
+    margin: 1.6rem 17rem;
 }
