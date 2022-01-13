@@ -87,41 +87,32 @@ label {
     object-fit: cover;
 }
 
-.img-cancle-btn {
-    position: absolute;
-    left: 33.6rem;
-    top: 10rem;
-}
-
 /* 이미지 3장 업로드 */
 
 .prev-img {
     display: flex;
+    width: 304px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.prev-img img {
+    border-radius: 1rem;
 }
 
 .prev-img li {
-    width: 16.8rem;
-    height: 12.8rem;
+    position:relative;
+    /* width: 16.8rem;
+    height: 12.8rem; */
     border-radius: 1rem;
     margin-right: 0.8rem;
 }
 
-.img-cancle-btn1 {
+.img-cancel-btn {
     position: absolute;
-    left: 20.4rem;
-    top: 9.7rem;
-}
-
-.img-cancle-btn2 {
-    position: absolute;
-    left: 38rem;
-    top: 9.7rem;
-}
-
-.img-cancle-btn3 {
-    position: absolute;
-    left: 55.7rem;
-    top: 9.7rem;
+    top: 11.5px;
+    right: 11.5px;
+    margin: 0;
 }
 
 /* 업로드 할 이미지 첨부 버튼 */
