@@ -228,13 +228,14 @@ button{
     border: none;
 }
 
-.active {
-    color: var(--zzin-no);
-}
 
 .comment-upload-btn,
 .comment-inp::placeholder{
     color: #C4C4C4;
+}
+
+.active {
+    color: var(--zzin-no);
 }
 
 .more-btn3{
