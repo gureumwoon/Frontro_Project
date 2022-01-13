@@ -2,6 +2,13 @@ const userNameInput = document.querySelector('#user-name');
 const saveButton = document.querySelector('.nav > button');
 const userIdInput = document.querySelector('#user-id');
 const warningTextList = document.querySelectorAll('.warning-text');
+const backBtn = document.querySelector('.btn-back');
+
+// 뒤로가기(my_profile)
+backBtn.addEventListener('click', () => {
+    window.location.href = 'my_profile.html'
+})
+
 
 // 이름 2~10자 이내 유효성 검사
 const isUserNameInputValid = () => {
