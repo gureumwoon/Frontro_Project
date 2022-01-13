@@ -177,41 +177,41 @@ input {
 }
 
 /* 14. delete-alert */
+/* 띄워지는 모달창, alert box */
 .alert-box {
-    background-color: #ffffff;
-    border-radius: 10px;
     display: inline-block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
     overflow: hidden;
+    z-index: 20;
+    border-radius: 1rem;
     text-align: center;
+    background-color: #ffffff;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 1.6rem;
+    line-height: 2rem;
 }
 .alert-box .alert_notice {
-    margin: 22px 0;
+    margin: 2.2rem 0;
 }
 .alert-box .alert_cancel-button,
-.alert-box .alert_delete-button,
-.alert-box .alert_logout-button {
-    padding: 14px 50px;
+.alert-box .alert_action-button {
+    width: 12.6rem;
+    height: 4.6rem;
     background-color: transparent;
     border: none;
-    border-top: 0.5px solid #dbdbdb;
-    font-size: 14px;
-    line-height: 18px;
+    border-top: 0.05rem solid #dbdbdb;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
 }
-.alert-box .alert_logout-button {
-    padding: 14px 37px;
-    font-weight: 500;
-    color: #f26e22;
-}
-
 .alert-box .alert_cancel-button {
-    border-right: 0.5px solid #dbdbdb;
+    border-right: 0.05rem solid #dbdbdb;
 }
-.alert-box .alert_delete-button {
+.alert-box .alert_action-button {
     font-weight: 500;
-    color: #f26e22;
+    color: var(--zzin-no);
 }
 
 /* 레이아웃 창에 있던 모듈들 입니다. 1개로 통합해서 작성 */

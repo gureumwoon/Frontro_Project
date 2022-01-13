@@ -39,6 +39,9 @@ button {
     background-color: transparent;
     border: none;
 }
+button {
+    cursor: pointer;
+}
 
 /* 탑 메뉴 바, top bar */
 
@@ -51,7 +54,7 @@ button {
     width: 100%;
     border-bottom: solid 0.1rem #dbdbdb;
     background-color: #ffffff;
-    z-index: 10;
+    z-index: 0;
 }
 .top-bar .button-back {
     margin: 1.3rem 0 1.3rem 1.6rem;
@@ -73,69 +76,75 @@ button {
 
 /* 프로필 article, profile information */
 
-.profile_info {
+.cont_profile {
     background: #ffffff;
     padding-top: 3rem;
     padding-bottom: 2.6rem;
     margin: 4.8rem 0 0.6rem;
     text-align: center;
 }
-.profile_info .profile_header {
+.cont_profile .header_profile {
     display: inline-block;
     position: relative;
     margin-bottom: 1.6rem;
 }
-.profile_header img {
+.header_profile img {
     width: 11rem;
     height: 11rem;
+    border-radius: 11rem;
 }
-.profile_info .profile_followers,
-.profile_info .profile_followings {
+.cont_profile .followers_profile,
+.cont_profile .followings_profile {
     position: absolute;
     top: 50%;
-    right: calc(100% + 4.1rem);
     transform: translateY(-50%);
     margin: 0;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.2rem;
-    color: #767676;
+    text-align: center;
     text-align: center;
 }
-.profile_info .profile_followings {
+.cont_profile .followers_profile {
+    right: calc(100% + 4.1rem);
+}
+.cont_profile .followings_profile {
     left: calc(100% + 3.7rem);
 }
-.profile_followers .followers_number,
-.profile_followings .followings_number {
+.followers_profile .number_followers,
+.followings_profile .number_followings {
     display: block;
     margin-bottom: 0.6rem;
     font-size: 1.8rem;
     line-height: 2.3rem;
     font-weight: 700;
 }
-.profile_followers .followers_number {
+.followers_profile .number_followers {
     color: #000000;
 }
-.profile_info .profile_name {
+.followings_profile .number_followings {
+    color: #767676;
+}
+.cont_profile .name_profile {
     margin-bottom: 0.6rem;
     font-size: 1.6rem;
     font-weight: bold;
     line-height: 2rem;
 }
-.profile_info .profile_email {
+.cont_profile .account_profile {
     margin-bottom: 1.6rem;
     color: #767676;
     font-size: 1.2rem;
     line-height: 1.4rem;
 }
-.profile_info .profile_explain {
+.cont_profile .explain_profile {
     color: #767676;
     font-size: 1.4rem;
     line-height: 1.8rem;
     margin-bottom: 2.4rem;
 }
 
-.profile_info .profile_footer {
+.cont_profile .footer_profile {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -146,8 +155,8 @@ button {
     width: 100%;
     height: 100%;
 }
-.profile_footer .button-message,
-.profile_footer .button-share {
+.footer_profile .button-message,
+.footer_profile .button-share {
     width: 2rem;
     height: 2rem;
     padding: 0;
@@ -156,21 +165,21 @@ button {
     box-sizing: content-box;
     padding: 0.7rem;
 }
-.profile_footer .Sbutton-font {
+.footer_profile .Sbutton-font {
     width: 12rem;
     font-size: 1.2rem;
     line-height: 1.5rem;
     border: none;
     margin: 0 1rem;
 }
-.profile_footer .S-button {
+.footer_profile .S-button {
     padding: 0.8rem 0;
     border-radius: 2.6rem;
     font-weight: 500;
     background-color: var(--zzin-no);
     color: var(--zzin-no-word);
 }
-.profile_footer .S-Activ-button {
+.footer_profile .S-Active-button {
     padding: 0.8rem 0;
     font-weight: 500;
     border: 0.1rem solid #dbdbdb;
@@ -236,6 +245,7 @@ button {
 /* 콘텐츠 컨테이너 */
 .cont_contents {
     background-color: #ffffff;
+    /* padding-bottom: 6rem; */
 }
 /* 콘텐츠 스타일 선택란 */
 .cont_contents .cont_view-style {
@@ -253,6 +263,7 @@ button {
 /* 유저가 등록한 콘텐츠 정보 */
 .cont_contents .cont_user-contents {
     padding: 1.6rem;
+    padding-bottom: 6rem;
 }
 /* .cont_user-contents + .picture-style .ul_user-contents { */
 .picture-style .ul_user-contents {
@@ -269,6 +280,7 @@ button {
     width: 4.2rem;
     height: 4.2rem;
     margin-right: 1.2rem;
+    border-radius: 4.2rem;
 }
 .content_user-contents .desc_content-info {
     /* display: flex; */
@@ -392,4 +404,104 @@ button {
 .edit-icon,
 .user-icon {
     width: 24px;
+}
+
+/* 모달, up-modal */
+.background_up-modal {
+    display: none;
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+.up-modal {
+    background-color: #ffffff;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    position: fixed;
+    bottom: -20rem;
+    width: 100%;
+    transition: 0.5s ease;
+    z-index: 10;
+    overflow: auto; /*마진 겹친 현상을 해결하기 위한 코드*/
+}
+.up-modal::after {
+    background-color: #dbdbdb;
+    border-radius: 0.5rem;
+    display: inline-block;
+    position: absolute;
+    top: 1.6rem;
+    left: 50%;
+    transform: translate(-50%);
+    content: "";
+    width: 5rem;
+    height: 0.4rem;
+    /* background: 100% 100% url("../resource/img/module/Rectangle\ 70.svg"); */
+}
+.up-modal .cont_modal-item {
+    margin-top: 3.6rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.cont_modal-item .item-modal {
+    padding-left: 2.6em;
+    height: 4.6em;
+    line-height: 4.6em;
+    font-size: 1.4em;
+}
+
+/* 띄워지는 모달창, popup-modal */
+.background_popup-modal {
+    display: none;
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+}
+.popup-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 25.2rem;
+    transform: translateX(-50%) translateY(-50%);
+    overflow: hidden;
+    z-index: 20;
+    border-radius: 1rem;
+    text-align: center;
+    background-color: #ffffff;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2rem;
+}
+.popup-modal .notice_popup {
+    margin: 2.2rem 0;
+}
+.popup-modal .cancel-button_popup,
+.popup-modal .action-button_popup {
+    width: 12.6rem;
+    height: 4.6rem;
+    background-color: transparent;
+    border: none;
+    border-top: 0.05rem solid #dbdbdb;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+}
+.popup-modal .cancel-button_popup {
+    border-right: 0.05rem solid #dbdbdb;
+}
+.popup-modal .action-button_popup {
+    font-weight: 500;
+    color: var(--zzin-no);
 }

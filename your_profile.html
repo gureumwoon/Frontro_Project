@@ -30,7 +30,7 @@
                     alt="더보기 버튼"></button>
         </header>
         <!-- profile-info -->
-        <article class="profile_info">
+        <article class="cont_profile">
             <!-- 
                     필요한 JS 처리: 
                     - 필요한 html 요소(이름) fetch를 이용해서 받아온 데이터를 추가해서 넣어주기
@@ -42,22 +42,23 @@
                     - 이미지 등록여부를 통해서 기본 이미지를 보여줄 지 안보여줄 지 처리 필요
                     - 팔로워, 팔로잉 숫자도 JS로 받아와야 함
                 -->
-            <div class="profile_header">
+            <div class="header_profile">
                 <!-- followers & followings -->
-                <p class="profile_followers">
-                    <!--2950은 나중에 js로 처리-->
-                    <span class="followers_number">2950</span>followers
+                <p class="followings_profile">
+                    <span class="number_followings">128</span>followings
                 </p>
-                <p class="profile_followings">
-                    <!-- 128은 나중에 js로 처리 -->
-                    <span class="followings_number">128</span>followings
+                <p class="followers_profile">
+                    <span class="number_followers">128</span>followers
                 </p>
+                <!-- <p class="profile_followers">
+                    <span class="followers_number">128</span>followers
+                </p> -->
                 <img src="./src/svg/basic-profile-img.svg" alt="">
             </div>
-            <p class="profile_name">애월읍 위니브 감귤농장</p>
-            <p class="profile_email">@ weniv_Madarin</p>
-            <p class="profile_explain">애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장</p>
-            <div class="profile_footer">
+            <p class="name_profile">애월읍 위니브 감귤농장</p>
+            <p class="account_profile">@ weniv_Madarin</p>
+            <p class="explain_profile">애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장</p>
+            <div class="footer_profile">
                 <!-- 
                         필요한 JS 처리: 
                         - 필요한 html 요소(alt값 채워주기: 00님과 채팅 시작하기, 00님의 프로필 공유하기) fetch를 이용해서 받아온 데이터를 추가해서 넣어주기
@@ -84,7 +85,7 @@
             -->
             <ul class="ul_on-sale">
                 <!-- js에서 사용할 html 예시 -->
-                <li class="li_on-sale">
+                <!-- <li class="li_on-sale">
                     <article class="item_on-sale">
                         <img src="./src/png/product-img-example.png" alt="">
                         <p class="tit_item">
@@ -92,112 +93,26 @@
                         </p>
                         <p class="price_item">
                             <strong>
-                                <!--js로 데이터 넣어주기-->35,000
+                                35,000
                             </strong>원
                         </p>
                     </article>
-                    <!-- 판매 상품 사진 -->
-                    <!-- 판매 상품 이름 -->
-                    <!-- 판매 상품 가격 -->
-                </li>
-                <li class="li_on-sale">
-                    <article class="item_on-sale">
-                        <img src="./src/png/product-img-example.png" alt="">
-                        <p class="tit_item">
-                            애월읍 노지 감귤
-                        </p>
-                        <p class="price_item">
-                            <strong>
-                                <!--js로 데이터 넣어주기-->35,000
-                            </strong>원
-                        </p>
-                    </article>
-                    <!-- 판매 상품 사진 -->
-                    <!-- 판매 상품 이름 -->
-                    <!-- 판매 상품 가격 -->
-                </li>
-                <li class="li_on-sale">
-                    <article class="item_on-sale">
-                        <img src="./src/png/product-img-example.png" alt="">
-                        <p class="tit_item">
-                            애월읍 노지 감귤
-                        </p>
-                        <p class="price_item">
-                            <strong>
-                                <!--js로 데이터 넣어주기-->35,000
-                            </strong>원
-                        </p>
-                    </article>
-                    <!-- 판매 상품 사진 -->
-                    <!-- 판매 상품 이름 -->
-                    <!-- 판매 상품 가격 -->
-                </li>
-                <li class="li_on-sale">
-                    <article class="item_on-sale">
-                        <img src="./src/png/product-img-example.png" alt="">
-                        <p class="tit_item">
-                            애월읍 노지 감귤
-                        </p>
-                        <p class="price_item">
-                            <strong>
-                                <!--js로 데이터 넣어주기-->35,000
-                            </strong>원
-                        </p>
-                    </article>
-                    <!-- 판매 상품 사진 -->
-                    <!-- 판매 상품 이름 -->
-                    <!-- 판매 상품 가격 -->
-                </li>
-                <li class="li_on-sale">
-                    <article class="item_on-sale">
-                        <img src="./src/png/product-img-example.png" alt="">
-                        <p class="tit_item">
-                            애월읍 노지 감귤
-                        </p>
-                        <p class="price_item">
-                            <strong>
-                                <!--js로 데이터 넣어주기-->35,000
-                            </strong>원
-                        </p>
-                    </article>
-                    <!-- 판매 상품 사진 -->
-                    <!-- 판매 상품 이름 -->
-                    <!-- 판매 상품 가격 -->
-                </li>
-                <li class="li_on-sale">
-                    <article class="item_on-sale">
-                        <img src="./src/png/product-img-example.png" alt="">
-                        <p class="tit_item">
-                            애월읍 노지 감귤
-                        </p>
-                        <p class="price_item">
-                            <strong>
-                                <!--js로 데이터 넣어주기-->35,000
-                            </strong>원
-                        </p>
-                    </article>
-                    <!-- 판매 상품 사진 -->
-                    <!-- 판매 상품 이름 -->
-                    <!-- 판매 상품 가격 -->
-                </li>
+                </li> -->
             </ul>
         </article>
+
         <article class="cont_contents">
             <h2 class="ir">게시물 정보</h2>
             <div class="cont_view-style">
-                <!-- 
-                    필요한 JS 처리: 
-                    click에 따라서 이미지 on, off 상태를 변경해주어야한다.
-                -->
                 <!-- 리스트형 콘텐츠 보여주기 -->
-                <button type="button" class="button-noneBackground"><img src="./src/png/icon-post-list-on.png"
+                <button type="button" class="button-noneBackground on"><img src="./src/png/icon-post-list-on.png"
                         alt=""></button>
                 <!-- 사진형 콘텐츠 보여주기 -->
-                <button type="button" class="button-noneBackground"><img src="./src/png/icon-post-album-off.png"
+                <button type="button" class="button-noneBackground off"><img src="./src/png/icon-post-album-off.png"
                         alt=""></button>
             </div>
-            <!-- <article class="cont_user-contents list-style"> -->
-            <article class="cont_user-contents picture-style">
+            <!-- <article class="cont_user-contents list-style or picture-style"> -->
+            <article class="cont_user-contents">
                 <h3 class="ir">게시물 상세정보</h3>
                 <!-- 
                     필요한 JS 처리: 
@@ -206,7 +121,7 @@
                 <!-- case 1. 리스트형: js에서 사용할 html 예시: 리스트형 컨텐츠 보여줄 때 표시되는 html-->
                 <ul class="ul_user-contents">
                     <!-- picture-style로 보여주기 -->
-                    <li class="li_user-contents">
+                    <!-- <li class="li_user-contents">
                         <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
                     </li>
                     <li class="li_user-contents">
@@ -214,60 +129,11 @@
                     </li>
                     <li class="li_user-contents">
                         <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
-                    </li>
-                    <li class="li_user-contents">
-                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
-                    </li>
-                    <li class="li_user-contents">
-                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
-                    </li>
-                    <li class="li_user-contents">
-                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
-                    </li>
-                    <li class="li_user-contents">
-                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
-                    </li>
-                    <li class="li_user-contents">
-                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
-                    </li>
-                    <li class="li_user-contents">
-                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
-                    </li>
-                    <li class="li_user-contents">
-                        <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
-                    </li>
+                    </li> -->
+
                     <!-- ↓ css should be updated ↓ -->
                     <!-- list-style로 보여주기 -->
                     <!-- <li class="li_user-contents">
-                        <article class="content_user-contents">
-                            <div class="cont_content-info">
-                                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="img_content-info" />
-                                <div class="desc_content-info">
-                                    <p class="name_content-info">애월읍 위니브 감귤농장</p>
-                                    <p class="email_content-info">@ weniv_Mandarin</p>
-                                    <p class="txt_content-info">옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한
-                                        그들의
-                                        그와
-                                        약동하다. 대고, 못할 넣는 풍부하게 뛰노는
-                                        인생의 힘있다.</p>
-                                    <img src="./src/png/post-img-example.png" alt="" class="content-img_content-info">
-
-                                    <div class="cont_buttons">
-                                        <button class="button-like button-noneBackground">
-                                            <img src="./src/png/icon-heart.png" alt="">
-                                        </button>
-                                        <strong>58</strong>
-                                        <button class="button-comment button-noneBackground">
-                                            <img src="./src/png/icon-message-circle.png" alt="">
-                                        </button>
-                                        <strong>12</strong>
-                                    </div>
-                                    <p class="date_content-info">2020년 10월 21일</p>
-                                </div>
-                            </div>
-                        </article>
-                    </li>
-                    <li class="li_user-contents">
                         <article class="content_user-contents">
                             <div class="cont_content-info">
                                 <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="img_content-info" />
@@ -322,7 +188,29 @@
                 <!-- <p class="tap-menu-user-title">프로필</p> -->
             </button>
         </nav>
+
+        <!-- 업 모달창 -->
+        <div class="background_up-modal">
+        </div>
+        <div class="up-modal">
+            <!-- 가상요소로 작은 이미지('ㅡ') 표현 -->
+            <ul class="cont_modal-item">
+                <li class="item-modal">설정 및 개인정보</li>
+                <li class="item-modal">로그아웃</li>
+            </ul>
+        </div>
+
+        <!-- 팝업 모달창 -->
+        <div class="background_popup-modal">
+        </div>
+        <div class="popup-modal">
+            <p class="notice_popup">로그아웃</p>
+            <button class="cancel-button_popup">취소</button><button class="action-button_popup">로그아웃</button>
+        </div>
     </main>
+    <!-- html을 다 로딩하고 렌더링 할 경우 defer를 사용-->
+    <!-- defer를 사용했을 때 생길 수 있는 이슈 https://velog.io/@yeonnex/Uncaught-TypeError-Cannot-read-property-addEventListener-of-null -->
+    <script defer src="./js/your_profile.js"></script>
 </body>
 
 </html>

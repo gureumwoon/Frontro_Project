@@ -25,7 +25,7 @@
             <img src="./src/png/icon-more-vertical.png" alt="더보기 버튼" />
         </button>
     </header>
-    <section class="chat_content">
+    <section class="cont_chat">
         <h2 class="ir">채팅 방 내용</h2>
 
         <!-- 상대 채팅 내용 -->
@@ -77,21 +77,26 @@
         </div>
     </section>
     <!-- 채팅창 입력 -->
-    <section class="chat_input">
+    <section class="cont_chat-input">
         <h2 class="ir">채팅 방 입력</h2>
-        <form method="get" action="index.html" class="input_chatting">
-            <img src="./src/png/img-button.png" alt="사진 첨부하기" class="input_image" />
-            <label for="input_text"></label>
-            <input type="text" name="" id="input_text" placeholder="댓글 입력하기..." />
-            <button class="input_submit-button">전송</button>
-        </form>
+        <input type="file" , id="file">
+        <button class="button_chat-image-input button-noneBackground">
+            <img src="./src/png/img-button.png" alt="사진 첨부하기" class="image_input" />
+        </button>
+        <label for="text_input"></label>
+        <input type="text" name="" id="text_input" placeholder="댓글 입력하기..." />
+        <button class="submit-button_input">전송</button>
     </section>
-    <!-- 가상요소로 작은 이미지('ㅡ') 표현 -->
-    <!-- <div class="post-modal">
-            <ul class="modal_item-container">
-                <li class="modal_item">채팅방 나가기</li>
-            </ul>
-        </div> -->
+    <!-- 업 모달창 -->
+    <div class="background_up-modal">
+    </div>
+    <div class="up-modal">
+        <!-- 가상요소로 작은 이미지('ㅡ') 표현 -->
+        <ul class="cont_modal-item">
+            <li class="item-modal">채팅방 나가기</li>
+        </ul>
+    </div>
+    <script defer src="js/chat_room.js"></script>
 </body>
 
 </html>
