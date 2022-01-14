@@ -28,6 +28,9 @@ body {
 .profile-pic {
     width: 4.2rem;
     height: 4.2rem;
+    border-radius: 50%;
+    border: 1px solid #dbdbdb;
+    /* margin-right: 12px; */
 }
 
 .cont-following {

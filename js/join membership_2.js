@@ -2,8 +2,8 @@ const userNameInput = document.querySelector('#inpName');
 const startButton = document.querySelector('form > button');
 const userIdInput = document.querySelector('#inpId');
 const warningTextList = document.querySelectorAll('.warning-text');
-console.log(warningTextList);
 
+// 사용자 이름 2자~10자 유효성 검사
 const isUserNameInputValid = () => {
     const userName = userNameInput.value;
     if (userName.length < 2 || 10 < userName.length) {
@@ -12,6 +12,7 @@ const isUserNameInputValid = () => {
     return true;
 }
 
+// 영문, 숫자, ._만 가능한 유효성 검ㅏ 
 const isUserIdInputValid = () => {
     const userId = userIdInput.value;
     const reg1 = /[A-Z]/g;
@@ -22,6 +23,7 @@ const isUserIdInputValid = () => {
     return isValid;
 }
 
+// 버튼 클릭했을 때  유효성 검사
 startButton.addEventListener('click', () => {
     if (!isUserNameInputValid()) {
         warningTextList[0].classList.remove('invisible');
@@ -34,23 +36,49 @@ startButton.addEventListener('click', () => {
         return;
     }
     warningTextList[1].classList.add('invisible');
-    window.location.href = "home.html";
+    window.location.href = "index.html";
 })
 
-// const isButtonActive = () => {
-//     if (!isUserNameInputValid()) {
-//         startButton.classList.remove('active');
-//         return;
-//     }
-//     if (!isUserIdInputValid()) {
-//         startButton.classList.remove('active');
-//         return;
-//     }
-//     // 버튼 활성화
-//     startButton.classList.add('active');
-// }
+// imput에 입력시 유효성 검사
+
+userNameInput.addEventListener('input', () => {
+    if (!isUserNameInputValid()) {
+        warningTextList[0].classList.remove('invisible');
+        if (userNameInput.value === "") {
+            warningTextList[0].classList.add('invisible');
+        }
+        return;
+    }
+    warningTextList[0].classList.add('invisible');
+    userIdInput.addEventListener('input', () => {
+        if (!isUserIdInputValid()) {
+            warningTextList[1].classList.remove('invisible');
+            if (userIdInput.value === "") {
+                warningTextList[1].classList.add('invisible');
+            }
+            return;
+        }
+        startButton.classList.add('active');
+        warningTextList[1].classList.add('invisible');
+    })
+})
 
 
-// userNameInput.addEventListener('input', isButtonActive);
-// userIdInput.addEventListener('input', isButtonActive);
+// 버튼 활성화 
+const isButtonActive = () => {
+    if (!isUserNameInputValid()) {
+        startButton.classList.remove('active');
+        return;
+    }
+    if (!isUserIdInputValid()) {
+        startButton.classList.remove('active');
+        return;
+    }
+    // 버튼 활성화
+    startButton.classList.add('active');
+}
+
+
+userNameInput.addEventListener('input', isButtonActive);
+userIdInput.addEventListener('input', isButtonActive);
 
