@@ -16,7 +16,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
 }
 
 .btn-nonebackground {
@@ -75,9 +74,9 @@
     font-size: 1.4rem;
     font-weight: 500;
     border-radius: 3.2rem;
-    background-color: #FFC022;
+    background-color: var(--zzin-no);
     border: none;
-    color: #806011;
+    color: var(--zzin-no-word);
 }
 
 .main .main-icon .btn-search a {
