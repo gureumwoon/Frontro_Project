@@ -89,7 +89,7 @@ async function getFeed() {
     const posts = json.posts
     //forEach문으로 받아온 데이터 전부 살펴보면서 그려주는 부분
     posts.forEach(post => {
-        // console.log(post);
+        console.log(post);
         const authorImage = post.author.image
         const authorAccount = post.author.accountname
         const authorName = post.author.username
@@ -98,10 +98,13 @@ async function getFeed() {
         const heartCount = post.heartCount
         const hearted = post.hearted
         const contentImage = post.image 
-        // 게시글 이미지 if문으로 바꿔주기 
+
+        // 이미지 3장일 때 이미지 리스트 
+        //  글만 있는 이미지 있는 경우 
+
         document.querySelector(".main").innerHTML+=`
     <article class="post">
-    <img class="profile-pic" src="${authorImage}" alt="프로필 사진">
+    <img class="profile-pic" src="${authorImage}" alt="${authorName}님의 프로필 사진">
 
     <div class="cont-following">
         <div class="profile">
@@ -111,18 +114,27 @@ async function getFeed() {
         <p class="desc">
             ${content}
         </p>
-        <img class="picture" src="${contentImage}">
+
+        <img class="picture" src="${contentImage}" alt="" >
+
+
         <div class="icon-box font-gray">
             <button type="button" class="btn btn-like btn-nonebackground">
-                <img src="./src/svg/Vector.svg">
+                <img src="./src/png/${
+                    hearted
+                        ? "icon-heart-active.png"
+                        : "icon-heart.png"
+                }" alt="">
             </button>
-            <span class="count count-heart">${hearted}</span>
+            <span class="count count-heart">${heartCount}</span>
+
+
             <button type="button" class="btn btn-comment btn-nonebackground">
                 <img src="./src/svg/message-circle.svg">
             </button>
             <span class="count count-comment">${commentCount}</span>
             </div>
-            <p class="date font-gray"></p>
+            <p class="date font-gray">${post.createdAt.slice(0,10)}</p>
         </div>
         <!-- 마크업 구조상 더보기 버튼 아래에 위치 -->
         <div class="div-icon">
