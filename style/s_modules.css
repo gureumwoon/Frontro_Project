@@ -50,13 +50,17 @@ body {
     margin: 0;
 }
 
+.cont-following .profile .id::before {
+    content: "@";
+    margin-right: 3px;
+}
+
 .cont-following .desc {
     font-size: 1.4rem;
     clear: both;
     line-height: 1.75rem;
     width: 30.4rem;
     margin-bottom: 16px;
-    
 }
 
 .cont-following .picture {

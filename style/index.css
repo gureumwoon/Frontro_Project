@@ -2,6 +2,23 @@
     font-size: 62.5%;
 }
 
+/* .yes{
+
+    background-color: red;
+    width: 10px;
+    height: 10px;
+}
+.no{
+    background-color: black;
+    width: 10px;
+    height: 10px;
+}
+.profileimg{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+} */
+
 .body {
     position: relative;
     background-color: #767676;

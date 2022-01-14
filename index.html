@@ -4,32 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/search_1.css">
-    <link rel="stylesheet" href="./style/k_modules.css">
+    <link rel="stylesheet" href="./style/s_modules.css">
+    <link rel="stylesheet" href="./style/index.css">
     <link rel="stylesheet" href="./style/reset.css">
-    <script defer src="js/search.js"></script>
-    <title></title>
+    <script defer src="js/index.js"></script>
+    <title>home_2</title>
 </head>
 <body class="body">
-<article class="container">
+<section class="container">
     <header class="header">
-        <h1 class="sr-only">감귤마켓 홈</h1>
-        <!-- js 구현: 뒤로가기 아이콘 click 하면 home.html 이동 -->
-        <div class="box-search">
-            <img src="./src/svg/icon-arrow-left.svg">
-            <form action="" class="form-search">
-                <input type="search" placeholder="계정 검색" class="inp-search">
-            </form>
-        </div>
+        <h2 class="tit-intro">은이네 문방구 피드</h2>
+        <!-- js 구현: 검색 아이콘에 search.html로 페이지 이동-->
+        <button type="button" class="btn-search btn-nonebackground">
+            <img src="./src/png/icon-search.png" class="icon-search">
+        </button>
     </header>
-    <div class="main">
-        <!-- 
-            검색 결과를 불러와야 합니다
-         -->
-            <section class="user-list">
-              <h2 class="sr-only">검색 유저 목록</h2>
-            </section>
-    </div>
+    <!-- 여기다가 데이터들을 그려준다-->
+    <article class="main">
+ 
+    </article>
     <!-- js 구현: 페이지 이동: home/chat_list/add_product/My_profile -->
     <footer class="footer">
         <ul class="icon-item-list">
@@ -39,6 +32,6 @@
             <li class="item-footer"><img src="./src/svg/icon-user.svg">프로필</li>       
         </ul>
     </footer>
-</article>
+</section>
 </body>
 </html>
