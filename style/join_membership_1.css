@@ -34,7 +34,13 @@ h2 {
   margin-bottom: 1.6rem;
 }
 
-#input-box {
+#input_box {
+  border-style: none;
+  border-bottom: 0.1rem solid #DBDBDB;
+  height: 3.3rem;
+}
+
+#input_box_pw {
   border-style: none;
   border-bottom: 0.1rem solid #DBDBDB;
   height: 3.3rem;
@@ -51,7 +57,13 @@ h2 {
   margin-top: 1.4rem;
 }
 
-#input-box:focus {
+#input_box:focus {
+  border-style: none;
+  border-bottom: 0.1rem solid var(--zzin-no);
+  height: 3.3rem;
+}
+
+#input_box_pw:focus {
   border-style: none;
   border-bottom: 0.1rem solid var(--zzin-no);
   height: 3.3rem;
@@ -63,6 +75,11 @@ h2 {
 }
 
 .input_alert {
+  font-size: 1.2rem;
+  color: #EB5757;
+}
+
+.input_alert_pw {
   font-size: 1.2rem;
   color: #EB5757;
 }
