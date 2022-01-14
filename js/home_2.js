@@ -34,30 +34,22 @@ console.log(goPostPage);
 // footer 페이지이동
 const goToReload = document.querySelector('ul > li:first-child');
 console.log(goToReload);
-
-
 const goToChat = document.querySelector('ul > li:nth-child(2)');
 console.log(goToChat);
-
 const goUpload = document.querySelector('ul > li:nth-child(3)');
 console.log(goUpload);
-
 const goMyProfile = document.querySelector('ul > li:last-child');
 console.log(goMyProfile);
 
-// footer 페이지 이동 기능
 goToReload.addEventListener('click', () => {
     window.location.reload();
 })
-
 goToChat.addEventListener('click', () => {
     window.location.href = "chat_list.html";
 })
-
 goUpload.addEventListener('click', () => {
     window.location.href = "upload.html";
 })
-
 goMyProfile.addEventListener('click', () => {
     window.location.href = "my_profile.html";
 })

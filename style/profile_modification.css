@@ -15,7 +15,8 @@ body {
 }
 
 .active {
-    font-weight: bold;
+    background-color: var(--zzin-no);
+    color:  var(--zzin-no-word);
 }
 
 .container {

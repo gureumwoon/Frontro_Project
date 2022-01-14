@@ -105,7 +105,7 @@ input:focus, textarea:focus, select:focus{
 
 input.inp-login:focus { 
     outline: none !important;
-    border-color: #EB5757;
+    border-color: #ffc022;
 }
 
 .form-setProfile .inp-error {

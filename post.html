@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="./style/reset.css">
     <link rel="stylesheet" href="./style/post.css">
     <title>post</title>
+    <script defer src="js/post.js"></script>
 </head>
 
 <body>
     <div class="container">
         <header class="nav">
-            <a href="#">
-                <img src="src/png/icon-arrow-left.png" alt="뒤로가기">
-            </a>
+            <img src="src/png/icon-arrow-left.png" alt="뒤로가기" class="back-btn">
             <button class="more-btn">
                 <img src="src/png/icon-more-vertical.png" alt="더보기" class="icon-more">
             </button>
@@ -33,7 +32,25 @@
                     옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게 뛰노는
                     인생의 힘있다.
                 </p>
-                <img class="picture" src="src/png/post-img-example.png" alt="초원과 숲과 집">
+                <div class="picture" src="src/png/post-img-example.png" alt="초원과 숲과 집">
+                    <ul class="indicator">
+                        <li>
+                            <a href="#" class="list-slide on">
+                                <span class="blind">1번 슬라이드</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="list-slide">
+                                <span class="blind">2번 슬라이드</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="list-slide">
+                                <span class="blind">3번 슬라이드</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <div class="icon-box font-gray">
                     <button type="button" class="btn btn-like"><img src="./src/svg/Vector.svg"></button>
                     <span class="count count-heart">58</span>
@@ -56,7 +73,7 @@
                     </div>
                     <p class="comment">게시글 답글 ~~ !! 최고최고</p>
                 </div>
-                <button class="more-btn3">
+                <button class="more-btn3" onclick="openModal(this)">
                     <img src="src/svg/s-icon-more-vertical.svg" alt="더보기" class="icon-more2">
                 </button>
             </div>
@@ -69,7 +86,7 @@
                     </div>
                     <p class="comment">안녕하세요. 사진이 너무 멋있어요. 한라봉 언제 먹을 수 있나요? 기다리기 지쳤어요 땡뻘땡뻘...</p>
                 </div>
-                <button class="more-btn3">
+                <button class="more-btn3" onclick="openModal(this)">
                     <img src="src/svg/s-icon-more-vertical.svg" alt="더보기" class="icon-more2">
                 </button>
             </div>
@@ -82,7 +99,7 @@
                     </div>
                     <p class="comment">안녕하세요. 사진이 너무 멋있어요. 한라봉 언제 먹을 수 있나요? 기다리기 지쳤어요 땡뻘땡뻘...</p>
                 </div>
-                <button class="more-btn3">
+                <button class="more-btn3" onclick="openModal(this)">
                     <img src="src/svg/s-icon-more-vertical.svg" alt="더보기" class="icon-more2">
                 </button>
             </div>
@@ -95,7 +112,7 @@
                     </div>
                     <p class="comment">안녕하세요. 사진이 너무 멋있어요. 한라봉 언제 먹을 수 있나요? 기다리기 지쳤어요 땡뻘땡뻘...</p>
                 </div>
-                <button class="more-btn3">
+                <button class="more-btn3" onclick="openModal(this)">
                     <img src="src/svg/s-icon-more-vertical.svg" alt="더보기" class="icon-more2">
                 </button>
             </div>
@@ -105,6 +122,12 @@
             <input type="text" placeholder="댓글 입력하기..." class="comment-inp">
             <button class="comment-upload-btn">게시</button>
         </form>
+        <div class="post-modal">
+            <p class="modal-txt-report">신고하기</p>
+        </div>
+        <div class="post-modal">
+            <p class="modal-txt-delete">삭제</p>
+        </div>
     </div>
 </body>
 
