@@ -10,31 +10,31 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <script src="./js/join membership_1.js"></script>
   <title>join membership 1</title>
 </head>
 
 <body id="body">
   <article class="container">
     <h2>이메일로 회원가입</h2>
-
+    
     <section id="input_info">
-      <label for="">이메일</label>
-      <input type="email" id="input_box" placeholder="이메일 주소를 입력해 주세요." class="alert">
+      <label for="input_box">이메일</label>
+      <input type="email" id="input_box" data-state="0" placeholder="이메일 주소를 입력해 주세요." class="alert">
       <p class="input_alert"></p>
       <!-- <p class="input_alert">*이미 가입된 이메일 주소입니다.</p> -->
     </section>
-
+    
     <section id="input_info">
-      <label for="">비밀번호</label>
+      <label for="input_box_pw">비밀번호</label>
       <input type="password" id="input_box_pw" placeholder="비밀번호를 설정해 주세요." class="alert">
       <p class="input_alert_pw"></p>
       <!-- <p class="input_alert">*비밀번호는 6자 이상이어야 합니다.</p> -->
     </section>
-
-    <button type="button" id="next_btn">다음</button>
-  </article>
-
+    
+    <button type="button" class="next_btn">다음</button>
+  </article> 
 </body>
+
+<script src="./js/join membership_1.js"></script>
 
 </html>
