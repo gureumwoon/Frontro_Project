@@ -1,7 +1,7 @@
-const textarea = document.querySelector('.upload-txt')
-const prevImg = document.querySelector('.prev-img')
+const textarea = document.querySelector('.upload-txt');
+const prevImg = document.querySelector('.prev-img');
 let imgIndex = 0;
-const formData = new FormData()
+const formData = new FormData();
 
 
 function resize(obj) {
@@ -11,21 +11,21 @@ function resize(obj) {
 
 function loadFile(e) {
     if (3 < e.files.length) {
-        alert('이미지는 3장까지만 가능합니다.')
+        alert('이미지는 3장까지만 가능합니다.');
         return
     }
     for (const file of e.files) {
         const list = document.createElement('li');
-        const button = document.createElement('button')
-        const oImg = document.createElement("img");
-        const oImg2 = document.createElement("img");
+        const button = document.createElement('button');
+        const oImg = document.createElement("img"); // 사진 이미지
+        const oImg2 = document.createElement("img"); // x버튼 이미지
 
         prevImg.appendChild(list);
-        list.appendChild(oImg)
-        list.appendChild(button)
+        list.appendChild(oImg);
+        list.appendChild(button);
         button.appendChild(oImg2);
         if (e.files.length === 1) {
-            list.setAttribute('id', `img${imgIndex}`)
+            list.setAttribute('id', `img${imgIndex}`);
             button.classList.add('img-cancel-btn');
             oImg2.setAttribute('src', 'src/png/x.png');
             oImg2.setAttribute('alt', '사진 업로드 취소 버튼');
@@ -35,7 +35,7 @@ function loadFile(e) {
             oImg.setAttribute('width', '304px');
             return;
         }
-        list.setAttribute('id', `img${imgIndex}`)
+        list.setAttribute('id', `img${imgIndex}`);
         button.classList.add('img-cancel-btn');
         oImg2.setAttribute('src', 'src/png/x.png');
         oImg2.setAttribute('alt', '사진 업로드 취소 버튼');
@@ -44,9 +44,9 @@ function loadFile(e) {
         oImg.setAttribute('height', '126px');
         oImg.setAttribute('width', '168px');
 
-        oImg2.addEventListener('click', deletePrevImg(imgIndex))
+        oImg2.addEventListener('click', deletePrevImg(imgIndex));
 
-        formData.append(imgIndex++, file)
+        formData.append(imgIndex++, file);
     }
 }
 
@@ -88,7 +88,7 @@ async function createPost(e) {
         for (let index = 0; index < files.length; index++) {
             const imgurl = await imageUpload(files, index)
             //완성된 url을 만들어서 넣어준다.
-            imageUrls.push(url + imgurl)
+            imageUrls.push(url + "/" + imgurl)
         }
         const res = await fetch(url + "/post", {
             method: "POST",
@@ -105,6 +105,7 @@ async function createPost(e) {
         })
         const json = await res.json()
         console.log(json)
+        // window.location.href = "index.html"
     } else {
         alert("아 이미지 갯수가 너무 많소")
     }
@@ -112,6 +113,9 @@ async function createPost(e) {
 }
 //여기까지 이미지 여러개 업로드하기.
 $submitBtn.addEventListener('click', createPost)
+
+
+
 
 
 
