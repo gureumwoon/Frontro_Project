@@ -1,4 +1,3 @@
-
 const commentInput = document.querySelector('.comment-inp');
 const commentUploadButton = document.querySelector('.comment-upload-btn');
 const modal = document.querySelector('.post-modal');
@@ -7,7 +6,7 @@ const postFixButton = document.querySelector('.back-btn');
 // home_2 page로 이동
 
 postFixButton.addEventListener('click', () => {
-    window.location.href = 'home_2.html';
+    window.location.href = 'index.html';
 })
 
 
@@ -40,8 +39,6 @@ const openModal = () => {
 
 // fetch
 
-const contentBox = document.querySelector('.cont-following');
-console.log(contentBox);
 console.log(localStorage.getItem("Token")) //브라우저 저장된 토큰 
 if (localStorage.getItem("Token")) {
     getPost()
@@ -89,12 +86,12 @@ const getTimeString = (date) => {
     return "0초 전"
 }
 // 게시물 상세보기 페이지
+
 async function getPost() {
     const queryString = window.location.href.split('?')[1]
     const searchParams = new URLSearchParams(queryString)
     console.log("searchparams: ", searchParams)
     const postId = searchParams.get('id');
-    const baseUrl = " http://146.56.183.55:5050/post/"
     const url = `http://146.56.183.55:5050/post/${postId}`;
     fetch(url, {
         method: 'GET', // or 'PUT'
@@ -146,33 +143,68 @@ async function getPost() {
                 <p class="date font-gray">${getDateString(post.createdAt)}</p>
             </div>
             `
-            fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
-                method: 'GET', // or 'PUT'
-                headers: {
-                    "Authorization": "Bearer " + localStorage.getItem("Token"),
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => res.json()).then(res => {
-                const commentsDom = document.querySelector('.comment-container')
-                commentsDom.innerHTML = ''
-                res.comments.forEach(comment => {
-                    commentsDom.innerHTML += `
-                    <div class="comment-view">
-                        <img src="${comment.author.image}" alt="내 프로필 이미지">
-                        <div class="txt-container">
-                            <div>
-                                <span class="user-nic">${comment.author.username}</span>
-                                <span class="comment-time">${getTimeString(comment.createdAt)}</span>
-                            </div>
-                            <p class="comment">${comment.content}</p>
-                        </div>
-                        <button class="more-btn3" onclick="openModal(this)">
-                            <img src="src/svg/s-icon-more-vertical.svg" alt="더보기" class="icon-more2">
-                        </button>
-                    </div>
-                    `
-                });
-            })
         })
-        .catch(error => console.error('Error:', error));
+    getComment()
+}
+
+// 댓글 가져오기
+async function getComment() {
+    const queryString = window.location.href.split('?')[1]
+    const searchParams = new URLSearchParams(queryString)
+    console.log("searchparams: ", searchParams)
+    const postId = searchParams.get('id');
+    fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
+        method: 'GET', // or 'PUT'
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("Token"),
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json()).then(res => {
+        const commentsDom = document.querySelector('.comment-container')
+        commentsDom.innerHTML = ''
+        res.comments.forEach(comment => {
+            commentsDom.innerHTML += `
+            <div class="comment-view">
+                <img class="profile-pic" src="${comment.author.image}" alt="내 프로필 이미지">
+                <div class="txt-container">
+                    <div>
+                        <span class="user-nic">${comment.author.username}</span>
+                        <span class="comment-time">${getTimeString(comment.createdAt)}</span>
+                    </div>
+                    <p class="comment">${comment.content}</p>
+                </div>
+                <button class="more-btn3" onclick="openModal(this)">
+                    <img src="src/svg/s-icon-more-vertical.svg" alt="더보기" class="icon-more2">
+                </button>
+            </div>
+            `
+        });
+    })
+}
+
+commentUploadButton.addEventListener('click', (e) => {
+    createComment()
+})
+
+
+// 댓글 입력
+async function createComment() {
+    const queryString = window.location.href.split('?')[1]
+    const searchParams = new URLSearchParams(queryString)
+    console.log("searchparams: ", searchParams)
+    const postId = searchParams.get('id');
+    fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify({
+            "comment": {
+                "content": commentInput.value
+            }
+        }),
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("Token"),
+            "Content-Type": "application/json"
+        }
+    })
+    commentInput.value = "";
+    location.reload()
 }
