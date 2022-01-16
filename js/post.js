@@ -1,3 +1,4 @@
+
 const commentInput = document.querySelector('.comment-inp');
 const commentUploadButton = document.querySelector('.comment-upload-btn');
 const modal = document.querySelector('.post-modal');

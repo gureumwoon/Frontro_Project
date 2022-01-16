@@ -1,6 +1,5 @@
 // 검색 아이콘 누르면 페이지 이동
 const goToSearchPage = document.querySelector('.header > button');
-
 goToSearchPage.addEventListener('click', () => {
     window.location.href = "search_2.html";
 })
@@ -9,6 +8,7 @@ goToSearchPage.addEventListener('click', () => {
 // 현재 모두 your_profile로 이동함 
 // API 받아서 각 사용자의 profile로 이동하게 만들기
 const goOtherProfile = document.querySelectorAll(".tit-post");
+console.log(goOtherProfile);
 for (const userName of goOtherProfile) {
     userName.addEventListener('click', function() {
         window.location.href = "your_profile.html";
@@ -18,9 +18,9 @@ console.log(goOtherProfile);
 
 // API 받아서 
 // 하트 누르면 빨간 하트로 변경 
-const likeButton = document.querySelectorAll(".btn-like");
+// const likeButton = document.querySelectorAll(".btn-like");
 
-console.log(likeButton);
+// console.log(likeButton);
 
 // API 받아서 
 // 댓글 아이콘 누르면 해당 게시물 댓글창으로 이동
@@ -68,14 +68,17 @@ if(localStorage.getItem("Token")){
     getFeed()
 }
 else{
-    // location.href = './login.html'
+    location.href = './login.html'
 }
 console.log(localStorage.getItem("Token"))  //요거는 로컬스토리지에 값잘 있나 확인.
 
 async function getFeed() {
     const url = "http://146.56.183.55:5050"
     // const token = localStorage.getItem("Token")
+    // console.log(token)
+
     // 임시로 토큰 복붙해서 가져옴 
+    // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZGZiMDRjY2I0YjMzMTZkYzI2ODYxNCIsImV4cCI6MTY0NzQyNTE0OSwiaWF0IjoxNjQyMjQxMTQ5fQ.jM2G-i8kaRwU4tuyB3qtBlWMxhd9hhLjYW9VsXGREVA"
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxY2E2MzhhYjVjNmNkMTgwODRlNDQ3ZCIsImV4cCI6MTY0NzMyMDQ3OSwiaWF0IjoxNjQyMTM2NDc5fQ.3ytVLwSAXEBRIxEl-y-4HX0KVo3fDV3cNGryBYALTEU"
 
     const res = await fetch(url+"/post/feed",{
@@ -86,6 +89,8 @@ async function getFeed() {
         }
     })
     const json = await res.json()
+    console.log(json);
+
     const posts = json.posts
     //forEach문으로 받아온 데이터 전부 살펴보면서 그려주는 부분
     posts.forEach(post => {
@@ -115,7 +120,7 @@ async function getFeed() {
             ${content}
         </p>
 
-        <img class="picture" src="${contentImage}" alt="" >
+        <img class="picture" src="${contentImage}" alt="없어져라">
 
 
         <div class="icon-box font-gray">
@@ -134,7 +139,7 @@ async function getFeed() {
             </button>
             <span class="count count-comment">${commentCount}</span>
             </div>
-            <p class="date font-gray">${post.createdAt.slice(0,10)}</p>
+            <p class="date font-gray">${makeKoreaDate(post.updatedAt)}</p>
         </div>
         <!-- 마크업 구조상 더보기 버튼 아래에 위치 -->
         <div class="div-icon">
@@ -142,9 +147,30 @@ async function getFeed() {
                 <img class="" src="src/svg/s-icon-more-vertical.svg" alt="더보기 버튼">
             </button>
         </div>
-</article>  
-          
+    </article>  
         `
     });
 }
 getFeed()
+
+// - 년일월 날짜 변환 함수
+function makeKoreaDate(date) {
+    const koreaDate = date.split("-").map((value) => parseInt(value));
+    return `${koreaDate[0]}년 ${koreaDate[1]}월 ${koreaDate[2]}일`;
+}
+
+// 이미지가 세개인 경우 클릭하면 이미지가 넘어가는 함수 
+// function imageLogic() {
+//     if (이미지가 1개이상) {
+//         return 
+//         document.querySelector('.picture').innerHTML+=`
+        
+//         `
+//     } else if (이미지가 없는 글이라면) {
+//         return
+//         이미지자체를 없애기;
+//     }
+//     else {
+//         ${contentImage}
+//     }
+// }

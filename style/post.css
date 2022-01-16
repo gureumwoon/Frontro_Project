@@ -67,6 +67,7 @@ button{
 }
 
 .cont-following{
+    position: relative;
     width: 30.4rem;
     margin-left: 5.4rem;
 }
@@ -79,19 +80,18 @@ button{
 .picture {
     margin: 1.6rem 0;
     position: relative;
-    width: 304px;
-    height: 228px;
-    border-radius: 10px;
+    width: 30.4rem;
+    height: 22.8rem;
+    border-radius: 1rem;
     background-color: #DBDBDB;
-    outline: 1px solid red;
 }
 
 .blind {
 	position: absolute;
 	clip: rect(0 0 0 0);
-	width: 1px;
-	height: 1px;
-	margin: -1px;
+	width: 0.1rem;
+	height: 0.1rem;
+	margin: -0.1rem;
 	overflow: hidden;
 }
 
@@ -99,16 +99,16 @@ button{
     position: absolute;
     display: flex;
     justify-content: space-between;
-    width: 30px;
+    width: 3rem;
     left: 50%;
-    bottom: 10px;
+    bottom: 7.8rem;
     transform: translateX(-50%);
 }
 
 .indicator .list-slide {
     display: block;
-    width: 6px;
-    height: 6px;
+    width: 0.6rem;
+    height: 0.6rem;
     background-color: #FFFFFF;
     border-radius: 50%;
 }
@@ -206,8 +206,7 @@ button{
 }
 
 .comment-upload {
-    position: absolute;
-    left:0;
+    position: fixed;
     border-top: 0.1rem solid #DBDBDB;
     padding: 1.3rem 2rem 1.2rem 1.6rem;
     bottom: 0;

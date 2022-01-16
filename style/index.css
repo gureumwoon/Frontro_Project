@@ -98,3 +98,56 @@
     width: 25px;
     padding-left: 1rem;
 }
+
+/* 이미지 리스트 */
+.post-img-container {
+    position: relative;
+    margin-bottom: 16px;
+    max-height: 228px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.post-img-container .post-img-list {
+    display: flex;
+    transition: all .4s;
+    transform: translateX(0px);
+}
+
+.post-img-list li{
+    min-width: 304px;
+    width: 100%;
+    max-height: 228px;
+    min-height: 228px;
+    border: 0.5px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.post-container .post-img {
+    border-radius: 10px;
+    margin-bottom: 16px;
+    object-fit: cover;
+    height: 100%;
+}
+
+.post-img-btn-list {
+    position: absolute;
+    display: flex;
+    gap: 6px;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+}
+
+.post-img-btn-list button{
+    border-radius: 50%;
+    /* width: 4px; */
+    height: 12px;
+    border-style: none;
+}
+
+.post-img-btn-list button.current {
+    background-color: var(--zzin-no);
+}
+
