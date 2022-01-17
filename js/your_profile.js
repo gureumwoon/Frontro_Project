@@ -1,5 +1,12 @@
+// 구현할 사항.
+// [] 코드 fetch 함수 및 기능별로 이쁘게 정리하기
+// [] 무한 스크롤
+
+// 나중에 추가 구현 사항
+// [] 다중 파일 선택 시스템 만들기
+
 const AUTH =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxY2E2MzhhYjVjNmNkMTgwODRlNDQ3ZCIsImV4cCI6MTY0NzA2NjU2MiwiaWF0IjoxNjQxODgyNTYyfQ.yPpSVh7MWboADb08_yHIWSoSg-X4tic_LykTRxgSX5w";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxY2E2MzhhYjVjNmNkMTgwODRlNDQ3ZCIsImV4cCI6MTY0NzUwNzQ5MSwiaWF0IjoxNjQyMzIzNDkxfQ.IpERmWzo8--G6k-6pBBj5FUtxRJD1UqY_CNFIGc35zQ";
 const BASE_URL = "http://146.56.183.55:5050";
 const ACCOUNT_MYNAME = "hey_binky";
 const MYID = "61ca638ab5c6cd18084e447d";
@@ -7,43 +14,46 @@ const ACCOUNT_NAME = "halo_halo";
 // const ACCOUNT_NAME = "hey_binky";
 
 // - top-bar, 헤더 바
-// - 뒤로가기 버튼
-// - 더보기 버튼
+// - 관련 변수들 -
+const btnBack = document.querySelector(".button-back");
 const btnMore = document.querySelector(".button-more");
-// - modal, 모달 관련 함수 및 변수들 -
-// up modal, 위로 올라오는 모달
 const backgroundUpModal = document.querySelector(".background_up-modal");
 const upModal = document.querySelector(".up-modal");
 const postItemList = document.querySelectorAll(".item-modal");
 const logoutBtn_up = Array.from(postItemList).find(
     (item) => item.innerText === "로그아웃"
-);
-// popup modal, 띄워지는 모달
+); // ※ find를 쓰기 위해선 nodeList > Array 변환 이 필요
 const backgroundPopupModal = document.querySelector(".background_popup-modal");
 const popupModal = document.querySelector(".popup-modal");
 const cancelBtn_popup = document.querySelector(".cancel-button_popup");
 const logoutBtn_popup = document.querySelector(".action-button_popup");
-// ※ find를 쓰기 위해선 nodeList > Array 변환 이 필요
-// - 업 모달창 올리기
+
+// - 뒤로가기 버튼
+btnBack.addEventListener("click", () => {
+    // 채팅방 뒤로가기 작성하고 작성팀원분들과 얘기하고 작성하기
+    // location.href("");
+});
+
+// - 더보기 버튼 & up modal, 위로 올라오는 모달
 btnMore.addEventListener("click", () => {
     backgroundUpModal.style.display = "block";
     upModal.style.bottom = "0";
 });
-// - 업 모달창 내리기
 backgroundUpModal.addEventListener("click", () => {
     backgroundUpModal.style.display = "none";
     upModal.style.bottom = "-20rem";
 });
-// - 팝업 모달창 띄우기
+
+// - popup modal, 띄워지는 모달
 logoutBtn_up.addEventListener("click", () => {
     backgroundPopupModal.style.display = "block";
     popupModal.style.display = "block";
 });
-// - 팝업 모달창 내리기
 cancelBtn_popup.addEventListener("click", () => {
     backgroundPopupModal.style.display = "none";
     popupModal.style.display = "none";
 });
+
 // - 로그 아웃 api 요청하기
 logoutBtn_popup.addEventListener("click", () => {});
 
@@ -79,11 +89,22 @@ myFetch(`${BASE_URL}/profile/${ACCOUNT_NAME}`, "get", AUTH)
         }
     })
     .catch((error) => console.log(error));
+
 // - 메세지 창으로 이동
 profileMessageBtn.addEventListener("click", () => {
-    // 페이지 이동하는 코드
+    console.log("click");
+    // history.pushState(
+    //     { username: "할로할로" },
+    //     "채팅방 유저 이름",
+    //     "chat_room.html"
+    // );
+
+    // location.reload();
+    // location.href = `chat_room.html?username=${}`;
+    location.href = `chat_room.html?username=할로할로&accountname=halo_halo`;
 });
 // - 팔로우 기능
+// 팔로우 요청이 성공했을 때 버튼 그림을 바꿔주는 것으로 수정
 profileFollowBtn.addEventListener("click", () => {
     if (profileFollowBtn.innerText === "언팔로우") {
         myFetch(
@@ -124,11 +145,11 @@ profileFollowBtn.addEventListener("click", () => {
 // - 관련 변수
 const onSaleList = document.querySelector(".ul_on-sale");
 const onSaleFragment = document.createDocumentFragment();
+
 // - 유저 판매 상품 데이터를 가져와서 화면에 그려주기
 myFetch(`${BASE_URL}/product/${ACCOUNT_NAME}`, "get", AUTH, null)
     .then((res) => res.json())
     .then((result) => {
-        console.log(result);
         const productList = result.product;
 
         // - demo data -
@@ -189,109 +210,226 @@ const viewStyleCont = document.querySelector(".cont_view-style");
 const styleBtn = viewStyleCont.querySelectorAll("button");
 const listStyleBtn = Array.from(styleBtn)[0];
 const pictureStyleBtn = Array.from(styleBtn)[1];
+
 // - contents 관련 변수
 const contentsCont = document.querySelector(".cont_user-contents");
-contentsCont.className += ` list-style`;
 const contentsList = document.querySelector(".ul_user-contents");
 const contentsFragment = document.createDocumentFragment();
+const contentImagesFragment = document.createDocumentFragment();
+
+// - contents 데이터 가져오기
+getContents();
 
 // - view-style change
+// 이벤트 처리하는 경우와 ui처리에 관해서 생각해보지 않으니 일을 두번하게 된다..
 listStyleBtn.addEventListener("click", () => {
     if (Array.from(listStyleBtn.classList).includes("off")) {
-        // contentsCont.classList.replace("")
+        if (Array.from(contentsCont.classList).includes("picture-style")) {
+            contentsCont.classList.remove("picture-style");
+        }
+
+        // list button 활성화
         listStyleBtn.classList.replace("off", "on");
-        pictureStyleBtn.classList.replace("on", "off");
         listStyleBtn.querySelector("img").src =
             "../src/png/icon-post-list-on.png";
+
+        // picture button 비활성화
+        pictureStyleBtn.classList.replace("on", "off");
         pictureStyleBtn.querySelector("img").src =
             "../src/png/icon-post-album-off.png";
     }
 });
 pictureStyleBtn.addEventListener("click", () => {
     if (Array.from(pictureStyleBtn.classList).includes("off")) {
-        viewStyle = "picture-style";
+        contentsCont.classList.add("picture-style");
+
+        // list button 비활성화
         listStyleBtn.classList.replace("on", "off");
-        pictureStyleBtn.classList.replace("off", "on");
         listStyleBtn.querySelector("img").src =
             "../src/png/icon-post-list-off.png";
+
+        // picture button 활성화
+        pictureStyleBtn.classList.replace("off", "on");
         pictureStyleBtn.querySelector("img").src =
             "../src/png/icon-post-album-on.png";
     }
 });
 
-// - contents 데이터를 가져와서 화면에 그려주기
-// ↓ 아래 요청은 나의 게시물 요청이므로 꼭 바꿔주자 ↓
-myFetch(`${BASE_URL}/post/feed?limit=6`, "get", AUTH, null)
-    .then((res) => res.json())
-    .then((result) => {
-        console.log(result);
-        const contentsListData = result.posts;
-        console.log(contentsListData);
+// 콘텐츠의 데이터를 가져와서 그려주는 함수
+async function getContents() {
+    // const token = localStorage.getItem("Token");
+    const token = AUTH;
 
-        // - demo data -
-        // author: {_id: '61ce82540ab9576f8df32dd9', username: '초원범', accountname: 'chowonbeom', intro: '네 접니다.', image: 'http://146.56.183.55:5050/1641864733219.png', …}
-        // commentCount: 8
-        // comments: (8) ['61ce831d0ab9576f8df32df5', '61ce839f0ab9576f8df32e01', '61dce2903fe886cd1337d1b6', '61dd0c763fe886cd1337e97f', '61dd212d3fe886cd1337fd50', '61dd215f3fe886cd1337fdda', '61dd21673fe886cd1337fde9', '61dd29063fe886cd1338079a']
-        // content: "String"
-        // createdAt: "2021-12-31T04:09:59.453Z"
-        // heartCount: 4
-        // hearted: true
-        // id: "61ce82970ab9576f8df32de0"
-        // image: ""
-        // updatedAt: "2022-01-11T06:51:50.230Z"
+    // ↓ 아래 요청은 나의 게시물 요청이므로 꼭 바꿔주자 ↓
+    const res = await myFetch(
+        `${BASE_URL}/post/feed?limit=6`,
+        "get",
+        token,
+        null
+    );
+    const result = await res.json();
+    const contentsListData = result.posts;
 
-        contentsListData.forEach((content) => {
-            const contentItem = document.createElement("li");
-            contentItem.className += "li_user-contents";
-            contentItem.innerHTML = `
-                <article class="content_user-contents">
-                            <div class="cont_content-info">
-                                <img src="${content.author.image}" alt="${
-                content.author.username
-            }님의 프로필 사진" class="img_content-info" />
-                                <div class="desc_content-info">
-                                    <p class="name_content-info">${
-                                        content.author.username
-                                    }</p>
-                                    <p class="email_content-info">@ ${
-                                        content.author.accountname
-                                    }</p>
-                                    <p class="txt_content-info">${
-                                        content.content
-                                    }</p>
-                                    <img src="${
-                                        content.image
-                                    }" alt="" class="content-img_content-info">
+    // 여러 비동기에 쓰이는 await를 한 번으로 묶을 수는 없을까??
+    for (let content of contentsListData) {
+        // console.log(content);
+        const authorImage = await validateImage(
+            content.author.image,
+            "profile"
+        );
 
-                                    <div class="cont_buttons">
-                                        <button class="button-like button-noneBackground">
-                                            <img src="./src/png/${
-                                                content.hearted
-                                                    ? "icon-heart-active.png"
-                                                    : "icon-heart.png"
-                                                // ./src/png/icon-heart.png
-                                            }" alt="">
-                                        </button>
-                                        <strong>${content.heartCount}</strong>
-                                        <button class="button-comment button-noneBackground">
-                                            <img src="./src/png/icon-message-circle.png" alt="">
-                                        </button>
-                                        <strong>${content.commentCount}</strong>
+        // image가 여러개 들어왔을 때를 대비해서 처리하는 것_개발 예정..
+        // const contentImage = await validateImage(content.image, "content");
+        // const imageContainer = document.querySelector(".cont_content-image");
+        // if (contentImage.length > 1) {
+        //     for (let image of contentImage) {
+        //         if (image) {
+        //             imageContainer.innerHTML = `<img src=${image}> alt ="">`;
+        //             contentImagesFragment.appendChild();
+        //         }
+        //     }
+        // } else {
+        //     imageContainer.innerHTML += `<img src=${image}>`;
+        // }
+
+        // list형 content 보여주기
+        const contentItem = document.createElement("li");
+        contentItem.className += "li_user-contents";
+        contentItem.innerHTML = `
+                    <article class="content_user-contents">
+                                    <img src="${authorImage}" alt="${
+            content.author.username
+        }님의 프로필 사진" class="img_content-info" />
+                                    <div class="desc_content-info">
+                                        <p class="name_content-info">${
+                                            content.author.username
+                                        }</p>
+                                        <p class="email_content-info">@ ${
+                                            content.author.accountname
+                                        }</p>
+                                        <p class="txt_content-info">${
+                                            content.content
+                                        }</p>
+
+                                        <div class="cont_content-image"></div>
+                                        <img src=${
+                                            content.image
+                                        } alt="" class="content-img_content-info">
+
+                                        <div class="cont_buttons">
+                                            <button class="button-like button-noneBackground">
+                                                <img src="./src/png/${
+                                                    content.hearted
+                                                        ? "icon-heart-active.png"
+                                                        : "icon-heart.png"
+                                                    // ./src/png/icon-heart.png
+                                                }" alt="">
+                                            </button>
+                                            <strong>${
+                                                content.heartCount
+                                            }</strong>
+                                            <button class="button-comment button-noneBackground">
+                                                <img src="./src/png/icon-message-circle.png" alt="">
+                                            </button>
+                                            <strong>${
+                                                content.commentCount
+                                            }</strong>
+                                        </div>
+                                        <p class="date_content-info">${makeKoreaDate(
+                                            content.updatedAt
+                                        )}</p>
                                     </div>
-                                    <p class="date_content-info">${makeKoreaDate(
-                                        content.updatedAt
-                                    )}</p>
-                                </div>
-                            </div>
-                        </article>`;
-            contentsFragment.appendChild(contentItem);
-        });
-        console.log(contentsFragment);
-        contentsList.appendChild(contentsFragment);
-    })
-    .catch((error) => console.log(error));
+                            </article>`;
+        contentsFragment.appendChild(contentItem);
+    }
+    contentsList.appendChild(contentsFragment);
+}
+
+// 이미지가 유효한 지 검사하는 함수
+async function validateImage(image, imageType) {
+    const token = AUTH;
+    // const token = localStorage.getItem("Token");
+
+    const imageArray = await image.split(",");
+    const newArray = [];
+    for (let image of imageArray) {
+        newArray.push(
+            await myFetch(
+                image ? `${image}` : "notfoundimage",
+                "get",
+                token,
+                null
+            ).then((res) => {
+                if (res === "error") {
+                    if (imageType == "profile") {
+                        return "../src/svg/Ellipse 4.svg";
+                    } else {
+                        // 이미지가 없을 경우.. 어떻게 처리할 것인가..
+                        return "";
+                    }
+                } else {
+                    return image;
+                }
+            })
+        );
+    }
+    return newArray;
+
+    // 잘못된 코드 > 맨 아래의 promise 참고 사이트를 보고 추가 공부하기
+    // const imageArray = await image.split(",").map(function (value) {
+    //     const imageContent = await myFetch(
+    //         value ? `${value}` : "notfoundimage",
+    //         "get",
+    //         token,
+    //         null
+    //     ).then((res) => {
+    //         if (res === "error") {
+    //             if (imageType == "profile") {
+    //                 return "../src/svg/Ellipse 4.svg";
+    //             } else {
+    //                 // 이미지가 없을 경우.. 어떻게 처리할 것인가..
+    //                 // return "";
+    //             }
+    //         } else {
+    //             return value;
+    //         }
+    //     });
+    //     return imageContent;
+    // });
+    // console.log(imageArray);
+    // return imageArray;
+}
 
 // - 공용으로 쓰이는 코드 -
+// - fetch를 쉽게 쓸 수 있게 해주는 함수
+async function myFetch(url, method, auth = "", data = "") {
+    const responseData = await fetch(url, {
+        method,
+        headers: {
+            // Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: auth ? `Bearer ${auth}` : "",
+        },
+        body:
+            method === "get" || method === "delete"
+                ? null
+                : data
+                ? JSON.stringify(data)
+                : "",
+    })
+        .then((res) => {
+            if (res.ok) {
+                return res;
+            } else {
+                return "error";
+            }
+        })
+        .catch((err) => {
+            return err;
+        });
+
+    return responseData;
+}
 // - 년일월 날짜 변환 함수
 function makeKoreaDate(date) {
     // "2022-01-10T09:08:38.035Z"
@@ -308,24 +446,6 @@ function makeMoneysComma(money) {
     result = "," + money.slice(-3);
     return makeMoneysComma(money.slice(0, -3)) + result;
 }
-// - fetch를 쉽게 쓸 수 있게 해주는 함수
-async function myFetch(url, method, auth = "", data = "") {
-    const responseData = await fetch(url, {
-        // localStorge에서 token 가져오는 코드 추가 필요_원범님 코드 참고
-        method,
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: auth ? `Bearer ${auth}` : "",
-        },
-        body:
-            method === "get" || method === "delete"
-                ? null
-                : data
-                ? JSON.stringify(data)
-                : "",
-    });
-    return responseData;
-}
 // ※ fetch 참고 자료
 // https://gist.github.com/egoing/cac3d6c8481062a7e7de327d3709505f
 // https://velog.io/@kirin/fetch-%ED%95%A8%EC%88%98
@@ -335,3 +455,17 @@ async function myFetch(url, method, auth = "", data = "") {
 // - Array.from()
 // - css: none > block으로 바꿔줄 때 transition이 적용안되는 이유
 // - ajax, async await, fetch, axios
+
+// res.json() 오류날 경우 해답
+// -> text값을 json으로 변환하려해서 생기는 문젠
+// https://iborymagic.tistory.com/78
+
+// fetch에서 에러처리.. 예외상황
+// https://velog.io/@mingtorr/Error-Handling-With-Fetch
+
+// map안에서 async await을 사용하면 promise를 반환하는 문제.. > promise.all? promise.resole?? 간단하게는 for of..
+// https://velog.io/@minsangk/2019-09-06-0209-%EC%9E%91%EC%84%B1%EB%90%A8-eik06xy8mm
+
+// display: none으로 view-style을 구현하는게 좋을 지.. remove()나 removeChild()가 괜찮을지 생각해보기
+
+// location.href 와 history를 각각 어떤 경우에 쓰는 것이 유용할까

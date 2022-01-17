@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style/reset.css" />
     <link rel="stylesheet" href="./style/chat_list.css" />
-    <title>Followers</title>
+    <title>Chat List</title>
 </head>
 
 <body>
@@ -22,19 +22,36 @@
                 alt="더보기 버튼"></button>
     </header>
 
-    <main class="cont-followers">
+    <main class="cont_chat-list">
         <h2></h2>
-        <ul class="list-followers">
-            <li class="user-follow">
+        <ul class="list_chat-room">
+            <li class="item_chat-room">
                 <div class="on-air_chat-room"></div>
-                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="follow_profile-image" />
-                <div class="follow_text-info">
-                    <p class="follow_user-name">애월읍 위니브 감귤농장</p>
-                    <p class="follow_user-email">이번에 정정 언제하맨마씸?</p>
+                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="profile-image_chat-room" />
+                <div class="text-info_chat-room">
+                    <p class="user-name_chat-room">애월읍 위니브 감귤농장</p>
+                    <p class="user-email_chat_room">이번에 정정 언제하맨마씸?</p>
                 </div>
                 <p class="date_chat-room">2020.10.25</p>
             </li>
-
+            <li class="item_chat-room">
+                <div class="on-air_chat-room"></div>
+                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="profile-image_chat-room" />
+                <div class="text-info_chat-room">
+                    <p class="user-name_chat-room">할로할로</p>
+                    <p class="user-email_chat_room">이번 감귤은 무료나눔할게요~</p>
+                </div>
+                <p class="date_chat-room">2020.10.25</p>
+            </li>
+            <li class="item_chat-room">
+                <div class="on-air_chat-room"></div>
+                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="profile-image_chat-room" />
+                <div class="text-info_chat-room">
+                    <p class="user-name_chat-room">헤이빙키</p>
+                    <p class="user-email_chat_room">감귤 사라고아아아!!</p>
+                </div>
+                <p class="date_chat-room">2020.10.25</p>
+            </li>
         </ul>
     </main>
 
@@ -63,6 +80,26 @@
             <!-- <p class="tap-menu-user-title">프로필</p> -->
         </button>
     </nav>
+
+    <!-- 업 모달창 -->
+    <div class="background_up-modal">
+    </div>
+    <div class="up-modal">
+        <!-- 가상요소로 작은 이미지('ㅡ') 표현 -->
+        <ul class="cont_modal-item">
+            <li class="item-modal">설정 및 개인정보</li>
+            <li class="item-modal">로그아웃</li>
+        </ul>
+    </div>
+
+    <!-- 팝업 모달창 -->
+    <div class="background_popup-modal">
+    </div>
+    <div class="popup-modal">
+        <p class="notice_popup">로그아웃</p>
+        <button class="cancel-button_popup">취소</button><button class="action-button_popup">로그아웃</button>
+    </div>
+    <script defer src="js/chat_list.js"></script>
 </body>
 
 </html>

@@ -198,7 +198,7 @@ body {
     border: none;
 }
 
-/* 위로 올라오는 모달, up-modal */
+/* 모달, up-modal */
 .background_up-modal {
     display: none;
     content: "";
@@ -247,4 +247,53 @@ body {
     height: 4.6em;
     line-height: 4.6em;
     font-size: 1.4em;
+}
+
+/* 띄워지는 모달창, popup-modal */
+.background_popup-modal {
+    display: none;
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+}
+.popup-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 25.2rem;
+    transform: translateX(-50%) translateY(-50%);
+    overflow: hidden;
+    z-index: 20;
+    border-radius: 1rem;
+    text-align: center;
+    background-color: #ffffff;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2rem;
+}
+.popup-modal .notice_popup {
+    margin: 2.2rem 0;
+}
+.popup-modal .cancel-button_popup,
+.popup-modal .action-button_popup {
+    width: 12.6rem;
+    height: 4.6rem;
+    background-color: transparent;
+    border: none;
+    border-top: 0.05rem solid #dbdbdb;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+}
+.popup-modal .cancel-button_popup {
+    border-right: 0.05rem solid #dbdbdb;
+}
+.popup-modal .action-button_popup {
+    font-weight: 500;
+    color: var(--zzin-no);
 }
