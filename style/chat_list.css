@@ -56,7 +56,7 @@ body {
     height: 100%;
 }
 
-.cont-followers {
+.cont_chat-list {
     background: #ffffff;
     padding: 2.4rem 1.6rem 1.6rem 1.6rem;
     /* padding-bottom: 2.6rem; */
@@ -66,7 +66,7 @@ body {
 
 /*  팔로워 */
 
-.list-followers .user-follow {
+.list_chat-room .item_chat-room {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -74,12 +74,12 @@ body {
     position: relative;
 }
 
-.user-follow .follow_profile-image {
+.item_chat-room .profile-image_chat-room {
     width: 4.2rem;
     height: 4.2rem;
     float: left;
 }
-.user-follow .on-air_chat-room {
+.item_chat-room .on-air_chat-room {
     display: block;
     position: absolute;
     top: 0;
@@ -91,13 +91,13 @@ body {
     border-radius: 1.2rem;
 }
 
-.user-follow .follow_text-info {
+.item_chat-room .text-info_chat-room {
     display: flex;
     flex-direction: column;
     flex: 1;
     text-align: start;
 }
-.user-follow .follow_user-name {
+.item_chat-room .user-name_chat-room {
     display: inline-block;
     margin: 5px 0 6px 12px;
     font-weight: 500;
@@ -105,7 +105,7 @@ body {
     line-height: 18px;
 }
 
-.user-follow .follow_user-email {
+.item_chat-room .user-email_chat_room {
     display: inline-block;
     margin: 0 0 6px 12px;
     font-size: 12px;
@@ -182,4 +182,104 @@ body {
 .edit-icon,
 .user-icon {
     width: 24px;
+}
+
+/* 모달, up-modal */
+.background_up-modal {
+    display: none;
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+.up-modal {
+    background-color: #ffffff;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    position: fixed;
+    bottom: -20rem;
+    width: 100%;
+    transition: 0.5s ease;
+    z-index: 10;
+    overflow: auto; /*마진 겹친 현상을 해결하기 위한 코드*/
+}
+.up-modal::after {
+    background-color: #dbdbdb;
+    border-radius: 0.5rem;
+    display: inline-block;
+    position: absolute;
+    top: 1.6rem;
+    left: 50%;
+    transform: translate(-50%);
+    content: "";
+    width: 5rem;
+    height: 0.4rem;
+    /* background: 100% 100% url("../resource/img/module/Rectangle\ 70.svg"); */
+}
+.up-modal .cont_modal-item {
+    margin-top: 3.6rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.cont_modal-item .item-modal {
+    padding-left: 2.6em;
+    height: 4.6em;
+    line-height: 4.6em;
+    font-size: 1.4em;
+}
+
+/* 띄워지는 모달창, popup-modal */
+.background_popup-modal {
+    display: none;
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+}
+.popup-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 25.2rem;
+    transform: translateX(-50%) translateY(-50%);
+    overflow: hidden;
+    z-index: 20;
+    border-radius: 1rem;
+    text-align: center;
+    background-color: #ffffff;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2rem;
+}
+.popup-modal .notice_popup {
+    margin: 2.2rem 0;
+}
+.popup-modal .cancel-button_popup,
+.popup-modal .action-button_popup {
+    width: 12.6rem;
+    height: 4.6rem;
+    background-color: transparent;
+    border: none;
+    border-top: 0.05rem solid #dbdbdb;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+}
+.popup-modal .cancel-button_popup {
+    border-right: 0.05rem solid #dbdbdb;
+}
+.popup-modal .action-button_popup {
+    font-weight: 500;
+    color: var(--zzin-no);
 }

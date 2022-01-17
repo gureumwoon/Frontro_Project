@@ -26,7 +26,7 @@ button {
 
 /* utility */
 /* 요소를 완전히 없애면 안되고.. 글자만 없애는 걸로.. */
-.ir {
+/* .ir {
     position: absolute;
     display: block;
     overflow: hidden;
@@ -34,7 +34,17 @@ button {
     line-height: 0;
     color: transparent;
     text-indent: -9999px;
+} */
+
+.ir {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
 }
+
 .button-noneBackground {
     background-color: transparent;
     border: none;
@@ -265,27 +275,20 @@ button {
     padding: 1.6rem;
     padding-bottom: 6rem;
 }
-/* .cont_user-contents + .picture-style .ul_user-contents { */
-.picture-style .ul_user-contents {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-}
-.cont_content-info {
+
+.cont_user-contents .content_user-contents {
     display: flex;
     justify-content: flex-start;
     margin-bottom: 2rem;
 }
+
 .cont_user-contents .img_content-info {
     width: 4.2rem;
     height: 4.2rem;
     margin-right: 1.2rem;
     border-radius: 4.2rem;
 }
-.content_user-contents .desc_content-info {
-    /* display: flex; */
-    /* flex-direction: column; */
-}
+
 .desc_content-info .name_content-info {
     margin: 0.4rem 0 0.2rem 0;
     font-weight: 500;
@@ -304,14 +307,10 @@ button {
     line-height: 1.8rem;
 }
 /* view-style에 따라 다르게 표시 */
-.list-style .content-img_content-info {
+/* list형 스타일 */
+.content-img_content-info {
     margin-bottom: 1.45rem;
     width: 100%;
-}
-.picture-style .content-img_content-info {
-    height: 11.4rem;
-    width: 11.4rem;
-    border-radius: 0;
 }
 .desc_content-info .cont_buttons {
     display: flex;
@@ -333,13 +332,50 @@ button {
     font-size: 1.2rem;
     line-height: 1.2rem;
 }
-.desc_content-info .button-comment {
-}
+
 .desc_content-info .date_content-info {
     font-size: 1rem;
     line-height: 1.2rem;
     margin-top: 1.9rem;
     color: #767676;
+}
+
+/* picture형 스타일 */
+.picture-style .ul_user-contents {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+.picture-style .img_content-info {
+    display: none;
+}
+.picture-style .content_user-contents {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 0rem;
+}
+
+.picture-style .content-img_content-info {
+    margin-bottom: 0;
+    height: 11.4rem;
+    width: 11.4rem;
+    border-radius: 0;
+}
+
+.picture-style .name_content-info {
+    display: none;
+}
+.picture-style .email_content-info {
+    display: none;
+}
+.picture-style .txt_content-info {
+    display: none;
+}
+.picture-style .cont_buttons {
+    display: none;
+}
+.picture-style .date_content-info {
+    display: none;
 }
 
 /* 하단 탭 메뉴, tab menu */
