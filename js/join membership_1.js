@@ -45,6 +45,7 @@ async function checkEmailValid(email) {
 
   // return 이 이메일이 사용가능하지 체크를 할거에요.
 }
+
 document.querySelector(".next_btn").addEventListener("click", async () => {
   const email = document.querySelector("#input_box").value
   const pw = document.querySelector("#input_box_pw").value
@@ -53,47 +54,48 @@ document.querySelector(".next_btn").addEventListener("click", async () => {
     const emailValid = await checkEmailValid(email)
     if (emailValid) {
       $emailPw.style.display = "none"
-      $profile.style.display = "block"
+      // $profile.style.display = "block"
     } else {
       alert("중복된 이메일입니다.")
+      return
     }
+    location.href = "join membership_2.html"
   } else {
     alert("비밀번호를 똑바로 하세요좀")
   }
-})
+}) 
 
+// async function join() {
+//   const email = document.querySelector("#input_box").value;
+//   const password = document.querySelector("#input_box_pw").value;
 
-async function join() {
-  const email = document.querySelector("#input_box").value;
-  const password = document.querySelector("#input_box_pw").value;
-  
-  try {
-    const res = await fetch("http://146.56.183.55:5050/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "user": {
-          "email": email,
-          "password": password,
-          "username": userName,
-          "accountname": userId,
-          "intro": intro,
-          "image": imageUrl,
-        }
-      })
-    })
-    console.log(res)
-    const json = await res.json()
-    const message = json.message
-    // if(message=="회원가입 성공"){
-    if (res.status == 200) {
-      location.href = "./index.html"
-    } else {
-      console.log(json)
-    }
-  } catch (err) {
-    alert(err)
-  }
-}
+//   try {
+//     // const res = await fetch("http://146.56.183.55:5050/user", {
+//     //   method: "POST",
+//     //   headers: {
+//     //     "Content-Type": "application/json",
+//     //   },
+//     //   body: JSON.stringify({
+//     //     "user": {
+//     //       "email": email,
+//     //       "password": password,
+//     //       "username": userName,
+//     //       "accountname": userId,
+//     //       "intro": intro,
+//     //       "image": imageUrl,
+//     //     }
+//     //   })
+//     // })
+//     console.log(res)
+//     const json = await res.json()
+//     const message = json.message
+//     // if(message=="회원가입 성공"){
+//     if (res.status == 200) {
+//       // location.href = "join membership_2.html"
+//     } else {
+//       console.log(json)
+//     }
+//   } catch (err) {
+//     alert(err)
+//   }
+// }
