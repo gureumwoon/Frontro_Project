@@ -54,6 +54,10 @@ button {
 
 /* 이미지 업로드 */
 
+.img-box{
+    border-radius: 1rem;
+}
+
 .img-post {
     position: relative;
 }
