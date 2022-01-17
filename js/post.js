@@ -149,11 +149,14 @@ async function getPost() {
 
 // 댓글 가져오기
 async function getComment() {
-    const queryString = window.location.href.split('?')[1]
-    const searchParams = new URLSearchParams(queryString)
-    console.log("searchparams: ", searchParams)
-    const postId = searchParams.get('id');
-    fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
+    const params = new URLSearchParams(location.search);
+    console.log(params);
+    const roomName = params.get("id");
+    // const queryString = window.location.href.split('?')[1]
+    // const searchParams = new URLSearchParams(queryString)
+    // console.log("searchparams: ", searchParams)
+    // const postId = searchParams.get('id');
+    fetch(`http://146.56.183.55:5050/post/${roomName}/comments`, {
         method: 'GET', // or 'PUT'
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("Token"),
@@ -189,11 +192,14 @@ commentUploadButton.addEventListener('click', (e) => {
 
 // 댓글 입력
 async function createComment() {
-    const queryString = window.location.href.split('?')[1]
-    const searchParams = new URLSearchParams(queryString)
-    console.log("searchparams: ", searchParams)
-    const postId = searchParams.get('id');
-    fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
+    const params = new URLSearchParams(location.search);
+    console.log(params);
+    const roomName = params.get("id");
+    // const queryString = window.location.href.split('?')[1]
+    // const searchParams = new URLSearchParams(queryString)
+    // console.log("searchparams: ", searchParams)
+    // const postId = searchParams.get('id');
+    fetch(`http://146.56.183.55:5050/post/${roomName}/comments`, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify({
             "comment": {
@@ -206,5 +212,5 @@ async function createComment() {
         }
     })
     commentInput.value = "";
-    location.reload()
+    location.href = `./post.html?${queryString}`;
 }
