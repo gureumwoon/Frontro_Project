@@ -157,6 +157,13 @@ async function getFeed() {
         </article>  
             `
         });
+        const goPostPage = document.querySelectorAll(".btn-comment")
+    for (const [idx, comment] of goPostPage.entries()) {
+        comment.addEventListener('click', () => {
+            window.location.href = `post.html?id=${posts[idx].id}`;
+        })
+    }
+    // console.log("goPostPage", goPostPage);
     }
 }
 getFeed()
