@@ -117,7 +117,7 @@ body {
     background-color: var(--zzin-no);
     color: var(--zzin-no-word);
 }
-.user-follow .S-Activ-button {
+.user-follow .S-Active-button {
     border: 0.1rem solid #dbdbdb;
     border-radius: 2.6rem;
     background-color: #ffffff;

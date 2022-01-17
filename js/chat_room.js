@@ -9,31 +9,57 @@
 // [] 무한 스크롤
 
 // 나중에 추가 구현 사항
+// 다중 파일 선택 시스템 만들기
 //
 
-// - top-bar, 헤더 바
-// - 뒤로가기 버튼
-// - 더보기 버튼
+// console.log(history.length);
+
+// - top-bar, 헤더 바 -
+// - 관련 변수들
+const btnBack = document.querySelector(".button-back");
 const btnMore = document.querySelector(".button-more");
-// - modal, 모달 관련 함수 및 변수들 -
-// up modal, 위로 올라오는 모달
 const backgroundUpModal = document.querySelector(".background_up-modal");
 const upModal = document.querySelector(".up-modal");
-const postItemList = document.querySelectorAll(".item-modal");
-const logoutBtn_up = Array.from(postItemList).find(
-    (item) => item.innerText === "로그아웃"
-);
+const ExitBtn_up = document.querySelector(".item-modal");
+const backgroundPopupModal = document.querySelector(".background_popup-modal");
+const popupModal = document.querySelector(".popup-modal");
+const cancelBtn_popup = document.querySelector(".cancel-button_popup");
+const logoutBtn_popup = document.querySelector(".action-button_popup");
 
-// - 업 모달창 올리기
+// - 뒤로가기 버튼
+btnBack.addEventListener("click", () => {
+    history.back();
+});
+
+// - 더보기 버튼 & up modal, 위로 올라오는 모달
 btnMore.addEventListener("click", () => {
     backgroundUpModal.style.display = "block";
     upModal.style.bottom = "0";
 });
-// - 업 모달창 내리기
 backgroundUpModal.addEventListener("click", () => {
     backgroundUpModal.style.display = "none";
     upModal.style.bottom = "-20rem";
 });
+
+// - popup modal, 띄워지는 모달
+ExitBtn_up.addEventListener("click", () => {
+    backgroundPopupModal.style.display = "block";
+    popupModal.style.display = "block";
+});
+cancelBtn_popup.addEventListener("click", () => {
+    backgroundPopupModal.style.display = "none";
+    popupModal.style.display = "none";
+});
+
+// - 채팅방 이름 넣어주기
+const params = new URLSearchParams(location.search);
+console.log(params);
+const roomName = params.get("name");
+
+const headerTitle = document.createElement("p");
+headerTitle.classList.add("bar-title");
+headerTitle.innerText = roomName;
+btnBack.after(headerTitle);
 
 // - cont-chat, 채팅방 내용 -
 // - 관련 변수

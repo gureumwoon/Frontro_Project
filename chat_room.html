@@ -19,7 +19,7 @@
         <button type="button" class="button-noneBackground button-back">
             <img src="./src/png/icon-arrow-left.png" alt="뒤로가기 버튼" />
         </button>
-        <p class="bar-title">애월읍 위니브 감귤농장</p>
+        <!-- title은 js로 넣어주기 -->
         <!-- 햄버거 버튼 -->
         <button type="button" class="button-noneBackground button-more">
             <img src="./src/png/icon-more-vertical.png" alt="더보기 버튼" />
@@ -29,7 +29,6 @@
         <h2 class="ir">채팅 방 내용</h2>
 
         <!-- 상대 채팅 내용 -->
-
         <div class="content_message other_message">
             <img src="./src/png/Ellipse 6.png" alt="" class="profile_message" />
             <p class="message_text">
@@ -95,6 +94,13 @@
         <ul class="cont_modal-item">
             <li class="item-modal">채팅방 나가기</li>
         </ul>
+    </div>
+    <!-- 팝업 모달창 -->
+    <div class="background_popup-modal">
+    </div>
+    <div class="popup-modal">
+        <p class="notice_popup">채팅방을 나가시겠습니까?</p>
+        <button class="cancel-button_popup">취소</button><button class="action-button_popup">나가기</button>
     </div>
     <script defer src="js/chat_room.js"></script>
 </body>
