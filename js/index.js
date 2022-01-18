@@ -4,32 +4,12 @@ goToSearchPage.addEventListener('click', () => {
     window.location.href = "search_2.html";
 })
 
-// 사용자 닉네임 누르면 해당 사용자의 프로필로 이동
-// 현재 모두 your_profile로 이동함 
-// API 받아서 각 사용자의 profile로 이동하게 만들기
-const goOtherProfile = document.querySelectorAll(".tit-post");
-// console.log(goOtherProfile);
-for (const userName of goOtherProfile) {
-    userName.addEventListener('click', function() {
-        window.location.href = "your_profile.html";
-    })
-}
-
 // API 받아서 
 // 하트 누르면 빨간 하트로 변경 
 // const likeButton = document.querySelectorAll(".btn-like");
 
 // console.log(likeButton);
 
-// API 받아서 댓글 아이콘 누르면 해당 게시물 댓글창으로 이동
-// 현재는 post.html로 이동 
-const goPostPage = document.querySelectorAll(".btn-comment")
-for (const comment of goPostPage) {
-    comment.addEventListener('click',() => {
-        window.location.href = "post.html";
-    })
-}
-// console.log(goPostPage);
 
 // footer 페이지이동
 const goToReload = document.querySelector('.icon-item-list > li:first-child');
@@ -88,6 +68,7 @@ async function getFeed() {
     const posts = json.posts
 
     // 팔로우가 없는 경우 
+    // css 연결해줘야 합니다 아직 안한 상태
     if (posts.length == 0) {
         container.innerHTML +=`
         <div class="main-icon">
@@ -132,12 +113,9 @@ async function getFeed() {
             <p class="desc">${content}</p>
             ${imageHTML}
             <div class="icon-box font-gray">
-                <button type="button" class="btn btn-like btn-nonebackground">
-                    <img src="./src/png/${
-                        hearted
-                            ? "icon-heart-active.png"
-                            : "icon-heart.png"
-                    }" alt="">
+
+                <button type="button" data-hearted="${hearted ? 1 : 0}" data-id="${id}" class="btn btn-like btn-nonebackground">
+                    <img src="./src/png/icon-heart.png" alt="post-like" class="article-heart__btn">
                 </button>
                 <span class="count count-heart">${heartCount}</span>
 
@@ -147,7 +125,7 @@ async function getFeed() {
                 </button>
                 <span class="count count-comment">${commentCount}</span>
                 </div>
-                <p class="date font-gray">${makeKoreaDate(post.updatedAt)}</p>
+                <p class="date font-gray">${makeKoreaDate(updateDate)}</p>
             </div>
             <div class="div-icon">
                 <button type="button" class="btn-icon-more btn-nonebackground">
@@ -156,14 +134,30 @@ async function getFeed() {
             </div>
         </article>  
             `
+            // 사용자 이름 눌렀을 때 해당하는 your_profile 로 이동 
+            const titPost = document.querySelectorAll(".tit-post");
+            for (const i of titPost) {
+                i.addEventListener('click', () => {
+                    window.location.href = `your_profile.html?accountName=${authorAccount}`;
+                })
+            }
+
+            // 하트 버튼 클릭하면 노란 하트로 변경 
+            const yellowHeart = document.querySelectorAll(".article-heart__btn");
+            for (const heart of yellowHeart) {
+                heart.addEventListener('click', () => {
+                    heart.src="./src/png/icon-heart-active.png"
+                })
+            }
         });
+
+        // 댓글 클릭했을 때 해당 상세 게시물 페이지로 이동 
         const goPostPage = document.querySelectorAll(".btn-comment")
-    for (const [idx, comment] of goPostPage.entries()) {
-        comment.addEventListener('click', () => {
-            window.location.href = `post.html?id=${posts[idx].id}`;
-        })
-    }
-    // console.log("goPostPage", goPostPage);
+        for (const [idx, comment] of goPostPage.entries()) {
+            comment.addEventListener('click', () => {
+                window.location.href = `post.html?id=${posts[idx].id}`;
+            })
+        }
     }
 }
 getFeed()
