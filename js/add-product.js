@@ -147,7 +147,7 @@ async function postData(e) {
         });
         const json = await res.json();
         if (res.status == 200) {
-            location.href = 'my_profile.html';
+            location.href = 'your_profile.html';
         } else {
             console.log(json);
         }

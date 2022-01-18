@@ -152,12 +152,24 @@ async function getPost() {
 
 // 댓글 가져오기
 async function getComment() {
+<<<<<<< HEAD
     const queryString = window.location.href.split("?")[1];
     const searchParams = new URLSearchParams(queryString);
     console.log("searchparams: ", searchParams);
     const postId = searchParams.get("id");
     fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
         method: "GET", // or 'PUT'
+=======
+    const params = new URLSearchParams(location.search);
+    console.log(params);
+    const roomName = params.get("id");
+    // const queryString = window.location.href.split('?')[1]
+    // const searchParams = new URLSearchParams(queryString)
+    // console.log("searchparams: ", searchParams)
+    // const postId = searchParams.get('id');
+    fetch(`http://146.56.183.55:5050/post/${roomName}/comments`, {
+        method: 'GET', // or 'PUT'
+>>>>>>> 63c768fdaf149fe98510be66cdfe400e72db35b8
         headers: {
             Authorization: "Bearer " + localStorage.getItem("Token"),
             "Content-Type": "application/json",
@@ -197,12 +209,24 @@ commentUploadButton.addEventListener("click", (e) => {
 
 // 댓글 입력
 async function createComment() {
+<<<<<<< HEAD
     const queryString = window.location.href.split("?")[1];
     const searchParams = new URLSearchParams(queryString);
     console.log("searchparams: ", searchParams);
     const postId = searchParams.get("id");
     fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
         method: "POST", // or 'PUT'
+=======
+    const params = new URLSearchParams(location.search);
+    console.log(params);
+    const roomName = params.get("id");
+    // const queryString = window.location.href.split('?')[1]
+    // const searchParams = new URLSearchParams(queryString)
+    // console.log("searchparams: ", searchParams)
+    // const postId = searchParams.get('id');
+    fetch(`http://146.56.183.55:5050/post/${roomName}/comments`, {
+        method: 'POST', // or 'PUT'
+>>>>>>> 63c768fdaf149fe98510be66cdfe400e72db35b8
         body: JSON.stringify({
             comment: {
                 content: commentInput.value,
@@ -214,6 +238,11 @@ async function createComment() {
         },
     });
     commentInput.value = "";
+<<<<<<< HEAD
     //location.reload()
     location.href = `./post.html?queryString`;
 }
+=======
+    location.href = `./post.html?${queryString}`;
+}
+>>>>>>> 63c768fdaf149fe98510be66cdfe400e72db35b8

@@ -40,7 +40,6 @@ startButton.addEventListener('click', () => {
 })
 
 // imput에 입력시 유효성 검사
-
 userNameInput.addEventListener('input', () => {
     if (!isUserNameInputValid()) {
         warningTextList[0].classList.remove('invisible');
@@ -63,7 +62,6 @@ userNameInput.addEventListener('input', () => {
     })
 })
 
-
 // 버튼 활성화 
 const isButtonActive = () => {
     if (!isUserNameInputValid()) {
@@ -74,10 +72,8 @@ const isButtonActive = () => {
         startButton.classList.remove('active');
         return;
     }
-    // 버튼 활성화
     startButton.classList.add('active');
 }
-
 
 userNameInput.addEventListener('input', isButtonActive);
 userIdInput.addEventListener('input', isButtonActive);
