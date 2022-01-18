@@ -4,42 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/join membership_2.css">
+    <link rel="stylesheet" href="./style/join.css">
     <link rel="stylesheet" href="./style/k_modules.css">
     <link rel="stylesheet" href="./style/reset.css">
-    <!-- <script defer src="js/join membership_2.js"></script> -->
     <script defer src="js/join.js"></script>
-
-    <title>joinmemb 병합2</title>
+    <title>join 1 + 2 병합파일 </title>
 </head>
 <body class="body">
     <article class="set-profile container">
-        <h1 class="title">프로필 설정</h1>
-        <p class="intro">나중에 언제든지 변경할 수 있습니다.</p>
-        <div class="set-picture">
-            <img src="./src/svg/basic-profile-img.svg" alt="프로필 사진" class="picture">
-            <input type="file" id="profile-input" class="profile-input" accept="imp/*" onchange="loadFile" required multiple>
-            <label for="profile-input">
-                <div class="icon-gallery-base">
-                    <img src="./src/svg/icon_pict.svg" alt="프로필 업로드 버튼" class="icon-pict">
-                </div>
-            </label> 
-        </div>
         <form class="form-setProfile error"> 
-         <section class="">
+        <!-- 이메일로 회원가입 join 1  -->
+         <section class="email-pw" style="/* display: none; */">
+                <h2 class="title email-title">이메일로 회원가입</h2>
                 <fieldset class="module-inp">
                     <label for="input_box" class="inpName">이메일</label>
-                    <input type="email" class="inp-login" id="input_box" data-state="0" placeholder="이메일 주소를 입력해 주세요." class="alert">
+                    <input type="email" class="inp-login" id="inpEmail" data-state="0" placeholder="이메일 주소를 입력해 주세요." class="alert">
                     <strong class="inp-error warning-text invisible">*이미 가입된 이메일 주소입니다.</strong>
                   </fieldset>
                   
                   <fieldset class="module-inp">
                     <label for="input_box_pw" class="inpName">비밀번호</label>
-                    <input type="password" class="inp-login" id="input_box_pw" placeholder="비밀번호를 설정해 주세요." class="alert">
+                    <input type="password" class="inp-login" id="inputPw" placeholder="비밀번호를 설정해 주세요." class="alert">
                     <strong class="inp-error warning-text invisible">*비밀번호는 6자 이상이어야 합니다.</strong>
                   </fieldset>
+                  <button type="button" class="btn L-disabled-button LMbutton-font next_btn">다음</button>
          </section>
-          <section>
+         <!-- 프로필 설정 join 2 -->
+          <section class="profile-set" style=" /* display: none; */"> 
+            <h1 class="title">프로필 설정</h1>
+            <p class="intro">나중에 언제든지 변경할 수 있습니다.</p>
+            <div class="set-picture">
+                <img src="./src/svg/basic-profile-img.svg" alt="프로필 사진" class="picture" id="imagePre">
+                <input type="file" id="profile-input" class="profile-input" accept="imp/*" onchange="loadFile" required multiple>
+                <label for="profile-input">
+                    <div class="icon-gallery-base">
+                        <img src="./src/svg/icon_pict.svg" alt="프로필 업로드 버튼" class="icon-pict">
+                    </div>
+                </label> 
+            </div>
                 <fieldset class="module-inp">
                     <label for="inpName" class="inpName">사용자 이름</label>
                     <input type="text" minlength="2" maxlength="10" class="inp-login" id="inpName" placeholder="2~10자 이내여야 합니다.">
@@ -54,8 +56,8 @@
                     <label for="inpIntroduce" class="inpName">소개</label>
                     <input type="text" class="inp-login" id="inpIntroduce" placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
                 </fieldset>
+                <button type="button" class="btn L-disabled-button LMbutton-font start-btn">은이네 문방구 시작하기</button>
           </section>
-            <button type="button" class="btn L-disabled-button LMbutton-font">은이네 문방구 시작하기</button>
         </form>
     </article>
 </body>
