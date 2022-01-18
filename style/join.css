@@ -4,7 +4,7 @@
 
 body {
     position: relative;
-    background-color: #767676;
+    background-color: #fff;
     font-size: 62.5%;
 }
 
@@ -13,7 +13,7 @@ input:focus, textarea:focus, select:focus{
 }
 
 .container {
-    width: 39rem;
+    /* width: 39rem; */
     height: 100vh;
     position: relative;
     margin: 0 auto;
@@ -29,6 +29,9 @@ input:focus, textarea:focus, select:focus{
     letter-spacing: 0rem;
     text-align: center;
     padding-top: 3rem;
+}
+.email-title {
+    margin-bottom: 4rem;
 }
 
 .set-profile .intro {
@@ -57,6 +60,7 @@ input:focus, textarea:focus, select:focus{
 
 .set-profile .set-picture .profile-input {
     display: none;
+    position: relative;
 }
 
 .set-profile .set-picture .icon-gallery-base {
@@ -64,7 +68,7 @@ input:focus, textarea:focus, select:focus{
     height: 3.6rem;
     width: 3.6rem;
     bottom: 0rem;
-    right: 14rem;
+    right: 66rem;
     border-radius: 50%;
     background-color: var(--zzin-no);
 }
@@ -129,4 +133,8 @@ input.inp-login:focus {
 .form-setProfile .active {
     background-color: var(--zzin-no);
     color:  var(--zzin-no-word);
+}
+
+.profile-set {
+    /* display: none; */
 }
