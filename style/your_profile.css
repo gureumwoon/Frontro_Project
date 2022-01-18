@@ -392,7 +392,7 @@ button {
 }
 .tap-menu .tap-menu-home,
 .tap-menu .tap-menu-chat,
-.tap-menu .tap-menu-edit,
+.tap-menu .tap-menu-upload,
 .tap-menu .tap-menu-user {
     display: flex;
     flex-direction: column;
@@ -417,7 +417,7 @@ button {
 
 .tap-menu .tap-menu-home:after,
 .tap-menu .tap-menu-chat:after,
-.tap-menu .tap-menu-edit:after,
+.tap-menu .tap-menu-upload:after,
 .tap-menu .tap-menu-user:after {
     display: inline-block;
     padding-top: 6px;
@@ -428,7 +428,7 @@ button {
 .tap-menu .tap-menu-chat:after {
     content: "채팅";
 }
-.tap-menu .tap-menu-edit:after {
+.tap-menu .tap-menu-upload:after {
     content: "게시물 작성";
 }
 .tap-menu .tap-menu-user:after {
@@ -437,7 +437,7 @@ button {
 
 .home-icon,
 .chat-icon,
-.edit-icon,
+.upload-icon,
 .user-icon {
     width: 24px;
 }

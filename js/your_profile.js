@@ -1,6 +1,7 @@
 // 구현할 사항.
 // [] 코드 fetch 함수 및 기능별로 이쁘게 정리하기
 // [] 무한 스크롤
+// 자기 페이지는 못들어오도록 처리해주기
 
 // 나중에 추가 구현 사항
 // [] 다중 파일 선택 시스템 만들기
@@ -399,6 +400,29 @@ async function validateImage(image, imageType) {
     // console.log(imageArray);
     // return imageArray;
 }
+
+// - nav bar, 하단 탭 페이지이동 -
+const goToHome = document.querySelector(".tap-menu-home");
+console.log(goToHome);
+const goToChat = document.querySelector(".tap-menu-chat");
+console.log(goToChat);
+const goUpload = document.querySelector(".tap-menu-upload");
+console.log(goUpload);
+const goMyProfile = document.querySelector(".tap-menu-user");
+console.log(goMyProfile);
+
+goToHome.addEventListener("click", () => {
+    window.location.href = "index.html";
+});
+goToChat.addEventListener("click", () => {
+    window.location.href = "chat_list.html";
+});
+goUpload.addEventListener("click", () => {
+    window.location.href = "upload.html";
+});
+goMyProfile.addEventListener("click", () => {
+    window.location.href = "my_profile.html";
+});
 
 // - 공용으로 쓰이는 코드 -
 // - fetch를 쉽게 쓸 수 있게 해주는 함수
