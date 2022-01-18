@@ -53,9 +53,33 @@ const chatRoomItem = document.querySelectorAll(".item_chat-room");
 Array.from(chatRoomItem).forEach((room) => {
     const roomName = room.querySelector(".user-name_chat-room").innerText;
     room.addEventListener("click", () => {
-        location.href = `/chat_room.html?name=${roomName}`;
+        location.href = `./chat_room.html?name=${roomName}`;
     });
 });
+
+// - nav bar, 하단 탭 페이지이동 -
+const goToHome = document.querySelector(".tap-menu-home");
+console.log(goToHome);
+const goToChat = document.querySelector(".tap-menu-chat");
+console.log(goToChat);
+const goUpload = document.querySelector(".tap-menu-upload");
+console.log(goUpload);
+const goMyProfile = document.querySelector(".tap-menu-user");
+console.log(goMyProfile);
+
+goToHome.addEventListener("click", () => {
+    window.location.href = "index.html";
+});
+goToChat.addEventListener("click", () => {
+    window.location.href = "chat_list.html";
+});
+goUpload.addEventListener("click", () => {
+    window.location.href = "upload.html";
+});
+goMyProfile.addEventListener("click", () => {
+    window.location.href = "my_profile.html";
+});
+
 // chatRoomItem.addEventListener("click", () => {
 //     location.href = `/chat_room.html?name=할로할로`;
 // });
