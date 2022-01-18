@@ -12,7 +12,7 @@ input:focus, textarea:focus, select:focus{
 }
 
 .container {
-    width: 39rem;
+    /* width: 39rem; */
     height: 100vh;
     background-color: white;
     margin: 0 auto;
@@ -31,11 +31,12 @@ input:focus, textarea:focus, select:focus{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 39rem;
+    /* max-width: 39rem; */
 }
 
 .form-search {
-    width: 31.6rem;
+    /* width: 31.6rem; */
+    width: 100%;
     background: #F2F2F2;
     border-radius: 3.2rem;
     padding-left: 1rem;
@@ -88,7 +89,7 @@ input:focus, textarea:focus, select:focus{
 }
 
 .search_search-word {
-    color: #f26e22;
+    color: var(--zzin-no);
 }
 
 .search_user-email {
