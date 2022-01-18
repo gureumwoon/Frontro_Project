@@ -78,3 +78,40 @@ const isButtonActive = () => {
 userNameInput.addEventListener('input', isButtonActive);
 userIdInput.addEventListener('input', isButtonActive);
 
+
+
+
+async function join() {
+  const email = document.querySelector("#input_box").value;
+  const password = document.querySelector("#input_box_pw").value;
+
+  try {
+    const res = await fetch("http://146.56.183.55:5050/user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "user": {
+          "email": email,
+          "password": password,
+          "username": userName,
+          "accountname": userId,
+          "intro": intro,
+          "image": imageUrl,
+        }
+      })
+    })
+    console.log(res)
+    const json = await res.json()
+    const message = json.message
+    // if(message=="회원가입 성공"){
+    if (res.status == 200) {
+      window.location.href = "index.html"
+    } else {
+      console.log(json)
+    }
+  } catch (err) {
+    alert(err)
+  }
+}

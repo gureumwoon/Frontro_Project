@@ -19,7 +19,7 @@ console.log(goMyProfile);
 
 // footer 페이지 이동 기능
 goToReload.addEventListener('click', () => {
-    window.location.href = "home.html";
+    window.location.href = "index.html";
 })
 goToChat.addEventListener('click', () => {
     window.location.href = "chat_list.html";
