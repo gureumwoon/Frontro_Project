@@ -4,23 +4,11 @@ goToSearchPage.addEventListener('click', () => {
     window.location.href = "search_2.html";
 })
 
-// API 받아서 
-// 하트 누르면 빨간 하트로 변경 
-// const likeButton = document.querySelectorAll(".btn-like");
-
-// console.log(likeButton);
-
-
 // footer 페이지이동
 const goToReload = document.querySelector('.icon-item-list > li:first-child');
-console.log(goToReload);
 const goToChat = document.querySelector('.icon-item-list > li:nth-child(2)');
-console.log(goToChat);
 const goUpload = document.querySelector('.icon-item-list > li:nth-child(3)');
-console.log(goUpload);
 const goMyProfile = document.querySelector('.icon-item-list > li:last-child');
-console.log(goMyProfile);
-
 goToReload.addEventListener('click', () => {
     window.location.reload();
 })
@@ -49,7 +37,7 @@ console.log(localStorage.getItem("Token"))  //요거는 로컬스토리지에 �
 async function getFeed() {
     const url = "http://146.56.183.55:5050"
     const token = localStorage.getItem("Token")
-    console.log(token)
+    // console.log(token)
 
     // 임시로 토큰 복붙해서 가져옴 
     // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZGZiMDRjY2I0YjMzMTZkYzI2ODYxNCIsImV4cCI6MTY0NzQyNTE0OSwiaWF0IjoxNjQyMjQxMTQ5fQ.jM2G-i8kaRwU4tuyB3qtBlWMxhd9hhLjYW9VsXGREVA"
@@ -63,12 +51,11 @@ async function getFeed() {
         }
     })
     const json = await res.json()
-    console.log(json); //응답에 대한 결과
+    // console.log(json); //응답에 대한 결과
 
     const posts = json.posts
 
     // 팔로우가 없는 경우 
-    // css 연결해줘야 합니다 아직 안한 상태
     if (posts.length == 0) {
         container.innerHTML +=`
         <div class="main-icon">
@@ -90,7 +77,7 @@ async function getFeed() {
         const hearted = post.hearted;
         const updateDate = "" + post.updatedAt;
         const contentImage = post.image.split(',');
-
+        // 이미지 슬라이더 구현 
         let imageHTML = '';
         if(contentImage.length === 1 && contentImage[0]) {
             imageHTML = `<img src="${contentImage[0]}" alt="post-image" class="article-post__img">`
@@ -113,13 +100,10 @@ async function getFeed() {
             <p class="desc">${content}</p>
             ${imageHTML}
             <div class="icon-box font-gray">
-
                 <button type="button" data-hearted="${hearted ? 1 : 0}" data-id="${id}" class="btn btn-like btn-nonebackground">
                     <img src="./src/png/icon-heart.png" alt="post-like" class="article-heart__btn">
                 </button>
                 <span class="count count-heart">${heartCount}</span>
-
-
                 <button type="button" class="btn btn-comment btn-nonebackground">
                     <img src="./src/svg/message-circle.svg">
                 </button>
@@ -151,11 +135,25 @@ async function getFeed() {
             }
         });
 
+
+        // const goPostPage = document.querySelectorAll(".btn-comment")
+        // console.log(goPostPage)
+
         // 댓글 클릭했을 때 해당 상세 게시물 페이지로 이동 
+
+        // 위..? 아래..? 어떻게 해야할까요!??!?!?
+
+        // const goPostPage = document.querySelectorAll(".btn-comment")
+        // for (const [idx, comment] of goPostPage.entries()) {
+        //     comment.addEventListener('click', () => {
+        //         window.location.href = `post.html?id=${posts[idx].id}`;
+        //     })
+        // }
+
         const goPostPage = document.querySelectorAll(".btn-comment")
         for (const [idx, comment] of goPostPage.entries()) {
             comment.addEventListener('click', () => {
-                window.location.href = `post.html?id=${posts[idx].id}`;
+                window.location.href = `post.html?id=${posts.id}`;
             })
         }
     }
