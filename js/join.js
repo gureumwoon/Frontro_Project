@@ -17,16 +17,18 @@ console.log($profile);
 const $imagePre = document.querySelector("#imagePre")
 console.log($imagePre);
 
+const url = "http://146.56.183.55:5050";
+
 // 이메일 중복 체크 함수 
 async function checkEmailValid(email) {
-    const res = await fetch(localStorage.getItem("url")+'/user/emailvalid',{
+    const res = await fetch(`${url}/user/emailvalid`,{
         method:"POST",
         headers: {
                 "Content-Type": "application/json",
             },
-        body:JSON.stringify({
+        body: JSON.stringify({
             "user":{
-                    "email":email
+                    "email": email
             }
         })
     })
@@ -36,23 +38,27 @@ async function checkEmailValid(email) {
     // return 이 이메일이 사용가능하지 체크를 할거에요.
 }
 
+// const email = document.querySelector("#inpEmail").value
+// const pw = document.querySelector("#inputPw").value
+// console.log(email);
+// console.log(pw);
 
-// document.querySelector(".next-btn").addEventListener("click",async ()=>{
-//     const email = document.querySelector("#emailInput").value
-//     const pw = document.querySelector("#passwordInput").value
-//     // 이메일 패스워드 유효성?? 검사?? 몰?루
-//     if(pw.length>5){
-//         const emailValid = await checkEmailValid(email)
-//         if (emailValid) {
-//             $emailPw.style.display = "none"
-//             $profile.style.display = "block"
-//         }else{
-//             alert("중복된 이메일입니다.")
-//         }
-//     }else{alert("비밀번호를 똑바로 하세요좀")}
-// })
+// 다음 버튼 눌렀을때 섹션 블록처리 
+nextBtn.addEventListener("click",async ()=>{
+    const email = document.querySelector("#inpEmail").value
+    const pw = document.querySelector("#inputPw").value
+    // 이메일 유효성 검사 통과시 화면 전환 통과 못하면 경고 문구 띄우기 
+    const emailValid = await checkEmailValid(email)
+    if (emailValid) {
+        $emailPw.style.display = "none"
+        $profile.style.display = "block"
+    }else{
+        warningTextList[0].classList.remove('invisible');
+    }
 
-// 비밀번호 6자 이상 유효성 검사 
+})
+
+// 비밀번호 6자 이상 유효성 검사 함수 
 const validPassword = () => {
     const password = userPwInput.value;
     if (password.length < 6) {
