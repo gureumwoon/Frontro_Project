@@ -112,10 +112,7 @@ async function createPost(e) {
 
 }
 //여기까지 이미지 여러개 업로드하기.
-$submitBtn.addEventListener('click', createPost)
-
-
-
-
-
+$submitBtn.addEventListener('click', (e) => {
+    createPost()
+})
 
