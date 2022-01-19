@@ -105,8 +105,7 @@ async function getPost() {
             const postDom = document.querySelector(".post");
             postDom.innerHTML = `
             <div class="profile">
-                <img class="profile-pic" src="${
-                    post.author.image
+                <img class="profile-pic" src="${post.author.image
                 }" alt="프로필 사진">
                 <div class="user">
                     <p class="tit-post">${post.author.username}</p>
@@ -139,9 +138,8 @@ async function getPost() {
                     <button type="button" class="btn btn-like"><img src="./src/svg/Vector.svg"></button>
                     <span class="count count-heart">${post.heartCount}</span>
                     <button type="button" class="btn btn-comment"><img src="./src/svg/message-circle.svg"></button>
-                    <span class="count count-comment">${
-                        post.commentCount
-                    }</span>
+                    <span class="count count-comment">${post.commentCount
+                }</span>
                 </div>
                 <p class="date font-gray">${getDateString(post.createdAt)}</p>
             </div>
@@ -152,14 +150,6 @@ async function getPost() {
 
 // 댓글 가져오기
 async function getComment() {
-<<<<<<< HEAD
-    const queryString = window.location.href.split("?")[1];
-    const searchParams = new URLSearchParams(queryString);
-    console.log("searchparams: ", searchParams);
-    const postId = searchParams.get("id");
-    fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
-        method: "GET", // or 'PUT'
-=======
     const params = new URLSearchParams(location.search);
     console.log(params);
     const roomName = params.get("id");
@@ -169,7 +159,6 @@ async function getComment() {
     // const postId = searchParams.get('id');
     fetch(`http://146.56.183.55:5050/post/${roomName}/comments`, {
         method: 'GET', // or 'PUT'
->>>>>>> 63c768fdaf149fe98510be66cdfe400e72db35b8
         headers: {
             Authorization: "Bearer " + localStorage.getItem("Token"),
             "Content-Type": "application/json",
@@ -182,15 +171,14 @@ async function getComment() {
             res.comments.forEach((comment) => {
                 commentsDom.innerHTML += `
             <div class="comment-view">
-                <img class="profile-pic" src="${
-                    comment.author.image
-                }" alt="내 프로필 이미지">
+                <img class="profile-pic" src="${comment.author.image
+                    }" alt="내 프로필 이미지">
                 <div class="txt-container">
                     <div>
                         <span class="user-nic">${comment.author.username}</span>
                         <span class="comment-time">${getTimeString(
-                            comment.createdAt
-                        )}</span>
+                        comment.createdAt
+                    )}</span>
                     </div>
                     <p class="comment">${comment.content}</p>
                 </div>
@@ -209,14 +197,6 @@ commentUploadButton.addEventListener("click", (e) => {
 
 // 댓글 입력
 async function createComment() {
-<<<<<<< HEAD
-    const queryString = window.location.href.split("?")[1];
-    const searchParams = new URLSearchParams(queryString);
-    console.log("searchparams: ", searchParams);
-    const postId = searchParams.get("id");
-    fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
-        method: "POST", // or 'PUT'
-=======
     const params = new URLSearchParams(location.search);
     console.log(params);
     const roomName = params.get("id");
@@ -226,7 +206,6 @@ async function createComment() {
     // const postId = searchParams.get('id');
     fetch(`http://146.56.183.55:5050/post/${roomName}/comments`, {
         method: 'POST', // or 'PUT'
->>>>>>> 63c768fdaf149fe98510be66cdfe400e72db35b8
         body: JSON.stringify({
             comment: {
                 content: commentInput.value,
@@ -238,11 +217,5 @@ async function createComment() {
         },
     });
     commentInput.value = "";
-<<<<<<< HEAD
-    //location.reload()
-    location.href = `./post.html?queryString`;
-}
-=======
     location.href = `./post.html?${queryString}`;
 }
->>>>>>> 63c768fdaf149fe98510be66cdfe400e72db35b8
