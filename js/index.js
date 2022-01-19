@@ -140,20 +140,12 @@ async function getFeed() {
         // console.log(goPostPage)
 
         // 댓글 클릭했을 때 해당 상세 게시물 페이지로 이동 
-
         // 위..? 아래..? 어떻게 해야할까요!??!?!?
-
-        // const goPostPage = document.querySelectorAll(".btn-comment")
-        // for (const [idx, comment] of goPostPage.entries()) {
-        //     comment.addEventListener('click', () => {
-        //         window.location.href = `post.html?id=${posts[idx].id}`;
-        //     })
-        // }
 
         const goPostPage = document.querySelectorAll(".btn-comment")
         for (const [idx, comment] of goPostPage.entries()) {
             comment.addEventListener('click', () => {
-                window.location.href = `post.html?id=${posts.id}`;
+                window.location.href = `post.html?id=${posts[idx].id}`;
             })
         }
     }
