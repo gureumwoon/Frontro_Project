@@ -77,6 +77,13 @@ button{
     line-height: 1.753rem;
 }
 
+/* .img-container {
+    display: flex;
+    width: 30.4rem;
+    height: 22.8rem;
+    overflow: hidden;
+} */
+
 .picture {
     margin: 1.6rem 0;
     position: relative;
