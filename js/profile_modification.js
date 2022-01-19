@@ -1,12 +1,16 @@
 const userNameInput = document.querySelector('#user-name');
+const profileImg = document.querySelector('.img-profile-empty');
 const saveButton = document.querySelector('.nav > button');
 const userIdInput = document.querySelector('#user-id');
+const intro = document.querySelector('#user-info');
 const warningTextList = document.querySelectorAll('.warning-text');
 const backBtn = document.querySelector('.btn-back');
-
+const token = localStorage.getItem('Token');
+const myAccountName = localStorage.getItem('accountName');
+console.log(localStorage);
 // 뒤로가기(my_profile)
 backBtn.addEventListener('click', () => {
-    window.location.href = 'my_profile.html'
+    // window.location.href = 'my_profile.html'
 })
 
 
@@ -44,7 +48,7 @@ saveButton.addEventListener('click', () => {
         return;
     }
     warningTextList[1].classList.add('invisible');
-    window.location.href = "my_profile.html";
+    // window.location.href = "my_profile.html";
 })
 
 // imput에 입력시 유효성 검사
@@ -91,3 +95,94 @@ const isButtonActive = () => {
 userNameInput.addEventListener('input', isButtonActive);
 userIdInput.addEventListener('input', isButtonActive);
 
+
+// 기존 프로필 가져오기
+
+async function fetchData() {
+    try {
+        const res = await fetch(`http://146.56.183.55:5050/profile/${myAccountName}`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+        const json = await res.json()
+        localStorage.setItem('accountName', json.profile.accountname);
+        console.log('json: ', json);
+        profileImg.src = json.profile.image;
+        userNameInput.value = json.profile.username;
+        userIdInput.value = json.profile.accountname;
+        intro.value = json.profile.intro;
+        saveButton.classList.add('active')
+        return json;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+fetchData();
+
+
+//수정된 내용을 서버에 전송
+
+document.querySelector('.image_inputType_file').addEventListener('change', profileImage);
+
+async function profileImage(e) {
+    const files = e.target.files;
+    console.log("files: ", files)
+    const result = await imageUpload(files);
+    console.log("result: ", result)
+    profileImg.src = `http://146.56.183.55:5050/${result}`;
+}
+
+
+async function imageUpload(files) {
+    const formData = new FormData();
+    formData.append('image', files[0]);
+
+    const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+        method: 'POST',
+        body: formData,
+    });
+
+    const data = await res.json();
+    const imgFileName = data['filename'];
+    return imgFileName;
+}
+
+
+saveButton.addEventListener('click', submitProfileModi);
+
+async function submitProfileModi() {
+    const userAccountName = userIdInput.value;
+    const userName = userNameInput.value;
+    const intro = document.querySelector('#user-info').value;
+    const userImgUrl = profileImg.src;
+
+    try {
+        const res = await fetch(`http://146.56.183.55:5050/user`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                user: {
+                    username: userName,
+                    accountname: userAccountName,
+                    intro: intro,
+                    image: userImgUrl,
+                },
+            }),
+        });
+        const json = await res.json();
+        // if (res.status == 200) {
+        // location.href = 'my_profile.html';
+        // } else {
+        console.log(json);
+        // }
+    } catch (err) {
+        alert(err);
+    }
+}
