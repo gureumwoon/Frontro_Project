@@ -52,6 +52,7 @@ body {
 .img-profile .img-profile-empty {
     margin: 3rem 0;
     width: 11rem;
+    border-radius: 50%;
 }
 .image_inputType_file {
     display: none;
