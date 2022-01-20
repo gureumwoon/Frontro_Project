@@ -4,7 +4,7 @@
 
 .body {
     position: relative;
-    background-color: #767676;
+    background-color: #fff;
     -ms-overflow-style: none;
 }
 
@@ -179,7 +179,9 @@
     display: block;
 } */
 
+/* 업모달창 */
 .hidden-menu {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -195,9 +197,23 @@
     height: 0;
     width: 100%;
     background: #fff;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
     transition: all .4s;
+    /* transition: 0.5s ease; */
+}
+
+.hidden-menu .hidden-menu-list::after {
+    background-color: #dbdbdb;
+    border-radius: 0.5rem;
+    display: inline-block;
+    position: absolute;
+    top: 1.6rem;
+    left: 50%;
+    transform: translate(-50%);
+    content: "";
+    width: 5rem;
+    height: 0.4rem;
 }
 
 .hidden-menu.active .hidden-menu-list {
@@ -226,6 +242,60 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
+    cursor: pointer;
 }
 
-/* .btn-nonebackground */
+/* 팝업모달창 */
+.alert-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.alert-modal .alert-modal-wrap {
+    /* display: none; */
+    margin: 33rem auto;
+    width: 25.2rem;
+    background-color: #fff;
+    border-radius: 1rem;
+}
+
+.alert-modal .alert-msg  {
+    display: block;
+    padding: 22px 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.alert-menu-list {
+    display: flex;
+    width: 100%;
+    border-top: 0.5px solid #dbdbdb;
+}
+
+.alert-menu-list li {
+    width: 50%;
+}
+
+.alert-modal .alert-menu-list button {
+    width: 100%;
+    height: 46px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    cursor: pointer;
+}
+
+.alert-modal .alert-menu-list .do-btn {
+    border-left: 0.5px solid #dbdbdb;
+    color: var(--zzin-no);
+}
