@@ -10,7 +10,7 @@ const myAccountName = localStorage.getItem('accountName');
 console.log(localStorage);
 // 뒤로가기(my_profile)
 backBtn.addEventListener('click', () => {
-    // window.location.href = 'my_profile.html'
+    history.back();
 })
 
 
@@ -48,7 +48,7 @@ saveButton.addEventListener('click', () => {
         return;
     }
     warningTextList[1].classList.add('invisible');
-    // window.location.href = "my_profile.html";
+    window.location.href = "my_profile.html";
 })
 
 // imput에 입력시 유효성 검사
@@ -109,6 +109,7 @@ async function fetchData() {
         });
         const json = await res.json()
         localStorage.setItem('accountName', json.profile.accountname);
+        localStorage.setItem('userId', json.profile._id);
         console.log('json: ', json);
         profileImg.src = json.profile.image;
         userNameInput.value = json.profile.username;
@@ -177,11 +178,11 @@ async function submitProfileModi() {
             }),
         });
         const json = await res.json();
-        // if (res.status == 200) {
-        // location.href = 'my_profile.html';
-        // } else {
-        console.log(json);
-        // }
+        if (res.status == 200) {
+            location.href = 'my_profile.html';
+        } else {
+            console.log(json);
+        }
     } catch (err) {
         alert(err);
     }
