@@ -4,6 +4,29 @@ goToSearchPage.addEventListener('click', () => {
     window.location.href = "search_2.html";
 })
 
+// 바탕누르면 업모달창 사라짐
+const backgroundUpModal = document.querySelector(".hidden-menu");
+const upModal = document.querySelector(".hidden-menu-list");
+
+
+backgroundUpModal.addEventListener('click', () => {
+    backgroundUpModal.style.display = "none";
+    upModal.style.bottom = "-20rem";
+})
+
+// 팝업모달창 
+const backgroundPopupModal = document.querySelector(".alert-modal");
+const popupModal = document.querySelector(".alert-modal-wrap");
+const cancleBtn = document.querySelector(".cancle-btn");
+const doBtn = document.querySelector(".do-btn");
+const reportBtn = document.querySelector(".report-post")
+
+reportBtn.addEventListener('click', () => {
+    backgroundPopupModal.style.display = "block";
+    popupModal.style.display = "block";
+})
+
+
 // footer 페이지이동
 const goToReload = document.querySelector('.icon-item-list > li:first-child');
 const goToChat = document.querySelector('.icon-item-list > li:nth-child(2)');
@@ -131,6 +154,15 @@ async function getFeed() {
             for (const heart of yellowHeart) {
                 heart.addEventListener('click', () => {
                     heart.src="./src/png/icon-heart-active.png"
+                })
+            }
+
+            // 더보기 버튼 클릭시 신고 버튼 
+            const btnMore = document.querySelectorAll(".btn-icon-more");
+            for (const modal of btnMore) {
+                modal.addEventListener('click', () => {
+                    backgroundUpModal.style.display = "block";
+                    upModal.style.bottom = "0";
                 })
             }
         });

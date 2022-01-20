@@ -33,14 +33,28 @@
             <li class="item-footer"><img src="./src/svg/icon-user.svg">프로필</li>       
         </ul>
     </footer>
-    <!-- <section class="hidden-menu active">
-        <h2 class="sr-onl">메뉴</h2>
+    <!-- 업 모달창 -->
+    <section class="hidden-menu active">
+        <!-- 가상요소 -->
+        <h2 class="sr-only">메뉴</h2>
         <ul class="hidden-menu-list">
             <li>
                 <button type="submit" class="report-post btn-nonebackground">신고</button>
             </li>
         </ul>
-    </section> -->
+    </section>
+
+    <!-- 팝업 모달창 -->
+    <section style= " display: none " class="alert-modal">
+        <h2 class="sr-only">경고 메시지</h2>
+        <div class="alert-modal-wrap">
+            <strong class="alert-msg">게시글을 신고하시겠어요?</strong>
+            <ul class="alert-menu-list">
+                <li><button type="button" class="cancle-btn btn-nonebackground">취소</button></li>
+                <li><button type="button" class="do-btn btn-nonebackground">신고</button></li>
+            </ul>
+        </div>
+    </section>
 </section>
 </body>
 </html>
