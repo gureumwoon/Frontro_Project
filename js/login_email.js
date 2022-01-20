@@ -26,6 +26,8 @@ async function login() {
   })
   const json = await res.json()//외않됌? 포인트 res.json()도 비동기. await을 해줘야한다.
   localStorage.setItem("Token",json.user.token)
+  localStorage.setItem("accountName",json.user.accountname)
+  localStorage.setItem("user-profile",json.user.image)
   location.href = "./index.html"
   
 }
