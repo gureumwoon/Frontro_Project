@@ -65,69 +65,75 @@ button {
 
 /* 프로필 article, profile information */
 
-.profile_info {
+.cont_profile {
     background: #ffffff;
     padding-top: 3rem;
     padding-bottom: 2.6rem;
     margin: 4.8rem 0 0.6rem;
     text-align: center;
 }
-.profile_info .profile_header {
+.cont_profile .header_profile {
     display: inline-block;
     position: relative;
     margin-bottom: 1.6rem;
 }
-.profile_header img {
+.header_profile img {
     width: 11rem;
     height: 11rem;
+    border-radius: 11rem;
 }
-.profile_info .profile_followers,
-.profile_info .profile_followings {
+.cont_profile .followers_profile,
+.cont_profile .followings_profile {
     position: absolute;
     top: 50%;
-    right: calc(100% + 4.1rem);
     transform: translateY(-50%);
     margin: 0;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.2rem;
-    color: #767676;
+    text-align: center;
     text-align: center;
 }
-.profile_info .profile_followings {
+.cont_profile .followers_profile {
+    right: calc(100% + 4.1rem);
+}
+.cont_profile .followings_profile {
     left: calc(100% + 3.7rem);
 }
-.profile_followers .followers_number,
-.profile_followings .followings_number {
+.followers_profile .number_followers,
+.followings_profile .number_followings {
     display: block;
     margin-bottom: 0.6rem;
     font-size: 1.8rem;
     line-height: 2.3rem;
     font-weight: 700;
 }
-.profile_followers .followers_number {
+.followers_profile .number_followers {
     color: #000000;
 }
-.profile_info .profile_name {
+.followings_profile .number_followings {
+    color: #767676;
+}
+.cont_profile .name_profile {
     margin-bottom: 0.6rem;
     font-size: 1.6rem;
     font-weight: bold;
     line-height: 2rem;
 }
-.profile_info .profile_email {
+.cont_profile .account_profile {
     margin-bottom: 1.6rem;
     color: #767676;
     font-size: 1.2rem;
     line-height: 1.4rem;
 }
-.profile_info .profile_explain {
+.cont_profile .explain_profile {
     color: #767676;
     font-size: 1.4rem;
     line-height: 1.8rem;
     margin-bottom: 2.4rem;
 }
 
-.profile_info .profile_footer {
+.cont_profile .footer_profile {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -138,8 +144,8 @@ button {
     width: 100%;
     height: 100%;
 }
-.profile_footer .button-message,
-.profile_footer .button-share {
+.footer_profile .button-message,
+.footer_profile .button-share {
     width: 2rem;
     height: 2rem;
     padding: 0;
@@ -148,36 +154,36 @@ button {
     box-sizing: content-box;
     padding: 0.7rem;
 }
-.profile_footer .Sbutton-font {
+.footer_profile .Sbutton-font {
     width: 12rem;
     font-size: 1.2rem;
     line-height: 1.5rem;
     border: none;
     margin: 0 1rem;
 }
-.profile_footer .S-button {
+.footer_profile .S-button {
     padding: 0.8rem 0;
     border-radius: 2.6rem;
     font-weight: 500;
     background-color: var(--zzin-no);
     color: var(--zzin-no-word);
 }
-.profile_footer .S-Active-button {
+.footer_profile .S-Active-button {
     padding: 0.8rem 0;
-    margin: 0;
     font-weight: 500;
     border: 0.1rem solid #dbdbdb;
     border-radius: 2.6rem;
     background-color: #ffffff;
     color: #767676;
 }
-.profile_footer .S-Active-button:first-child {
+.footer_profile .S-Active-button:first-child {
     margin-right: 1.2rem;
 }
 
 /* 판매 상품, on-sale */
 
 .cont_on-sale {
+    display: none;
     position: relative;
     /* padding: 2rem 2.1rem 2rem 2.1rem; > 얘는 사용이 안된다..*/
     padding: 2rem 0;
@@ -200,6 +206,7 @@ button {
 }
 .cont_on-sale .li_on-sale {
     padding-right: 10px;
+    cursor: pointer;
 }
 .cont_on-sale .li_on-sale:first-child {
     padding-left: 2.1rem; /* 부모 요소에 margin이나 padding에 적용할 경우 scroll에 반영되지 않는다.. 왜??? 본 요소에도 margin으로 적용하면 반영이 되지 않는다.. > 찾아보고 글 정리하기*/
@@ -208,6 +215,8 @@ button {
     padding-right: 2.1rem;
 }
 .item_on-sale img {
+    width: 14rem;
+    height: 9rem;
     margin-bottom: 0.6rem;
     border: 0.05rem solid #dbdbdb;
     border-radius: 0.8rem;
@@ -231,7 +240,9 @@ button {
 
 /* 콘텐츠 컨테이너 */
 .cont_contents {
+    display: none;
     background-color: #ffffff;
+    /* padding-bottom: 6rem; */
 }
 /* 콘텐츠 스타일 선택란 */
 .cont_contents .cont_view-style {
@@ -247,16 +258,15 @@ button {
     /* line-height: 1; */
 }
 /* 유저가 등록한 콘텐츠 정보 */
+
+/* view-style에 따라 다르게 표시 */
+/* list형 스타일 */
 .cont_contents .cont_user-contents {
     padding: 1.6rem;
+    padding-bottom: 6rem;
 }
-/* .cont_user-contents + .picture-style .ul_user-contents { */
-.picture-style .ul_user-contents {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-}
-.cont_content-info {
+.cont_user-contents .content_user-contents {
+    position: relative;
     display: flex;
     justify-content: flex-start;
     margin-bottom: 2rem;
@@ -265,10 +275,10 @@ button {
     width: 4.2rem;
     height: 4.2rem;
     margin-right: 1.2rem;
+    border-radius: 4.2rem;
 }
-.content_user-contents .desc_content-info {
-    /* display: flex; */
-    /* flex-direction: column; */
+.cont_user-contents .desc_content-info {
+    flex: 1;
 }
 .desc_content-info .name_content-info {
     margin: 0.4rem 0 0.2rem 0;
@@ -287,28 +297,27 @@ button {
     font-size: 1.4rem;
     line-height: 1.8rem;
 }
-/* view-style에 따라 다르게 표시 */
-.list-style .content-img_content-info {
+.desc_content-info .content-img_content-info {
     margin-bottom: 1.45rem;
     width: 100%;
 }
-.picture-style .content-img_content-info {
-    height: 11.4rem;
-    width: 11.4rem;
-    border-radius: 0;
+.desc_content-info .content-img_slide {
+    margin-bottom: 1.45rem;
 }
 .desc_content-info .cont_buttons {
     display: flex;
     align-items: center;
 }
-
 .cont_buttons img {
     margin-right: 0.8rem;
+    height: 1.5rem;
+    width: 1.5rem;
 }
 .desc_content-info .button-like,
 .desc_content-info .button-comment {
     position: relative;
     vertical-align: top;
+    height: 1.5rem;
     padding: 0;
 }
 .cont_buttons strong {
@@ -317,13 +326,78 @@ button {
     font-size: 1.2rem;
     line-height: 1.2rem;
 }
-.desc_content-info .button-comment {
-}
 .desc_content-info .date_content-info {
     font-size: 1rem;
     line-height: 1.2rem;
-    margin-top: 1.9rem;
+    margin: 1.9rem 0 0.4rem;
+
     color: #767676;
+}
+.cont_user-contents .btn-more_content {
+    position: absolute;
+    right: 0;
+    /* right: 1.8rem; */
+    /* top: 2.2rem; */
+    top: 0.4rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    padding: 0;
+}
+
+/* picture형 스타일 */
+.picture-style.cont_user-contents {
+    padding-bottom: 8rem;
+}
+.picture-style .ul_user-contents {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+.picture-style .img_content-info {
+    display: none;
+}
+.picture-style .content_user-contents {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 0rem;
+}
+/* 단일 이미지 */
+.picture-style .content-img_content-info {
+    margin-bottom: 0;
+    height: 11.4rem;
+    width: 11.4rem;
+    border-radius: 0;
+}
+/* 다중 이미지 */
+.picture-style .content-img_slide {
+    margin: 0;
+    display: flex;
+    gap: 0.8rem;
+}
+.picture-style .content-img_slide-item {
+    height: 11.4rem;
+    width: 11.4rem;
+    border-radius: 0;
+}
+.picture-style .name_content-info {
+    display: none;
+}
+.picture-style .email_content-info {
+    display: none;
+}
+.picture-style .txt_content-info {
+    display: none;
+}
+.picture-style .cont_buttons {
+    display: none;
+}
+.picture-style .date_content-info {
+    display: none;
+}
+.picture-style .btn-more_content {
+    display: none;
 }
 
 /* 하단 탭 메뉴, tab menu */
@@ -388,4 +462,105 @@ button {
 .upload-icon,
 .user-icon {
     width: 24px;
+}
+
+/* 모달, up-modal */
+.background_up-modal {
+    display: none;
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+.up-modal {
+    background-color: #ffffff;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    position: fixed;
+    bottom: -20rem;
+    width: 100%;
+    transition: 0.5s ease;
+    z-index: 10;
+    overflow: auto; /*마진 겹친 현상을 해결하기 위한 코드*/
+}
+.up-modal::after {
+    background-color: #dbdbdb;
+    border-radius: 0.5rem;
+    display: inline-block;
+    position: absolute;
+    top: 1.6rem;
+    left: 50%;
+    transform: translate(-50%);
+    content: "";
+    width: 5rem;
+    height: 0.4rem;
+    /* background: 100% 100% url("../resource/img/module/Rectangle\ 70.svg"); */
+}
+.up-modal .cont_modal-item {
+    margin-top: 3.6rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.cont_modal-item .item-modal {
+    padding-left: 2.6rem;
+    height: 4.6rem;
+    align-self: stretch;
+    line-height: 4.6rem;
+    font-size: 1.4rem;
+}
+
+/* 띄워지는 모달창, popup-modal */
+.background_popup-modal {
+    display: none;
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+}
+.popup-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 25.2rem;
+    transform: translateX(-50%) translateY(-50%);
+    overflow: hidden;
+    z-index: 20;
+    border-radius: 1rem;
+    text-align: center;
+    background-color: #ffffff;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2rem;
+}
+.popup-modal .notice_popup {
+    margin: 2.2rem 0;
+}
+.popup-modal .cancel-button_popup,
+.popup-modal .action-button_popup {
+    width: 12.6rem;
+    height: 4.6rem;
+    background-color: transparent;
+    border: none;
+    border-top: 0.05rem solid #dbdbdb;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+}
+.popup-modal .cancel-button_popup {
+    border-right: 0.05rem solid #dbdbdb;
+}
+.popup-modal .action-button_popup {
+    font-weight: 500;
+    color: var(--zzin-no);
 }

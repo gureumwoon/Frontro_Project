@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/reset.css" />
+    <link rel="stylesheet" href="./style/follow.css" />
+    <title>Followers</title>
+</head>
+
+<body>
+    <h1></h1>
+    <!-- 프로필 헤더, 채팅방 헤더 -->
+    <header class="top-bar">
+        <!-- 뒤로가기 버튼 -->
+        <button type="button" class="button-noneBackground button-back"><img src="./src/png/icon-arrow-left.png"
+                alt="뒤로가기 버튼"></button>
+        <p class="tit_top-bar">Followers</p>
+
+    </header>
+
+    <main class="cont-followers">
+        <h2></h2>
+        <ul class="list-followers">
+        </ul>
+    </main>
+
+
+    <!-- 모듈화될 수 있는 부분: 화면 공통 네비게이션 -->
+    <!-- p tag는 가상요소로 처리 -->
+    <nav class="tap-menu">
+        <button class="tap-menu-home">
+            <img src="./src/svg/icon-home.svg" alt="홈으로 가기" class="home-icon">
+            <!-- <p class="tap-menu-home-title">홈</p> -->
+        </button>
+
+        <button class="tap-menu-chat">
+            <img src="./src/svg/icon-message-circle.svg" alt="채팅으로 가기" class="chat-icon">
+            <!-- <p class="tap-menu-chat-title">채팅</p> -->
+        </button>
+
+        <button class="tap-menu-edit">
+            <img src="./src/svg/icon-edit.svg" alt="게시물 작성하기" class="edit-icon">
+            <!-- <p class="tap-menu-edit-title">게시물 작성</p> -->
+        </button>
+
+        <button class="tap-menu-user">
+            <img src="./src/svg/icon-user.svg" alt="프로필로 가기" class="user-icon">
+            <!-- <p class="tap-menu-user-title">프로필</p> -->
+        </button>
+    </nav>
+    <script defer src="js/follow.js"></script>
+</body>
+
+</html>

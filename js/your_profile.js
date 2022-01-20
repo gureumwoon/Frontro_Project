@@ -1,21 +1,10 @@
-// 구현할 사항.
-// [] 코드 fetch 함수 및 기능별로 이쁘게 정리하기
-// [] 무한 스크롤
-// 자기 페이지는 못들어오도록 처리해주기
-
-// 나중에 추가 구현 사항
-// [] 다중 파일 선택 시스템 만들기
-
-const AUTH =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxY2E2MzhhYjVjNmNkMTgwODRlNDQ3ZCIsImV4cCI6MTY0NzUwNzQ5MSwiaWF0IjoxNjQyMzIzNDkxfQ.IpERmWzo8--G6k-6pBBj5FUtxRJD1UqY_CNFIGc35zQ";
 const BASE_URL = "http://146.56.183.55:5050";
-const ACCOUNT_MYNAME = "hey_binky";
-const MYID = "61ca638ab5c6cd18084e447d";
-const ACCOUNT_NAME = "halo_halo";
-// const ACCOUNT_NAME = "hey_binky";
 
-// - top-bar, 헤더 바
-// - 관련 변수들 -
+checkLoginUser();
+
+// - top-bar, 헤더 바 -
+
+// - 관련 변수들
 const btnBack = document.querySelector(".button-back");
 const btnMore = document.querySelector(".button-more");
 const backgroundUpModal = document.querySelector(".background_up-modal");
@@ -32,7 +21,7 @@ const logoutBtn_popup = document.querySelector(".action-button_popup");
 // - 뒤로가기 버튼
 btnBack.addEventListener("click", () => {
     // 채팅방 뒤로가기 작성하고 작성팀원분들과 얘기하고 작성하기
-    // location.href("");
+    history.back();
 });
 
 // - 더보기 버튼 & up modal, 위로 올라오는 모달
@@ -55,14 +44,23 @@ cancelBtn_popup.addEventListener("click", () => {
     popupModal.style.display = "none";
 });
 
-// - 로그 아웃 api 요청하기
-logoutBtn_popup.addEventListener("click", () => {});
+// - 로그 아웃 기능
+logoutBtn_popup.addEventListener("click", () => {
+    localStorage.removeItem("Token");
+    // localStorage.removeItem("account");
+    // localStorage.removeItem("user-profile");
+    location.href = "login.html";
+});
 
 // - profile-info, 프로필 정보 -
+
 // - 관련 변수
 const profileCont = document.querySelector(".cont_profile");
+
 const profileFollowers = document.querySelector(".number_followers");
 const profileFollowings = document.querySelector(".number_followings");
+const profileFollowersBtn = document.querySelector(".followers_profile");
+const profileFollowingsBtn = document.querySelector(".followings_profile");
 const profileImg = document
     .querySelector(".header_profile")
     .querySelector("img");
@@ -71,141 +69,230 @@ const profileAccount = document.querySelector(".account_profile");
 const profileIntro = document.querySelector(".explain_profile");
 const profileMessageBtn = document.querySelector(".button-message");
 const profileFollowBtn = document.querySelector(".S-button");
+
 // - 프로필 데이터 fetch로 가져오기
-myFetch(`${BASE_URL}/profile/${ACCOUNT_NAME}`, "get", AUTH)
-    .then((res) => {
-        return res.json();
-    })
-    .then((result) => {
+getProfileData();
+
+profileFollowersBtn.addEventListener("click", () => {
+    const accountName = getQueryValue("accountname");
+    location.href = `follow.html?accountName=${accountName}&follow=follower`;
+});
+profileFollowingsBtn.addEventListener("click", () => {
+    const accountName = getQueryValue("accountname");
+    location.href = `follow.html?accountName=${accountName}&follow=following`;
+});
+
+// - 메세지 창으로 이동
+profileMessageBtn.addEventListener("click", () => {
+    // 추후 백엔드 개발 시
+    // const accountname =
+    // location.href = `chat_room.html?name=할로할로&accountname=halo_halo`;
+    // const username = getQueryValue("name");
+    location.href = `chat_room.html?name=할로할로`;
+});
+
+// - 팔로우 기능
+profileFollowBtn.addEventListener("click", () => {
+    if (profileFollowBtn.innerText === "언팔로우") {
+        postUnfollowReq();
+    } else {
+        postFollowReq();
+    }
+});
+
+// 프로필 데이터 가져오기
+async function getProfileData() {
+    try {
+        // const myAccountName = localStorage.getItem("account");
+        const accountName = getQueryValue("accountname");
+        const myAccountName = "asdasd";
+        // const accountName = "hey_binky";
+        console.log(accountName);
+        const token = localStorage.getItem("Token");
+
+        const followingList = await getFollowingList(myAccountName);
+        const res = await myFetch(
+            `${BASE_URL}/profile/${accountName}`,
+            "get",
+            token
+        );
+        let result = await res.json();
         result = result.profile;
+
         profileFollowers.innerText = result.followerCount;
         profileFollowings.innerText = result.followingCount;
         profileImg.src = result.image;
         profileName.innerText = result.username;
         profileAccount.innerText = `@ ${result.accountname}`;
         profileIntro.innerText = result.intro ? result.intro : "-";
-        if (result.follower.includes(MYID)) {
+        followingList.forEach((followingUser) => {
+            console.log(followingUser["accountname"]);
+            if (followingUser["accountname"] === accountName) {
+                profileFollowBtn.innerText = "언팔로우";
+                profileFollowBtn.classList.replace(
+                    "S-button",
+                    "S-Active-button"
+                );
+            }
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// - 내가 follow 하는 사람 리스트 가져오기
+async function getFollowingList(accountName) {
+    try {
+        const token = localStorage.getItem("Token");
+
+        const res = await myFetch(
+            `${BASE_URL}/profile/${accountName}/following?limit=300`,
+            "get",
+            token,
+            null
+        );
+        const result = await res.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// - 나를 follow 하는 사람 리스트 가져오기
+async function getFollowerList(accountName) {
+    try {
+        const token = localStorage.getItem("Token");
+
+        const res = await myFetch(
+            `${BASE_URL}/profile/${accountName}/follower?limit=300`,
+            "get",
+            token,
+            null
+        );
+        const result = await res.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// - 팔로우하기
+async function postFollowReq() {
+    try {
+        const accountName = getQueryValue("accountname");
+        const token = localStorage.getItem("Token");
+
+        const res = await myFetch(
+            `${BASE_URL}/profile/${accountName}/follow`,
+            "post",
+            token,
+            null
+        );
+        const result = await res.json();
+        console.log(result);
+        console.log(res.ok);
+        if (res.ok) {
             profileFollowBtn.innerText = "언팔로우";
             profileFollowBtn.classList.replace("S-button", "S-Active-button");
+            console.log(profileFollowers.innerText);
+            profileFollowers.innerText = `${
+                parseInt(profileFollowers.innerText) + 1
+            }`;
         }
-    })
-    .catch((error) => console.log(error));
-
-// - 메세지 창으로 이동
-profileMessageBtn.addEventListener("click", () => {
-    console.log("click");
-    // history.pushState(
-    //     { username: "할로할로" },
-    //     "채팅방 유저 이름",
-    //     "chat_room.html"
-    // );
-
-    // location.reload();
-    // location.href = `chat_room.html?username=${}`;
-    location.href = `chat_room.html?username=할로할로&accountname=halo_halo`;
-});
-// - 팔로우 기능
-// 팔로우 요청이 성공했을 때 버튼 그림을 바꿔주는 것으로 수정
-profileFollowBtn.addEventListener("click", () => {
-    if (profileFollowBtn.innerText === "언팔로우") {
-        myFetch(
-            `${BASE_URL}/profile/${ACCOUNT_NAME}/unfollow`,
-            "delete",
-            AUTH,
-            null
-        )
-            .then((res) => res.json())
-            .then((result) => console.log(result))
-            .catch((error) => console.log(error));
-        profileFollowBtn.innerText = "팔로우";
-        profileFollowBtn.classList.replace("S-Active-button", "S-button");
-        console.log(profileFollowers.innerText);
-        profileFollowers.innerText = `${
-            parseInt(profileFollowers.innerText) - 1
-        }`;
-    } else {
-        myFetch(
-            `${BASE_URL}/profile/${ACCOUNT_NAME}/follow`,
-            "post",
-            AUTH,
-            null
-        )
-            .then((res) => res.json())
-            .then((result) => console.log(result))
-            .catch((error) => console.log(error));
-        profileFollowBtn.innerText = "언팔로우";
-        profileFollowBtn.classList.replace("S-button", "S-Active-button");
-        console.log(profileFollowers.innerText);
-        profileFollowers.innerText = `${
-            parseInt(profileFollowers.innerText) + 1
-        }`;
+    } catch (error) {
+        console.log(error);
     }
-});
+}
+// - 언팔로우하기
+async function postUnfollowReq() {
+    try {
+        const accountName = getQueryValue("accountname");
+
+        const token = localStorage.getItem("Token");
+
+        const res = await myFetch(
+            `${BASE_URL}/profile/${accountName}/unfollow`,
+            "delete",
+            token,
+            null
+        );
+        const result = await res.json();
+        console.log(result);
+        console.log(res.ok);
+        if (res.ok) {
+            profileFollowBtn.innerText = "팔로우";
+            profileFollowBtn.classList.replace("S-Active-button", "S-button");
+            console.log(profileFollowers.innerText);
+            profileFollowers.innerText = `${
+                parseInt(profileFollowers.innerText) - 1
+            }`;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 // - cont_on-sale -
+
 // - 관련 변수
 const onSaleList = document.querySelector(".ul_on-sale");
 const onSaleFragment = document.createDocumentFragment();
+getOnSaleData();
 
 // - 유저 판매 상품 데이터를 가져와서 화면에 그려주기
-myFetch(`${BASE_URL}/product/${ACCOUNT_NAME}`, "get", AUTH, null)
-    .then((res) => res.json())
-    .then((result) => {
+async function getOnSaleData() {
+    try {
+        // const accountName = getQueryValue("accountname");
+        const accountName = "hey_binky";
+        const token = localStorage.getItem("Token");
+
+        const res = await myFetch(
+            `${BASE_URL}/product/${accountName}`,
+            "get",
+            token,
+            null
+        );
+        const result = await res.json();
         const productList = result.product;
 
-        // - demo data -
-        // const productList = [
-        //     {
-        //         itemImage: "1641184947130.png",
-        //         itemName: "꿀맛나는 뀰, 꿀귤",
-        //         link: "http://www.paullab.co.kr",
-        //         price: 4000,
-        //     },
-        //     {
-        //         itemImage: "1641184947130.png",
-        //         itemName: "꿀맛나는 뀰, 꿀귤",
-        //         link: "http://www.paullab.co.kr",
-        //         price: 4000,
-        //     },
-        //     {
-        //         itemImage: "1641184947130.png",
-        //         itemName: "꿀맛나는 뀰, 꿀귤",
-        //         link: "http://www.paullab.co.kr",
-        //         price: 4000,
-        //     },
-        //     {
-        //         itemImage: "1641184947130.png",
-        //         itemName: "꿀맛나는 뀰, 꿀귤",
-        //         link: "http://www.paullab.co.kr",
-        //         price: 4000,
-        //     },
-        // ];
+        // 등록된 게시물이 있을 경우만 리스트 보여주기
+        if (productList.length > 0) {
+            onSaleCont.style.display = "block";
+        } else {
+            return;
+        }
 
         productList.forEach((product) => {
             // 가격에 ','를 달아주는 로직
             const price = makeMoneysComma(`${product.price}`);
             const productItem = document.createElement("li");
             productItem.className += "li_on-sale";
+            productItem.addEventListener("click", () => {
+                location.href = "#";
+            });
             productItem.innerHTML = `
-                <article class="item_on-sale">
-                    <img src="${BASE_URL}/${product.itemImage}" alt="판매상품 ${product.itemName}의 이미지">
-                    <p class="tit_item">
-                        ${product.itemName}
-                    </p>
-                    <p class="price_item">
-                        <strong>
-                            ${price}
-                        </strong>원
-                    </p>
-                </article>`;
+                    <article class="item_on-sale">
+                        <img src="${product.itemImage}" alt="판매상품 ${product.itemName}의 이미지">
+                        <p class="tit_item">
+                            ${product.itemName}
+                        </p>
+                        <p class="price_item">
+                            <strong>
+                                ${price}
+                            </strong>원
+                        </p>
+                    </article>`;
             onSaleFragment.appendChild(productItem);
         });
 
         onSaleList.appendChild(onSaleFragment);
-    })
-    .catch((error) => console.log(error));
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 // - cont_contents, 게시물 정보 -
+
 // - view-style 관련 변수
 const viewStyleCont = document.querySelector(".cont_view-style");
 const styleBtn = viewStyleCont.querySelectorAll("button");
@@ -217,6 +304,7 @@ const contentsCont = document.querySelector(".cont_user-contents");
 const contentsList = document.querySelector(".ul_user-contents");
 const contentsFragment = document.createDocumentFragment();
 const contentImagesFragment = document.createDocumentFragment();
+const contentUpModal = document.querySelector(".up-modal + .content");
 
 // - contents 데이터 가져오기
 getContents();
@@ -227,17 +315,17 @@ listStyleBtn.addEventListener("click", () => {
     if (Array.from(listStyleBtn.classList).includes("off")) {
         if (Array.from(contentsCont.classList).includes("picture-style")) {
             contentsCont.classList.remove("picture-style");
+
+            // list button 활성화
+            listStyleBtn.classList.replace("off", "on");
+            listStyleBtn.querySelector("img").src =
+                "../src/png/icon-post-list-on.png";
+
+            // picture button 비활성화
+            pictureStyleBtn.classList.replace("on", "off");
+            pictureStyleBtn.querySelector("img").src =
+                "../src/png/icon-post-album-off.png";
         }
-
-        // list button 활성화
-        listStyleBtn.classList.replace("off", "on");
-        listStyleBtn.querySelector("img").src =
-            "../src/png/icon-post-list-on.png";
-
-        // picture button 비활성화
-        pictureStyleBtn.classList.replace("on", "off");
-        pictureStyleBtn.querySelector("img").src =
-            "../src/png/icon-post-album-off.png";
     }
 });
 pictureStyleBtn.addEventListener("click", () => {
@@ -258,64 +346,70 @@ pictureStyleBtn.addEventListener("click", () => {
 
 // 콘텐츠의 데이터를 가져와서 그려주는 함수
 async function getContents() {
-    // const token = localStorage.getItem("Token");
-    const token = AUTH;
+    const token = localStorage.getItem("Token");
+    const accountName = "hey_binky";
+    // const token = AUTH;
 
     // ↓ 아래 요청은 나의 게시물 요청이므로 꼭 바꿔주자 ↓
     const res = await myFetch(
-        `${BASE_URL}/post/feed?limit=6`,
+        `${BASE_URL}/post/${accountName}/userpost/?limit=6`,
         "get",
         token,
         null
     );
     const result = await res.json();
-    const contentsListData = result.posts;
+    const contentsListData = result.post;
+    console.log(result);
+    console.log(contentsListData);
+
+    // 등록된 게시글이 없으면 게시글란 안보이게 처리하기
+    if (contentsListData.length > 0) {
+        contentsCont.style.display = "block";
+    } else {
+        return;
+    }
 
     // 여러 비동기에 쓰이는 await를 한 번으로 묶을 수는 없을까??
     for (let content of contentsListData) {
-        // console.log(content);
         const authorImage = await validateImage(
             content.author.image,
             "profile"
         );
-
-        // image가 여러개 들어왔을 때를 대비해서 처리하는 것_개발 예정..
-        // const contentImage = await validateImage(content.image, "content");
-        // const imageContainer = document.querySelector(".cont_content-image");
-        // if (contentImage.length > 1) {
-        //     for (let image of contentImage) {
-        //         if (image) {
-        //             imageContainer.innerHTML = `<img src=${image}> alt ="">`;
-        //             contentImagesFragment.appendChild();
-        //         }
-        //     }
-        // } else {
-        //     imageContainer.innerHTML += `<img src=${image}>`;
-        // }
+        const contentImage = await validateImage(content.image, "content");
+        let imageHTML = "";
+        if (contentImage.length === 1 && contentImage[0]) {
+            imageHTML = `<img src="${contentImage[0]}" alt="post-image" class="content-img_content-info">`;
+        } else if (contentImage.length > 1) {
+            const arr = [];
+            contentImage.forEach((image) => {
+                if (image) {
+                    arr.push(
+                        `<img src="${image}" alt="post-image" class="content-img_slide-item">`
+                    );
+                }
+            });
+            imageHTML = `<ul class="content-img_slide">${arr.join("")}</ul>`;
+        }
 
         // list형 content 보여주기
         const contentItem = document.createElement("li");
         contentItem.className += "li_user-contents";
         contentItem.innerHTML = `
-                    <article class="content_user-contents">
-                                    <img src="${authorImage}" alt="${
+        <article class="content_user-contents">
+        <img src="${authorImage}" alt="${
             content.author.username
         }님의 프로필 사진" class="img_content-info" />
-                                    <div class="desc_content-info">
-                                        <p class="name_content-info">${
-                                            content.author.username
-                                        }</p>
+        <div class="desc_content-info">
+        <p class="name_content-info">${content.author.username}</p>
                                         <p class="email_content-info">@ ${
                                             content.author.accountname
                                         }</p>
                                         <p class="txt_content-info">${
                                             content.content
                                         }</p>
-
                                         <div class="cont_content-image"></div>
-                                        <img src=${
-                                            content.image
-                                        } alt="" class="content-img_content-info">
+                                        
+                                        ${imageHTML}
 
                                         <div class="cont_buttons">
                                             <button class="button-like button-noneBackground">
@@ -340,16 +434,32 @@ async function getContents() {
                                             content.updatedAt
                                         )}</p>
                                     </div>
+                                    <button type="button" class="btn-more_content button-noneBackground">
+                                        <img class="" src="src/svg/s-icon-more-vertical.svg" alt="더보기 버튼">
+                                    </button>
                             </article>`;
+
         contentsFragment.appendChild(contentItem);
     }
     contentsList.appendChild(contentsFragment);
+
+    // - 더보기 업 모달 생성
+    const contentBtnList = document.querySelectorAll(".btn-more_content");
+    Array.from(contentBtnList).forEach((button) => {
+        button.addEventListener("click", () => {
+            backgroundUpModal.style.display = "block";
+            contentUpModal.style.bottom = "0";
+        });
+        backgroundUpModal.addEventListener("click", () => {
+            contentUpModal.style.bottom = "-20rem";
+        });
+    });
 }
 
-// 이미지가 유효한 지 검사하는 함수
+// - 이미지가 유효한 지 검사하는 함수
 async function validateImage(image, imageType) {
-    const token = AUTH;
-    // const token = localStorage.getItem("Token");
+    const token = localStorage.getItem("Token");
+    // const token = AUTH;
 
     const imageArray = await image.split(",");
     const newArray = [];
@@ -362,8 +472,8 @@ async function validateImage(image, imageType) {
                 null
             ).then((res) => {
                 if (res === "error") {
-                    if (imageType == "profile") {
-                        return "../src/svg/Ellipse 4.svg";
+                    if (imageType === "profile") {
+                        return "../src/svg/basic-profile-img.svg";
                     } else {
                         // 이미지가 없을 경우.. 어떻게 처리할 것인가..
                         return "";
@@ -402,15 +512,14 @@ async function validateImage(image, imageType) {
 }
 
 // - nav bar, 하단 탭 페이지이동 -
-const goToHome = document.querySelector(".tap-menu-home");
-console.log(goToHome);
-const goToChat = document.querySelector(".tap-menu-chat");
-console.log(goToChat);
-const goUpload = document.querySelector(".tap-menu-upload");
-console.log(goUpload);
-const goMyProfile = document.querySelector(".tap-menu-user");
-console.log(goMyProfile);
 
+// - 관련 변수
+const goToHome = document.querySelector(".tap-menu-home");
+const goToChat = document.querySelector(".tap-menu-chat");
+const goUpload = document.querySelector(".tap-menu-upload");
+const goMyProfile = document.querySelector(".tap-menu-user");
+
+// - 페이지 이동
 goToHome.addEventListener("click", () => {
     window.location.href = "index.html";
 });
@@ -425,6 +534,7 @@ goMyProfile.addEventListener("click", () => {
 });
 
 // - 공용으로 쓰이는 코드 -
+
 // - fetch를 쉽게 쓸 수 있게 해주는 함수
 async function myFetch(url, method, auth = "", data = "") {
     const responseData = await fetch(url, {
@@ -454,6 +564,22 @@ async function myFetch(url, method, auth = "", data = "") {
 
     return responseData;
 }
+// - 페이지 들어올 때 토큰 있는 지 확인
+function checkLoginUser() {
+    // if (localStorage.getItem("Token") || localStorage.getItem("RefreshToken")) { }
+
+    if (!localStorage.getItem("Token")) {
+        location.href = "login.html";
+    }
+}
+
+// - url에서 원하는 쿼리 값 받아오기
+function getQueryValue(key) {
+    const params = new URLSearchParams(location.search);
+    const value = params.get(key);
+    return value;
+}
+
 // - 년일월 날짜 변환 함수
 function makeKoreaDate(date) {
     // "2022-01-10T09:08:38.035Z"
@@ -493,3 +619,6 @@ function makeMoneysComma(money) {
 // display: none으로 view-style을 구현하는게 좋을 지.. remove()나 removeChild()가 괜찮을지 생각해보기
 
 // location.href 와 history를 각각 어떤 경우에 쓰는 것이 유용할까
+
+// 클래스, 생성자 함수 언제 사용해야할까?
+// 컨텐츠나 프로필 같이 반복적으로 사용되는 것은 클래스나 생성자 함수를 사용해서 구현해보기
