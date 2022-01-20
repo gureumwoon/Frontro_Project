@@ -73,7 +73,10 @@ body {
     align-items: center;
     margin-bottom: 1.6rem;
 }
-
+.user-follow .cont_link {
+    flex: 1;
+    cursor: pointer;
+}
 .user-follow .follow_profile-image {
     width: 50px;
     height: 50px;
@@ -83,7 +86,6 @@ body {
 .user-follow .follow_text-info {
     display: flex;
     flex-direction: column;
-    flex: 1;
     text-align: start;
 }
 .user-follow .follow_user-name {
@@ -95,7 +97,6 @@ body {
 }
 
 .user-follow .follow_user-introduce {
-    display: inline-block;
     margin: 0 0 6px 12px;
     font-size: 12px;
     line-height: 15px;
@@ -110,6 +111,7 @@ body {
     line-height: 1.5rem;
     border: none;
     padding: 0;
+    cursor: pointer;
     /* margin: 0 1rem; */
 }
 .user-follow .S-button {

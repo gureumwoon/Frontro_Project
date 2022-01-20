@@ -19,13 +19,11 @@ const backgroundPopupModal = document.querySelector(".background_popup-modal");
 const popupModal = document.querySelector(".popup-modal");
 const cancelBtn_popup = document.querySelector(".cancel-button_popup");
 const logoutBtn_popup = document.querySelector(".action-button_popup");
-
 // - 뒤로가기 버튼
 btnBack.addEventListener("click", () => {
     // 채팅방 뒤로가기 작성하고 작성팀원분들과 얘기하고 작성하기
     // location.href("");
 });
-
 // - 더보기 버튼 & up modal, 위로 올라오는 모달
 btnMore.addEventListener("click", () => {
     backgroundUpModal.style.display = "block";
@@ -35,7 +33,6 @@ backgroundUpModal.addEventListener("click", () => {
     backgroundUpModal.style.display = "none";
     upModal.style.bottom = "-20rem";
 });
-
 // - popup modal, 띄워지는 모달
 logoutBtn_up.addEventListener("click", () => {
     backgroundPopupModal.style.display = "block";
@@ -44,6 +41,13 @@ logoutBtn_up.addEventListener("click", () => {
 cancelBtn_popup.addEventListener("click", () => {
     backgroundPopupModal.style.display = "none";
     popupModal.style.display = "none";
+});
+// - 로그 아웃 기능
+logoutBtn_popup.addEventListener("click", () => {
+    localStorage.removeItem("Token");
+    // localStorage.removeItem("account");
+    // localStorage.removeItem("user-profile");
+    location.href = "login.html";
 });
 
 // - chat_list, 채팅방 리스트 -
