@@ -1,8 +1,13 @@
 const textarea = document.querySelector('.upload-txt');
 const prevImg = document.querySelector('.prev-img');
+const backBtn = document.querySelector('.back-btn')
 let imgIndex = 0;
 const formData = new FormData();
 
+
+backBtn.addEventListener('click', () => {
+    history.back();
+})
 
 function resize(obj) {
     obj.style.height = '1px';
