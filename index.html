@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" class="html">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,50 +12,52 @@
     <script defer src="js/index.js"></script>
     <title>index</title>
 </head>
-<body class="body">
-<section class="container">
-    <header class="header">
-        <h2 class="tit-intro">은이네 문방구 피드</h2>
-        <!-- js 구현: 검색 아이콘에 search.html로 페이지 이동-->
-        <button type="button" class="btn-search btn-nonebackground">
-            <img src="./src/png/icon-search.png" class="icon-search">
-        </button>
-    </header>
-    <!-- 여기다가 데이터들을 그려준다-->
-    <article class="main">
-            
-    </article>
-    <!-- js 구현: 페이지 이동: home/chat_list/add_product/My_profile -->
-    <footer class="footer">
-        <ul class="icon-item-list">
-            <li class="item-footer"><img src="./src/svg/icon-home.svg">홈</li>
-            <li class="item-footer"><img src="./src/svg/icon-message-circle.svg">채팅</li>
-            <li class="item-footer third"><img src="./src/svg/icon-edit.svg" class="icon-add">게시물 작성</li>
-            <li class="item-footer"><img src="./src/svg/icon-user.svg">프로필</li>       
-        </ul>
-    </footer>
-    <!-- 업 모달창 -->
-    <section class="hidden-menu active">
-        <!-- 가상요소 -->
-        <h2 class="sr-only">메뉴</h2>
-        <ul class="hidden-menu-list">
-            <li>
-                <button type="submit" class="report-post btn-nonebackground">신고</button>
-            </li>
-        </ul>
-    </section>
 
-    <!-- 팝업 모달창 -->
-    <section style= " display: none " class="alert-modal">
-        <h2 class="sr-only">경고 메시지</h2>
-        <div class="alert-modal-wrap">
-            <strong class="alert-msg">게시글을 신고하시겠어요?</strong>
-            <ul class="alert-menu-list">
-                <li><button type="button" class="cancle-btn btn-nonebackground">취소</button></li>
-                <li><button type="button" class="do-btn btn-nonebackground">신고</button></li>
+<body class="body">
+    <section class="container">
+        <header class="header">
+            <h2 class="tit-intro">은이네 문방구 피드</h2>
+            <!-- js 구현: 검색 아이콘에 search.html로 페이지 이동-->
+            <button type="button" class="btn-search btn-nonebackground">
+                <img src="./src/png/icon-search.png" class="icon-search">
+            </button>
+        </header>
+        <!-- 여기다가 데이터들을 그려준다-->
+        <article class="main">
+
+        </article>
+        <!-- js 구현: 페이지 이동: home/chat_list/add_product/My_profile -->
+        <footer class="footer">
+            <ul class="icon-item-list">
+                <li class="item-footer"><img src="./src/svg/icon-home.svg">홈</li>
+                <li class="item-footer"><img src="./src/svg/icon-message-circle.svg">채팅</li>
+                <li class="item-footer third"><img src="./src/svg/icon-edit.svg" class="icon-add">게시물 작성</li>
+                <li class="item-footer"><img src="./src/svg/icon-user.svg">프로필</li>
             </ul>
-        </div>
+        </footer>
+        <!-- 업 모달창 -->
+        <section class="hidden-menu active">
+            <!-- 가상요소 -->
+            <h2 class="sr-only">메뉴</h2>
+            <ul class="hidden-menu-list">
+                <li>
+                    <button type="submit" class="report-post btn-nonebackground">신고</button>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 팝업 모달창 -->
+        <section style=" display: none " class="alert-modal">
+            <h2 class="sr-only">경고 메시지</h2>
+            <div class="alert-modal-wrap">
+                <strong class="alert-msg">게시글을 신고하시겠어요?</strong>
+                <ul class="alert-menu-list">
+                    <li><button type="button" class="cancle-btn btn-nonebackground">취소</button></li>
+                    <li><button type="button" class="do-btn btn-nonebackground">신고</button></li>
+                </ul>
+            </div>
+        </section>
     </section>
-</section>
 </body>
+
 </html>

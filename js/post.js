@@ -37,76 +37,75 @@ const openModal = () => {
 
 // fetch
 
-console.log(localStorage.getItem("Token")); //브라우저 저장된 토큰
+console.log(localStorage.getItem("Token")) //브라우저 저장된 토큰 
 if (localStorage.getItem("Token")) {
-    getPost();
+    getPost()
 }
-console.log(localStorage.getItem("Token"));
+console.log(localStorage.getItem("Token"))
 
 // 날짜 & 시간 계산하기
-const description = document.querySelector(".desc");
-const picture = document.querySelector(".cont-following>img");
+const description = document.querySelector('.desc');
+const picture = document.querySelector('.cont-following>img');
 console.log(picture);
 const getDateString = (date) => {
-    const d = new Date(date);
-    const year = d.getFullYear();
-    const month = d.getMonth() + 1;
-    const day = d.getDate();
-    return `${year}년 ${month}월 ${day}일`;
-};
+    const d = new Date(date)
+    const year = d.getFullYear()
+    const month = d.getMonth() + 1
+    const day = d.getDate()
+    return `${year}년 ${month}월 ${day}일`
+}
 const getTimeString = (date) => {
-    const currentDate = new Date();
-    const commentDate = new Date(date);
-    const yearDiff = currentDate.getFullYear() - commentDate.getFullYear();
+    const currentDate = new Date()
+    const commentDate = new Date(date)
+    const yearDiff = currentDate.getFullYear() - commentDate.getFullYear()
     if (yearDiff > 0) {
-        return `${yearDiff}년 전`;
+        return `${yearDiff}년 전`
     }
-    const monthDiff = currentDate.getMonth() - commentDate.getMonth();
+    const monthDiff = currentDate.getMonth() - commentDate.getMonth()
     if (monthDiff > 0) {
-        return `${monthDiff}달 전`;
+        return `${monthDiff}달 전`
     }
-    const dayDiff = currentDate.getDate() - commentDate.getDate();
+    const dayDiff = currentDate.getDate() - commentDate.getDate()
     if (dayDiff > 0) {
-        return `${dayDiff}일 전`;
+        return `${dayDiff}일 전`
     }
-    const hourDiff = currentDate.getHours() - commentDate.getHours();
+    const hourDiff = currentDate.getHours() - commentDate.getHours()
     if (hourDiff > 0) {
-        return `${hourDiff}시간 전`;
+        return `${hourDiff}시간 전`
     }
-    const minuteDiff = currentDate.getMinutes() - commentDate.getMinutes();
+    const minuteDiff = currentDate.getMinutes() - commentDate.getMinutes()
     if (minuteDiff > 0) {
-        return `${minuteDiff}분 전`;
+        return `${minuteDiff}분 전`
     }
-    const secondDiff = currentDate.getSeconds() - commentDate.getSeconds();
+    const secondDiff = currentDate.getSeconds() - commentDate.getSeconds()
     if (secondDiff > 0) {
-        return `${secondDiff}초 전`;
+        return `${secondDiff}초 전`
     }
-    return "0초 전";
-};
+    return "0초 전"
+}
 // 게시물 상세보기 페이지
 
 async function getPost() {
-    const queryString = window.location.href.split("?")[1];
-    const searchParams = new URLSearchParams(queryString);
-    console.log("searchparams: ", searchParams);
-    const postId = searchParams.get("id");
+    console.log('getPost')
+    const queryString = window.location.href.split('?')[1]
+    const searchParams = new URLSearchParams(queryString)
+    console.log("searchparams: ", searchParams)
+    const postId = searchParams.get('id');
     const url = `http://146.56.183.55:5050/post/${postId}`;
     fetch(url, {
-        method: "GET", // or 'PUT'
+        method: 'GET', // or 'PUT'
         headers: {
-            Authorization: "Bearer " + localStorage.getItem("Token"),
-            "Content-Type": "application/json",
-        },
-    })
-        .then((res) => res.json())
+            "Authorization": "Bearer " + localStorage.getItem("Token"),
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
         .then((response) => {
-            console.log("res: ", response);
-            const post = response.post;
-            const postDom = document.querySelector(".post");
+            console.log("res: ", response)
+            const post = response.post
+            const postDom = document.querySelector('.post')
             postDom.innerHTML = `
             <div class="profile">
-                <img class="profile-pic" src="${post.author.image
-                }" alt="프로필 사진">
+                <img class="profile-pic" src="${post.author.image}" alt="프로필 사진">
                 <div class="user">
                     <p class="tit-post">${post.author.username}</p>
                     <p class="user-id font-gray">@${post.author.accountname}</p>

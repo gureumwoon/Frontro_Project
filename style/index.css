@@ -299,3 +299,7 @@
     border-left: 0.5px solid #dbdbdb;
     color: var(--zzin-no);
 }
+.post-img-btn-list button.current {
+    background-color: var(--zzin-no);
+}
+
