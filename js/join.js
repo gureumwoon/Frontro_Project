@@ -1,15 +1,20 @@
-const userNameInput = document.querySelector('#inpName');
-const startButton = document.querySelector('.start-btn');
-const userIdInput = document.querySelector('#inpId');
-const warningTextList = document.querySelectorAll('.warning-text');
-// 이메일로 회원가입 폼 부분 선택
+// join 1: 이메일로 회원가입 폼 부분 선택
 const userEmailInput = document.querySelector('#inpEmail');
 console.log(userEmailInput);
 const userPwInput = document.querySelector('#inputPw');
 console.log(userPwInput);
 const nextBtn = document.querySelector('.next_btn');
 console.log(nextBtn);
-// 섹션 선택 
+// join2 : 프로필 설정 부분 선택 
+const startButton = document.querySelector('.start-btn');
+const warningTextList = document.querySelectorAll('.warning-text');
+const userNameInput = document.querySelector('#inpName');
+console.log(userNameInput);
+const userIdInput = document.querySelector('#inpId');
+console.log(userIdInput);
+const userIntro = document.querySelector('#inpIntroduce');
+console.log(userIntro);
+// 화면 전환을 위한 section 선택 
 const $emailPw = document.querySelector(".email-pw")
 console.log($emailPw);
 const $profile = document.querySelector(".profile-set")
@@ -34,16 +39,11 @@ async function checkEmailValid(email) {
     })
     const json = await res.json()
     return json.message == "사용 가능한 이메일 입니다." ? true : false
-
-    // return 이 이메일이 사용가능하지 체크를 할거에요.
 }
 
-// const email = document.querySelector("#inpEmail").value
-// const pw = document.querySelector("#inputPw").value
-// console.log(email);
-// console.log(pw);
-
-// 다음 버튼 눌렀을때 섹션 블록처리 
+// 이메일로 회원가입 창에서 (다음) 버튼 눌렀을 때 
+// 통과하면 프로필 설정 창 띄우고 
+// 통과못하면 경고문구 띄우기 
 nextBtn.addEventListener("click",async ()=>{
     const email = document.querySelector("#inpEmail").value
     const pw = document.querySelector("#inputPw").value
@@ -67,7 +67,7 @@ const validPassword = () => {
   return true;
 }
 
-// input에 입력시, 비밀번호 유효성 검사 경고 출력 (6자리 미만인 경우)
+// input에 입력시, 비밀번호 유효성 검사 경고 출력
 userPwInput.addEventListener ('input', () => {
     if(!validPassword()) {
         warningTextList[1].classList.remove('invisible');
@@ -79,13 +79,8 @@ userPwInput.addEventListener ('input', () => {
     warningTextList[1].classList.add('invisible');
 })
 
-// 다음 버튼 눌렀을때 join1은 display:none 하고 join2의 displaynone 풀어주기
-// 이메일 중복검사랑 비밀번호 통과 못하면 클릭 안먹음
-nextBtn.addEventListener ('click', () => {
-
-}) 
-
-// 사용자 이름 2자~10자 유효성 검사
+// 프로필 설정 폼 
+// 사용자 이름 :  2~10자 유효성 검사
 const isUserNameInputValid = () => {
     const userName = userNameInput.value;
     if (userName.length < 2 || 10 < userName.length) {
@@ -94,7 +89,7 @@ const isUserNameInputValid = () => {
     return true;
 }
 
-// 영문, 숫자, ._만 가능한 유효성 검사 
+// 계정 ID : 영문, 숫자, ._만 가능한 유효성 검사 
 const isUserIdInputValid = () => {
     const userId = userIdInput.value;
     const reg1 = /[A-Z]/g;
@@ -105,8 +100,9 @@ const isUserIdInputValid = () => {
     return isValid;
 }
 
-// 버튼 클릭했을 때  유효성 검사
-// 유효성 검사 통과못하면 버튼 안눌림 
+// 은이네 문방구 시작하기 버튼 눌렀을 때 
+// 검사 통과시 index로 이동
+// 아니면 경고 문구 
 startButton.addEventListener('click', () => {
     if (!isUserNameInputValid()) {
         warningTextList[2].classList.remove('invisible');
@@ -119,12 +115,10 @@ startButton.addEventListener('click', () => {
         return;
     }
     warningTextList[2].classList.add('invisible');
-    window.location.href = "index.html";
+    window.location.href = "login_email.html";
 })
 
-// imput에 입력시 유효성 검사
-// 사용자 이름 유효성 검사
-// 계정 ID 유효성 검사 
+// input에 입력시 경고 띄워주기
 userNameInput.addEventListener('input', () => {
     if (!isUserNameInputValid()) {
         warningTextList[2].classList.remove('invisible');
@@ -148,7 +142,7 @@ userNameInput.addEventListener('input', () => {
     })
 })
 
-// 버튼 활성화 
+// 시작하기 버튼 색상 활성화 
 const isButtonActive = () => {
     if (!isUserNameInputValid()) {
         startButton.classList.remove('active');
@@ -164,37 +158,59 @@ const isButtonActive = () => {
 userNameInput.addEventListener('input', isButtonActive);
 userIdInput.addEventListener('input', isButtonActive);
 
-async function join() {
-  const email = document.querySelector("#input_box").value;
-  const password = document.querySelector("#input_box_pw").value;
+// 프로필 사진 사진 미리 보기
+function readImage(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
 
-  try {
-    const res = await fetch("http://146.56.183.55:5050/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "user": {
-          "email": email,
-          "password": password,
-          "username": userName,
-          "accountname": userId,
-          "intro": intro,
-          "image": imageUrl,
+        reader.onload = (e) => {
+            const previewImage = document.querySelector('.picture');
+            // previewImage.setAttribute('width', '322px')
+            previewImage.setAttribute('height', '100%')
+            previewImage.src = e.target.result;
         }
-      })
-    })
-    console.log(res)
-    const json = await res.json()
-    const message = json.message
-    // if(message=="회원가입 성공"){
-    if (res.status == 200) {
-      window.location.href = "index.html"
-    } else {
-      console.log(json)
+        reader.readAsDataURL(input.files[0]);
     }
-  } catch (err) {
-    alert(err)
-  }
 }
+
+document.getElementById('profile-input').addEventListener('change', (e) => {
+    readImage(e.target);
+})
+
+
+// 회원가입 fetch 연결/....
+async function join() {
+    const email = document.querySelector('#inpEmail').value;
+    const password = document.querySelector('#inputPw').value;
+    const userName = document.querySelector('#inpName').value;
+    const userId = document.querySelector('#inpId').value;
+    const intro = document.querySelector('#inpIntroduce').value;
+    const imageUrl = document.querySelector('.picture').src;
+        const res = await fetch("http://146.56.183.55:5050/user", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "user": {
+                "email": email,
+                "password": password,
+                "username": userName,
+                "accountname": userId,
+                "intro": intro,
+                "image": imageUrl
+                }
+            })
+        })
+        console.log(res)
+        const json = await res.json()
+        const message = json.message
+        if (res.status == 200) {
+        window.location.href = "login_email.html"
+        } else {
+        console.log(json)
+        console.log(message)
+        }
+    } 
+
+startButton.addEventListener("click",join)

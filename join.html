@@ -35,12 +35,9 @@
             <h1 class="title">프로필 설정</h1>
             <p class="intro">나중에 언제든지 변경할 수 있습니다.</p>
             <div class="set-picture">
-                <img src="./src/svg/basic-profile-img.svg" alt="프로필 사진" class="picture" id="imagePre">
-                <input type="file" id="profile-input" class="profile-input" accept="imp/*" onchange="loadFile" required multiple>
-                <label for="profile-input">
-                    <div class="icon-gallery-base">
-                        <img src="./src/svg/icon_pict.svg" alt="프로필 업로드 버튼" class="icon-pict">
-                    </div>
+                <input type="file" id="profile-input" class="profile-input" accept="imp/*" /*onchange="loadFile"*/ required multiple>
+                <label for="profile-input" class="profile-img-label">
+                    <img src="./src/svg/basic-profile-img.svg" alt="프로필 사진" class="picture" id="imagePre">
                 </label> 
             </div>
                 <fieldset class="module-inp">
