@@ -201,6 +201,7 @@ async function postFollowReq() {
         console.log(error);
     }
 }
+
 // - 언팔로우하기
 async function postUnfollowReq() {
     try {
@@ -300,31 +301,30 @@ const pictureStyleBtn = Array.from(styleBtn)[1];
 const userContentsCont = document.querySelector(".cont_user-contents");
 const contentsList = document.querySelector(".ul_user-contents");
 const contentsFragment = document.createDocumentFragment();
-const contentImagesFragment = document.createDocumentFragment();
+const pictureContentList = document.querySelector(".ul-picture_user-contents");
+const pictureContentsFragment = document.createDocumentFragment();
 // - content up modal 관련 변수
-// const contentUpModal = document.querySelector(".content");
-// const contentBtnList = document.querySelectorAll(".content .item-modal");
-// const contentBtn_up = contentBtnList[0];
-// const contentModifyBtn_up = contentBtnList[1];
+const contentUpModal = document.querySelector(".content");
+const contentBtnList = document.querySelectorAll(".content .item-modal");
+const contentReportBtn_up = contentBtnList[0];
 // // - content popup modal 관련 변수
-// const contentPopupModal = document.querySelector(
-//     ".popup-modal+.delete_content"
-// );
-// const contentCancelBtn_popup = contentPopupModal.querySelector(
-//     ".cancel-button_popup"
-// );
-// const contentDeleteBtn_popup = contentPopupModal.querySelector(
-//     ".action-button_popup"
-// );
+const contentPopupModal = document.querySelector(".popup-modal+.content");
+const contentCancelBtn_popup = contentPopupModal.querySelector(
+    ".cancel-button_popup"
+);
+const contentReportBtn_popup = contentPopupModal.querySelector(
+    ".action-button_popup"
+);
 
-// contentDeleteBtn_up.addEventListener("click", () => {
-//     backgroundPopupModal.style.display = "block";
-//     contentPopupModal.style.display = "block";
-// });
-// contentCancelBtn_popup.addEventListener("click", () => {
-//     backgroundPopupModal.style.display = "none";
-//     contentPopupModal.style.display = "none";
-// });
+contentReportBtn_up.addEventListener("click", () => {
+    backgroundPopupModal.style.display = "block";
+    contentPopupModal.style.display = "block";
+});
+contentCancelBtn_popup.addEventListener("click", () => {
+    backgroundPopupModal.style.display = "none";
+    contentPopupModal.style.display = "none";
+});
+
 // - contents 데이터 가져오기
 getContents();
 
@@ -334,6 +334,8 @@ listStyleBtn.addEventListener("click", () => {
     if (Array.from(listStyleBtn.classList).includes("off")) {
         if (Array.from(contentsCont.classList).includes("picture-style")) {
             contentsCont.classList.remove("picture-style");
+            contentsList.style.display = "block";
+            pictureContentList.style.display = "none";
 
             // list button 활성화
             listStyleBtn.classList.replace("off", "on");
@@ -350,6 +352,8 @@ listStyleBtn.addEventListener("click", () => {
 pictureStyleBtn.addEventListener("click", () => {
     if (Array.from(pictureStyleBtn.classList).includes("off")) {
         contentsCont.classList.add("picture-style");
+        contentsList.style.display = "none";
+        pictureContentList.style.display = "flex";
 
         // list button 비활성화
         listStyleBtn.classList.replace("on", "off");
@@ -390,19 +394,23 @@ async function getContents() {
     const btnMoreList = [];
     const btnHeartList = [];
     const btnCommentList = [];
+    const pictureImageArray = [];
     // 여러 비동기에 쓰이는 await를 한 번으로 묶을 수는 없을까??, class나 생성자 함수로 각 게시물들을 바꿔주면 더 좋을 것 같다.
     for (let content of contentsListData) {
         const authorImage = await validateImage(
             content.author.image,
             "profile"
         );
-        const contentImage = await validateImage(content.image, "content");
+        // const contentImage = await validateImage(content.image, "content");
+
+        const imageArray = content.image.split(",");
+        console.log(imageArray);
         let imageHTML = "";
-        if (contentImage.length === 1 && contentImage[0]) {
-            imageHTML = `<img src="${contentImage[0]}" alt="post-image" class="content-img_content-info">`;
-        } else if (contentImage.length > 1) {
+        if (imageArray.length === 1 && imageArray[0]) {
+            imageHTML = `<img src="${imageArray[0]}" alt="post-image" class="content-img_content-info">`;
+        } else if (imageArray.length > 1) {
             const arr = [];
-            contentImage.forEach((image) => {
+            imageArray.forEach((image) => {
                 if (image) {
                     arr.push(
                         `<li><img src="${image}" alt="post-image" class="content-img_slide-item"></li>`
@@ -426,17 +434,31 @@ async function getContents() {
                     content.author.accountname
                 }</p>
                 <p class="txt_content-info">${content.content}</p>
-                <div class="cont_slide">
+                ${
+                    imageHTML
+                        ? `<div class="cont_slide">
                     ${imageHTML}
-                </div>
+                </div>`
+                        : ""
+                }
                 <div class="cont_buttons">
                 </div>
                 <p class="date_content-info">${makeKoreaDate(
                     content.updatedAt
                 )}</p>
             </div>
-                    
         </article>`;
+
+        // picture-content 노드 생성
+        if (imageArray.length >= 1) {
+            imageArray.forEach((image) => {
+                const pictureContentItem = document.createElement("img");
+                pictureContentItem.className += "content-img_content-info";
+                pictureContentItem.src = image;
+                pictureContentItem.alt = "post-image";
+                pictureContentsFragment.appendChild(pictureContentItem);
+            });
+        }
 
         // forEach문 돌 때 마다 더보기, 좋아요, 댓글 버튼 생성
         // 더보기 버튼 노드 생성
@@ -448,24 +470,13 @@ async function getContents() {
             contentUpModal.style.bottom = "0";
             // 일회성 이벤트 등록(여러개의 콘텐츠가 하나의 업모달을 공유해서 이벤트를 달기 때문에 일회성 이벤트를 사용)
             // 상품 삭제 이벤트 등록
-            contentDeleteBtn_popup.addEventListener(
+            contentReportBtn_popup.addEventListener(
                 "click",
-                function deleteFuncWrapper() {
-                    deleteItem(content.id, "content");
-                    contentDeleteBtn_popup.removeEventListener(
+                function ReportFuncWrapper() {
+                    reportItem(content.id, "content");
+                    contentReportBtn_popup.removeEventListener(
                         "click",
-                        deleteFuncWrapper
-                    );
-                }
-            );
-            // 상품 수정 이벤트 등록
-            contentModifyBtn_up.addEventListener(
-                "click",
-                function modifyFuncWrapper() {
-                    modifyItem(content.id, "content");
-                    contentModifyBtn_up.removeEventListener(
-                        "click",
-                        modifyFuncWrapper
+                        ReportFuncWrapper
                     );
                 }
             );
@@ -541,6 +552,7 @@ async function getContents() {
     }
 
     contentsList.appendChild(contentsFragment);
+    pictureContentList.appendChild(pictureContentsFragment);
 
     // - 리스트로 관리했던 버튼들 DOM에 붙여주기
     // 더보기 버튼
@@ -613,6 +625,32 @@ async function validateImage(image, imageType) {
     // });
     // console.log(imageArray);
     // return imageArray;
+}
+
+async function reportItem(itemId) {
+    const token = localStorage.getItem("Token");
+    // 팝업, 업 모달 다 내려주기
+    backgroundPopupModal.style.display = "none";
+    backgroundUpModal.style.display = "none";
+    contentPopupModal.style.display = "none";
+    contentUpModal.style.bottom = "-20rem";
+
+    // 게시글 삭제 로직...
+    const res = await myFetch(
+        `${BASE_URL}/post/${itemId}/report`,
+        "post",
+        token,
+        null
+    );
+    console.log(res);
+
+    const response = await res.json();
+
+    if (res.ok) {
+        window.alert("신고 접수 되었습니다.");
+    } else {
+        window.alert("신고에 실패하였습니다.");
+    }
 }
 
 // - nav bar, 하단 탭 페이지이동 -
