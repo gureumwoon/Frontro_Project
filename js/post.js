@@ -3,6 +3,7 @@ const commentUploadButton = document.querySelector(".comment-upload-btn");
 const modal = document.querySelector(".post-modal");
 const modalReport = document.querySelector(".post-modal-report")
 const modalDelete = document.querySelector(".post-modal-delete")
+const modalWrapper = document.querySelector('.modal-wrapper');
 const postFixButton = document.querySelector(".back-btn");
 const ID = localStorage.getItem("userId");
 console.log(ID)
@@ -198,7 +199,7 @@ async function getComment() {
 function getCommentMoreBtn() {
     const commentMoreBtn = document.querySelectorAll('.more-btn3');
     console.log("commentbtn: ", commentMoreBtn)
-    for (const [index, button] of commentMoreBtn.entries()) {
+    for (const button of commentMoreBtn.values()) {
         const loginUserId = localStorage.getItem('userId');
         const buttonUserId = button.dataset.userid;
         console.log('userid: ', loginUserId)
@@ -206,13 +207,21 @@ function getCommentMoreBtn() {
         if (loginUserId === buttonUserId) {
             button.addEventListener('click', () => {
                 modalDelete.classList.add('modal-open');
+                modalWrapper.style.display = 'block';
             });
         } else {
             button.addEventListener('click', () => {
                 modalReport.classList.add('modal-open');
+                modalWrapper.style.display = 'block';
             });
+
         }
     }
+    modalWrapper.addEventListener('click', () => {
+        modalWrapper.style.display = 'none';
+        modalDelete.classList.remove('modal-open');
+        modalReport.classList.remove('modal-open');
+    })
 }
 
 
