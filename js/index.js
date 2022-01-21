@@ -8,7 +8,6 @@ goToSearchPage.addEventListener('click', () => {
 const backgroundUpModal = document.querySelector(".hidden-menu");
 const upModal = document.querySelector(".hidden-menu-list");
 
-
 backgroundUpModal.addEventListener('click', () => {
     backgroundUpModal.style.display = "none";
     upModal.style.bottom = "-20rem";
@@ -24,6 +23,16 @@ const reportBtn = document.querySelector(".report-post")
 reportBtn.addEventListener('click', () => {
     backgroundPopupModal.style.display = "block";
     popupModal.style.display = "block";
+})
+
+cancleBtn.addEventListener('click', () => {
+    backgroundPopupModal.style.display = "none";
+    popupModal.style.display = "none";
+})
+
+doBtn.addEventListener('click', () => {
+    backgroundPopupModal.style.display = "none";
+    popupModal.style.display = "none";
 })
 
 
@@ -45,7 +54,6 @@ goMyProfile.addEventListener('click', () => {
     window.location.href = "my_profile.html";
 })
 
-// 원범님 코드 
 const container = document.querySelector('.main');
 // console.log(container);
 console.log(localStorage.getItem("Token")) //브라우저 저장된 토큰 
@@ -61,10 +69,6 @@ async function getFeed() {
     const url = "http://146.56.183.55:5050"
     const token = localStorage.getItem("Token")
     // console.log(token)
-
-    // 임시로 토큰 복붙해서 가져옴 
-    // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZGZiMDRjY2I0YjMzMTZkYzI2ODYxNCIsImV4cCI6MTY0NzQyNTE0OSwiaWF0IjoxNjQyMjQxMTQ5fQ.jM2G-i8kaRwU4tuyB3qtBlWMxhd9hhLjYW9VsXGREVA"
-    // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxY2E2MzhhYjVjNmNkMTgwODRlNDQ3ZCIsImV4cCI6MTY0NzMyMDQ3OSwiaWF0IjoxNjQyMTM2NDc5fQ.3ytVLwSAXEBRIxEl-y-4HX0KVo3fDV3cNGryBYALTEU"
 
     const res = await fetch(url+"/post/feed",{
         method:"GET",
@@ -157,7 +161,7 @@ async function getFeed() {
                 })
             }
 
-            // 더보기 버튼 클릭시 신고 버튼 
+            // 더보기 버튼 클릭시 모달창 뜨기 
             const btnMore = document.querySelectorAll(".btn-icon-more");
             for (const modal of btnMore) {
                 modal.addEventListener('click', () => {
@@ -166,14 +170,7 @@ async function getFeed() {
                 })
             }
         });
-
-
-        // const goPostPage = document.querySelectorAll(".btn-comment")
-        // console.log(goPostPage)
-
-        // 댓글 클릭했을 때 해당 상세 게시물 페이지로 이동 
-        // 위..? 아래..? 어떻게 해야할까요!??!?!?
-
+        // 해당 포스트 상세 게시물 댓글 페이지로 이동
         const goPostPage = document.querySelectorAll(".btn-comment")
         for (const [idx, comment] of goPostPage.entries()) {
             comment.addEventListener('click', () => {
