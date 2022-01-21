@@ -18,18 +18,19 @@
   <article class="container">
     <h2>로그인</h2>
   
-    <section class="input_info">
-      <label for="">이메일</label>
-      <input type="email" id="input-box-id" class="emailBox-margin">
-    </section>
+    <fieldset class="module-inp">
+      <label for="input_box" class="inpName">이메일</label>
+      <input type="email" class="inp-login" id="inpEmail" data-state="0" placeholder="이메일 주소를 입력해 주세요." class="alert">
+      <strong class="inp-error warning-text invisible">*이미 가입된 이메일 주소입니다.</strong>
+    </fieldset>
   
-    <section class="input_info">
-      <label for="">비밀번호</label>
-      <input type="password" id="input-box-pw">
-      <!-- <p class="input_alert">*이메일 또는 비밀번호가 일치하지 않습니다.</p> -->
-    </section>
+    <fieldset class="module-inp">
+      <label for="input_box_pw" class="inpName">비밀번호</label>
+      <input type="password" class="inp-login" id="inputPw" placeholder="비밀번호를 설정해 주세요." class="alert">
+      <strong class="inp-error warning-text invisible">*이메일  또는 비밀번호가 일치하지 않습니다.</strong>
+    </fieldset>
   
-    <button id="login_btn">로그인</button>
+    <button class="login_btn">로그인</button>
     <a href="./join.html" id="email_signIn">이메일로 회원가입 </a>
   </article>
 
