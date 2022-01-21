@@ -47,6 +47,7 @@ button{
 .profile-pic {
     width: 4.2rem;
     height: 4.2rem;
+    border-radius: 50%;
 }
 
 .user {

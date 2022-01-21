@@ -37,46 +37,6 @@ const openModal = () => {
 
 // fetch
 
-console.log(localStorage.getItem("Token")); //브라우저 저장된 토큰
-if (localStorage.getItem("Token")) {
-    getPost();
-}
-console.log(localStorage.getItem("Token"));
-
-// 날짜 & 시간 계산하기
-const description = document.querySelector(".desc");
-const picture = document.querySelector(".cont-following>img");
-console.log(picture);
-const getDateString = (date) => {
-    const d = new Date(date);
-    const year = d.getFullYear();
-    const month = d.getMonth() + 1;
-    const day = d.getDate();
-    return `${year}년 ${month}월 ${day}일`;
-};
-const getTimeString = (date) => {
-    const currentDate = new Date();
-    const commentDate = new Date(date);
-    const yearDiff = currentDate.getFullYear() - commentDate.getFullYear();
-    if (yearDiff > 0) {
-        return `${yearDiff}년 전`;
-    }
-    const monthDiff = currentDate.getMonth() - commentDate.getMonth();
-    if (monthDiff > 0) {
-        return `${monthDiff}달 전`;
-    }
-    const dayDiff = currentDate.getDate() - commentDate.getDate();
-    if (dayDiff > 0) {
-        return `${dayDiff}일 전`;
-    }
-    const hourDiff = currentDate.getHours() - commentDate.getHours();
-    if (hourDiff > 0) {
-        return `${hourDiff}시간 전`;
-    }
-}
-
-// fetch
-
 console.log(localStorage.getItem("Token")) //브라우저 저장된 토큰 
 if (localStorage.getItem("Token")) {
     getPost()
@@ -126,6 +86,7 @@ const getTimeString = (date) => {
 // 게시물 상세보기 페이지
 
 async function getPost() {
+    console.log('getPost')
     const queryString = window.location.href.split('?')[1]
     const searchParams = new URLSearchParams(queryString)
     console.log("searchparams: ", searchParams)
