@@ -108,7 +108,6 @@ async function fetchData() {
             },
         });
         const json = await res.json()
-        localStorage.setItem('accountName', json.profile.accountname);
         localStorage.setItem('userId', json.profile._id);
         console.log('json: ', json);
         profileImg.src = json.profile.image;

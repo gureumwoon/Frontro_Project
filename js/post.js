@@ -1,8 +1,11 @@
 const commentInput = document.querySelector(".comment-inp");
 const commentUploadButton = document.querySelector(".comment-upload-btn");
 const modal = document.querySelector(".post-modal");
+const modalReport = document.querySelector(".post-modal-report")
+const modalDelete = document.querySelector(".post-modal-delete")
 const postFixButton = document.querySelector(".back-btn");
-
+const ID = localStorage.getItem("userId");
+console.log(ID)
 // home_2 page로 이동
 
 postFixButton.addEventListener("click", () => {
@@ -23,10 +26,8 @@ commentInput.addEventListener("keyup", changeButtonColor);
 
 // 더보기 아이콘 클릭시 모달창 올라오기
 
-let isModalOpen = false;
-
 const openModal = () => {
-    if (isModalOpen) {
+    if (ID) {
         isModalOpen = false;
         modal.classList.remove("modal-open");
     } else {
@@ -35,9 +36,11 @@ const openModal = () => {
     }
 };
 
+
+
 // fetch
 
-console.log(localStorage.getItem("Token")) //브라우저 저장된 토큰 
+//브라우저 저장된 토큰
 if (localStorage.getItem("Token")) {
     getPost()
 }
@@ -165,6 +168,7 @@ async function getComment() {
     })
         .then((res) => res.json())
         .then((res) => {
+            console.log("res2: ", res)
             const commentsDom = document.querySelector(".comment-container");
             commentsDom.innerHTML = "";
             res.comments.forEach((comment) => {
@@ -181,14 +185,36 @@ async function getComment() {
                     </div>
                     <p class="comment">${comment.content}</p>
                 </div>
-                <button class="more-btn3" onclick="openModal(this)">
+                <button class="more-btn3" data-userid="${comment.author._id}">
                     <img src="src/svg/s-icon-more-vertical.svg" alt="더보기" class="icon-more2">
                 </button>
-            </div>
+            </div> 
             `;
-            });
+                getCommentMoreBtn();
+            })
         });
+};
+
+function getCommentMoreBtn() {
+    const commentMoreBtn = document.querySelectorAll('.more-btn3');
+    console.log("commentbtn: ", commentMoreBtn)
+    for (const [index, button] of commentMoreBtn.entries()) {
+        const loginUserId = localStorage.getItem('userId');
+        const buttonUserId = button.dataset.userid;
+        console.log('userid: ', loginUserId)
+        console.log('buttonuserid: ', buttonUserId)
+        if (loginUserId === buttonUserId) {
+            button.addEventListener('click', () => {
+                modalDelete.classList.add('modal-open');
+            });
+        } else {
+            button.addEventListener('click', () => {
+                modalReport.classList.add('modal-open');
+            });
+        }
+    }
 }
+
 
 commentUploadButton.addEventListener("click", (e) => {
     createComment();
