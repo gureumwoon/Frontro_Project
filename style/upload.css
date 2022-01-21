@@ -35,6 +35,10 @@ label {
     padding: 0.8rem 1.6rem;
 }
 
+.back-btn {
+    cursor: pointer;
+}
+
 .Ms-disabled-button {
     margin: 0;
 }

@@ -97,59 +97,57 @@ async function getFeed() {
     const json = await res.json()
     console.log(json);
 
-    const posts = json.posts
     //forEach문으로 받아온 데이터 전부 살펴보면서 그려주는 부분
-    posts.forEach(post => {
-        console.log(post);
-        const authorImage = post.author.image
-        const authorAccount = post.author.accountname
-        const authorName = post.author.username
-        const commentCount = post.commentCount
-        const content = post.content
-        const heartCount = post.heartCount
-        const hearted = post.hearted
-        const contentImage = post.image
 
-        // 이미지 3장일 때 이미지 리스트
-        //  글만 있는 이미지 있는 경우
+    // const authorImage = post.author.image
+    // const authorAccount = post.author.accountname
+    // const authorName = post.author.username
+    // const commentCount = post.commentCount
+    // const content = post.content
+    // const heartCount = post.heartCount
+    // const hearted = post.hearted
+    // const contentImage = post.image
 
-        const posts = json.posts
+    // 이미지 3장일 때 이미지 리스트
+    //  글만 있는 이미지 있는 경우
 
-        // 팔로우가 없는 경우 
-        if (posts.length == 0) {
-            container.innerHTML += `
+    const posts = json.posts
+
+    // 팔로우가 없는 경우 
+    if (posts.length == 0) {
+        container.innerHTML += `
                 <div class="main-icon">
                     <img src="./src/svg/logo-Grey.svg" alt="" class="img-slime">
                     <p class="p-intro">유저를 검색해 팔로우 해보세요!</p>
                     <button class="btn-search">검색하기</button>
                 </div>
         `
-        } else {
-            posts.forEach(post => {
-                // console.log(post);
-                const authorImage = post.author.image;
-                const id = post.author._id;
-                const authorAccount = post.author.accountname;
-                const authorName = post.author.username;
-                const commentCount = post.commentCount;
-                const content = post.content;
-                const heartCount = post.heartCount;
-                const hearted = post.hearted;
-                const updateDate = "" + post.updatedAt;
-                const contentImage = post.image.split(',');
-                // 이미지 슬라이더 구현 
-                let imageHTML = '';
-                if (contentImage.length === 1 && contentImage[0]) {
-                    imageHTML = `<img src="${contentImage[0]}" alt="post-image" class="article-post__img">`
-                } else if (contentImage.length > 1) {
-                    const arr = [];
-                    contentImage.forEach(image => {
-                        arr.push(`<img src="${image}" alt="post-image" class="article-post__img--slide">`)
-                    });
-                    imageHTML = `<ul class="article-post__img-list">${arr.join('')}</ul>`;
-                }
+    } else {
+        posts.forEach(post => {
+            console.log('post');
+            const authorImage = post.author.image;
+            const id = post.author._id;
+            const authorAccount = post.author.accountname;
+            const authorName = post.author.username;
+            const commentCount = post.commentCount;
+            const content = post.content;
+            const heartCount = post.heartCount;
+            const hearted = post.hearted;
+            const updateDate = "" + post.updatedAt;
+            const contentImage = post.image.split(',');
+            // 이미지 슬라이더 구현 
+            let imageHTML = '';
+            if (contentImage.length === 1 && contentImage[0]) {
+                imageHTML = `<img src="${contentImage[0]}" alt="post-image" class="article-post__img">`
+            } else if (contentImage.length > 1) {
+                const arr = [];
+                contentImage.forEach(image => {
+                    arr.push(`<img src="${image}" alt="post-image" class="article-post__img--slide">`)
+                });
+                imageHTML = `<ul class="article-post__img-list">${arr.join('')}</ul>`;
+            }
 
-                document.querySelector(".main").innerHTML += `
+            document.querySelector(".main").innerHTML += `
                         <article class="post">
                             <img src="${authorImage}" alt="${authorName}님의 프로필 사진" class="profile-pic" >
                             <div class="cont-following">
@@ -179,42 +177,41 @@ async function getFeed() {
                             </div>
                         </article>  
             `
-                // 사용자 이름 눌렀을 때 해당하는 your_profile 로 이동 
-                const titPost = document.querySelectorAll(".tit-post");
-                for (const i of titPost) {
-                    i.addEventListener('click', () => {
-                        window.location.href = `your_profile.html?accountName=${authorAccount}`;
-                    })
-                }
-
-                // 하트 버튼 클릭하면 노란 하트로 변경 
-                const yellowHeart = document.querySelectorAll(".article-heart__btn");
-                for (const heart of yellowHeart) {
-                    heart.addEventListener('click', () => {
-                        heart.src = "./src/png/icon-heart-active.png"
-                    })
-                }
-
-                // 더보기 버튼 클릭시 모달창 뜨기 
-                const btnMore = document.querySelectorAll(".btn-icon-more");
-                for (const modal of btnMore) {
-                    modal.addEventListener('click', () => {
-                        backgroundUpModal.style.display = "block";
-                        upModal.style.bottom = "0";
-                    })
-                }
-            });
-            // 해당 포스트 상세 게시물 댓글 페이지로 이동
-            const goPostPage = document.querySelectorAll(".btn-comment")
-            for (const [idx, comment] of goPostPage.entries()) {
-                comment.addEventListener('click', () => {
-                    window.location.href = `post.html?id=${posts[idx].id}`;
+            // 사용자 이름 눌렀을 때 해당하는 your_profile 로 이동 
+            const titPost = document.querySelectorAll(".tit-post");
+            for (const i of titPost) {
+                i.addEventListener('click', () => {
+                    window.location.href = `your_profile.html?accountName=${authorAccount}`;
                 })
             }
+
+            // 하트 버튼 클릭하면 노란 하트로 변경 
+            const yellowHeart = document.querySelectorAll(".article-heart__btn");
+            for (const heart of yellowHeart) {
+                heart.addEventListener('click', () => {
+                    heart.src = "./src/png/icon-heart-active.png"
+                })
+            }
+
+            // 더보기 버튼 클릭시 모달창 뜨기 
+            const btnMore = document.querySelectorAll(".btn-icon-more");
+            for (const modal of btnMore) {
+                modal.addEventListener('click', () => {
+                    backgroundUpModal.style.display = "block";
+                    upModal.style.bottom = "0";
+                })
+            }
+        });
+        // 해당 포스트 상세 게시물 댓글 페이지로 이동
+        const goPostPage = document.querySelectorAll(".btn-comment")
+        for (const [idx, comment] of goPostPage.entries()) {
+            comment.addEventListener('click', () => {
+                window.location.href = `post.html?id=${posts[idx].id}`;
+            })
         }
-    })
+    }
 }
-getFeed()
+
 
 // - 년일월 날짜 변환 함수
 function makeKoreaDate(date) {
