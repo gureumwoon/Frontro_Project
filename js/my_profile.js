@@ -77,7 +77,7 @@ const addProductButton = document.querySelector(
 // - 프로필 데이터 fetch로 가져오기
 getProfileData();
 
-// - followers, followings 버튼 페이지 이동
+// - 페이지 이동 -
 profileFollowersBtn.addEventListener("click", () => {
     const accountName = localStorage.getItem("accountName");
     location.href = `follow.html?accountName=${accountName}&follow=follower`;
@@ -423,6 +423,10 @@ async function getContents() {
     const btnHeartList = [];
     const btnCommentList = [];
 
+<<<<<<< HEAD
+=======
+    // const postIdList = [];
+>>>>>>> a3c0f0db1ff11cd42571aaf4a3db27afaaf4db79
     // 여러 비동기에 쓰이는 await를 한 번으로 묶을 수는 없을까??, class나 생성자 함수로 각 게시물들을 바꿔주면 더 좋을 것 같다.
     for (let content of contentsListData) {
         const authorImage = await validateImage(
@@ -440,7 +444,7 @@ async function getContents() {
             imageArray.forEach((image) => {
                 if (image) {
                     arr.push(
-                        `<li><img src="${image}" alt="post-image" class="content-img_slide-item"></li>`
+                        `<img src="${image}" alt="post-image" class="content-img_slide-item">`
                     );
                 }
             });
@@ -461,8 +465,15 @@ async function getContents() {
                     content.author.accountname
                 }</p>
                 <p class="txt_content-info">${content.content}</p>
+<<<<<<< HEAD
                 <div class="cont_slide">${imageHTML}</div>
+=======
+                <div class="cont_content-image"></div>
+                ${imageHTML}
+>>>>>>> a3c0f0db1ff11cd42571aaf4a3db27afaaf4db79
                 <div class="cont_buttons">
+                
+                
                 </div>
                     <p class="date_content-info">${makeKoreaDate(
                         content.updatedAt
@@ -710,21 +721,8 @@ async function myFetch(url, method, auth = "", data = "") {
 async function checkLoginUser() {
     // 토큰 검사하는 api 사용해서 수정하기
     // if (localStorage.getItem("Token") || localStorage.getItem("RefreshToken")) { }
-    const token = localStorage.getItem("Token");
-    if (!token) {
+    if (!localStorage.getItem("Token")) {
         location.href = "login.html";
-    }
-    // 이 부분은 토큰이 만료됐다 싶을 때 다시 테스트 해보기
-    const res = await myFetch(
-        `${BASE_URL}/user/checktoken`,
-        "get",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTdjNzdiOGJkMTU3NGYwYzkzYWE0MSIsImV4cCI6MTY0Nzc2Mzg0MywiaWF0IjoxNjQyNTc5ODQzfQ.t3ynPiH6o9L-3k1z7iy3GtvUO2r_zCjWHgMR7TnLWQE"
-    );
-    const result = await res.json();
-    if (!result.isValid) {
-        location.href = "login.html";
-    } else {
-        console.log("만료되지 않았습니다.");
     }
 }
 
