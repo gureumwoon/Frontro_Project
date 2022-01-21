@@ -1,50 +1,7 @@
 function getInput() {
-  const userEmailInput = document.querySelector('#inpEmail');
-  console.log(userEmailInput);
-  const userPwInput = document.querySelector('#inputPw');
-  console.log(userPwInput);
-  const loginBtn = document.querySelector('.login_btn');
-  console.log(loginBtn);
+    console.log(document.querySelector("#input-box-id").value);
+    console.log(document.querySelector("#input-box-pw").value);
 }
-
-// 통과못하면 경고문구 띄우기 
-loginBtn.addEventListener("click",async ()=>{
-  const email = document.querySelector("#inpEmail").value
-  const pw = document.querySelector("#inputPw").value
-  // 이메일 유효성 검사 통과시 화면 전환 통과 못하면 경고 문구 띄우기 
-  const emailValid = await checkEmailValid(email)
-  if (emailValid) {
-      $emailPw.style.display = "none"
-      $profile.style.display = "block"
-  }else{
-      warningTextList[0].classList.remove('invisible');
-  }
-})
-
-// input에 입력시, 유효성 검사 경고 출력
-userPwInput.addEventListener ('input', () => {
-  if(!validPassword()) {
-      warningTextList[1].classList.remove('invisible');
-      if(userPwInput.value === "") {
-          warningTextList[1].classList.add('invisible');
-      }
-      return;
-  }
-  warningTextList[1].classList.add('invisible');
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 비동기로 동하는것을 명시해줘야 await을 할 수 있다!
 async function login() {
 
