@@ -8,6 +8,7 @@
 
 html {
     background-color: #f2f2f2;
+    height: 100vh;
 }
 
 html,
@@ -30,6 +31,12 @@ button {
 .button-noneBackground {
     background-color: transparent;
     border: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 /* 탑 메뉴 바, top bar */
@@ -184,6 +191,7 @@ button {
 
 .cont_on-sale {
     display: none;
+    min-height: 18.7rem;
     position: relative;
     /* padding: 2rem 2.1rem 2rem 2.1rem; > 얘는 사용이 안된다..*/
     padding: 2rem 0;
@@ -240,6 +248,7 @@ button {
 
 /* 콘텐츠 컨테이너 */
 .cont_contents {
+    flex: 1;
     display: none;
     background-color: #ffffff;
     /* padding-bottom: 6rem; */
@@ -324,7 +333,8 @@ button {
     margin-right: 1.85rem;
     color: #767676;
     font-size: 1.2rem;
-    line-height: 1.2rem;
+    line-height: 1.5rem;
+    vertical-align: top;
 }
 .desc_content-info .date_content-info {
     font-size: 1rem;
