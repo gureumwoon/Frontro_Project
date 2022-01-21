@@ -47,6 +47,7 @@ button{
 .profile-pic {
     width: 4.2rem;
     height: 4.2rem;
+    border-radius: 50%;
 }
 
 .user {
@@ -260,10 +261,21 @@ button{
     overflow: auto;
     /*마진겹친현상을해결하기위한코드*/
     transition:all 0.5s ease-out;
+    z-index: 100;
 }
 
 .modal-open {
     bottom: 0;
+}
+
+.modal-wrapper {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.2);
+    display: none;
 }
 
 .modal-txt-report,

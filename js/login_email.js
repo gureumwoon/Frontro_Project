@@ -28,7 +28,7 @@ async function login() {
     localStorage.setItem("Token", json.user.token);
     localStorage.setItem("accountName", json.user.accountname);
     localStorage.setItem("user-profile", json.user.image);
-    localStorage.setItem("userId", json.user.id);
+    localStorage.setItem("userId", json.user._id);
     location.href = "./index.html";
 }
 const $loginBtn = document.querySelector("#login_btn");

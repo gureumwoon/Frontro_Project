@@ -19,6 +19,23 @@ const popupModal = document.querySelector(".alert-modal-wrap");
 const cancleBtn = document.querySelector(".cancle-btn");
 const doBtn = document.querySelector(".do-btn");
 const reportBtn = document.querySelector(".report-post")
+// 사용자 닉네임 누르면 해당 사용자의 프로필로 이동
+// 현재 모두 your_profile로 이동함 
+// API 받아서 각 사용자의 profile로 이동하게 만들기
+const goOtherProfile = document.querySelectorAll(".tit-post");
+console.log(goOtherProfile);
+for (const userName of goOtherProfile) {
+    userName.addEventListener('click', function () {
+        window.location.href = "your_profile.html";
+    })
+}
+console.log(goOtherProfile);
+
+// API 받아서 
+// 하트 누르면 빨간 하트로 변경 
+// const likeButton = document.querySelectorAll(".btn-like");
+
+// console.log(likeButton);
 
 reportBtn.addEventListener('click', () => {
     backgroundPopupModal.style.display = "block";
@@ -57,10 +74,10 @@ goMyProfile.addEventListener('click', () => {
 const container = document.querySelector('.main');
 // console.log(container);
 console.log(localStorage.getItem("Token")) //브라우저 저장된 토큰 
-if(localStorage.getItem("Token")){
+if (localStorage.getItem("Token")) {
     getFeed()
 }
-else{
+else {
     location.href = './login.html'
 }
 console.log(localStorage.getItem("Token"))  //요거는 로컬스토리지에 값잘 있나 확인.
@@ -70,80 +87,95 @@ async function getFeed() {
     const token = localStorage.getItem("Token")
     // console.log(token)
 
-    const res = await fetch(url+"/post/feed",{
-        method:"GET",
-        headers:{
-            "Authorization" : `Bearer ${token}`,
-            "Content-type" : "application/json"
+    const res = await fetch(url + "/post/feed", {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-type": "application/json"
         }
     })
     const json = await res.json()
-    // console.log(json); //응답에 대한 결과
+    console.log(json);
+
+    //forEach문으로 받아온 데이터 전부 살펴보면서 그려주는 부분
+
+    // const authorImage = post.author.image
+    // const authorAccount = post.author.accountname
+    // const authorName = post.author.username
+    // const commentCount = post.commentCount
+    // const content = post.content
+    // const heartCount = post.heartCount
+    // const hearted = post.hearted
+    // const contentImage = post.image
+
+    // 이미지 3장일 때 이미지 리스트
+    //  글만 있는 이미지 있는 경우
 
     const posts = json.posts
 
     // 팔로우가 없는 경우 
     if (posts.length == 0) {
-        container.innerHTML +=`
-        <div class="main-icon">
-        <img src="./src/svg/logo-Grey.svg" alt="" class="img-slime">
-        <p class="p-intro">유저를 검색해 팔로우 해보세요!</p>
-        <button class="btn-search">검색하기</button>
-        </div>
-        `
-    }else {
-    posts.forEach(post => {
-        // console.log(post);
-        const authorImage = post.author.image;
-        const id = post.author._id;
-        const authorAccount = post.author.accountname;
-        const authorName = post.author.username;
-        const commentCount = post.commentCount;
-        const content = post.content;
-        const heartCount = post.heartCount;
-        const hearted = post.hearted;
-        const updateDate = "" + post.updatedAt;
-        const contentImage = post.image.split(',');
-        // 이미지 슬라이더 구현 
-        let imageHTML = '';
-        if(contentImage.length === 1 && contentImage[0]) {
-            imageHTML = `<img src="${contentImage[0]}" alt="post-image" class="article-post__img">`
-        } else if (contentImage.length>1) {
-            const arr = [];
-            contentImage.forEach(image => {
-                arr.push(`<img src="${image}" alt="post-image" class="article-post__img--slide">`)
-            });
-            imageHTML = `<ul class="article-post__img-list">${arr.join('')}</ul>`;
-        }
-
-        document.querySelector(".main").innerHTML+=`
-        <article class="post">
-        <img src="${authorImage}" alt="${authorName}님의 프로필 사진" class="profile-pic" >
-        <div class="cont-following">
-            <div class="profile">
-                <p class="tit-post">${authorName}</p>
-                <p class="id font-gray">${authorAccount}</p>
-            </div>
-            <p class="desc">${content}</p>
-            ${imageHTML}
-            <div class="icon-box font-gray">
-                <button type="button" data-hearted="${hearted ? 1 : 0}" data-id="${id}" class="btn btn-like btn-nonebackground">
-                    <img src="./src/png/icon-heart.png" alt="post-like" class="article-heart__btn">
-                </button>
-                <span class="count count-heart">${heartCount}</span>
-                <button type="button" class="btn btn-comment btn-nonebackground">
-                    <img src="./src/svg/message-circle.svg">
-                </button>
-                <span class="count count-comment">${commentCount}</span>
+        container.innerHTML += `
+                <div class="main-icon">
+                    <img src="./src/svg/logo-Grey.svg" alt="" class="img-slime">
+                    <p class="p-intro">유저를 검색해 팔로우 해보세요!</p>
+                    <button class="btn-search">검색하기</button>
                 </div>
-                <p class="date font-gray">${makeKoreaDate(updateDate)}</p>
-            </div>
-            <div class="div-icon">
-                <button type="button" class="btn-icon-more btn-nonebackground">
-                    <img class="" src="src/svg/s-icon-more-vertical.svg" alt="더보기 버튼">
-                </button>
-            </div>
-        </article>  
+        `
+    } else {
+        posts.forEach(post => {
+            console.log('post');
+            const authorImage = post.author.image;
+            const id = post.author._id;
+            const authorAccount = post.author.accountname;
+            const authorName = post.author.username;
+            const commentCount = post.commentCount;
+            const content = post.content;
+            const heartCount = post.heartCount;
+            const hearted = post.hearted;
+            const updateDate = "" + post.updatedAt;
+            const contentImage = post.image.split(',');
+            // 이미지 슬라이더 구현 
+            let imageHTML = '';
+            if (contentImage.length === 1 && contentImage[0]) {
+                imageHTML = `<img src="${contentImage[0]}" alt="post-image" class="article-post__img">`
+            } else if (contentImage.length > 1) {
+                const arr = [];
+                contentImage.forEach(image => {
+                    arr.push(`<img src="${image}" alt="post-image" class="article-post__img--slide">`)
+                });
+                imageHTML = `<ul class="article-post__img-list">${arr.join('')}</ul>`;
+            }
+
+            document.querySelector(".main").innerHTML += `
+                        <article class="post">
+                            <img src="${authorImage}" alt="${authorName}님의 프로필 사진" class="profile-pic" >
+                            <div class="cont-following">
+                                <div class="profile">
+                                    <p class="tit-post">${authorName}</p>
+                                    <p class="id font-gray">${authorAccount}</p>
+                                </div>
+                                <p class="desc">${content}</p>
+                                ${imageHTML}
+                                <div class="icon-box font-gray">
+                                    <button type="button" data-hearted="${hearted ? 1 : 0}" data-id="${id}" class="btn btn-like btn-nonebackground">
+                                        <img src="./src/png/icon-heart.png" alt="post-like" class="article-heart__btn">
+                                    </button>
+                                    <span class="count count-heart">${heartCount}</span>
+                                    <button type="button" class="btn btn-comment btn-nonebackground">
+                                        <img src="./src/svg/message-circle.svg">
+                                    </button>
+                                    <span class="count count-comment">${commentCount}</span>
+                                    </div>
+                                    <p class="date font-gray">${makeKoreaDate(updateDate)}</p>
+                                </div>
+                                <div class="div-icon">
+                                    <button type="button" class="btn-icon-more btn-nonebackground">
+                                        <img class="" src="src/svg/s-icon-more-vertical.svg" alt="더보기 버튼">
+                                    </button>
+                                </div>
+                            </div>
+                        </article>  
             `
             // 사용자 이름 눌렀을 때 해당하는 your_profile 로 이동 
             const titPost = document.querySelectorAll(".tit-post");
@@ -157,7 +189,7 @@ async function getFeed() {
             const yellowHeart = document.querySelectorAll(".article-heart__btn");
             for (const heart of yellowHeart) {
                 heart.addEventListener('click', () => {
-                    heart.src="./src/png/icon-heart-active.png"
+                    heart.src = "./src/png/icon-heart-active.png"
                 })
             }
 
@@ -179,10 +211,26 @@ async function getFeed() {
         }
     }
 }
-getFeed()
+
 
 // - 년일월 날짜 변환 함수
 function makeKoreaDate(date) {
     const koreaDate = date.split("-").map((value) => parseInt(value));
     return `${koreaDate[0]}년 ${koreaDate[1]}월 ${koreaDate[2]}일`;
 }
+
+// 이미지가 세개인 경우 클릭하면 이미지가 넘어가는 함수
+// function imageLogic() {
+//     if (이미지가 1개이상) {
+//         return
+//         document.querySelector('.picture').innerHTML+=`
+
+//         `
+//     } else if (이미지가 없는 글이라면) {
+//         return
+//         이미지자체를 없애기;
+//     }
+//     else {
+//         ${contentImage}
+//     }
+// }
