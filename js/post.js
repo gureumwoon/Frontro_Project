@@ -3,7 +3,8 @@ const commentUploadButton = document.querySelector(".comment-upload-btn");
 const modal = document.querySelector(".post-modal");
 const modalReport = document.querySelector(".post-modal-report")
 const modalDelete = document.querySelector(".post-modal-delete")
-const modalWrapper = document.querySelector('.modal-wrapper');
+const alertActionBtn = document.querySelectorAll(".alert_action-button")
+const modalWrapper = document.querySelector(".modal-wrapper");
 const postFixButton = document.querySelector(".back-btn");
 const ID = localStorage.getItem("userId");
 console.log(ID)
@@ -207,7 +208,7 @@ async function getComment() {
                     </div>
                     <p class="comment">${comment.content}</p>
                 </div>
-                <button class="more-btn3" data-userid="${comment.author._id}">
+                <button class="more-btn3" data-commentid = "${comment.id}" data-userid="${comment.author._id}">
                     <img src="src/svg/s-icon-more-vertical.svg" alt="더보기" class="icon-more2">
                 </button>
             </div> 
@@ -223,6 +224,11 @@ function getCommentMoreBtn() {
     for (const button of commentMoreBtn.values()) {
         const loginUserId = localStorage.getItem('userId');
         const buttonUserId = button.dataset.userid;
+        const modalTxtDelete = document.querySelector('.modal-txt-delete');
+        const modalTxtReport = document.querySelector('.modal-txt-report');
+        const alertCommentDelete = document.querySelector('.alert-comment-delete');
+        const alertCommentReport = document.querySelector('.alert-comment-report');
+        const alertCancelBtn = document.querySelectorAll('.alert_cancel-button')
         console.log('userid: ', loginUserId)
         console.log('buttonuserid: ', buttonUserId)
         if (loginUserId === buttonUserId) {
@@ -230,12 +236,28 @@ function getCommentMoreBtn() {
                 modalDelete.classList.add('modal-open');
                 modalWrapper.style.display = 'block';
             });
+            modalTxtDelete.addEventListener('click', () => {
+                alertCommentDelete.style.display = 'block';
+                alertActionBtn[0].addEventListener('click', commentDel)
+            });
+            alertCancelBtn[0].addEventListener('click', () => {
+                alertCommentDelete.style.display = 'none';
+                modalWrapper.style.display = 'none';
+                modalDelete.classList.remove('modal-open');
+            });
         } else {
             button.addEventListener('click', () => {
                 modalReport.classList.add('modal-open');
                 modalWrapper.style.display = 'block';
             });
-
+            modalTxtReport.addEventListener('click', () => {
+                alertCommentReport.style.display = 'block';
+            });
+            alertCancelBtn[1].addEventListener('click', () => {
+                alertCommentReport.style.display = 'none';
+                modalWrapper.style.display = 'none';
+                modalReport.classList.remove('modal-open');
+            });
         }
     }
     modalWrapper.addEventListener('click', () => {
@@ -269,3 +291,35 @@ async function createComment() {
     commentInput.value = "";
     location.href = `./post.html?${queryString}`;
 }
+
+// 댓글삭제
+
+async function commentDel() {
+    const queryString = window.location.href.split('?')[1]
+    const searchParams = new URLSearchParams(queryString)
+    const postId = searchParams.get('id');
+    const alertCommentDelete = document.querySelector('.alert-comment-delete');
+    const moreBtn = document.querySelector('.more-btn3')
+    const buttonUserId = moreBtn.dataset.commentid;
+    const res = await fetch(
+        `http://146.56.183.55:5050/post/${postId}/comments/${buttonUserId}`,
+        {
+            method: 'DELETE',
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("Token"),
+                "Content-Type": "application/json",
+            },
+        }
+    );
+    const data = await res.json();
+    console.log("data: ", data);
+    if (data) {
+        alertCommentDelete.style.display = 'none';
+        modalWrapper.style.display = 'none';
+        modalDelete.classList.remove('modal-open');
+        location.reload();
+    } else {
+        alert('삭제 실패');
+    }
+}
+
