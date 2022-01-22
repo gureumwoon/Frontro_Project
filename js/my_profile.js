@@ -270,8 +270,12 @@ async function deleteItem(itemId, itemType) {
         const response = await res.json();
 
         // 상품 삭제 완료여부 알려주기
-        window.alert(response.message);
-        location.reload();
+        if (res.ok) {
+            window.alert(response.message);
+            location.reload();
+        } else {
+            window.alert("삭제 실패하였습니다!");
+        }
     } else if (itemType === "content") {
         // 팝업, 업 모달 다 내려주기
         backgroundPopupModal.style.display = "none";
@@ -290,8 +294,12 @@ async function deleteItem(itemId, itemType) {
         const response = await res.json();
 
         // 게시글 삭제 완료여부 알려주기
-        window.alert(response.message);
-        location.reload();
+        if (res.ok) {
+            window.alert(response.message);
+            location.reload();
+        } else {
+            window.alert("삭제 실패하였습니다!");
+        }
     }
 }
 function modifyItem(itemId, itemType) {
@@ -319,7 +327,8 @@ const pictureStyleBtn = Array.from(styleBtn)[1];
 const userContentsCont = document.querySelector(".cont_user-contents");
 const contentsList = document.querySelector(".ul_user-contents");
 const contentsFragment = document.createDocumentFragment();
-const contentImagesFragment = document.createDocumentFragment();
+const pictureContentList = document.querySelector(".ul-picture_user-contents");
+const pictureContentsFragment = document.createDocumentFragment();
 // - content up modal 관련 변수
 const contentUpModal = document.querySelector(".content");
 const contentBtnList = document.querySelectorAll(".content .item-modal");
@@ -354,6 +363,8 @@ listStyleBtn.addEventListener("click", () => {
     if (Array.from(listStyleBtn.classList).includes("off")) {
         if (Array.from(userContentsCont.classList).includes("picture-style")) {
             userContentsCont.classList.remove("picture-style");
+            contentsList.style.display = "block";
+            pictureContentList.style.display = "none";
 
             // list button 활성화
             listStyleBtn.classList.replace("off", "on");
@@ -370,6 +381,8 @@ listStyleBtn.addEventListener("click", () => {
 pictureStyleBtn.addEventListener("click", () => {
     if (Array.from(pictureStyleBtn.classList).includes("off")) {
         userContentsCont.classList.add("picture-style");
+        contentsList.style.display = "none";
+        pictureContentList.style.display = "flex";
 
         // list button 비활성화
         listStyleBtn.classList.replace("on", "off");
@@ -410,20 +423,25 @@ async function getContents() {
     const btnHeartList = [];
     const btnCommentList = [];
 
+<<<<<<< HEAD
+=======
     // const postIdList = [];
+>>>>>>> a3c0f0db1ff11cd42571aaf4a3db27afaaf4db79
     // 여러 비동기에 쓰이는 await를 한 번으로 묶을 수는 없을까??, class나 생성자 함수로 각 게시물들을 바꿔주면 더 좋을 것 같다.
     for (let content of contentsListData) {
         const authorImage = await validateImage(
             content.author.image,
             "profile"
         );
-        const contentImage = await validateImage(content.image, "content");
+        // const contentImage = await validateImage(content.image, "content");
+
+        const imageArray = content.image.split(",");
         let imageHTML = "";
-        if (contentImage.length === 1 && contentImage[0]) {
-            imageHTML = `<img src="${contentImage[0]}" alt="post-image" class="content-img_content-info">`;
-        } else if (contentImage.length > 1) {
+        if (imageArray.length === 1 && imageArray[0]) {
+            imageHTML = `<img src="${imageArray[0]}" alt="post-image" class="content-img_content-info">`;
+        } else if (imageArray.length > 1) {
             const arr = [];
-            contentImage.forEach((image) => {
+            imageArray.forEach((image) => {
                 if (image) {
                     arr.push(
                         `<img src="${image}" alt="post-image" class="content-img_slide-item">`
@@ -433,7 +451,7 @@ async function getContents() {
             imageHTML = `<ul class="content-img_slide">${arr.join("")}</ul>`;
         }
 
-        // content 노드 생성
+        // list-content 노드 생성
         const contentItem = document.createElement("li");
         contentItem.className += "li_user-contents";
         contentItem.innerHTML = `
@@ -447,18 +465,32 @@ async function getContents() {
                     content.author.accountname
                 }</p>
                 <p class="txt_content-info">${content.content}</p>
+<<<<<<< HEAD
+                <div class="cont_slide">${imageHTML}</div>
+=======
                 <div class="cont_content-image"></div>
                 ${imageHTML}
+>>>>>>> a3c0f0db1ff11cd42571aaf4a3db27afaaf4db79
                 <div class="cont_buttons">
                 
                 
                 </div>
-                <p class="date_content-info">${makeKoreaDate(
-                    content.updatedAt
-                )}</p>
-            </div>
-                    
+                    <p class="date_content-info">${makeKoreaDate(
+                        content.updatedAt
+                    )}</p>
+                </div>
         </article>`;
+
+        // picture-content 노드 생성
+        if (imageArray.length >= 1) {
+            imageArray.forEach((image) => {
+                const pictureContentItem = document.createElement("img");
+                pictureContentItem.className += "content-img_content-info";
+                pictureContentItem.src = image;
+                pictureContentItem.alt = "post-image";
+                pictureContentsFragment.appendChild(pictureContentItem);
+            });
+        }
 
         // forEach문 돌 때 마다 더보기, 좋아요, 댓글 버튼 생성
         // 더보기 버튼 노드 생성
@@ -563,6 +595,7 @@ async function getContents() {
     }
 
     contentsList.appendChild(contentsFragment);
+    pictureContentList.appendChild(pictureContentsFragment);
 
     // - 리스트로 관리했던 버튼들 DOM에 붙여주기
     // 더보기 버튼
