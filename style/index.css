@@ -303,3 +303,21 @@
     background-color: var(--zzin-no);
 }
 
+/* innerhtml 좋아요 기능  */
+.post .icon-box {
+    display:  flex;
+}
+
+.button-like {
+    color: #767676;
+}
+
+.count-heart {
+    vertical-align: 5px;
+    padding-left: 3px;
+}
+
+.icon-box .count {
+    padding-top: 6px;
+}
+

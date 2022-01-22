@@ -22,14 +22,14 @@ const reportBtn = document.querySelector(".report-post")
 // 사용자 닉네임 누르면 해당 사용자의 프로필로 이동
 // 현재 모두 your_profile로 이동함 
 // API 받아서 각 사용자의 profile로 이동하게 만들기
-const goOtherProfile = document.querySelectorAll(".tit-post");
-console.log(goOtherProfile);
-for (const userName of goOtherProfile) {
-    userName.addEventListener('click', function () {
-        window.location.href = "your_profile.html";
-    })
-}
-console.log(goOtherProfile);
+// const goOtherProfile = document.querySelectorAll(".tit-post");
+// console.log(goOtherProfile);
+// for (const userName of goOtherProfile) {
+//     userName.addEventListener('click', function () {
+//         window.location.href = "your_profile.html";
+//     })
+// }
+// console.log(goOtherProfile);
 
 // API 받아서 
 // 하트 누르면 빨간 하트로 변경 
@@ -73,14 +73,14 @@ goMyProfile.addEventListener('click', () => {
 
 const container = document.querySelector('.main');
 // console.log(container);
-console.log(localStorage.getItem("Token")) //브라우저 저장된 토큰 
+// console.log(localStorage.getItem("Token")) //브라우저 저장된 토큰 
 if (localStorage.getItem("Token")) {
     getFeed()
 }
 else {
     location.href = './login.html'
 }
-console.log(localStorage.getItem("Token"))  //요거는 로컬스토리지에 값잘 있나 확인.
+// console.log(localStorage.getItem("Token"))  //요거는 로컬스토리지에 값잘 있나 확인.
 
 async function getFeed() {
     const url = "http://146.56.183.55:5050"
@@ -95,7 +95,7 @@ async function getFeed() {
         }
     })
     const json = await res.json()
-    console.log(json);
+    // console.log(json);
 
     //forEach문으로 받아온 데이터 전부 살펴보면서 그려주는 부분
 
@@ -113,6 +113,8 @@ async function getFeed() {
 
     const posts = json.posts
 
+    const btnHeartList = [];
+
     // 팔로우가 없는 경우 
     if (posts.length == 0) {
         container.innerHTML += `
@@ -124,17 +126,18 @@ async function getFeed() {
         `
     } else {
         posts.forEach(post => {
-            console.log('post');
+            // console.log('post');
             const authorImage = post.author.image;
             const id = post.author._id;
             const authorAccount = post.author.accountname;
             const authorName = post.author.username;
             const commentCount = post.commentCount;
             const content = post.content;
-            const heartCount = post.heartCount;
-            const hearted = post.hearted;
+            // const heartCount = post.heartCount;
+            // const hearted = post.hearted;
             const updateDate = "" + post.updatedAt;
             const contentImage = post.image.split(',');
+
             // 이미지 슬라이더 구현 
             let imageHTML = '';
             if (contentImage.length === 1 && contentImage[0]) {
@@ -147,6 +150,48 @@ async function getFeed() {
                 imageHTML = `<ul class="article-post__img-list">${arr.join('')}</ul>`;
             }
 
+            // 좋아요 버튼 생성하기 
+            const btnHeartHTML = document.createElement("button");
+            // console.log(btnHeartHTML)
+            btnHeartHTML.className += 'button-like btn-nonebackground'
+            btnHeartHTML.innerHTML = `
+                <img src="./src/png/${
+                    post.hearted ? "icon-heart-active.png" : "icon-heart.png"
+                }" alt="">
+                <strong class="count-heart">${post.heartCount}</strong>
+                `;
+                btnHeartHTML.addEventListener("click", () => {
+                    const token = localStorage.getItem("Token");
+
+                    if(post.hearted) {
+                        post.hearted = false;
+                        post.heartCount -= 1;
+                        post.image = "./src/png/icon-heart.png";
+                        postHeartReq(
+                            "delete",
+                            "unheart",
+                            btnHeartHTML,
+                            post.id,
+                            post.heartCount,
+                            post.image
+                        );
+                    } else {
+                        post.hearted = true;
+                        post.heartCount += 1;
+                        post.image = "./src/png/icon-heart-active.png";
+                        postHeartReq(
+                            "post",
+                            "heart",
+                            btnHeartHTML,
+                            post.id,
+                            post.heartCount,
+                            post.image
+                        );
+                    }
+                });
+                
+            btnHeartList.push(btnHeartHTML);
+            
             document.querySelector(".main").innerHTML += `
                         <article class="post">
                             <img src="${authorImage}" alt="${authorName}님의 프로필 사진" class="profile-pic" >
@@ -158,10 +203,9 @@ async function getFeed() {
                                 <p class="desc">${content}</p>
                                 ${imageHTML}
                                 <div class="icon-box font-gray">
-                                    <button type="button" data-hearted="${hearted ? 1 : 0}" data-id="${id}" class="btn btn-like btn-nonebackground">
-                                        <img src="./src/png/icon-heart.png" alt="post-like" class="article-heart__btn">
-                                    </button>
-                                    <span class="count count-heart">${heartCount}</span>
+                                    <div class="icon-box-heart">
+
+                                    </div>
                                     <button type="button" class="btn btn-comment btn-nonebackground">
                                         <img src="./src/svg/message-circle.svg">
                                     </button>
@@ -185,14 +229,6 @@ async function getFeed() {
                 })
             }
 
-            // 하트 버튼 클릭하면 노란 하트로 변경 
-            const yellowHeart = document.querySelectorAll(".article-heart__btn");
-            for (const heart of yellowHeart) {
-                heart.addEventListener('click', () => {
-                    heart.src = "./src/png/icon-heart-active.png"
-                })
-            }
-
             // 더보기 버튼 클릭시 모달창 뜨기 
             const btnMore = document.querySelectorAll(".btn-icon-more");
             for (const modal of btnMore) {
@@ -200,8 +236,11 @@ async function getFeed() {
                     backgroundUpModal.style.display = "block";
                     upModal.style.bottom = "0";
                 })
-            }
+            };
         });
+
+        // forEach문 바깥 부분 
+
         // 해당 포스트 상세 게시물 댓글 페이지로 이동
         const goPostPage = document.querySelectorAll(".btn-comment")
         for (const [idx, comment] of goPostPage.entries()) {
@@ -209,28 +248,50 @@ async function getFeed() {
                 window.location.href = `post.html?id=${posts[idx].id}`;
             })
         }
+
+        const goPostPage2 = document.querySelectorAll(".article-post__img")
+        console.log(goPostPage2)
+        for (const [idx, comment] of goPostPage2.entries()) {
+            comment.addEventListener('click', () => {
+                window.location.href = `post.html?id=${posts[idx].id}`;
+            })
+        }
+
+        // 3. forEach문 밖에서 getFeed() 함수 안에 리스트에 담아둔 버튼들을 DOM에 연결시켜주기
+        // innerhtml에 icon-box 만들어서 넣어주는거임 
+        const contentBtnContList = document.querySelectorAll(".icon-box-heart");
+        // console.log(contentBtnContList);
+        Array.from(contentBtnContList).forEach((contentBtnCont, index) => {
+            contentBtnCont.appendChild(btnHeartList[index]);
+        });
     }
 }
-
-
-// - 년일월 날짜 변환 함수
+// 년일월 날짜 변환 함수
 function makeKoreaDate(date) {
     const koreaDate = date.split("-").map((value) => parseInt(value));
     return `${koreaDate[0]}년 ${koreaDate[1]}월 ${koreaDate[2]}일`;
 }
 
-// 이미지가 세개인 경우 클릭하면 이미지가 넘어가는 함수
-// function imageLogic() {
-//     if (이미지가 1개이상) {
-//         return
-//         document.querySelector('.picture').innerHTML+=`
+// heart api 요청을 해주는 함수
+async function postHeartReq(method, postType, dom, id, count, img) {
+    const heartCountDom = dom.querySelector("strong");
+    const heartImgDom = dom.querySelector("img");
+    const token = localStorage.getItem("Token");
+    const url = "http://146.56.183.55:5050"
 
-//         `
-//     } else if (이미지가 없는 글이라면) {
-//         return
-//         이미지자체를 없애기;
-//     }
-//     else {
-//         ${contentImage}
-//     }
-// }
+    const res = await fetch(url + "/post/" + id + "/" + postType, {
+        method,
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+        },
+    });
+    const json = await res.json();
+
+    if (res.ok) {
+        heartCountDom.innerText = count;
+        heartImgDom.src = img;
+    } else {
+        window.alert("요청에 실패했습니다.");
+    }
+}

@@ -1,26 +1,26 @@
 // join 1: 이메일로 회원가입 폼 부분 선택
 const userEmailInput = document.querySelector('#inpEmail');
-console.log(userEmailInput);
+// console.log(userEmailInput);
 const userPwInput = document.querySelector('#inputPw');
-console.log(userPwInput);
+// console.log(userPwInput);
 const nextBtn = document.querySelector('.next_btn');
-console.log(nextBtn);
+// console.log(nextBtn);
 // join2 : 프로필 설정 부분 선택 
 const startButton = document.querySelector('.start-btn');
 const warningTextList = document.querySelectorAll('.warning-text');
 const userNameInput = document.querySelector('#inpName');
-console.log(userNameInput);
+// console.log(userNameInput);
 const userIdInput = document.querySelector('#inpId');
-console.log(userIdInput);
+// console.log(userIdInput);
 const userIntro = document.querySelector('#inpIntroduce');
-console.log(userIntro);
+// console.log(userIntro);
 // 화면 전환을 위한 section 선택 
 const $emailPw = document.querySelector(".email-pw")
-console.log($emailPw);
+// console.log($emailPw);
 const $profile = document.querySelector(".profile-set")
-console.log($profile);
+// console.log($profile);
 const $imagePre = document.querySelector("#imagePre")
-console.log($imagePre);
+// console.log($imagePre);
 
 const url = "http://146.56.183.55:5050";
 
@@ -101,7 +101,7 @@ const isUserIdInputValid = () => {
 }
 
 // 은이네 문방구 시작하기 버튼 눌렀을 때 
-// 검사 통과시 index로 이동
+// 검사 통과시 login_email 이동
 // 아니면 경고 문구 
 startButton.addEventListener('click', () => {
     if (!isUserNameInputValid()) {
@@ -115,7 +115,7 @@ startButton.addEventListener('click', () => {
         return;
     }
     warningTextList[2].classList.add('invisible');
-    window.location.href = "login_email.html";
+    // window.location.href = "login_email.html";
 })
 
 // input에 입력시 경고 띄워주기
@@ -173,9 +173,36 @@ function readImage(input) {
     }
 }
 
-document.getElementById('profile-input').addEventListener('change', (e) => {
+// document.getElementById('profile-input').addEventListener('change', (e) => {
+//     readImage(e.target);
+// })
+
+document.querySelector('.profile-input').addEventListener('change', (e) => {
     readImage(e.target);
 })
+
+// 이미지 업로드
+
+async function imageUpload(files) {
+    const formData = new FormData();
+    formData.append("image", files[0]);//formData.append("키이름","값")
+    const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+        method: "POST",
+        body: formData
+    })
+    const data = await res.json()
+    const productImgName = data["filename"];
+    return productImgName
+}
+
+
+async function profileImage(e) {
+    const files = e.target.files
+    const result = await imageUpload(files)
+    imagePre.src = "http://146.56.183.55:5050/" + result
+    console.log(result)
+}
+document.querySelector("#profile-input").addEventListener("change", profileImage)
 
 
 // 회원가입 fetch 연결/....
@@ -183,9 +210,10 @@ async function join() {
     const email = document.querySelector('#inpEmail').value;
     const password = document.querySelector('#inputPw').value;
     const userName = document.querySelector('#inpName').value;
-    const userId = document.querySelector('#inpId').value;
+    const userId = document.querySelector('#inpId').value;  
     const intro = document.querySelector('#inpIntroduce').value;
     const imageUrl = document.querySelector('.picture').src;
+
         const res = await fetch("http://146.56.183.55:5050/user", {
             method: "POST",
             headers: {
@@ -193,24 +221,25 @@ async function join() {
             },
             body: JSON.stringify({
                 "user": {
-                "email": email,
-                "password": password,
-                "username": userName,
-                "accountname": userId,
-                "intro": intro,
-                "image": imageUrl
+                    "email": email,
+                    "password": password,
+                    "username": userName,
+                    "accountname": userId,
+                    "intro": intro,
+                    "image": imageUrl,
                 }
             })
         })
         console.log(res)
         const json = await res.json()
-        const message = json.message
+        // const message = json.message
         if (res.status == 200) {
-        window.location.href = "login_email.html"
-        } else {
-        console.log(json)
-        console.log(message)
+            console.log("회원가입 성공")
+            location.href = "./login_email.html"
         }
-    } 
-
-startButton.addEventListener("click",join)
+        else {
+            console.log(json)
+        }
+    
+}
+startButton.addEventListener("click", join)
