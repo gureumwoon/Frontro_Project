@@ -119,23 +119,8 @@ async function getPost() {
                 <p class="desc">
                    ${post.content}
                 </p>
-                <img class="picture" src="${post.image}" alt="게시물 이미지">
+                <ul class="img-container"></ul>
                 <ul class="indicator">
-                    <li>
-                        <a href="#" class="list-slide on">
-                            <span class="blind">1번 슬라이드</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="list-slide">
-                            <span class="blind">2번 슬라이드</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="list-slide">
-                            <span class="blind">3번 슬라이드</span>
-                        </a>
-                    </li>
                 </ul>
                 <div class="icon-box font-gray">
                     <button type="button" class="btn btn-like"><img src="./src/svg/Vector.svg"></button>
@@ -147,20 +132,56 @@ async function getPost() {
                 <p class="date font-gray">${getDateString(post.createdAt)}</p>
             </div>
             `;
+            // addPostImages(post.image);
+            // console.log("postImg: ", addPostImages(post.image))
+            const slides = document.querySelector('.img-container');
+            console.log("slides: ", slides)
+            const indicator = document.querySelector('.indicator');
+            console.log("indicator: ", indicator)
+            if (post.image.split(',').length > 1) {
+                for (let i = 0; i < post.image.split(',').length; i++) {
+                    slides.innerHTML += `<li><img src="${post.image.split(',')[i]}" alt="게시글 이미지" class="picture"></li>`;
+                    indicator.innerHTML += `<li>
+                    <button type="button" class="list-slide current">
+                    <span class="blind">1번 슬라이드</span>
+                    </button>
+                    </li>`
+                }
+            } else {
+                slides.innerHTML += `<li><img src="${post.image}" alt="게시글 이미지" class="picture"></li>`;
+                indicator.style.display = "none";
+            }
+            slideImgList()
         });
     getComment();
 }
 
+// 이미지 슬라이드
+function slideImgList() {
+    const indicator = document.querySelector('.indicator');
+    const buttons = indicator.querySelectorAll('.list-slide')
+    const imgList = document.querySelector('.img-container');
+    let currentBtn = indicator.querySelector(".current");
+    buttons.forEach((button, index) => {
+        buttons[0].classList.add('on');
+        button.addEventListener("click", () => {
+            currentBtn.classList.remove("on");
+            button.classList.add("on");
+            currentBtn = indicator.querySelector(".on");
+            imgList.style.transform = `translateX(-${304 * index}px)`;
+            imgList.style.transition = 'all 0.3s ease'
+        });
+    });
+}
+
+
 // 댓글 가져오기
 async function getComment() {
-    const params = new URLSearchParams(location.search);
-    console.log(params);
-    const roomName = params.get("id");
-    // const queryString = window.location.href.split('?')[1]
-    // const searchParams = new URLSearchParams(queryString)
-    // console.log("searchparams: ", searchParams)
-    // const postId = searchParams.get('id');
-    fetch(`http://146.56.183.55:5050/post/${roomName}/comments`, {
+    const queryString = window.location.href.split('?')[1]
+    const searchParams = new URLSearchParams(queryString)
+    console.log("searchparams: ", searchParams)
+    const postId = searchParams.get('id');
+    fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
         method: 'GET', // or 'PUT'
         headers: {
             Authorization: "Bearer " + localStorage.getItem("Token"),
@@ -225,20 +246,15 @@ function getCommentMoreBtn() {
 }
 
 
-commentUploadButton.addEventListener("click", (e) => {
-    createComment();
-});
+commentUploadButton.addEventListener("click", createComment);
 
 // 댓글 입력
 async function createComment() {
-    const params = new URLSearchParams(location.search);
-    console.log(params);
-    const roomName = params.get("id");
-    // const queryString = window.location.href.split('?')[1]
-    // const searchParams = new URLSearchParams(queryString)
-    // console.log("searchparams: ", searchParams)
-    // const postId = searchParams.get('id');
-    fetch(`http://146.56.183.55:5050/post/${roomName}/comments`, {
+    const queryString = window.location.href.split('?')[1]
+    const searchParams = new URLSearchParams(queryString)
+    console.log("searchparams: ", searchParams)
+    const postId = searchParams.get('id');
+    fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify({
             comment: {
