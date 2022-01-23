@@ -33,10 +33,15 @@ h2 {
   color: #767676;
 }
 
+.inp_pw {
+  margin-top: 1.6rem;
+}
+
 #input-box-id {
   border-style: none;
   border-bottom: 0.1rem solid #DBDBDB;
   height: 3.3rem;
+  margin-bottom: 0;
 }
 
 #input-box-pw {
@@ -75,6 +80,12 @@ h2 {
 }
 
 .inp-error {
+  margin-top: 0.6rem;
+  color: #EB5757;
+  font-size: 1.2rem;
+}
+
+.input_alert {
   margin-top: 0.6rem;
   color: #EB5757;
   font-size: 1.2rem;
