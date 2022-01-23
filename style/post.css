@@ -32,9 +32,14 @@ button{
     border-bottom: 0.1rem solid #DBDBDB;
 }
 
+.profile-pic {
+    cursor: pointer;
+}
+
 /* 업로드된 게시물 */
 
 .post {
+    position: relative;
     width: 35.8rem;
     height: 43.4rem;
     margin: auto;
@@ -152,8 +157,8 @@ button{
 
 .more-btn2 {
     position: absolute;
-    left: 35.7rem;
-    top:6.2rem;
+    left: 34.1rem;
+    top: 2.5rem;
 }
 
 /* 댓글 게시하기 */
