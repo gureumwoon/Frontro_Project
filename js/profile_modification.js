@@ -160,29 +160,25 @@ async function submitProfileModi() {
     const intro = document.querySelector('#user-info').value;
     const userImgUrl = profileImg.src;
 
-    try {
-        const res = await fetch(`http://146.56.183.55:5050/user`, {
-            method: 'PUT',
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-type': 'application/json',
+    const res = await fetch(`http://146.56.183.55:5050/user`, {
+        method: 'PUT',
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            user: {
+                username: userName,
+                accountname: userAccountName,
+                intro: intro,
+                image: userImgUrl,
             },
-            body: JSON.stringify({
-                user: {
-                    username: userName,
-                    accountname: userAccountName,
-                    intro: intro,
-                    image: userImgUrl,
-                },
-            }),
-        });
-        const json = await res.json();
-        if (res.status == 200) {
-            location.href = 'my_profile.html';
-        } else {
-            console.log(json);
-        }
-    } catch (err) {
-        alert(err);
+        }),
+    });
+    const json = await res.json();
+    if (res.status == 200) {
+        location.href = 'my_profile.html';
+    } else {
+        console.log(json);
     }
 }
