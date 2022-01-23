@@ -3,7 +3,8 @@ const textarea = document.querySelector('.upload-txt');
 const prevImg = document.querySelector('.prev-img');
 const backBtn = document.querySelector('.back-btn');
 const txtContent = document.querySelector('.post-content> textarea');
-const token = localStorage.getItem("Token")
+const token = localStorage.getItem('Token')
+const accountName = localStorage.getItem('accountName')
 let imgIndex = 0;
 const formData = new FormData();
 
@@ -112,7 +113,7 @@ async function createPost(e) {
         })
         const json = await res.json()
         console.log(json);
-        location.href = "my_profile.html"
+        location.href = `my_profile.html?${accountName}`;
     } else {
         alert("아 이미지 갯수가 너무 많소")
     }
@@ -120,12 +121,12 @@ async function createPost(e) {
 }
 //여기까지 이미지 여러개 업로드하기.
 
+
+// 수정할 게시물 불러오기
+
 async function getPostData() {
-    const queryString = window.location.href.split('?')[1]
-    const searchParams = new URLSearchParams(queryString)
-    console.log("searchparams: ", searchParams)
-    const postId = searchParams.get('id');
-    const res = await fetch(`http://146.56.183.55:5050/post/${postId}`, {
+    const queryString = location.href.split('?')[1]
+    const res = await fetch(`http://146.56.183.55:5050/post/${queryString}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -133,37 +134,62 @@ async function getPostData() {
         },
     });
     const data = await res.json();
-    console.log(data);
+    console.log("data: ", data);
     profileImg.src = data.post.author.image
     txtContent.value = data.post.content;
-    dataImg = data.post.image
-    for (const contentImg of dataImg) {
-        prevImg.innerHTML += `
-     <li>
-        <img src=${contentImg}  alt="업로드 할 이미지1">
-        <button class="img-cancel-btn">
-            <img src="src/png/x.png" alt="사진 업로드 취소 버튼">
-        </button>
-     </li>
-     `
-        $submitBtn.classList.add('active')
+    dataImg = data.post.image.split(',');
+    if (data.post.image === '') {
+        //이미지 없을때
+        prevImg.innerHTM = `<li></li>`;
+    } else {
+        for (const contentImg of dataImg) {
+            prevImg.innerHTML += `
+         <li>
+            <img src="${contentImg}"  alt="업로드 할 이미지1" class="upload-img">
+            <button class="img-cancel-btn">
+                <img src="src/png/x.png" alt="사진 업로드 취소 버튼">
+            </button>
+         </li>
+         `
+        }
     }
+    $submitBtn.classList.add('active')
     deletePrevImg(dataImg);
 }
 
-if (queryString) {
+console.log(getPostData())
+
+const queryString = window.location.href.split('?')[1]
+const searchParams = new URLSearchParams(queryString)
+console.log("searchparams: ", searchParams)
+const postId = searchParams.get('id');
+if (postId) {
     getPostData();
 }
 
-async function putData() {
-    const queryString = window.location.href.split('?')[1]
-    const searchParams = new URLSearchParams(queryString)
-    console.log("searchparams: ", searchParams)
-    const postId = searchParams.get('id');
-    const imageUrls = []
-    const content = textarea.value;
+// 게시물 수정
 
-    const res = await fetch(`http://146.56.183.55:5050/post/${postId}`, {
+async function putData(e) {
+    const queryString = location.href.split('?')[1]
+    const content = textarea.value;
+    let imageUrls = []; //이미 있는 이미지
+    const files = $image.files; //새로 업로드 이미지
+
+    // 새로 업로드한 이미지가 없다면, 기존 이미지 푸시
+    if (files.length === 0) {
+        // 기존 이미지 푸시.
+        (document.querySelectorAll('.upload-img')).forEach((item) => {
+            imageUrls.push(item.src);
+        });
+    }
+
+    //새로 업로드 이미지
+    for (let index = 0; index < files.length; index++) {
+        const imgurl = await imageUpload(files, index);
+        imageUrls.push("http://146.56.183.55:5050" + "/" + imgurl);
+    }
+
+    const res = await fetch(`http://146.56.183.55:5050/post/${queryString}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -177,14 +203,16 @@ async function putData() {
         }),
     });
     const data = await res.json();
-    console.log(data);
-    if (data) {
+    console.log("data: ", data);
+    if (res.status == 200) {
         alert('업로드 성공');
-        location.href = `/pages/post.html?${data.post.id}`;
+        // location.href = `my_profile.html?${accountName}`;
     } else {
         alert('업로드 실패');
     }
 }
+
+// 버튼 활성화
 
 txtContent.addEventListener('input', () => {
     uploadBtnCheck()
@@ -201,11 +229,8 @@ function uploadBtnCheck() {
 }
 
 $submitBtn.addEventListener('click', (e) => {
-    const queryString = window.location.href.split('?')[1]
-    const searchParams = new URLSearchParams(queryString)
-    console.log("searchparams: ", searchParams)
-    const postId = searchParams.get('id');
-    if (postId) {
+    const queryString = location.href.split('?')[1]
+    if (queryString) {
         putData()
     } else {
         createPost()

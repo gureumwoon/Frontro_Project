@@ -291,6 +291,16 @@ button{
     top: 3.7rem;
 }
 
+.modal-txt-delete {
+    top: 2.4rem;
+}
+
+.modal-txt-modi {
+    font-size: 1.4rem;
+    padding: 1.4rem 2.6rem;
+    position: absolute;
+    top: 6rem;
+}
 
 .post-modal::before {
     content: '';
