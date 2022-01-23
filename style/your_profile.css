@@ -285,37 +285,43 @@ button {
 /* 유저가 등록한 콘텐츠 정보 */
 
 /* view-style에 따라 다르게 표시 */
-/* list형 스타일 */
 .cont_contents .cont_user-contents {
     padding: 1.6rem;
     padding-bottom: 6rem;
 }
+.ul-picture_user-contents {
+    display: none;
+}
 .cont_user-contents .content_user-contents {
     position: relative;
-    display: flex;
-    justify-content: flex-start;
     margin-bottom: 2rem;
 }
-.cont_user-contents .img_content-info {
+.cont_user-contents .content-header_user-contents {
+    overflow: hidden;
+    clear: both;
+}
+.content-header_user-contents .img_content-info {
     width: 4.2rem;
     height: 4.2rem;
     margin-right: 1.2rem;
     border-radius: 4.2rem;
+    float: left;
 }
-.cont_user-contents .desc_content-info {
-    flex: 1;
-}
-.desc_content-info .name_content-info {
+.content-header_user-contents .name_content-info {
     margin: 0.4rem 0 0.2rem 0;
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
 }
-.desc_content-info .email_content-info {
+.content-header_user-contents .email_content-info {
     margin: 0 0 1.6rem 0;
     font-size: 1.2rem;
     line-height: 1.4rem;
     color: #767676;
+}
+.cont_user-contents .desc_content-info {
+    flex: 1;
+    padding-left: 5.4rem;
 }
 .desc_content-info .txt_content-info {
     margin-bottom: 1.6rem;
@@ -324,22 +330,51 @@ button {
 }
 /* 단일 이미지 */
 .desc_content-info .content-img_content-info {
-<<<<<<< HEAD
     display: block;
     width: 100%;
     height: 100%;
-=======
-    margin-bottom: 1.45rem;
-    width: 100%;
->>>>>>> a3c0f0db1ff11cd42571aaf4a3db27afaaf4db79
+    border-radius: 1rem;
 }
 /* 다중 이미지 */
+/* 여기 css가 제대로 적용된 건지.. img에 px로 크기를 정해주는 것이 맞는 것인지.. */
+.desc_content-info .cont_slide {
+    position: relative;
+    margin-bottom: 1.6rem;
+    border-radius: 10px;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+}
+
 .desc_content-info .content-img_slide {
-    margin-bottom: 1.45rem;
+    display: flex;
+    flex-wrap: nowrap;
+    height: 22.8rem;
+    width: 30.4rem;
+    transition: all 0.4s;
+    /* overflow-x: auto; */
+}
+.desc_content-info .content-img_slide li {
+    width: 30.4rem;
+    height: 22.8rem;
+    flex: 0 0 auto;
+    border: 0.5px solid var(--border-color);
+    border-radius: 10px;
+    scroll-snap-align: start;
+}
+.desc_content-info .content-img_slide-item {
+    /* display: inline-block; */
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
 }
 .desc_content-info .cont_buttons {
     display: flex;
     align-items: center;
+    margin-right: 1.85rem;
+    color: #767676;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    vertical-align: top;
 }
 .cont_buttons img {
     margin-right: 0.8rem;
@@ -357,7 +392,8 @@ button {
     margin-right: 1.85rem;
     color: #767676;
     font-size: 1.2rem;
-    line-height: 1.2rem;
+    line-height: 1.5rem;
+    vertical-align: top;
 }
 .desc_content-info .date_content-info {
     font-size: 1rem;
@@ -375,9 +411,6 @@ button {
     width: 1.8rem;
     height: 1.8rem;
     padding: 0;
-}
-.ul-picture_user-contents {
-    display: none;
 }
 
 /* picture형 스타일 */
