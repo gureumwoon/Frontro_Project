@@ -124,7 +124,7 @@ async function getPost() {
                 <ul class="indicator">
                 </ul>
                 <div class="icon-box font-gray">
-                    <button type="button" class="btn btn-like"><img src="./src/svg/Vector.svg"></button>
+                    <button type="button" class="btn btn-like"><img src="./src/svg/Vector.svg" class="heart"></button>
                     <span class="count count-heart">${post.heartCount}</span>
                     <button type="button" class="btn btn-comment"><img src="./src/svg/message-circle.svg"></button>
                     <span class="count count-comment">${post.commentCount
@@ -132,7 +132,25 @@ async function getPost() {
                 </div>
                 <p class="date font-gray">${getDateString(post.createdAt)}</p>
             </div>
+            <button class="more-btn2 ">
+                <img src="src/svg/s-icon-more-vertical.svg" alt="더보기" class="icon-more2">
+            </button>
             `;
+
+            const profilePic = document.querySelectorAll(".profile-pic");
+            for (const i of profilePic) {
+                i.addEventListener('click', () => {
+                    window.location.href = `your_profile.html?accountName=${post.author.accountname}`;
+                })
+            }
+
+            heartCheck = post.hearted;
+            console.log("heart: ", heartCheck)
+            const heart = document.querySelector('.btn-like > img');
+            console.log("heart: ", heart)
+            if (heartCheck === true) {
+                heart.src = './src/png/icon-heart-active.png';
+            }
             // addPostImages(post.image);
             // console.log("postImg: ", addPostImages(post.image))
             const slides = document.querySelector('.img-container');
@@ -213,6 +231,15 @@ async function getComment() {
                 </button>
             </div> 
             `;
+
+                // 댓글 프로필 이미지 클릭시 user 계정으로 이동
+                const profilePic = document.querySelectorAll(".profile-pic");
+                for (const i of profilePic) {
+                    i.addEventListener('click', () => {
+                        window.location.href = `your_profile.html?accountName=${comment.author.accountname}`;
+                    })
+                }
+
                 getCommentMoreBtn();
             })
         });
