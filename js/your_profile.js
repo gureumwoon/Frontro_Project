@@ -73,16 +73,17 @@ const profileFollowBtn = document.querySelector(".S-button");
 // - 프로필 데이터 fetch로 가져오기
 getProfileData();
 
+// - followers, followings 버튼 페이지 이동
 profileFollowersBtn.addEventListener("click", () => {
-    const accountName = getQueryValue("accountname");
+    const accountName = getQueryValue("accountName");
     location.href = `follow.html?accountName=${accountName}&follow=follower`;
 });
 profileFollowingsBtn.addEventListener("click", () => {
-    const accountName = getQueryValue("accountname");
+    const accountName = getQueryValue("accountName");
     location.href = `follow.html?accountName=${accountName}&follow=following`;
 });
 
-// - 메세지 창으로 이동
+// - 메세지 창으로 이동_얘는 수정 필요
 profileMessageBtn.addEventListener("click", () => {
     // 추후 백엔드 개발 시
     // const accountname =
@@ -104,9 +105,9 @@ profileFollowBtn.addEventListener("click", () => {
 async function getProfileData() {
     try {
         // const myAccountName = localStorage.getItem("account");
-        const accountName = getQueryValue("accountname");
-        const myAccountName = "asdasd";
-        // const accountName = "hey_binky";
+        const accountName = getQueryValue("accountName");
+        const myAccountName = localStorage.getItem("accountName");
+
         console.log(accountName);
         const token = localStorage.getItem("Token");
 
@@ -179,7 +180,7 @@ async function getFollowerList(accountName) {
 // - 팔로우하기
 async function postFollowReq() {
     try {
-        const accountName = getQueryValue("accountname");
+        const accountName = getQueryValue("accountName");
         const token = localStorage.getItem("Token");
 
         const res = await myFetch(
@@ -207,7 +208,7 @@ async function postFollowReq() {
 // - 언팔로우하기
 async function postUnfollowReq() {
     try {
-        const accountName = getQueryValue("accountname");
+        const accountName = getQueryValue("accountName");
 
         const token = localStorage.getItem("Token");
 
@@ -238,40 +239,28 @@ async function postUnfollowReq() {
 // - 관련 변수
 const onSaleList = document.querySelector(".ul_on-sale");
 const onSaleFragment = document.createDocumentFragment();
-getOnSaleData();
+createAndDrawOnSale();
 
-// - 유저 판매 상품 데이터를 가져와서 화면에 그려주기
-async function getOnSaleData() {
-    try {
-        // const accountName = getQueryValue("accountname");
-        const accountName = "hey_binky";
-        const token = localStorage.getItem("Token");
+async function createAndDrawOnSale() {
+    const productList = await getOnSaleData();
+    console.log(productList);
 
-        const res = await myFetch(
-            `${BASE_URL}/product/${accountName}`,
-            "get",
-            token,
-            null
-        );
-        const result = await res.json();
-        const productList = result.product;
+    // 등록된 게시물이 있을 경우만 리스트 보여주기
+    if (productList.length > 0) {
+        onSaleCont.style.display = "block";
+    } else {
+        return;
+    }
 
-        // 등록된 게시물이 있을 경우만 리스트 보여주기
-        if (productList.length > 0) {
-            onSaleCont.style.display = "block";
-        } else {
-            return;
-        }
-
-        productList.forEach((product) => {
-            // 가격에 ','를 달아주는 로직
-            const price = makeMoneysComma(`${product.price}`);
-            const productItem = document.createElement("li");
-            productItem.className += "li_on-sale";
-            productItem.addEventListener("click", () => {
-                location.href = "#";
-            });
-            productItem.innerHTML = `
+    productList.forEach((product) => {
+        // 가격에 ','를 달아주는 로직
+        const price = makeMoneysComma(`${product.price}`);
+        const productItem = document.createElement("li");
+        productItem.className += "li_on-sale";
+        productItem.addEventListener("click", () => {
+            location.href = "#";
+        });
+        productItem.innerHTML = `
                     <article class="item_on-sale">
                         <img src="${product.itemImage}" alt="판매상품 ${product.itemName}의 이미지">
                         <p class="tit_item">
@@ -283,17 +272,42 @@ async function getOnSaleData() {
                             </strong>원
                         </p>
                     </article>`;
-            onSaleFragment.appendChild(productItem);
-        });
+        onSaleFragment.appendChild(productItem);
 
-        onSaleList.appendChild(onSaleFragment);
+        // 상품 노드 이벤트 등록
+        productItem.addEventListener("click", () => {
+            window.open(product.link);
+        });
+    });
+
+    onSaleList.appendChild(onSaleFragment);
+}
+
+// - 유저 판매 상품 데이터를 가져와서 화면에 그려주기
+async function getOnSaleData() {
+    try {
+        // const accountName = localStorage.getItem("accountName");
+        const accountName = getQueryValue("accountName");
+        const token = localStorage.getItem("Token");
+
+        const res = await myFetch(
+            `${BASE_URL}/product/${accountName}`,
+            "get",
+            token,
+            null
+        );
+        const result = await res.json();
+        const productList = result.product;
+
+        return productList;
     } catch (error) {
         console.log(error);
     }
 }
 
 // - cont_contents, 게시물 정보 -
-
+// - 관련 변수
+const contentsCont = document.querySelector(".cont_contents");
 // - view-style 관련 변수
 const viewStyleCont = document.querySelector(".cont_view-style");
 const styleBtn = viewStyleCont.querySelectorAll("button");
@@ -301,10 +315,9 @@ const listStyleBtn = Array.from(styleBtn)[0];
 const pictureStyleBtn = Array.from(styleBtn)[1];
 
 // - contents 관련 변수
-const contentsCont = document.querySelector(".cont_user-contents");
+const userContentsCont = document.querySelector(".cont_user-contents");
 const contentsList = document.querySelector(".ul_user-contents");
 const contentsFragment = document.createDocumentFragment();
-<<<<<<< HEAD
 const pictureContentList = document.querySelector(".ul-picture_user-contents");
 const pictureContentsFragment = document.createDocumentFragment();
 // - content up modal 관련 변수
@@ -319,22 +332,19 @@ const contentCancelBtn_popup = contentPopupModal.querySelector(
 const contentReportBtn_popup = contentPopupModal.querySelector(
     ".action-button_popup"
 );
+// - content.id를 담는 변수
+let contentId;
 
+// 삭제 버튼 클릭 시 삭제 모달 띄우기
 contentReportBtn_up.addEventListener("click", () => {
     backgroundPopupModal.style.display = "block";
     contentPopupModal.style.display = "block";
 });
+// 취소 버튼 클릭 시 모달관련 화면 다 안보임 처리
 contentCancelBtn_popup.addEventListener("click", () => {
     backgroundPopupModal.style.display = "none";
     contentPopupModal.style.display = "none";
 });
-=======
-const contentImagesFragment = document.createDocumentFragment();
-const contentUpModal = document.querySelector(".up-modal + .content");
->>>>>>> a3c0f0db1ff11cd42571aaf4a3db27afaaf4db79
-
-// - contents 데이터 가져오기
-getContents();
 
 // - view-style change
 // 이벤트 처리하는 경우와 ui처리에 관해서 생각해보지 않으니 일을 두번하게 된다..
@@ -375,23 +385,12 @@ pictureStyleBtn.addEventListener("click", () => {
     }
 });
 
-// 콘텐츠의 데이터를 가져와서 그려주는 함수
-async function getContents() {
-    const token = localStorage.getItem("Token");
-    const accountName = "hey_binky";
-    // const token = AUTH;
+// - content DOM 요소 생성 및 화면 그리기
+createAndDrawContent();
 
-    // ↓ 아래 요청은 나의 게시물 요청이므로 꼭 바꿔주자 ↓
-    const res = await myFetch(
-        `${BASE_URL}/post/${accountName}/userpost/?limit=6`,
-        "get",
-        token,
-        null
-    );
-    const result = await res.json();
-    const contentsListData = result.post;
-    console.log(result);
-    console.log(contentsListData);
+// - content DOM 요소 생성 및 화면 그리기
+async function createAndDrawContent() {
+    const contentsListData = await getContents();
 
     // 등록된 게시글이 없으면 게시글란 안보이게 처리하기
     if (contentsListData.length > 0) {
@@ -400,16 +399,12 @@ async function getContents() {
         return;
     }
 
-<<<<<<< HEAD
-    // DOM에 붙여줄 버튼들을 리스트로 관리
+    // DOM에 붙여줄 버튼들을 리스트로 관리 > filter나 find로 미리 작성할 수 있다? 뭐가 더 좋을까
     const btnMoreList = [];
     const btnHeartList = [];
     const btnCommentList = [];
-    const pictureImageArray = [];
+
     // 여러 비동기에 쓰이는 await를 한 번으로 묶을 수는 없을까??, class나 생성자 함수로 각 게시물들을 바꿔주면 더 좋을 것 같다.
-=======
-    // 여러 비동기에 쓰이는 await를 한 번으로 묶을 수는 없을까??
->>>>>>> a3c0f0db1ff11cd42571aaf4a3db27afaaf4db79
     for (let content of contentsListData) {
         const authorImage = await validateImage(
             content.author.image,
@@ -427,7 +422,7 @@ async function getContents() {
             imageArray.forEach((image) => {
                 if (image) {
                     arr.push(
-                        `<img src="${image}" alt="post-image" class="content-img_slide-item">`
+                        `<li><img src="${image}" alt="post-image" class="content-img_slide-item"></li>`
                     );
                 }
             });
@@ -439,15 +434,16 @@ async function getContents() {
         contentItem.className += "li_user-contents";
         contentItem.innerHTML = `
         <article class="content_user-contents">
-        <img src="${authorImage}" alt="${
+            <div class="content-header_user-contents">
+                <img src="${authorImage}" alt="${
             content.author.username
         }님의 프로필 사진" class="img_content-info" />
-<<<<<<< HEAD
-            <div class="desc_content-info">
                 <p class="name_content-info">${content.author.username}</p>
                 <p class="email_content-info">@ ${
                     content.author.accountname
                 }</p>
+            </div>
+            <div class="desc_content-info">
                 <p class="txt_content-info">${content.content}</p>
                 ${
                     imageHTML
@@ -467,11 +463,13 @@ async function getContents() {
         // picture-content 노드 생성
         if (imageArray.length >= 1) {
             imageArray.forEach((image) => {
-                const pictureContentItem = document.createElement("img");
-                pictureContentItem.className += "content-img_content-info";
-                pictureContentItem.src = image;
-                pictureContentItem.alt = "post-image";
-                pictureContentsFragment.appendChild(pictureContentItem);
+                if (image) {
+                    const pictureContentItem = document.createElement("img");
+                    pictureContentItem.className += "content-img_content-info";
+                    pictureContentItem.src = image;
+                    pictureContentItem.alt = "post-image";
+                    pictureContentsFragment.appendChild(pictureContentItem);
+                }
             });
         }
 
@@ -485,75 +483,177 @@ async function getContents() {
             contentUpModal.style.bottom = "0";
             // 일회성 이벤트 등록(여러개의 콘텐츠가 하나의 업모달을 공유해서 이벤트를 달기 때문에 일회성 이벤트를 사용)
             // 상품 삭제 이벤트 등록
-            contentReportBtn_popup.addEventListener(
-                "click",
-                function ReportFuncWrapper() {
-                    reportItem(content.id, "content");
-                    contentReportBtn_popup.removeEventListener(
-                        "click",
-                        ReportFuncWrapper
-                    );
-                }
-            );
+            contentReportBtn_popup.addEventListener("click", reportFuncWrapper);
         });
-=======
-        <div class="desc_content-info">
-        <p class="name_content-info">${content.author.username}</p>
-                                        <p class="email_content-info">@ ${
-                                            content.author.accountname
-                                        }</p>
-                                        <p class="txt_content-info">${
-                                            content.content
-                                        }</p>
-                                        <div class="cont_content-image"></div>
-                                        
-                                        ${imageHTML}
 
-                                        <div class="cont_buttons">
-                                            <button class="button-like button-noneBackground">
-                                                <img src="./src/png/${
-                                                    content.hearted
-                                                        ? "icon-heart-active.png"
-                                                        : "icon-heart.png"
-                                                    // ./src/png/icon-heart.png
-                                                }" alt="">
-                                            </button>
-                                            <strong>${
-                                                content.heartCount
-                                            }</strong>
-                                            <button class="button-comment button-noneBackground">
-                                                <img src="./src/png/icon-message-circle.png" alt="">
-                                            </button>
-                                            <strong>${
-                                                content.commentCount
-                                            }</strong>
-                                        </div>
-                                        <p class="date_content-info">${makeKoreaDate(
-                                            content.updatedAt
-                                        )}</p>
-                                    </div>
-                                    <button type="button" class="btn-more_content button-noneBackground">
-                                        <img class="" src="src/svg/s-icon-more-vertical.svg" alt="더보기 버튼">
-                                    </button>
-                            </article>`;
->>>>>>> a3c0f0db1ff11cd42571aaf4a3db27afaaf4db79
+        // 좋아요 버튼 생성
+        const btnHeartHTML = document.createElement("button");
+        btnHeartHTML.className += "button-like button-noneBackground";
+        btnHeartHTML.innerHTML = `
+            <img src="./src/png/${
+                content.hearted ? "icon-heart-active.png" : "icon-heart.png"
+            }" alt="">
+            <strong class="count-heart">${content.heartCount}</strong>
+            `;
+        btnHeartHTML.addEventListener("click", () => {
+            const token = localStorage.getItem("Token");
 
+            // 하트 활성화에 따라 처리를 다르게
+            // case 1. 하트 활성화
+            // - hearted true값 false 값으로 바꾸기
+            // - countHeart값 -1
+            // - img 변경
+            // - 해당 게시물의 id로 post 요청
+
+            // case 2. 하트 비활성화
+            // - hearted false값 true 값으로 바꾸기
+            // - countHeart값 +1
+            // - img 변경
+            // - 해당 게시물의 id로 post 요청
+
+            if (content.hearted) {
+                content.hearted = false;
+                content.heartCount -= 1;
+                content.image = "./src/png/icon-heart.png";
+                postHeartReq(
+                    "delete",
+                    "unheart",
+                    btnHeartHTML,
+                    content.id,
+                    content.heartCount,
+                    content.image
+                );
+            } else {
+                content.hearted = true;
+                content.heartCount += 1;
+                content.image = "./src/png/icon-heart-active.png";
+                postHeartReq(
+                    "post",
+                    "heart",
+                    btnHeartHTML,
+                    content.id,
+                    content.heartCount,
+                    content.image
+                );
+            }
+        });
+
+        // 댓글 버튼 생성
+        const btnCommentHTML = document.createElement("button");
+        btnCommentHTML.className += "button-comment button-noneBackground";
+        btnCommentHTML.innerHTML = `<img src="./src/png/icon-message-circle.png" alt="">
+              <strong class="count-comment">${content.commentCount}</strong>`;
+
+        btnCommentHTML.addEventListener("click", () => {
+            location.href = `post.html?id=${content.id}`;
+        });
+
+        // 생성한 버튼들 리스트에 넣어서 관리
+        btnMoreList.push(btnMoreHTML);
+        btnHeartList.push(btnHeartHTML);
+        btnCommentList.push(btnCommentHTML);
         contentsFragment.appendChild(contentItem);
     }
     contentsList.appendChild(contentsFragment);
     pictureContentList.appendChild(pictureContentsFragment);
 
-    // - 더보기 업 모달 생성
-    const contentBtnList = document.querySelectorAll(".btn-more_content");
-    Array.from(contentBtnList).forEach((button) => {
-        button.addEventListener("click", () => {
-            backgroundUpModal.style.display = "block";
-            contentUpModal.style.bottom = "0";
-        });
-        backgroundUpModal.addEventListener("click", () => {
-            contentUpModal.style.bottom = "-20rem";
-        });
+    // - 리스트로 관리했던 버튼들 DOM에 붙여주기
+    // 더보기 버튼
+    const descContentInfoList = document.querySelectorAll(".desc_content-info");
+    Array.from(descContentInfoList).forEach((descContentInfo, index) => {
+        descContentInfo.after(btnMoreList[index]);
     });
+    // 좋아요 & 댓글 버튼
+    const contentBtnContList = document.querySelectorAll(".cont_buttons");
+    console.log(contentBtnContList);
+    Array.from(contentBtnContList).forEach((contentBtnCont, index) => {
+        contentBtnCont.appendChild(btnHeartList[index]);
+        contentBtnCont.appendChild(btnCommentList[index]);
+    });
+
+    backgroundUpModal.addEventListener("click", () => {
+        contentUpModal.style.bottom = "-20rem";
+        contentReportBtn_popup.removeEventListener("click", reportFuncWrapper);
+    });
+}
+// - contents 이벤트 함수
+//  신고 이벤트
+async function reportFuncWrapper() {
+    console.log("신고! 신고!");
+    reportItem(contentId);
+}
+async function reportItem(itemId) {
+    const token = localStorage.getItem("Token");
+    // 팝업, 업 모달 다 내려주기
+    backgroundPopupModal.style.display = "none";
+    backgroundUpModal.style.display = "none";
+    contentPopupModal.style.display = "none";
+    contentUpModal.style.bottom = "-20rem";
+
+    // 게시글 삭제 로직...
+    const res = await myFetch(
+        `${BASE_URL}/post/${itemId}/report`,
+        "post",
+        token,
+        null
+    );
+    console.log(res);
+
+    const response = await res.json();
+
+    if (res.ok) {
+        window.alert("신고 접수 되었습니다.");
+    } else {
+        window.alert("신고에 실패하였습니다.");
+    }
+}
+// async function reportItem(itemId) {
+//     console.log(itemId);
+//     const token = localStorage.getItem("Token");
+
+//     // 팝업, 업 모달 다 내려주기
+//     backgroundPopupModal.style.display = "none";
+//     backgroundUpModal.style.display = "none";
+//     contentPopupModal.style.display = "none";
+//     contentUpModal.style.bottom = "-20rem";
+
+//     // 게시글 신고 로직...
+//     const res = await myFetch(
+//         `${BASE_URL}/post/${itemId}/report`,
+//         "post",
+//         token,
+//         null
+//     );
+
+//     const response = await res.json();
+
+//     // 게시글 삭제 완료여부 알려주기
+//     if (res.ok) {
+//         window.alert(`response.report.post 게시물을 신고하였습니다.`);
+//     } else {
+//         window.alert("신고 실패하였습니다!");
+//     }
+// }
+
+// 콘텐츠의 데이터를 가져와서 그려주는 함수
+async function getContents() {
+    const token = localStorage.getItem("Token");
+    const accountName = getQueryValue("accountName");
+    // const token = AUTH;
+
+    // ↓ 아래 요청은 나의 게시물 요청이므로 꼭 바꿔주자 ↓
+    const res = await myFetch(
+        `${BASE_URL}/post/${accountName}/userpost/?limit=6`,
+        "get",
+        token,
+        null
+    );
+    const result = await res.json();
+    const contentsListData = result.post;
+    console.log(result);
+    console.log(contentsListData);
+
+    return contentsListData;
 }
 
 // - 이미지가 유효한 지 검사하는 함수
@@ -611,29 +711,22 @@ async function validateImage(image, imageType) {
     // return imageArray;
 }
 
-async function reportItem(itemId) {
+async function postHeartReq(method, postType, dom, id, count, img) {
+    const heartCountDom = dom.querySelector("strong");
+    const heartImgDom = dom.querySelector("img");
     const token = localStorage.getItem("Token");
-    // 팝업, 업 모달 다 내려주기
-    backgroundPopupModal.style.display = "none";
-    backgroundUpModal.style.display = "none";
-    contentPopupModal.style.display = "none";
-    contentUpModal.style.bottom = "-20rem";
 
-    // 게시글 삭제 로직...
     const res = await myFetch(
-        `${BASE_URL}/post/${itemId}/report`,
-        "post",
+        `${BASE_URL}/post/${id}/${postType}`,
+        method,
         token,
         null
     );
-    console.log(res);
-
-    const response = await res.json();
-
     if (res.ok) {
-        window.alert("신고 접수 되었습니다.");
+        heartCountDom.innerText = count;
+        heartImgDom.src = img;
     } else {
-        window.alert("신고에 실패하였습니다.");
+        window.alert("요청에 실패했습니다.");
     }
 }
 
@@ -691,11 +784,25 @@ async function myFetch(url, method, auth = "", data = "") {
     return responseData;
 }
 // - 페이지 들어올 때 토큰 있는 지 확인
-function checkLoginUser() {
+async function checkLoginUser() {
+    // 토큰 검사하는 api 사용해서 수정하기
     // if (localStorage.getItem("Token") || localStorage.getItem("RefreshToken")) { }
 
-    if (!localStorage.getItem("Token")) {
+    const token = localStorage.getItem("Token");
+    if (!token) {
         location.href = "login.html";
+    }
+    // 이 부분은 토큰이 만료됐다 싶을 때 다시 테스트 해보기
+    const res = await myFetch(
+        `${BASE_URL}/user/checktoken`,
+        "get",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTdjNzdiOGJkMTU3NGYwYzkzYWE0MSIsImV4cCI6MTY0Nzc2Mzg0MywiaWF0IjoxNjQyNTc5ODQzfQ.t3ynPiH6o9L-3k1z7iy3GtvUO2r_zCjWHgMR7TnLWQE"
+    );
+    const result = await res.json();
+    if (!result.isValid) {
+        location.href = "login.html";
+    } else {
+        console.log("만료되지 않았습니다.");
     }
 }
 
