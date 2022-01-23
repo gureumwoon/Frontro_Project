@@ -19,6 +19,11 @@ label {
     cursor: pointer;
 }
 
+.active {
+    background-color: var(--zzin-no);
+    color:  var(--zzin-no-word);
+}
+
 .container {
     position: relative;
     width: 39rem;
