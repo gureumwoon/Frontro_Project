@@ -1,17 +1,20 @@
 const commentInput = document.querySelector(".comment-inp");
 const commentUploadButton = document.querySelector(".comment-upload-btn");
+const alertCommentReport = document.querySelector('.alert-comment-report');
 const modal = document.querySelector(".post-modal");
 const modalReport = document.querySelector(".post-modal-report")
+const modalTxtReport = document.querySelector('.modal-txt-report');
 const modalDelete = document.querySelector(".post-modal-delete")
 const alertActionBtn = document.querySelectorAll(".alert_action-button")
+const alertCancelBtn = document.querySelectorAll('.alert_cancel-button')
 const modalWrapper = document.querySelector(".modal-wrapper");
 const postFixButton = document.querySelector(".back-btn");
-const ID = localStorage.getItem("userId");
-console.log(ID)
+const userId = localStorage.getItem("userId");
+const accountName = localStorage.getItem('accountName');
 // home_2 page로 이동
 
 postFixButton.addEventListener("click", () => {
-    window.location.href = "index.html";
+    history.back();
 });
 
 // 입력시 '게시' 활성화
@@ -132,7 +135,7 @@ async function getPost() {
                 </div>
                 <p class="date font-gray">${getDateString(post.createdAt)}</p>
             </div>
-            <button class="more-btn2 " data-userid="${post.author._id}">
+            <button class="more-btn2 " data-postid="${post.id}" data-userid="${post.author._id}" >
                 <img src="src/svg/s-icon-more-vertical.svg" alt="더보기" class="icon-more2">
             </button>
             `;
@@ -168,6 +171,10 @@ async function getPost() {
                     </button>
                     </li>`
                 }
+            }
+            else if (post.image.length === 0) {
+                // 이미지 없을때
+                slides.innerHTML = `<li></li>`;
             } else {
                 slides.innerHTML += `<li><img src="${post.image}" alt="게시글 이미지" class="picture"></li>`;
                 indicator.style.display = "none";
@@ -181,31 +188,46 @@ async function getPost() {
 function getPostMoreBtn() {
     const queryString = window.location.href.split('?')[1]
     const commentMoreBtn = document.querySelector('.more-btn2');
-    const loginUserId = localStorage.getItem('userId');
     const buttonUserId = commentMoreBtn.dataset.userid;
     const modalMix = document.querySelector(".post-modal-mix");
-    const modalTxtDelete = document.querySelector('.modal-txt-delete');
+    const modalTxtDelete = modalMix.querySelector('.modal-txt-delete');
     const modalTxtModi = document.querySelector('.modal-txt-modi')
-    const alertPosttDelete = document.querySelector('.alert-post-delete');
-    const alertPostModi = document.querySelector('alert-post-modi');
+    const alertPostDelete = document.querySelector('.alert-post-delete');
+    const alertPostModi = document.querySelector('.alert-post-modi');
+    const searchParams = new URLSearchParams(queryString)
+    console.log("searchparams: ", searchParams)
+    const postId = searchParams.get('id');
     commentMoreBtn.addEventListener('click', () => {
-        if (loginUserId === buttonUserId) {
+        if (userId === buttonUserId) {
             modalMix.classList.add('modal-open');
             modalWrapper.style.display = 'block';
-            modalTxtDelete.addEventListener('click', () => {
-                alertPosttDelete.style.display = 'block';
-                alertActionBtn[2].addEventListener('click', postDel())
+        }
+        modalTxtModi.addEventListener('click', () => {
+            alertPostModi.style.display = 'block';
+            alertActionBtn[3].addEventListener('click', () => {
+                location.href = `upload.html?${postId}`;
             })
-            modalTxtModi.addEventListener('click', () => {
-                alertPostModi.style.display = 'block';
-                alertActionBtn[3].addEventListener('click', () => {
-                    location.href = `upload.html?${queryString}`;
-                })
-            })
-        } else {
+        })
+        modalTxtDelete.addEventListener('click', () => {
+            alertPostDelete.style.display = 'block';
+            alertActionBtn[2].addEventListener('click', postDel)
+        })
+        alertCancelBtn[2].addEventListener('click', () => {
+            alertPostDelete.style.display = 'none';
+            modalWrapper.style.display = 'none';
+            modalMix.classList.remove('modal-open');
+        })
+        if (userId !== buttonUserId) {
             modalReport.classList.add('modal-open');
             modalWrapper.style.display = 'block';
         }
+        modalTxtReport.addEventListener('click', () => {
+            alertCommentReport.style.display = 'block';
+        })
+    })
+    modalWrapper.addEventListener('click', () => {
+        modalWrapper.style.display = 'none';
+        modalMix.classList.remove('modal-open');
     })
 }
 
@@ -286,10 +308,7 @@ function getCommentMoreBtn() {
         const loginUserId = localStorage.getItem('userId');
         const buttonUserId = button.dataset.userid;
         const modalTxtDelete = document.querySelector('.modal-txt-delete');
-        const modalTxtReport = document.querySelector('.modal-txt-report');
         const alertCommentDelete = document.querySelector('.alert-comment-delete');
-        const alertCommentReport = document.querySelector('.alert-comment-report');
-        const alertCancelBtn = document.querySelectorAll('.alert_cancel-button')
         console.log('userid: ', loginUserId)
         console.log('buttonuserid: ', buttonUserId)
         if (loginUserId === buttonUserId) {
@@ -356,10 +375,9 @@ async function createComment() {
 // 게시글 삭제
 
 async function postDel() {
-    const accountName = localStorage.getItem("accountName");
     const commentMoreBtn = document.querySelector('.more-btn2');
-    const buttonUserId = commentMoreBtn.dataset.userid;
-    const res = await fetch(`http://146.56.183.55:5050/post/${buttonUserId}`, {
+    const buttonPostId = commentMoreBtn.dataset.postid;
+    const res = await fetch(`http://146.56.183.55:5050/post/${buttonPostId}`, {
         method: 'DELETE',
         headers: {
             Authorization: "Bearer " + localStorage.getItem("Token"),
@@ -370,7 +388,7 @@ async function postDel() {
     console.log(data);
 
     if (data) {
-        location.href = `your_profile.html?${accountName}`;
+        location.href = `my_profile.html?${accountName}`;
     } else {
         alert('삭제 실패');
     }

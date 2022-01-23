@@ -59,6 +59,7 @@ label {
     width: 4.2rem;
     height: 4.2rem;
     margin-right: 1.2rem;
+    border-radius: 50%;
 }
 
 .upload-txt {
@@ -70,6 +71,12 @@ label {
     resize: none;
     border: none;
     font-size: 1.4rem;
+}
+
+.upload-img {
+    width: 30.4rem;
+    height: 22.8rem;
+    border-radius: 1rem;
 }
 
 .upload-txt::placeholder {
