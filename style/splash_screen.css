@@ -16,7 +16,7 @@
 
 .container {
   font-family: 'SDSamliphopangche_Basic';
-  width: 39rem;
+  /* width: 39rem; */
   height: 100vh;
   background-color: #F5F4F0;
   color: var(--yeon-no-word);
