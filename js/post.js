@@ -132,10 +132,12 @@ async function getPost() {
                 </div>
                 <p class="date font-gray">${getDateString(post.createdAt)}</p>
             </div>
-            <button class="more-btn2 ">
+            <button class="more-btn2 " data-userid="${post.author._id}">
                 <img src="src/svg/s-icon-more-vertical.svg" alt="더보기" class="icon-more2">
             </button>
             `;
+
+            getPostMoreBtn()
 
             const profilePic = document.querySelectorAll(".profile-pic");
             for (const i of profilePic) {
@@ -173,6 +175,38 @@ async function getPost() {
             slideImgList()
         });
     getComment();
+}
+
+
+function getPostMoreBtn() {
+    const queryString = window.location.href.split('?')[1]
+    const commentMoreBtn = document.querySelector('.more-btn2');
+    const loginUserId = localStorage.getItem('userId');
+    const buttonUserId = commentMoreBtn.dataset.userid;
+    const modalMix = document.querySelector(".post-modal-mix");
+    const modalTxtDelete = document.querySelector('.modal-txt-delete');
+    const modalTxtModi = document.querySelector('.modal-txt-modi')
+    const alertPosttDelete = document.querySelector('.alert-post-delete');
+    const alertPostModi = document.querySelector('alert-post-modi');
+    commentMoreBtn.addEventListener('click', () => {
+        if (loginUserId === buttonUserId) {
+            modalMix.classList.add('modal-open');
+            modalWrapper.style.display = 'block';
+            modalTxtDelete.addEventListener('click', () => {
+                alertPosttDelete.style.display = 'block';
+                alertActionBtn[2].addEventListener('click', postDel())
+            })
+            modalTxtModi.addEventListener('click', () => {
+                alertPostModi.style.display = 'block';
+                alertActionBtn[3].addEventListener('click', () => {
+                    location.href = `upload.html?${queryString}`;
+                })
+            })
+        } else {
+            modalReport.classList.add('modal-open');
+            modalWrapper.style.display = 'block';
+        }
+    })
 }
 
 // 이미지 슬라이드
@@ -317,6 +351,29 @@ async function createComment() {
     });
     commentInput.value = "";
     location.href = `./post.html?${queryString}`;
+}
+
+// 게시글 삭제
+
+async function postDel() {
+    const accountName = localStorage.getItem("accountName");
+    const commentMoreBtn = document.querySelector('.more-btn2');
+    const buttonUserId = commentMoreBtn.dataset.userid;
+    const res = await fetch(`http://146.56.183.55:5050/post/${buttonUserId}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("Token"),
+            "Content-Type": "application/json",
+        },
+    });
+    const data = await res.json();
+    console.log(data);
+
+    if (data) {
+        location.href = `your_profile.html?${accountName}`;
+    } else {
+        alert('삭제 실패');
+    }
 }
 
 // 댓글삭제
