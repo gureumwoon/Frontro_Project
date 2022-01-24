@@ -1,14 +1,13 @@
 const BASE_URL = "http://146.56.183.55:5050";
 
 // - top-bar, 헤더 바 -
+
 // - 관련 변수들
 const btnBack = document.querySelector(".button-back");
-
 // - 뒤로가기 버튼
 btnBack.addEventListener("click", () => {
     history.back();
 });
-
 // - 채팅방 이름 지어주기
 const followType = getQueryValue("follow");
 const accountName = getQueryValue("accountName");
@@ -24,9 +23,120 @@ btnBack.after(headerTitle);
 const followersList = document.querySelector(".list-followers");
 const followersFragment = document.createDocumentFragment();
 
-getFollowData();
+createAndDrawFollowDOM();
 
-// 콘텐츠의 데이터를 가져와서 그려주는 함수
+async function createAndDrawFollowDOM() {
+    const [followData, followType] = await getFollowData();
+    let followingList;
+    let accountNameList;
+
+    if (followType === "follower") {
+        followingList = await getFollowingList(getQueryValue("accountName"));
+        accountNameList = followingList.map((item) => item.accountname);
+        console.log(accountNameList);
+    }
+
+    for (let user of followData) {
+        const userItem = document.createElement("li");
+        userItem.className += "user-follow";
+        if (followType == "following") {
+            // followType = following 경우 follow DOM 생성
+            userItem.innerHTML = `
+                <div class="cont_link">
+                    <a href=your_profile.html?accountName=${user.accountname} >
+                    <img src="${user.image}" alt="${user.username}의 프로필 사진" onerror="this.src='src/png/Ellipse 6.png';" class="follow_profile-image" />
+                    <div class="follow_text-info">
+                    <p class="follow_user-name">${user.username}</p>
+                    <p class="follow_user-introduce">${user.intro}</p>
+                    </div>
+                    </div>
+                    <button type="button" class="S-Active-button Sbutton-font" data-user=${user.accountname}>취소</button>
+                    `;
+        } else {
+            // followType = follower 경우 follow DOM 생성
+            userItem.innerHTML = `
+            <div class="cont_link">
+                <a href=your_profile.html?accountName=${user.accountname} >
+                <img src="${user.image}" alt="${
+                user.username
+            }의 프로필 사진" onerror="this.src='src/png/Ellipse 6.png';" class="follow_profile-image" />
+                    <div class="follow_text-info">
+                    <p class="follow_user-name">${user.username}</p>
+                    <p class="follow_user-introduce">${user.intro}</p>
+                    </div>
+                </div>
+                ${
+                    accountNameList.includes(user.accountname)
+                        ? `<button type="button" class="S-Active-button Sbutton-font" data-user=${user.accountname}>취소</button>`
+                        : `<button type="button" class="S-button Sbutton-font" data-user=${user.accountname}>팔로우</button>`
+                }`;
+        }
+        followersFragment.appendChild(userItem);
+    }
+    followersList.appendChild(followersFragment);
+
+    const followBtnList = document.querySelectorAll(".Sbutton-font");
+    console.log(followBtnList);
+    Array.from(followBtnList).forEach((followBtn) =>
+        followBtn.addEventListener("click", () => {
+            if (followBtn.innerText === "팔로우") {
+                postFollowReq(followBtn.dataset.user, followBtn);
+            } else {
+                postUnfollowReq(followBtn.dataset.user, followBtn);
+            }
+        })
+    );
+}
+
+// - 팔로우하기
+async function postFollowReq(accountName, DOM) {
+    try {
+        const token = localStorage.getItem("Token");
+
+        const res = await myFetch(
+            `${BASE_URL}/profile/${accountName}/follow`,
+            "post",
+            token,
+            null
+        );
+        const result = await res.json();
+        console.log(result);
+        console.log(res.ok);
+        if (res.ok) {
+            DOM.innerText = "취소";
+            DOM.classList.replace("S-button", "S-Active-button");
+            console.log(DOM.innerText);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// - 언팔로우하기
+async function postUnfollowReq(accountName, DOM) {
+    try {
+        const token = localStorage.getItem("Token");
+
+        const res = await myFetch(
+            `${BASE_URL}/profile/${accountName}/unfollow`,
+            "delete",
+            token,
+            null
+        );
+        const result = await res.json();
+        console.log(result);
+        console.log(res.ok);
+        if (res.ok) {
+            DOM.innerText = "팔로우";
+            DOM.classList.replace("S-Active-button", "S-button");
+            console.log(DOM.innerText);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// 콘텐츠의 데이터를 가져오는 함수
 async function getFollowData() {
     const followType = getQueryValue("follow");
     const accountName = getQueryValue("accountName");
@@ -38,74 +148,7 @@ async function getFollowData() {
         followData = await getFollowingList(accountName);
     }
 
-    console.log(followData);
-
-    // 여러 비동기에 쓰이는 await를 한 번으로 묶을 수는 없을까??
-    // for (let follower of followData) {
-    for (let user of followData) {
-        const profileImage = await validateImage(user.image, "profile");
-        // list형 content 보여주기
-        const userItem = document.createElement("li");
-        userItem.className += "user-follow";
-        userItem.innerHTML = `
-            <div class="cont_link">
-                <img src="${profileImage}" alt="${user.username}의 프로필 사진" class="follow_profile-image" />
-                <div class="follow_text-info">
-                <p class="follow_user-name">${user.username}</p>
-                <p class="follow_user-introduce">${user.intro}</p>
-                </div>
-            </div>
-            <button type="button" class="S-button Sbutton-font">팔로우</button>`;
-        followersFragment.appendChild(userItem);
-    }
-
-    followersList.appendChild(followersFragment);
-
-    // - 페이지 이동 -
-    // - 관련 변수
-    const followersLinkList = document.querySelectorAll(".cont_link");
-    Array.from(followersLinkList).forEach((follower) => {
-        console.log(follower);
-        const profileName =
-            follower.querySelector(".follow_user-name").innerText;
-        follower.addEventListener("click", () => {
-            location.href = `/your_profile.html?name=${profileName}`;
-        });
-    });
-
-    // - 팔로우 버튼 기능
-    const FollowBtn = document.querySelectorAll(".Sbutton-font");
-    Array.from(FollowBtn).forEach((button) => {
-        button.addEventListener("click", () => {
-            if (button.innerText === "취소") {
-                button.innerText = "팔로우";
-                button.classList.replace("S-Active-button", "S-button");
-                console.log(button.innerText);
-                // myFetch(
-                //     `${BASE_URL}/profile/${ACCOUNT_NAME}/unfollow`,
-                //     "delete",
-                //     AUTH,
-                //     null
-                // )
-                //     .then((res) => res.json())
-                //     .then((result) => console.log(result))
-                //     .catch((error) => console.log(error));
-            } else {
-                button.innerText = "취소";
-                button.classList.replace("S-button", "S-Active-button");
-                console.log(button.innerText);
-                // myFetch(
-                //     `${BASE_URL}/profile/${ACCOUNT_NAME}/follow`,
-                //     "post",
-                //     AUTH,
-                //     null
-                // )
-                //     .then((res) => res.json())
-                //     .then((result) => console.log(result))
-                //     .catch((error) => console.log(error));
-            }
-        });
-    });
+    return [followData, followType];
 }
 
 // 이미지가 유효한 지 검사하는 함수
@@ -211,3 +254,6 @@ function getQueryValue(key) {
     const value = params.get(key);
     return value;
 }
+
+// 1. html tag > 2. css 적용 > 3. js 적용 순으로 html에서 처리할 수 있는 코드를 css로 작성하거나 js로 작성하요 과도한 스펙의 코드를 작성하지 않도록 한다. js보다는 css로 작성하는 것이 좋음!
+// js data attribute

@@ -100,6 +100,7 @@ main {
     line-height: 1.2rem;
     text-align: center;
     text-align: center;
+    color: #767676;
 }
 .cont_profile .followers_profile {
     right: calc(100% + 4.1rem);
@@ -121,6 +122,13 @@ main {
 .followings_profile .number_followings {
     color: #767676;
 }
+/* .number_followings strong,
+.number_followers strong {
+    font-size: 10px;
+    line-height: 12px;
+    color: #767676;
+} */
+
 .cont_profile .name_profile {
     margin-bottom: 0.6rem;
     font-size: 1.6rem;
@@ -166,7 +174,7 @@ main {
     font-size: 1.2rem;
     line-height: 1.5rem;
     border: none;
-    margin: 0 1rem;
+    /* margin: 0 1rem; */
 }
 .footer_profile .S-button {
     padding: 0.8rem 0;
@@ -191,13 +199,17 @@ main {
 
 .cont_on-sale {
     display: none;
+    justify-content: center;
+    background-color: #ffffff;
+}
+.cont_on-sale .item-wrapper_on-sale {
     min-height: 18.7rem;
     position: relative;
     /* padding: 2rem 2.1rem 2rem 2.1rem; > 얘는 사용이 안된다..*/
     padding: 2rem 0;
     margin-bottom: 0.6rem;
-    background-color: #ffffff;
-    overflow: auto;
+    width: 39rem;
+    overflow-x: scroll;
 }
 .cont_on-sale .tit_on-sale {
     display: inline-block; /*block으로 설정하면 width:100%가 적용되면서 마지막 padding 구간에서 화면에 꽉차려하기 때문에 원하는 대로 작동이 하지 않는다.*/
@@ -228,6 +240,7 @@ main {
     margin-bottom: 0.6rem;
     border: 0.05rem solid #dbdbdb;
     border-radius: 0.8rem;
+    object-fit: cover;
 }
 .item_on-sale .tit_item,
 .item_on-sale .price_item {
@@ -275,10 +288,12 @@ main {
 /* view-style에 따라 다르게 표시 */
 /* list형 스타일 */
 .cont_contents .cont_user-contents {
+    margin: 0 auto;
     padding: 1.6rem;
     padding-bottom: 6rem;
+    width: 39rem;
 }
-.ul-picture_user-contents {
+.cont_user-contents .ul-picture_user-contents {
     display: none;
 }
 .cont_user-contents .content_user-contents {
@@ -319,22 +334,23 @@ main {
 }
 /* 단일 이미지 */
 .desc_content-info .content-img_content-info {
+    margin-bottom: 1.6rem;
     display: block;
-    width: 100%;
-    height: 100%;
+    height: 22.8rem;
+    width: 30.4rem;
+    /* width: 100%;
+    height: 100%; */
     border-radius: 1rem;
+    object-fit: cover;
 }
 /* 다중 이미지 */
 /* 여기 css가 제대로 적용된 건지.. img에 px로 크기를 정해주는 것이 맞는 것인지.. */
-.desc_content-info .cont_slide {
-    position: relative;
+
+.desc_content-info .content-img_slide {
     margin-bottom: 1.6rem;
     border-radius: 10px;
     overflow: auto;
     scroll-snap-type: x mandatory;
-}
-
-.desc_content-info .content-img_slide {
     display: flex;
     flex-wrap: nowrap;
     height: 22.8rem;
@@ -350,7 +366,7 @@ main {
     border-radius: 10px;
     scroll-snap-align: start;
 }
-.desc_content-info .content-img_slide-item {
+.content-img_slide li .content-img_slide-item {
     /* display: inline-block; */
     height: 100%;
     width: 100%;
@@ -403,21 +419,39 @@ main {
 }
 
 /* picture형 스타일 */
+
 .picture-style.cont_user-contents {
     padding-bottom: 8rem;
 }
 .picture-style .ul-picture_user-contents {
-    display: flex;
+    display: none;
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
     gap: 0.8rem;
+}
+.ul-picture_user-contents li {
+    max-height: 114px;
+    min-height: 114px;
+}
+.ul-picture_user-contents .multi-image {
+    position: relative;
+}
+.ul-picture_user-contents .multi-image::before {
+    content: "";
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    width: 2rem;
+    height: 2rem;
+    background: url("/src/svg/icon-img-layers.svg") no-repeat center / contain;
 }
 .picture-style .content-img_content-info {
     margin-bottom: 0;
     height: 11.4rem;
     width: 11.4rem;
     border-radius: 0;
+    object-fit: cover;
 }
 
 /* 하단 탭 메뉴, tab menu */
