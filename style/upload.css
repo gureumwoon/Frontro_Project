@@ -26,7 +26,6 @@ label {
 
 .container {
     position: relative;
-    width: 39rem;
     height: 100vh;
     margin: auto;
     background-color: white;
@@ -107,7 +106,7 @@ label {
 
 .prev-img {
     display: flex;
-    width: 304px;
+    width: 30.4rem;
     overflow-x: auto;
     overflow-y: hidden;
 }
@@ -126,8 +125,8 @@ label {
 
 .img-cancel-btn {
     position: absolute;
-    top: 11.5px;
-    right: 11.5px;
+    top: 1.15rem;
+    right: 1.15rem;
     margin: 0;
 }
 
