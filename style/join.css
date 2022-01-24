@@ -12,6 +12,9 @@ input:focus, textarea:focus, select:focus{
     outline: none;
 }
 
+.btn {
+    cursor: pointer;
+}
 .container {
     /* width: 39rem; */
     height: 100vh;
@@ -131,6 +134,11 @@ input.inp-login:focus {
     border-color: var(--zzin-no);
 }
 
+.input_alert {
+    font-size: 1.2rem;
+    padding-top: 0.6rem;
+}
+
 .form-setProfile .inp-error {
     display: block;
     margin-top: 0.6rem;
@@ -152,8 +160,4 @@ input.inp-login:focus {
 .form-setProfile .active {
     background-color: var(--zzin-no);
     color:  var(--zzin-no-word);
-}
-
-.profile-set {
-    /* display: none; */
 }
