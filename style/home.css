@@ -79,6 +79,7 @@
     background-color: var(--zzin-no);
     border: none;
     color: var(--zzin-no-word);
+    cursor: pointer;
 }
 
 .main .main-icon .btn-search a {
@@ -91,7 +92,6 @@
     height: 10rem;
 }
 
-/* 우성님 footer 에 맞추려면 7rem해야됨 */
 .footer {
     height: 7rem;
     border-top: 1px solid #dbdbdb;
@@ -113,7 +113,6 @@
     text-align: center;
 }
 
-/* 게시물 아이콘만 깨짐 */
 .icon-add {
     width: 25px;
     padding-left: 1rem;

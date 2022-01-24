@@ -44,6 +44,7 @@
     position: absolute;
     top: 1rem;
     right: 1.3rem;
+    cursor: pointer;
 }
 
 .main {
@@ -60,6 +61,7 @@
 .footer {
     height: 7rem;
     border-top: 1px solid #dbdbdb;
+
 }
 
 .footer .icon-item-list {
@@ -67,8 +69,6 @@
     margin-top: 0.8rem;
     justify-content: space-around;
     /* justify-content: space-between; */
-    
-
 }
 
 .item-footer {
@@ -79,6 +79,7 @@
     color: #767676;
     gap: 0.4rem;
     text-align: center;
+    cursor: pointer;
 }
 
 .icon-add {
