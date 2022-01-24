@@ -177,7 +177,8 @@ async function submitProfileModi() {
     });
     const json = await res.json();
     if (res.status == 200) {
-        location.href = 'my_profile.html';
+        const accountName = localStorage.getItem('accountName')
+        location.href = `my_profile.html?accountName=${accountName}`;
     } else {
         console.log(json);
     }
