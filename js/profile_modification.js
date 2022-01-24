@@ -37,19 +37,19 @@ const isUserIdInputValid = () => {
 
 // 버튼 클릭 했을때 유효성 검사 (유효성 검사 실패시 저장버튼 안 눌림)
 
-saveButton.addEventListener('click', () => {
-    if (!isUserNameInputValid()) {
-        warningTextList[0].classList.remove('invisible');
-        return;
-    }
-    warningTextList[0].classList.add('invisible');
-    if (!isUserIdInputValid()) {
-        warningTextList[1].classList.remove('invisible');
-        return;
-    }
-    warningTextList[1].classList.add('invisible');
-    window.location.href = "my_profile.html";
-})
+// saveButton.addEventListener('click', () => {
+//     if (!isUserNameInputValid()) {
+//         warningTextList[0].classList.remove('invisible');
+//         return;
+//     }
+//     warningTextList[0].classList.add('invisible');
+//     if (!isUserIdInputValid()) {
+//         warningTextList[1].classList.remove('invisible');
+//         return;
+//     }
+//     warningTextList[1].classList.add('invisible');
+//     window.location.href = "my_profile.html";
+// })
 
 // imput에 입력시 유효성 검사
 
@@ -152,7 +152,9 @@ async function imageUpload(files) {
 }
 
 
-saveButton.addEventListener('click', submitProfileModi);
+saveButton.addEventListener('click', () => {
+    submitProfileModi();
+});
 
 async function submitProfileModi() {
     const userAccountName = userIdInput.value;
@@ -177,7 +179,9 @@ async function submitProfileModi() {
     });
     const json = await res.json();
     if (res.status == 200) {
-        const accountName = localStorage.getItem('accountName')
+        const accountName = localStorage.getItem('accountName');
+        localStorage.setItem('accountName', json.user.accountname);
+        localStorage.setItem('user-profile', json.user.image);
         location.href = `my_profile.html?accountName=${accountName}`;
     } else {
         console.log(json);
