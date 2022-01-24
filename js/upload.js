@@ -2,7 +2,6 @@ const profileImg = document.querySelector('.profile-pic');
 const textarea = document.querySelector('.upload-txt');
 const prevImg = document.querySelector('.prev-img');
 const backBtn = document.querySelector('.back-btn');
-const txtContent = document.querySelector('.post-content> textarea');
 const token = localStorage.getItem('Token')
 const accountName = localStorage.getItem('accountName')
 let imgIndex = 0;
@@ -141,7 +140,9 @@ async function createPost(e) {
 // 수정할 게시물 불러오기
 
 async function getPostData() {
-    const queryString = location.href.split('?')[1]
+    const queryString = window.location.href.split('?')[1]
+    // const searchParams = new URLSearchParams(queryString)
+    // const postId = searchParams.get('id');
     const res = await fetch(`http://146.56.183.55:5050/post/${queryString}`, {
         method: 'GET',
         headers: {
@@ -151,8 +152,7 @@ async function getPostData() {
     });
     const data = await res.json();
     console.log("data: ", data);
-    profileImg.src = data.post.author.image
-    txtContent.value = data.post.content;
+    textarea.value = data.post.content;
     dataImg = data.post.image.split(',');
     if (data.post.image === '') {
         //이미지 없을때
@@ -168,23 +168,23 @@ async function getPostData() {
          </li>
          `
         }
+        $submitBtn.classList.add('active')
+        deletePrevImg(dataImg);
     }
-    $submitBtn.classList.add('active')
-    deletePrevImg(dataImg);
 }
 
 const queryString = window.location.href.split('?')[1]
 const searchParams = new URLSearchParams(queryString)
 console.log("searchparams: ", searchParams)
 const postId = searchParams.get('id');
-if (postId) {
+if (queryString) {
     getPostData();
 }
 
 // 게시물 수정
 
 async function putData(e) {
-    const queryString = location.href.split('?')[1]
+    const queryString = window.location.href.split('?')[1]
     const content = textarea.value;
     let imageUrls = []; //이미 있는 이미지
     const files = $image.files; //새로 업로드 이미지
@@ -228,12 +228,12 @@ async function putData(e) {
 
 // 버튼 활성화
 
-txtContent.addEventListener('input', () => {
+textarea.addEventListener('input', () => {
     uploadBtnCheck()
 })
 
 function uploadBtnCheck() {
-    if (txtContent.value || $image.value) {
+    if (textarea.value || $image.value) {
         $submitBtn.disabled = false;
         $submitBtn.classList.add('active')
     } else {
@@ -243,7 +243,7 @@ function uploadBtnCheck() {
 }
 
 $submitBtn.addEventListener('click', (e) => {
-    const queryString = location.href.split('?')[1]
+    const queryString = window.location.href.split('?')[1]
     if (queryString) {
         putData()
     } else {
