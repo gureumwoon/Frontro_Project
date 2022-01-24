@@ -175,6 +175,10 @@ button{
     display: none;
 }
 
+.comment-user-profile {
+    border-radius: 50%;
+}
+
 .comment-view {
     width: 35.8rem;
     margin: auto;

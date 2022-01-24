@@ -127,7 +127,9 @@ async function getPost() {
                 <ul class="indicator">
                 </ul>
                 <div class="icon-box font-gray">
-                    <button type="button" class="btn btn-like"><img src="./src/svg/Vector.svg" class="heart"></button>
+                    <button type="button" class="btn btn-like">
+                        <img src="./src/png/${post.hearted ? "icon-heart-active.png" : "icon-heart.png"}" class="heart">
+                    </button>
                     <span class="count count-heart">${post.heartCount}</span>
                     <button type="button" class="btn btn-comment"><img src="./src/svg/message-circle.svg"></button>
                     <span class="count count-comment">${post.commentCount
@@ -140,19 +142,36 @@ async function getPost() {
             </button>
             `;
 
-            getPostMoreBtn()
+            getPostMoreBtn();
+            profileImg();
 
-            const profilePic = document.querySelectorAll(".profile-pic");
-            for (const i of profilePic) {
-                i.addEventListener('click', () => {
-                    window.location.href = `your_profile.html?accountName=${post.author.accountname}`;
-                })
-            }
+            // const profilePic = document.querySelectorAll(".profile-pic");
+            // for (const i of profilePic) {
+            //     i.addEventListener('click', () => {
+            //         window.location.href = `your_profile.html?accountName=${post.author.accountname}`;
+            //     })
+            // }
 
             heartCheck = post.hearted;
-            console.log("heart: ", heartCheck)
+
+            //좋아요
+            const likeBtn = document.querySelector('.btn-like > img');
+            const countHeart = document.querySelector('.count-heart');
+            likeBtn.addEventListener('click', () => {
+                if (post.hearted) {
+                    post.hearted = false;
+                    countHeart.textContent = post.heartCount -= 1;
+                    likeBtn.src = './src/png/icon-heart.png';
+                    unHeart();
+                } else {
+                    post.hearted = true;
+                    countHeart.textContent = post.heartCount += 1;
+                    likeBtn.src = './src/png/icon-heart-active.png';
+                    fullHeart();
+                }
+            })
+
             const heart = document.querySelector('.btn-like > img');
-            console.log("heart: ", heart)
             if (heartCheck === true) {
                 heart.src = './src/png/icon-heart-active.png';
             }
@@ -231,6 +250,14 @@ function getPostMoreBtn() {
     })
 }
 
+
+const goPostPage = document.querySelectorAll(".profile-pic")
+for (const [idx, profile] of goPostPage.entries()) {
+    profile.addEventListener('click', () => {
+        window.location.href = `your_profile.html?id=${post[idx].id}`;
+    })
+}
+
 // 이미지 슬라이드
 function slideImgList() {
     const indicator = document.querySelector('.indicator');
@@ -246,6 +273,34 @@ function slideImgList() {
             imgList.style.transform = `translateX(-${304 * index}px)`;
             imgList.style.transition = 'all 0.3s ease'
         });
+    });
+}
+
+
+// 좋아요
+async function fullHeart() {
+    const queryString = window.location.href.split('?')[1]
+    const searchParams = new URLSearchParams(queryString)
+    const postId = searchParams.get('id');
+    await fetch(`http://146.56.183.55:5050/post/${postId}/heart`, {
+        method: 'POST',
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("Token"),
+            "Content-Type": "application/json",
+        },
+    });
+}
+// 좋아요 취소
+async function unHeart() {
+    const queryString = window.location.href.split('?')[1]
+    const searchParams = new URLSearchParams(queryString)
+    const postId = searchParams.get('id');
+    await fetch(`http://146.56.183.55:5050/post/${postId}/unheart`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("Token"),
+            "Content-Type": "application/json",
+        },
     });
 }
 
@@ -424,4 +479,28 @@ async function commentDel() {
         alert('삭제 실패');
     }
 }
+
+// 댓글 입력 프로필 이미지
+async function profileImg() {
+    const res = await fetch(
+        `http://146.56.183.55:5050/profile/${accountName}`,
+        {
+            method: 'GET',
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("Token"),
+                "Content-Type": "application/json",
+            },
+        }
+    );
+    const data = await res.json();
+    const commentContainer = document.querySelector('.comment-upload')
+    commentContainer.innerHTML = `
+        <div class="comment-upload">
+            <img src="${data.profile.image}" alt="내 프로필 이미지" class="comment-user-profile">
+            <input type="text" placeholder="댓글 입력하기..." class="comment-inp">
+            <button class="comment-upload-btn">게시</button>
+        </div>
+    `
+}
+
 
