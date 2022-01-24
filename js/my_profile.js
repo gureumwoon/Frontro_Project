@@ -47,8 +47,9 @@ cancelBtn_popup.addEventListener("click", () => {
 // - 로그 아웃 기능
 logoutBtn_popup.addEventListener("click", () => {
     localStorage.removeItem("Token");
-    // localStorage.removeItem("account");
-    // localStorage.removeItem("user-profile");
+    localStorage.removeItem("accountName");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("user-profile");
     location.href = "login.html";
 });
 
@@ -161,6 +162,7 @@ createAndDrawOnSale();
 // - on-sale DOM 요소 생성 및 화면 그리기
 async function createAndDrawOnSale() {
     const productList = await getOnSaleData();
+
     // 등록된 상품이 있을 경우만 리스트 보여주기
     if (productList.length > 0) {
         onSaleCont.style.display = "flex";
@@ -173,22 +175,19 @@ async function createAndDrawOnSale() {
         // 가격에 ','를 달아주는 로직
         const price = makeMoneysComma(`${product.price}`);
 
-        // <img src="${product.itemImage}" alt="판매상품 ${product.itemName}의 이미지" onerror="this.src="/src/png/add-product-box.png">
         // 상품 노드 생성
         const productItem = document.createElement("li");
         productItem.className += "li_on-sale";
         productItem.innerHTML = `
-        <article class="item_on-sale">
-        <img src="${product.itemImage}" alt="판매상품 ${product.itemName}의 이미지" onerror="this.src='/src/png/add-product-box.png';">
-        <p class="tit_item">
-        ${product.itemName}
-        </p>
-        <p class="price_item">
-        <strong>
-        ${price}
-        </strong>원
-        </p>
-        </article>`;
+            <article class="item_on-sale">
+                <img src="${product.itemImage}" alt="판매상품 ${product.itemName}의 이미지" onerror="this.src='/src/png/add-product-box.png';">
+                <p class="tit_item">
+                ${product.itemName}
+                </p>
+                <p class="price_item">
+                    <strong>${price}</strong>원
+                </p>
+            </article>`;
         onSaleFragment.appendChild(productItem);
 
         // 상품 노드 이벤트 등록
@@ -199,9 +198,9 @@ async function createAndDrawOnSale() {
             productLink = product.link;
             // 일회성 이벤트 등록
             // 상품 삭제 이벤트 등록
-            onSaleDeleteBtn_popup.addEventListener("click", deleteFuncWrapper);
+            onSaleDeleteBtn_popup.addEventListener("click", deleteOnSaleFunc);
             // 상품 수정 이벤트 등록
-            onSaleModifyBtn_up.addEventListener("click", modifyFuncWrapper);
+            onSaleModifyBtn_up.addEventListener("click", modifyOnSaleFunc);
             // 상품 링크 이동 이벤트 등록
             onSaleLinkBtn_up.addEventListener("click", LinkFuncWrapper);
         });
@@ -209,8 +208,8 @@ async function createAndDrawOnSale() {
     // });
     backgroundUpModal.addEventListener("click", () => {
         onSaleUpModal.style.bottom = "-20rem";
-        onSaleDeleteBtn_popup.removeEventListener("click", deleteFuncWrapper);
-        onSaleModifyBtn_up.removeEventListener("click", modifyFuncWrapper);
+        onSaleDeleteBtn_popup.removeEventListener("click", deleteOnSaleFunc);
+        onSaleModifyBtn_up.removeEventListener("click", modifyOnSaleFunc);
         onSaleLinkBtn_up.removeEventListener("click", LinkFuncWrapper);
     });
     onSaleList.appendChild(onSaleFragment);
@@ -218,76 +217,16 @@ async function createAndDrawOnSale() {
 
 // - on-sale 이벤트 함수
 // 삭제 이벤트
-async function deleteFuncWrapper() {
+async function deleteOnSaleFunc() {
     console.log("상품 삭제!");
     deleteItem(productId, "onSale");
 }
-async function deleteItem(itemId, itemType) {
-    console.log(itemId);
-    const token = localStorage.getItem("Token");
 
-    if (itemType === "onSale") {
-        // 팝업, 업 모달 다 내려주기
-        backgroundPopupModal.style.display = "none";
-        backgroundUpModal.style.display = "none";
-        onSalePopupModal.style.display = "none";
-        onSaleUpModal.style.bottom = "-20rem";
-
-        // 상품 삭제 로직...
-        const res = await myFetch(
-            `${BASE_URL}/product/${itemId}`,
-            "delete",
-            token,
-            null
-        );
-
-        const response = await res.json();
-
-        // 상품 삭제 완료여부 알려주기
-        if (res.ok) {
-            window.alert(response.message);
-            location.reload();
-        } else {
-            window.alert("삭제 실패하였습니다!");
-        }
-    } else if (itemType === "content") {
-        // 팝업, 업 모달 다 내려주기
-        backgroundPopupModal.style.display = "none";
-        backgroundUpModal.style.display = "none";
-        contentPopupModal.style.display = "none";
-        contentUpModal.style.bottom = "-20rem";
-
-        // 게시글 삭제 로직...
-        const res = await myFetch(
-            `${BASE_URL}/post/${itemId}`,
-            "delete",
-            token,
-            null
-        );
-
-        const response = await res.json();
-
-        // 게시글 삭제 완료여부 알려주기
-        if (res.ok) {
-            window.alert(response.message);
-            location.reload();
-        } else {
-            window.alert("삭제 실패하였습니다!");
-        }
-    }
-}
 // 수정 이벤트
-function modifyFuncWrapper() {
+function modifyOnSaleFunc() {
     modifyItem(productId, "onSale");
 }
-function modifyItem(itemId, itemType) {
-    if (itemType === "onSale") {
-        // 여쭤보고 작성하기
-        location.href = `add_product.html?productid=${itemId}`;
-    } else if (itemType === "content") {
-        location.href = `upload.html?postid=${itemId}`;
-    }
-}
+
 // 링크 이벤트
 function LinkFuncWrapper() {
     moveToLink(productLink);
@@ -496,31 +435,14 @@ async function createAndDrawContent() {
         btnMoreHTML.className += "btn-more_content button-noneBackground";
         btnMoreHTML.innerHTML = `<img class="" src="src/svg/s-icon-more-vertical.svg" alt="더보기 버튼">`;
         btnMoreHTML.addEventListener("click", () => {
+            contentId = content.id;
             backgroundUpModal.style.display = "block";
             contentUpModal.style.bottom = "0";
             // 일회성 이벤트 등록(여러개의 콘텐츠가 하나의 업모달을 공유해서 이벤트를 달기 때문에 일회성 이벤트를 사용)
             // 상품 삭제 이벤트 등록
-            contentDeleteBtn_popup.addEventListener(
-                "click",
-                function deleteFuncWrapper() {
-                    deleteItem(content.id, "content");
-                    contentDeleteBtn_popup.removeEventListener(
-                        "click",
-                        deleteFuncWrapper
-                    );
-                }
-            );
+            contentDeleteBtn_popup.addEventListener("click", deleteContentFunc);
             // 상품 수정 이벤트 등록
-            contentModifyBtn_up.addEventListener(
-                "click",
-                function modifyFuncWrapper() {
-                    modifyItem(content.id, "content");
-                    contentModifyBtn_up.removeEventListener(
-                        "click",
-                        modifyFuncWrapper
-                    );
-                }
-            );
+            contentModifyBtn_up.addEventListener("click", modifyContentFunc);
         });
 
         // 좋아요 버튼 생성
@@ -611,9 +533,6 @@ async function createAndDrawContent() {
     Array.from(descContentInfoList).forEach((descContentInfo, index) => {
         descContentInfo.after(btnMoreList[index]);
     });
-    backgroundUpModal.addEventListener("click", () => {
-        contentUpModal.style.bottom = "-20rem";
-    });
     // 좋아요 & 댓글 버튼
     const contentBtnContList = document.querySelectorAll(".cont_buttons");
     console.log(contentBtnContList);
@@ -621,9 +540,84 @@ async function createAndDrawContent() {
         contentBtnCont.appendChild(btnHeartList[index]);
         contentBtnCont.appendChild(btnCommentList[index]);
     });
+    backgroundUpModal.addEventListener("click", () => {
+        contentUpModal.style.bottom = "-20rem";
+        contentDeleteBtn_popup.removeEventListener("click", deleteContentFunc);
+        contentModifyBtn_up.removeEventListener("click", modifyContentFunc);
+    });
+}
+// content 이벤트 함수
+async function deleteContentFunc() {
+    console.log("게시글 삭제!");
+    deleteItem(contentId, "content");
+}
+async function deleteItem(itemId, itemType) {
+    console.log(itemId);
+    const token = localStorage.getItem("Token");
+
+    if (itemType === "onSale") {
+        // 팝업, 업 모달 다 내려주기
+        backgroundPopupModal.style.display = "none";
+        backgroundUpModal.style.display = "none";
+        onSalePopupModal.style.display = "none";
+        onSaleUpModal.style.bottom = "-20rem";
+
+        // 상품 삭제 로직...
+        const res = await myFetch(
+            `${BASE_URL}/product/${itemId}`,
+            "delete",
+            token,
+            null
+        );
+
+        const response = await res.json();
+
+        // 상품 삭제 완료여부 알려주기
+        if (res.ok) {
+            window.alert(response.message);
+            location.reload();
+        } else {
+            window.alert("삭제 실패하였습니다!");
+        }
+    } else if (itemType === "content") {
+        // 팝업, 업 모달 다 내려주기
+        backgroundPopupModal.style.display = "none";
+        backgroundUpModal.style.display = "none";
+        contentPopupModal.style.display = "none";
+        contentUpModal.style.bottom = "-20rem";
+
+        // 게시글 삭제 로직...
+        const res = await myFetch(
+            `${BASE_URL}/post/${itemId}`,
+            "delete",
+            token,
+            null
+        );
+
+        const response = await res.json();
+
+        // 게시글 삭제 완료여부 알려주기
+        if (res.ok) {
+            window.alert(response.message);
+            location.reload();
+        } else {
+            window.alert("삭제 실패하였습니다!");
+        }
+    }
+}
+function modifyContentFunc() {
+    modifyItem(contentId, "content");
+}
+function modifyItem(itemId, itemType) {
+    if (itemType === "onSale") {
+        // 여쭤보고 작성하기
+        location.href = `add_product.html?productid=${itemId}`;
+    } else if (itemType === "content") {
+        location.href = `upload.html?postid=${itemId}`;
+    }
 }
 
-// 콘텐츠의 데이터를 가져와서 그려주는 함수
+// 콘텐츠의 데이터를 가져오는 함수
 async function getContents() {
     const myAccountName = localStorage.getItem("accountName");
     const token = localStorage.getItem("Token");
@@ -710,6 +704,15 @@ goMyProfile.addEventListener("click", () => {
 });
 
 // - 공용으로 쓰이는 코드 -
+
+async function getAccountName() {
+    let accountName = getQueryValue("accountName");
+    if (accountName) {
+        return accountName;
+    } else {
+        return localStorage.getItem("accountName");
+    }
+}
 
 // - fetch를 쉽게 쓸 수 있게 해주는 함수
 async function myFetch(url, method, auth = "", data = "") {
