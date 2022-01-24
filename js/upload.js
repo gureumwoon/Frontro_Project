@@ -254,5 +254,3 @@ $submitBtn.addEventListener('click', (e) => {
 
 
 
-
-
