@@ -176,6 +176,8 @@ button{
 }
 
 .comment-user-profile {
+    width: 3.6rem;
+    height: 3.6rem;
     border-radius: 50%;
 }
 
