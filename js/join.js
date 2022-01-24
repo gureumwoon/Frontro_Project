@@ -41,6 +41,29 @@ async function checkEmailValid(email) {
     return json.message == "사용 가능한 이메일 입니다." ? true : false
 }
 
+// 이메일 형식 검사
+document.addEventListener('DOMContentLoaded', () => {
+    const inputBox = document.querySelector('#inpEmail');
+    const inputAlert = document.querySelector('.input_alert');
+    const isEmail = (value) => {
+      // 골뱅이가 있고 골뱅이 뒤에 점이 있다면 
+      return (value.indexOf('@') > 1) &&
+        (value.split('@')[1].indexOf('.') > 1)
+    }
+  
+    inputBox.addEventListener('keyup', (event) => {
+      const value = event.currentTarget.value
+      if (isEmail(value)) {
+        inputAlert.style.color = "green"
+        inputAlert.textContent = ``
+      } else {
+        inputAlert.style.color = "#eb5757"
+        inputAlert.textContent = `*올바르지 않은 이메일 형식입니다.`
+        inputAlert.fontSize = `1.2rem`
+      }
+    })
+  })
+
 // 이메일로 회원가입 창에서 (다음) 버튼 눌렀을 때 
 // 통과하면 프로필 설정 창 띄우고 
 // 통과못하면 경고문구 띄우기 

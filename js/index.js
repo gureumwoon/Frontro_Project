@@ -1,10 +1,10 @@
-// 검색 아이콘 누르면 페이지 이동
+// 검색 아이콘 클릭 시 페이지 이동
 const goToSearchPage = document.querySelector('.header > button');
 goToSearchPage.addEventListener('click', () => {
     window.location.href = "search_2.html";
 })
 
-// 바탕누르면 업모달창 사라짐
+// 업모달창 사라지기 
 const backgroundUpModal = document.querySelector(".hidden-menu");
 const upModal = document.querySelector(".hidden-menu-list");
 
@@ -13,29 +13,12 @@ backgroundUpModal.addEventListener('click', () => {
     upModal.style.bottom = "-20rem";
 })
 
-// 팝업모달창 
+// 팝업모달창 만들기
 const backgroundPopupModal = document.querySelector(".alert-modal");
 const popupModal = document.querySelector(".alert-modal-wrap");
 const cancleBtn = document.querySelector(".cancle-btn");
 const doBtn = document.querySelector(".do-btn");
 const reportBtn = document.querySelector(".report-post")
-// 사용자 닉네임 누르면 해당 사용자의 프로필로 이동
-// 현재 모두 your_profile로 이동함 
-// API 받아서 각 사용자의 profile로 이동하게 만들기
-// const goOtherProfile = document.querySelectorAll(".tit-post");
-// console.log(goOtherProfile);
-// for (const userName of goOtherProfile) {
-//     userName.addEventListener('click', function () {
-//         window.location.href = "your_profile.html";
-//     })
-// }
-// console.log(goOtherProfile);
-
-// API 받아서 
-// 하트 누르면 빨간 하트로 변경 
-// const likeButton = document.querySelectorAll(".btn-like");
-
-// console.log(likeButton);
 
 reportBtn.addEventListener('click', () => {
     backgroundPopupModal.style.display = "block";
@@ -71,6 +54,7 @@ goMyProfile.addEventListener('click', () => {
     window.location.href = "my_profile.html";
 })
 
+// 피드 불러오기 
 const container = document.querySelector('.main');
 // console.log(container);
 // console.log(localStorage.getItem("Token")) //브라우저 저장된 토큰 
@@ -95,24 +79,13 @@ async function getFeed() {
         }
     })
     const json = await res.json()
-    // console.log(json);
+    console.log(json);
 
     //forEach문으로 받아온 데이터 전부 살펴보면서 그려주는 부분
-
-    // const authorImage = post.author.image
-    // const authorAccount = post.author.accountname
-    // const authorName = post.author.username
-    // const commentCount = post.commentCount
-    // const content = post.content
-    // const heartCount = post.heartCount
-    // const hearted = post.hearted
-    // const contentImage = post.image
-
     // 이미지 3장일 때 이미지 리스트
     //  글만 있는 이미지 있는 경우
 
     const posts = json.posts
-
     const btnHeartList = [];
 
     // 팔로우가 없는 경우 
@@ -126,7 +99,7 @@ async function getFeed() {
         `
     } else {
         posts.forEach(post => {
-            // console.log('post');
+            console.log('post');
             const authorImage = post.author.image;
             const id = post.author._id;
             const authorAccount = post.author.accountname;
@@ -197,8 +170,8 @@ async function getFeed() {
                             <img src="${authorImage}" alt="${authorName}님의 프로필 사진" class="profile-pic" >
                             <div class="cont-following">
                                 <div class="profile">
-                                    <p class="tit-post">${authorName}</p>
-                                    <p class="id font-gray">${authorAccount}</p>
+                                    <p class="tit-post" data-userid="${post.author._id}"> ${authorName} </p>
+                                    <p class="id font-gray" data-accountname="${post.author.accountname}">${authorAccount}</p>
                                 </div>
                                 <p class="desc">${content}</p>
                                 ${imageHTML}
@@ -220,14 +193,21 @@ async function getFeed() {
                                 </div>
                             </div>
                         </article>  
-            `
+            `;
+
             // 사용자 이름 눌렀을 때 해당하는 your_profile 로 이동 
-            const titPost = document.querySelectorAll(".tit-post");
-            for (const i of titPost) {
-                i.addEventListener('click', () => {
-                    window.location.href = `your_profile.html?accountName=${authorAccount}`;
-                })
-            }
+
+            // const titPostList = document.querySelectorAll(".tit-post")
+            // for (const title of titPostList) {
+            //     // const userId = user.dataset.userid
+            //     const authorAccount = title.dataset.accountname
+            //     title.addEventListener('click', () => {
+            //         window.location.href = `your_profile.html?accountName=${authorAccount}`;
+            //     })
+            // }
+
+            // 프로필 사진 눌러도 해당 프로필로 이동 
+            
 
             // 더보기 버튼 클릭시 모달창 뜨기 
             const btnMore = document.querySelectorAll(".btn-icon-more");
@@ -240,6 +220,17 @@ async function getFeed() {
         });
 
         // forEach문 바깥 부분 
+
+        const titPostList = document.querySelectorAll(".id")
+            for (const title of titPostList) {
+                console.log(title)
+                const authorAccountName = title.dataset.accountname;
+                console.log(authorAccountName)
+                title.addEventListener('click', () => {
+                    window.location.href = `your_profile.html?accountName=${authorAccountName}`;
+                })
+            }
+
 
         // 해당 포스트 상세 게시물 댓글 페이지로 이동
         const goPostPage = document.querySelectorAll(".btn-comment")
@@ -257,10 +248,22 @@ async function getFeed() {
             })
         }
 
-        // 3. forEach문 밖에서 getFeed() 함수 안에 리스트에 담아둔 버튼들을 DOM에 연결시켜주기
-        // innerhtml에 icon-box 만들어서 넣어주는거임 
+        // const titPost = document.querySelectorAll(".tit-post");
+        // for (const i of titPost) {
+        //     i.addEventListener('click', () => {
+        //         window.location.href = `your_profile.html?accountName=${authorAccount}`;
+        //     })
+        // }
+
+        // const titPost = document.querySelectorAll(".tit-post")
+        // for (const [idx, comment] of titPost.entries()) {
+        //     comment.addEventListener('click', () => {
+        //         window.location.href = `your_profile.html?accountName=${authorAccount}`;
+        //     })
+        // }
+
+        // forEach문 밖에서 getFeed() 함수 안에 리스트에 담아둔 버튼들을 DOM에 연결시켜주기
         const contentBtnContList = document.querySelectorAll(".icon-box-heart");
-        // console.log(contentBtnContList);
         Array.from(contentBtnContList).forEach((contentBtnCont, index) => {
             contentBtnCont.appendChild(btnHeartList[index]);
         });
