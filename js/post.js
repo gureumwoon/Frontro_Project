@@ -17,31 +17,6 @@ postFixButton.addEventListener("click", () => {
     history.back();
 });
 
-// 입력시 '게시' 활성화
-
-function changeButtonColor() {
-    if (commentInput.value === "") {
-        commentUploadButton.classList.remove("active");
-    } else {
-        commentUploadButton.classList.add("active");
-    }
-}
-
-commentInput.addEventListener("keyup", changeButtonColor);
-
-// 더보기 아이콘 클릭시 모달창 올라오기
-
-const openModal = () => {
-    if (ID) {
-        isModalOpen = false;
-        modal.classList.remove("modal-open");
-    } else {
-        isModalOpen = true;
-        modal.classList.add("modal-open");
-    }
-};
-
-
 
 // fetch
 
@@ -49,12 +24,10 @@ const openModal = () => {
 if (localStorage.getItem("Token")) {
     getPost()
 }
-console.log(localStorage.getItem("Token"))
 
 // 날짜 & 시간 계산하기
 const description = document.querySelector('.desc');
 const picture = document.querySelector('.cont-following>img');
-console.log(picture);
 const getDateString = (date) => {
     const d = new Date(date)
     const year = d.getFullYear()
@@ -91,19 +64,19 @@ const getTimeString = (date) => {
     }
     return "0초 전"
 }
-// 게시물 상세보기 페이지
 
+// 게시물 상세보기 페이지
 async function getPost() {
-    console.log('getPost')
     const queryString = window.location.href.split('?')[1]
     const searchParams = new URLSearchParams(queryString)
     console.log("searchparams: ", searchParams)
     const postId = searchParams.get('id');
+    // const postId = location.href.split('=')[1]
     const url = `http://146.56.183.55:5050/post/${postId}`;
     fetch(url, {
         method: 'GET', // or 'PUT'
         headers: {
-            "Authorization": "Bearer " + localStorage.getItem("Token"),
+            Authorization: "Bearer " + localStorage.getItem("Token"),
             'Content-Type': 'application/json'
         }
     }).then(res => res.json())
@@ -143,14 +116,6 @@ async function getPost() {
             `;
 
             getPostMoreBtn();
-            profileImg();
-
-            // const profilePic = document.querySelectorAll(".profile-pic");
-            // for (const i of profilePic) {
-            //     i.addEventListener('click', () => {
-            //         window.location.href = `your_profile.html?accountName=${post.author.accountname}`;
-            //     })
-            // }
 
             heartCheck = post.hearted;
 
@@ -175,8 +140,7 @@ async function getPost() {
             if (heartCheck === true) {
                 heart.src = './src/png/icon-heart-active.png';
             }
-            // addPostImages(post.image);
-            // console.log("postImg: ", addPostImages(post.image))
+
             const slides = document.querySelector('.img-container');
             console.log("slides: ", slides)
             const indicator = document.querySelector('.indicator');
@@ -203,7 +167,7 @@ async function getPost() {
     getComment();
 }
 
-
+// 게시물 더보기 모달창
 function getPostMoreBtn() {
     const queryString = window.location.href.split('?')[1]
     const commentMoreBtn = document.querySelector('.more-btn2');
@@ -226,6 +190,11 @@ function getPostMoreBtn() {
             alertActionBtn[3].addEventListener('click', () => {
                 location.href = `upload.html?${postId}`;
             })
+        })
+        alertCancelBtn[3].addEventListener('click', () => {
+            alertPostModi.style.display = 'none';
+            modalWrapper.style.display = 'none';
+            modalMix.classList.remove('modal-open');
         })
         modalTxtDelete.addEventListener('click', () => {
             alertPostDelete.style.display = 'block';
@@ -250,7 +219,7 @@ function getPostMoreBtn() {
     })
 }
 
-
+// 프로필 이미지 클릭시 이동
 const goPostPage = document.querySelectorAll(".profile-pic")
 for (const [idx, profile] of goPostPage.entries()) {
     profile.addEventListener('click', () => {
@@ -276,12 +245,33 @@ function slideImgList() {
     });
 }
 
+// 게시글 삭제
+async function postDel() {
+    const commentMoreBtn = document.querySelector('.more-btn2');
+    const buttonPostId = commentMoreBtn.dataset.postid;
+    const res = await fetch(`http://146.56.183.55:5050/post/${buttonPostId}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("Token"),
+            "Content-Type": "application/json",
+        },
+    });
+    const data = await res.json();
+    console.log(data);
+
+    if (data) {
+        location.href = `my_profile.html?${accountName}`;
+    } else {
+        alert('삭제 실패');
+    }
+}
 
 // 좋아요
 async function fullHeart() {
     const queryString = window.location.href.split('?')[1]
     const searchParams = new URLSearchParams(queryString)
     const postId = searchParams.get('id');
+    // const postId = location.href.split('=')[1]
     await fetch(`http://146.56.183.55:5050/post/${postId}/heart`, {
         method: 'POST',
         headers: {
@@ -295,6 +285,7 @@ async function unHeart() {
     const queryString = window.location.href.split('?')[1]
     const searchParams = new URLSearchParams(queryString)
     const postId = searchParams.get('id');
+    // const postId = location.href.split('=')[1]
     await fetch(`http://146.56.183.55:5050/post/${postId}/unheart`, {
         method: 'DELETE',
         headers: {
@@ -304,14 +295,43 @@ async function unHeart() {
     });
 }
 
+// 댓글 입력
+commentUploadButton.addEventListener("click", createComment);
+
+async function createComment() {
+    const queryString = window.location.href.split('?')[1]
+    const searchParams = new URLSearchParams(queryString);
+    console.log(searchParams)
+    const postId = searchParams.get('id');
+    console.log("postid: ", postId)
+    // const postId = location.href.split('=')[1]
+    await fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
+        method: 'POST', // or 'PUT'
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("Token"),
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            "comment": {
+                "content": commentInput.value,
+            },
+        }),
+    });
+    commentInput.value = "";
+    location.reload();
+}
+
+
 
 // 댓글 가져오기
 async function getComment() {
     const queryString = window.location.href.split('?')[1]
     const searchParams = new URLSearchParams(queryString)
-    console.log("searchparams: ", searchParams)
+    console.log(searchParams)
     const postId = searchParams.get('id');
-    fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
+    console.log("postid: ", postId)
+    // const postId = location.href.split('=')[1]
+    await fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
         method: 'GET', // or 'PUT'
         headers: {
             Authorization: "Bearer " + localStorage.getItem("Token"),
@@ -342,20 +362,12 @@ async function getComment() {
                 </button>
             </div> 
             `;
-
-                // 댓글 프로필 이미지 클릭시 user 계정으로 이동
-                const profilePic = document.querySelectorAll(".profile-pic");
-                for (const i of profilePic) {
-                    i.addEventListener('click', () => {
-                        window.location.href = `your_profile.html?accountName=${comment.author.accountname}`;
-                    })
-                }
-
                 getCommentMoreBtn();
             })
         });
 };
 
+// 댓글 더보기 모달창
 function getCommentMoreBtn() {
     const commentMoreBtn = document.querySelectorAll('.more-btn3');
     console.log("commentbtn: ", commentMoreBtn)
@@ -364,8 +376,6 @@ function getCommentMoreBtn() {
         const buttonUserId = button.dataset.userid;
         const modalTxtDelete = document.querySelector('.modal-txt-delete');
         const alertCommentDelete = document.querySelector('.alert-comment-delete');
-        console.log('userid: ', loginUserId)
-        console.log('buttonuserid: ', buttonUserId)
         if (loginUserId === buttonUserId) {
             button.addEventListener('click', () => {
                 modalDelete.classList.add('modal-open');
@@ -402,59 +412,12 @@ function getCommentMoreBtn() {
     })
 }
 
-
-commentUploadButton.addEventListener("click", createComment);
-
-// 댓글 입력
-async function createComment() {
-    const queryString = window.location.href.split('?')[1]
-    const searchParams = new URLSearchParams(queryString)
-    console.log("searchparams: ", searchParams)
-    const postId = searchParams.get('id');
-    fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify({
-            comment: {
-                content: commentInput.value,
-            },
-        }),
-        headers: {
-            Authorization: "Bearer " + localStorage.getItem("Token"),
-            "Content-Type": "application/json",
-        },
-    });
-    commentInput.value = "";
-    location.href = `./post.html?${queryString}`;
-}
-
-// 게시글 삭제
-
-async function postDel() {
-    const commentMoreBtn = document.querySelector('.more-btn2');
-    const buttonPostId = commentMoreBtn.dataset.postid;
-    const res = await fetch(`http://146.56.183.55:5050/post/${buttonPostId}`, {
-        method: 'DELETE',
-        headers: {
-            Authorization: "Bearer " + localStorage.getItem("Token"),
-            "Content-Type": "application/json",
-        },
-    });
-    const data = await res.json();
-    console.log(data);
-
-    if (data) {
-        location.href = `my_profile.html?${accountName}`;
-    } else {
-        alert('삭제 실패');
-    }
-}
-
 // 댓글삭제
-
 async function commentDel() {
-    const queryString = window.location.href.split('?')[1]
-    const searchParams = new URLSearchParams(queryString)
-    const postId = searchParams.get('id');
+    // const queryString = window.location.href.split('?')[1]
+    // const searchParams = new URLSearchParams(queryString)
+    // const postId = searchParams.get('id');
+    const postId = window.location.href.split('=')[1]
     const alertCommentDelete = document.querySelector('.alert-comment-delete');
     const moreBtn = document.querySelector('.more-btn3')
     const buttonUserId = moreBtn.dataset.commentid;
@@ -469,7 +432,6 @@ async function commentDel() {
         }
     );
     const data = await res.json();
-    console.log("data: ", data);
     if (data) {
         alertCommentDelete.style.display = 'none';
         modalWrapper.style.display = 'none';
@@ -478,6 +440,15 @@ async function commentDel() {
     } else {
         alert('삭제 실패');
     }
+}
+
+
+// 댓글 프로필 이미지 클릭시 user 계정으로 이동
+const profilePic = document.querySelectorAll(".profile-pic");
+for (const i of profilePic) {
+    i.addEventListener('click', () => {
+        window.location.href = `your_profile.html?accountName=${comment.author.accountname}`;
+    })
 }
 
 // 댓글 입력 프로필 이미지
@@ -493,14 +464,22 @@ async function profileImg() {
         }
     );
     const data = await res.json();
-    const commentContainer = document.querySelector('.comment-upload')
-    commentContainer.innerHTML = `
-        <div class="comment-upload">
-            <img src="${data.profile.image}" alt="내 프로필 이미지" class="comment-user-profile">
-            <input type="text" placeholder="댓글 입력하기..." class="comment-inp">
-            <button class="comment-upload-btn">게시</button>
-        </div>
-    `
+    const commentUserProfile = document.querySelector('.comment-user-profile')
+    if (data.profile.image.split(':')[0] === 'http') {
+        commentUserProfile.src = data.profile.image;
+    } else {
+        commentUserProfile.src = 'http://146.56.183.55:5050/' + data.profile.image;
+    }
+}
+profileImg();
+
+// 입력시 '게시' 활성화
+function changeButtonColor() {
+    if (commentInput.value === "") {
+        commentUploadButton.classList.remove("active");
+    } else {
+        commentUploadButton.classList.add("active");
+    }
 }
 
-
+commentInput.addEventListener("keyup", changeButtonColor);
