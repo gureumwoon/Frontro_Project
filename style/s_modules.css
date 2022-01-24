@@ -115,6 +115,7 @@ body {
 .post .div-icon .btn-icon-more {
     position: absolute;
     top: 1rem;
+    left: -2rem;
     cursor: pointer;
 }
 
