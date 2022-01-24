@@ -30,41 +30,33 @@ async function createAndDrawFollowDOM() {
     let followingList;
     let accountNameList;
 
+    // follower 페이지일 경우 following하는 user에게만 취소 버튼을 표시해주기 위해
+    // following하는 user의 accountname 리스트를 받아온다.
     if (followType === "follower") {
         followingList = await getFollowingList(getQueryValue("accountName"));
         accountNameList = followingList.map((item) => item.accountname);
-        console.log(accountNameList);
     }
 
+    console.log(followData);
     for (let user of followData) {
+        // follow user DOM 생성
         const userItem = document.createElement("li");
         userItem.className += "user-follow";
-        if (followType == "following") {
-            // followType = following 경우 follow DOM 생성
-            userItem.innerHTML = `
-                <div class="cont_link">
-                    <a href=your_profile.html?accountName=${user.accountname} >
-                    <img src="${user.image}" alt="${user.username}의 프로필 사진" onerror="this.src='src/png/Ellipse 6.png';" class="follow_profile-image" />
-                    <div class="follow_text-info">
-                    <p class="follow_user-name">${user.username}</p>
-                    <p class="follow_user-introduce">${user.intro}</p>
-                    </div>
-                    </div>
-                    <button type="button" class="S-Active-button Sbutton-font" data-user=${user.accountname}>취소</button>
-                    `;
-        } else {
-            // followType = follower 경우 follow DOM 생성
-            userItem.innerHTML = `
+        userItem.innerHTML = `
             <div class="cont_link">
                 <a href=your_profile.html?accountName=${user.accountname} >
-                <img src="${user.image}" alt="${
-                user.username
-            }의 프로필 사진" onerror="this.src='src/png/Ellipse 6.png';" class="follow_profile-image" />
-                    <div class="follow_text-info">
+                <img src="${user.image}" alt="${user.username}의 프로필 사진" onerror="this.src='src/png/Ellipse 6.png';" class="follow_profile-image" />
+                <div class="follow_text-info">
                     <p class="follow_user-name">${user.username}</p>
                     <p class="follow_user-introduce">${user.intro}</p>
-                    </div>
                 </div>
+            </div>`;
+        if (followType == "following") {
+            // followType = following 경우 취소 버튼 DOM 생성
+            userItem.innerHTML += `<button type="button" class="S-Active-button Sbutton-font" data-user=${user.accountname}>취소</button>`;
+        } else {
+            // followType = follower 경우 follow 여부에 따라 취소 또는 팔로우 버튼 DOM 생성
+            userItem.innerHTML += `
                 ${
                     accountNameList.includes(user.accountname)
                         ? `<button type="button" class="S-Active-button Sbutton-font" data-user=${user.accountname}>취소</button>`

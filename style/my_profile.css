@@ -19,7 +19,7 @@ button {
 
 /* utility */
 /* 요소를 완전히 없애면 안되고.. 글자만 없애는 걸로.. */
-.ir {
+/* .ir {
     position: absolute;
     display: block;
     overflow: hidden;
@@ -27,16 +27,28 @@ button {
     line-height: 0;
     color: transparent;
     text-indent: -9999px;
-}
-.button-noneBackground {
-    background-color: transparent;
-    border: none;
+} */
+.ir {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
 }
 
 main {
     display: flex;
     flex-direction: column;
     height: 100vh;
+}
+
+.button-noneBackground {
+    background-color: transparent;
+    border: none;
+}
+button {
+    cursor: pointer;
 }
 
 /* 탑 메뉴 바, top bar */
@@ -122,12 +134,6 @@ main {
 .followings_profile .number_followings {
     color: #767676;
 }
-/* .number_followings strong,
-.number_followers strong {
-    font-size: 10px;
-    line-height: 12px;
-    color: #767676;
-} */
 
 .cont_profile .name_profile {
     margin-bottom: 0.6rem;
@@ -338,17 +344,16 @@ main {
     display: block;
     height: 22.8rem;
     width: 30.4rem;
-    /* width: 100%;
-    height: 100%; */
     border-radius: 1rem;
     object-fit: cover;
+    /* width: 100%;
+    height: 100%; */
 }
 /* 다중 이미지 */
 /* 여기 css가 제대로 적용된 건지.. img에 px로 크기를 정해주는 것이 맞는 것인지.. */
-
 .desc_content-info .content-img_slide {
     margin-bottom: 1.6rem;
-    border-radius: 10px;
+    border-radius: 1rem;
     overflow: auto;
     scroll-snap-type: x mandatory;
     display: flex;
@@ -431,8 +436,8 @@ main {
     gap: 0.8rem;
 }
 .ul-picture_user-contents li {
-    max-height: 114px;
-    min-height: 114px;
+    max-height: 11.4rem;
+    min-height: 11.4rem;
 }
 .ul-picture_user-contents .multi-image {
     position: relative;

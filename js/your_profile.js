@@ -47,8 +47,9 @@ cancelBtn_popup.addEventListener("click", () => {
 // - 로그 아웃 기능
 logoutBtn_popup.addEventListener("click", () => {
     localStorage.removeItem("Token");
-    // localStorage.removeItem("account");
-    // localStorage.removeItem("user-profile");
+    localStorage.removeItem("accountName");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("user-profile");
     location.href = "login.html";
 });
 
@@ -254,7 +255,7 @@ async function createAndDrawOnSale() {
 
     // 등록된 게시물이 있을 경우만 리스트 보여주기
     if (productList.length > 0) {
-        onSaleCont.style.display = "block";
+        onSaleCont.style.display = "flex";
     } else {
         return;
     }
@@ -262,29 +263,29 @@ async function createAndDrawOnSale() {
     productList.forEach((product) => {
         // 가격에 ','를 달아주는 로직
         const price = makeMoneysComma(`${product.price}`);
+
+        // 상품 노드 생성
         const productItem = document.createElement("li");
         productItem.className += "li_on-sale";
-        productItem.addEventListener("click", () => {
-            location.href = "#";
-        });
         productItem.innerHTML = `
-                    <article class="item_on-sale">
-                        <img src="${product.itemImage}" alt="판매상품 ${product.itemName}의 이미지">
-                        <p class="tit_item">
-                            ${product.itemName}
-                        </p>
-                        <p class="price_item">
-                            <strong>
-                                ${price}
-                            </strong>원
-                        </p>
-                    </article>`;
-        onSaleFragment.appendChild(productItem);
+            <article class="item_on-sale">
+                <img src="${product.itemImage}" alt="판매상품 ${product.itemName}의 이미지" onerror="this.src='/src/png/add-product-box.png';">
+                <p class="tit_item">
+                    ${product.itemName}
+                </p>
+                <p class="price_item">
+                    <strong>${price}</strong>원
+                </p>
+            </article>`;
 
         // 상품 노드 이벤트 등록
         productItem.addEventListener("click", () => {
-            window.open(product.link);
+            product.link
+                ? window.open(product.link)
+                : window.alert("등록된 링크가 없습니다!");
         });
+
+        onSaleFragment.appendChild(productItem);
     });
 
     onSaleList.appendChild(onSaleFragment);
@@ -413,12 +414,6 @@ async function createAndDrawContent() {
 
     // 여러 비동기에 쓰이는 await를 한 번으로 묶을 수는 없을까??, class나 생성자 함수로 각 게시물들을 바꿔주면 더 좋을 것 같다.
     for (let content of contentsListData) {
-        const authorImage = await validateImage(
-            content.author.image,
-            "profile"
-        );
-        // const contentImage = await validateImage(content.image, "content");
-
         const imageArray = content.image.split(",");
         console.log(imageArray);
         let imageHTML = "";
@@ -436,15 +431,16 @@ async function createAndDrawContent() {
             imageHTML = `<ul class="content-img_slide">${arr.join("")}</ul>`;
         }
 
+        contentId = content.id;
         // list형 content 보여주기
         const contentItem = document.createElement("li");
         contentItem.className += "li_user-contents";
         contentItem.innerHTML = `
         <article class="content_user-contents">
             <div class="content-header_user-contents">
-                <img src="${authorImage}" alt="${
+                <img src="${content.author.image}" alt="${
             content.author.username
-        }님의 프로필 사진" class="img_content-info" />
+        }님의 프로필 사진"  onerror="this.src='/src/png/Ellipse 6.png';" class="img_content-info" />
                 <p class="name_content-info">${content.author.username}</p>
                 <p class="email_content-info">@ ${
                     content.author.accountname
@@ -452,15 +448,8 @@ async function createAndDrawContent() {
             </div>
             <div class="desc_content-info">
                 <p class="txt_content-info">${content.content}</p>
-                ${
-                    imageHTML
-                        ? `<div class="cont_slide">
-                    ${imageHTML}
-                </div>`
-                        : ""
-                }
-                <div class="cont_buttons">
-                </div>
+                ${imageHTML ? imageHTML : ""}
+                <div class="cont_buttons"></div>
                 <p class="date_content-info">${makeKoreaDate(
                     content.updatedAt
                 )}</p>
@@ -468,16 +457,26 @@ async function createAndDrawContent() {
         </article>`;
 
         // picture-content 노드 생성
+        // 1. 이미지가 있다면 앨범형 콘텐츠 노드 생성
+        // 1.1 이미지가 단일 이미지라면 그냥 이미지 + 클릭하면 post.html으로 이동
+        // 1.2 이미지가 다중 이미지라면 이미지 + 여러장 아이콘 + 클릭하면 post.html으로 이동
         if (imageArray.length >= 1) {
-            imageArray.forEach((image) => {
-                if (image) {
-                    const pictureContentItem = document.createElement("img");
-                    pictureContentItem.className += "content-img_content-info";
-                    pictureContentItem.src = image;
-                    pictureContentItem.alt = "post-image";
-                    pictureContentsFragment.appendChild(pictureContentItem);
-                }
-            });
+            // 단일이미지 콘텐츠 생성
+            if (imageArray[0] && imageArray.length === 1) {
+                const pictureContentItem = document.createElement("li");
+                pictureContentItem.innerHTML = `<a href=post.html?id=${content.id}><img src=${imageArray[0]} alt="post-image" class="content-img_content-info"></a>`;
+                pictureContentsFragment.appendChild(pictureContentItem);
+            }
+            // 다중 이미지 콘텐츠 생성
+            else if (imageArray[0] && imageArray.length > 1) {
+                const pictureContentItem = document.createElement("li");
+                pictureContentItem.classList.add("multi-image");
+                pictureContentItem.innerHTML = `<a href=post.html?id=${content.id}><img src=${imageArray[0]} alt="post-image" class="content-img_content-info"></a>`;
+                pictureContentItem.addEventListener("click", () => {
+                    location.href = `post.html?id=${content.id}`;
+                });
+                pictureContentsFragment.appendChild(pictureContentItem);
+            }
         }
 
         // forEach문 돌 때 마다 더보기, 좋아요, 댓글 버튼 생성
@@ -563,6 +562,18 @@ async function createAndDrawContent() {
     }
     contentsList.appendChild(contentsFragment);
     pictureContentList.appendChild(pictureContentsFragment);
+
+    // content-header_user-contents에 addEventListener 달아주기
+    const contentHeaderList = document.querySelectorAll(
+        ".content-header_user-contents"
+    );
+    Array.from(contentHeaderList).forEach((contentHeader) => {
+        contentHeader.addEventListener("click", () => {
+            location.href = `your_profile.html?accountName=${getQueryValue(
+                "accountName"
+            )}`;
+        });
+    });
 
     // - 리스트로 관리했던 버튼들 DOM에 붙여주기
     // 더보기 버튼
