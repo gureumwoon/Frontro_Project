@@ -94,9 +94,15 @@ async function getFeed() {
                 <div class="main-icon">
                     <img src="./src/svg/logo-Grey.svg" alt="" class="img-slime">
                     <p class="p-intro">유저를 검색해 팔로우 해보세요!</p>
-                    <button class="btn-search">검색하기</button>
+                    <button class="btn-search btnYellow">검색하기</button>
                 </div>
-        `
+        `;
+
+        const goToSearch = document.querySelector(".btnYellow");
+        console.log(goToSearch);
+        goToSearch.addEventListener('click', () => {
+            window.location.href = "search_2.html";
+        })
     } else {
         posts.forEach(post => {
             console.log('post');
@@ -167,10 +173,10 @@ async function getFeed() {
             
             document.querySelector(".main").innerHTML += `
                         <article class="post">
-                            <img src="${authorImage}" alt="${authorName}님의 프로필 사진" class="profile-pic" >
+                            <img src="${authorImage}" alt="${authorName}님의 프로필 사진" class="profile-pic" data-accountname="${post.author.accountname}">
                             <div class="cont-following">
                                 <div class="profile">
-                                    <p class="tit-post" data-userid="${post.author._id}"> ${authorName} </p>
+                                    <p class="tit-post" data-userid="${post.author._id}" data-accountname="${post.author.accountname}"> ${authorName} </p>
                                     <p class="id font-gray" data-accountname="${post.author.accountname}">${authorAccount}</p>
                                 </div>
                                 <p class="desc">${content}</p>
@@ -193,21 +199,7 @@ async function getFeed() {
                                 </div>
                             </div>
                         </article>  
-            `;
-
-            // 사용자 이름 눌렀을 때 해당하는 your_profile 로 이동 
-
-            // const titPostList = document.querySelectorAll(".tit-post")
-            // for (const title of titPostList) {
-            //     // const userId = user.dataset.userid
-            //     const authorAccount = title.dataset.accountname
-            //     title.addEventListener('click', () => {
-            //         window.location.href = `your_profile.html?accountName=${authorAccount}`;
-            //     })
-            // }
-
-            // 프로필 사진 눌러도 해당 프로필로 이동 
-            
+            `;           
 
             // 더보기 버튼 클릭시 모달창 뜨기 
             const btnMore = document.querySelectorAll(".btn-icon-more");
@@ -221,18 +213,44 @@ async function getFeed() {
 
         // forEach문 바깥 부분 
 
-        const titPostList = document.querySelectorAll(".id")
-            for (const title of titPostList) {
-                console.log(title)
-                const authorAccountName = title.dataset.accountname;
+        // 계정 아이디 클릭 시 해당 유저 프로필로 이동 
+        const idList = document.querySelectorAll(".id")
+        console.log(idList)
+            for (const id of idList) {
+                console.log(id)
+                const authorAccountName = id.dataset.accountname;
                 console.log(authorAccountName)
-                title.addEventListener('click', () => {
+                id.addEventListener('click', () => {
                     window.location.href = `your_profile.html?accountName=${authorAccountName}`;
                 })
             }
 
+        // 프로필 사진 클릭 시 해당 유저 프로필로 이동 
+        const imgPostList = document.querySelectorAll(".profile-pic")
+        console.log(imgPostList)
+        for (const img of imgPostList) {
+            console.log(img)
+            const authorAccountName = img.dataset.accountname;
+            console.log(authorAccountName)
+            img.addEventListener('click', () => {
+                window.location.href = `your_profile.html?accountName=${authorAccountName}`;
+            })
+        }
 
-        // 해당 포스트 상세 게시물 댓글 페이지로 이동
+        // 유저 네임 클릭 시 해당 유저 프로필로 이동 
+        const titlePostList = document.querySelectorAll(".tit-post")
+        console.log(titlePostList)
+        for (const title of titlePostList) {
+            console.log(title)
+            const authorAccountName = title.dataset.accountname;
+            console.log(authorAccountName)
+            title.addEventListener('click', () => {
+                window.location.href = `your_profile.html?accountName=${authorAccountName}`;
+            })
+        }
+
+
+        // 댓글 아이콘 클릭 시 상세 게시물로 이동 
         const goPostPage = document.querySelectorAll(".btn-comment")
         for (const [idx, comment] of goPostPage.entries()) {
             comment.addEventListener('click', () => {
@@ -240,25 +258,12 @@ async function getFeed() {
             })
         }
 
-        const goPostPage2 = document.querySelectorAll(".article-post__img")
-        console.log(goPostPage2)
-        for (const [idx, comment] of goPostPage2.entries()) {
-            comment.addEventListener('click', () => {
-                window.location.href = `post.html?id=${posts[idx].id}`;
-            })
-        }
-
-        // const titPost = document.querySelectorAll(".tit-post");
-        // for (const i of titPost) {
-        //     i.addEventListener('click', () => {
-        //         window.location.href = `your_profile.html?accountName=${authorAccount}`;
-        //     })
-        // }
-
-        // const titPost = document.querySelectorAll(".tit-post")
-        // for (const [idx, comment] of titPost.entries()) {
+        // 이미지 클릭 시 상세 게시물로 이동
+        // const goPostPage2 = document.querySelectorAll(".article-post__img")
+        // console.log(goPostPage2)
+        // for (const [idx, comment] of goPostPage2.entries()) {
         //     comment.addEventListener('click', () => {
-        //         window.location.href = `your_profile.html?accountName=${authorAccount}`;
+        //         window.location.href = `post.html?id=${posts[idx].id}`;
         //     })
         // }
 
