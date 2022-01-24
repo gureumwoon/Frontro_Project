@@ -18,6 +18,23 @@ function resize(obj) {
     obj.style.height = (12 + obj.scrollHeight) + 'px';
 }
 
+async function getProfile() {
+
+    const url = `http://146.56.183.55:5050/profile/${accountName}`;
+    const res = await fetch(url, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+        },
+    });
+    const json = await res.json();
+    document.querySelector(".profile-container").innerHTML = `
+    <img class="profile-pic" src="${json.profile.image}" alt="${json.profile.accountname}의 프로필 사진">
+    `;
+}
+getProfile();
+
 function loadFile(e) {
     if (3 < e.files.length) {
         alert('이미지는 3장까지만 가능합니다.');
@@ -67,7 +84,6 @@ function deletePrevImg(imgIndex) {
 }
 
 // fetch
-
 const $image = document.querySelector("#real-input")
 const $content = document.querySelector(".upload-txt")
 const $submitBtn = document.querySelector("#submit-btn")
@@ -117,8 +133,8 @@ async function createPost(e) {
     } else {
         alert("아 이미지 갯수가 너무 많소")
     }
-
 }
+
 //여기까지 이미지 여러개 업로드하기.
 
 
@@ -156,8 +172,6 @@ async function getPostData() {
     $submitBtn.classList.add('active')
     deletePrevImg(dataImg);
 }
-
-console.log(getPostData())
 
 const queryString = window.location.href.split('?')[1]
 const searchParams = new URLSearchParams(queryString)
@@ -219,7 +233,7 @@ txtContent.addEventListener('input', () => {
 })
 
 function uploadBtnCheck() {
-    if (txtContent.value && ($image.value || dataImg.length)) {
+    if (txtContent.value || $image.value) {
         $submitBtn.disabled = false;
         $submitBtn.classList.add('active')
     } else {
@@ -236,6 +250,8 @@ $submitBtn.addEventListener('click', (e) => {
         createPost()
     }
 });
+
+
 
 
 
