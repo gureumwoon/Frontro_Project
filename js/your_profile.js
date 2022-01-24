@@ -237,8 +237,15 @@ async function postUnfollowReq() {
 // - cont_on-sale -
 
 // - 관련 변수
+const onSaleCont = document.querySelector(".cont_on-sale");
 const onSaleList = document.querySelector(".ul_on-sale");
 const onSaleFragment = document.createDocumentFragment();
+// - on-sale up modal 관련 변수
+const onSaleUpModal = document.querySelector(".on-sale");
+const onSaleBtnList = document.querySelectorAll(".on-sale .item-modal");
+// - product.link를 담는 변수
+let productLink;
+
 createAndDrawOnSale();
 
 async function createAndDrawOnSale() {
@@ -358,12 +365,12 @@ listStyleBtn.addEventListener("click", () => {
             // list button 활성화
             listStyleBtn.classList.replace("off", "on");
             listStyleBtn.querySelector("img").src =
-                "../src/png/icon-post-list-on.png";
+                "/src/png/icon-post-list-on.png";
 
             // picture button 비활성화
             pictureStyleBtn.classList.replace("on", "off");
             pictureStyleBtn.querySelector("img").src =
-                "../src/png/icon-post-album-off.png";
+                "/src/png/icon-post-album-off.png";
         }
     }
 });
@@ -376,12 +383,12 @@ pictureStyleBtn.addEventListener("click", () => {
         // list button 비활성화
         listStyleBtn.classList.replace("on", "off");
         listStyleBtn.querySelector("img").src =
-            "../src/png/icon-post-list-off.png";
+            "/src/png/icon-post-list-off.png";
 
         // picture button 활성화
         pictureStyleBtn.classList.replace("off", "on");
         pictureStyleBtn.querySelector("img").src =
-            "../src/png/icon-post-album-on.png";
+            "/src/png/icon-post-album-on.png";
     }
 });
 
@@ -673,7 +680,7 @@ async function validateImage(image, imageType) {
             ).then((res) => {
                 if (res === "error") {
                     if (imageType === "profile") {
-                        return "../src/svg/basic-profile-img.svg";
+                        return "/src/svg/basic-profile-img.svg";
                     } else {
                         // 이미지가 없을 경우.. 어떻게 처리할 것인가..
                         return "";
@@ -696,7 +703,7 @@ async function validateImage(image, imageType) {
     //     ).then((res) => {
     //         if (res === "error") {
     //             if (imageType == "profile") {
-    //                 return "../src/svg/Ellipse 4.svg";
+    //                 return "/src/svg/Ellipse 4.svg";
     //             } else {
     //                 // 이미지가 없을 경우.. 어떻게 처리할 것인가..
     //                 // return "";

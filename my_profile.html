@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your_Profile(프로필 페이지)</title>
+    <title>My_Profile(프로필 페이지)</title>
     <link rel="stylesheet" href="./style/reset.css">
     <link rel="stylesheet" href="./style/my_profile.css">
 </head>
@@ -51,9 +51,9 @@
                 <p class="followers_profile">
                     <span class="number_followers">0</span>followers
                 </p>
-                <img src="./src/svg/basic-profile-img.svg" alt="">
+                <img src="./src/svg/basic-profile-img.svg" alt="" onerror="this.src='/src/png/Ellipse 6.png';">
             </div>
-            <p class="name_profile"></p>
+            <p class=" name_profile"></p>
             <p class="account_profile"></p>
             <p class="explain_profile"></p>
             <div class="footer_profile">
@@ -65,10 +65,12 @@
 
         <!-- 여기서부터 google convention 따르는 코드 -->
         <article class="cont_on-sale">
-            <h2 class="tit_on-sale">판매 중인 상품</h2>
-            <!-- 필요한 html 요소 fetch를 이용해서 받아온 데이터를 추가해서 넣어주기 -->
-            <ul class="ul_on-sale">
-            </ul>
+            <div class="item-wrapper_on-sale">
+                <h2 class="tit_on-sale">판매 중인 상품</h2>
+                <!-- 필요한 html 요소 fetch를 이용해서 받아온 데이터를 추가해서 넣어주기 -->
+                <ul class="ul_on-sale">
+                </ul>
+            </div>
         </article>
         <article class="cont_contents">
             <h2 class="ir">게시물 정보</h2>
@@ -105,7 +107,7 @@
             </button>
 
             <button class="tap-menu-user">
-                <img src="./src/svg/icon-user.svg" alt="프로필로 가기" class="user-icon">
+                <img src="./src/svg/icon-user-fill.svg" alt="프로필로 가기" class="user-icon">
                 <!-- <p class="tap-menu-user-title">프로필</p> -->
             </button>
         </nav>

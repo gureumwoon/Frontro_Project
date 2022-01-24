@@ -163,21 +163,23 @@ async function createAndDrawOnSale() {
     const productList = await getOnSaleData();
     // 등록된 상품이 있을 경우만 리스트 보여주기
     if (productList.length > 0) {
-        onSaleCont.style.display = "block";
+        onSaleCont.style.display = "flex";
     } else {
         return;
     }
 
-    productList.forEach((product) => {
+    // productList.forEach((product) => {
+    for (let product of productList) {
         // 가격에 ','를 달아주는 로직
         const price = makeMoneysComma(`${product.price}`);
 
+        // <img src="${product.itemImage}" alt="판매상품 ${product.itemName}의 이미지" onerror="this.src="/src/png/add-product-box.png">
         // 상품 노드 생성
         const productItem = document.createElement("li");
         productItem.className += "li_on-sale";
         productItem.innerHTML = `
         <article class="item_on-sale">
-        <img src="${product.itemImage}" alt="판매상품 ${product.itemName}의 이미지">
+        <img src="${product.itemImage}" alt="판매상품 ${product.itemName}의 이미지" onerror="this.src='/src/png/add-product-box.png';">
         <p class="tit_item">
         ${product.itemName}
         </p>
@@ -203,7 +205,8 @@ async function createAndDrawOnSale() {
             // 상품 링크 이동 이벤트 등록
             onSaleLinkBtn_up.addEventListener("click", LinkFuncWrapper);
         });
-    });
+    }
+    // });
     backgroundUpModal.addEventListener("click", () => {
         onSaleUpModal.style.bottom = "-20rem";
         onSaleDeleteBtn_popup.removeEventListener("click", deleteFuncWrapper);
@@ -370,12 +373,12 @@ listStyleBtn.addEventListener("click", () => {
             // list button 활성화
             listStyleBtn.classList.replace("off", "on");
             listStyleBtn.querySelector("img").src =
-                "../src/png/icon-post-list-on.png";
+                "/src/png/icon-post-list-on.png";
 
             // picture button 비활성화
             pictureStyleBtn.classList.replace("on", "off");
             pictureStyleBtn.querySelector("img").src =
-                "../src/png/icon-post-album-off.png";
+                "/src/png/icon-post-album-off.png";
         }
     }
 });
@@ -388,12 +391,12 @@ pictureStyleBtn.addEventListener("click", () => {
         // list button 비활성화
         listStyleBtn.classList.replace("on", "off");
         listStyleBtn.querySelector("img").src =
-            "../src/png/icon-post-list-off.png";
+            "/src/png/icon-post-list-off.png";
 
         // picture button 활성화
         pictureStyleBtn.classList.replace("off", "on");
         pictureStyleBtn.querySelector("img").src =
-            "../src/png/icon-post-album-on.png";
+            "/src/png/icon-post-album-on.png";
     }
 });
 
@@ -427,13 +430,13 @@ async function createAndDrawContent() {
         const imageArray = content.image.split(",");
         let imageHTML = "";
         if (imageArray.length === 1 && imageArray[0]) {
-            imageHTML = `<img src="${imageArray[0]}" alt="post-image" class="content-img_content-info">`;
+            imageHTML = `<img src="${imageArray[0]}" alt="post-image" class="content-img_content-info" onerror="this.style.display='none';">`;
         } else if (imageArray.length > 1) {
             const arr = [];
             imageArray.forEach((image) => {
                 if (image) {
                     arr.push(
-                        `<li><img src="${image}" alt="post-image" class="content-img_slide-item"></li>`
+                        `<li><img src="${image}" alt="post-image" class="content-img_slide-item" onerror="this.style.display='none';"></li>`
                     );
                 }
             });
@@ -448,7 +451,7 @@ async function createAndDrawContent() {
             <div class="content-header_user-contents">
                 <img src="${authorImage}" alt="${
             content.author.username
-        }님의 프로필 사진" class="img_content-info" />
+        }님의 프로필 사진" onerror="this.src='/src/png/Ellipse 6.png';" class="img_content-info" />
                 <p class="name_content-info">${content.author.username}</p>
                 <p class="email_content-info">@ ${
                     content.author.accountname
@@ -456,13 +459,7 @@ async function createAndDrawContent() {
             </div>
             <div class="desc_content-info">
                 <p class="txt_content-info">${content.content}</p>
-                ${
-                    imageHTML
-                        ? `<div class="cont_slide">
-                    ${imageHTML}
-                </div>`
-                        : ""
-                }
+                ${imageHTML ? imageHTML : ""}
                 <div class="cont_buttons"></div>
                 <p class="date_content-info">${makeKoreaDate(
                     content.updatedAt
@@ -471,16 +468,26 @@ async function createAndDrawContent() {
         </article>`;
 
         // picture-content 노드 생성
+        // 1. 이미지가 있다면 앨범형 콘텐츠 노드 생성
+        // 1.1 이미지가 단일 이미지라면 그냥 이미지 + 클릭하면 post.html으로 이동
+        // 1.2 이미지가 다중 이미지라면 이미지 + 여러장 아이콘 + 클릭하면 post.html으로 이동
         if (imageArray.length >= 1) {
-            imageArray.forEach((image) => {
-                if (image) {
-                    const pictureContentItem = document.createElement("img");
-                    pictureContentItem.className += "content-img_content-info";
-                    pictureContentItem.src = image;
-                    pictureContentItem.alt = "post-image";
-                    pictureContentsFragment.appendChild(pictureContentItem);
-                }
-            });
+            // 단일이미지 콘텐츠 생성
+            if (imageArray[0] && imageArray.length === 1) {
+                const pictureContentItem = document.createElement("li");
+                pictureContentItem.innerHTML = `<a href=post.html?id=${content.id}><img src=${imageArray[0]} alt="post-image" class="content-img_content-info"></a>`;
+                pictureContentsFragment.appendChild(pictureContentItem);
+            }
+            // 다중 이미지 콘텐츠 생성
+            else if (imageArray[0] && imageArray.length > 1) {
+                const pictureContentItem = document.createElement("li");
+                pictureContentItem.classList.add("multi-image");
+                pictureContentItem.innerHTML = `<a href=post.html?id=${content.id}><img src=${imageArray[0]} alt="post-image" class="content-img_content-info"></a>`;
+                pictureContentItem.addEventListener("click", () => {
+                    location.href = `post.html?id=${content.id}`;
+                });
+                pictureContentsFragment.appendChild(pictureContentItem);
+            }
         }
 
         // forEach문 돌 때 마다 콘텐츠 헤더 더보기, 좋아요, 댓글 버튼 생성
@@ -648,10 +655,9 @@ async function validateImage(image, imageType) {
             ).then((res) => {
                 if (res === "error") {
                     if (imageType === "profile") {
-                        return "../src/svg/basic-profile-img.svg";
+                        return "/src/svg/basic-profile-img.svg";
                     } else {
-                        // 이미지가 없을 경우.. 어떻게 처리할 것인가..
-                        return "";
+                        return "/src/png/add-product-box.png";
                     }
                 } else {
                     return image;
@@ -787,3 +793,6 @@ function makeMoneysComma(money) {
 
 // 어떤 DOM 요소에 js를 붙일지 고려해서 html의 작성이 필요하다는 것을 깨닫는 계기..
 // 나중에 수정하면서 다시 작성하게 된다..
+
+// img alt 값은 한국어로!
+// js의 data- attribute를 채영님 코드를 보고 작성해볼 것

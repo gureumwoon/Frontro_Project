@@ -292,6 +292,17 @@ button {
 .ul-picture_user-contents {
     display: none;
 }
+.ul-picture_user-contents .multi-image {
+    position: relative;
+}
+.ul-picture_user-contents .multi-image::before {
+    display: inline-block;
+    position: absolute;
+    content: "";
+    height: 2rem;
+    width: 2rem;
+    background-image: url("/src/svg/icon-img-layers.svg");
+}
 .cont_user-contents .content_user-contents {
     position: relative;
     margin-bottom: 2rem;
