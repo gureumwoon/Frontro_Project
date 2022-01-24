@@ -1,10 +1,9 @@
 const profileImg = document.querySelector('.profile-pic');
-const textarea = document.querySelector('.upload-txt');
 const prevImg = document.querySelector('.prev-img');
 const backBtn = document.querySelector('.back-btn');
-const txtContent = document.querySelector('.post-content> textarea');
-const token = localStorage.getItem('Token')
-const accountName = localStorage.getItem('accountName')
+const token = localStorage.getItem('Token');
+const accountName = localStorage.getItem('accountName');
+const postId = window.location.href.split('?')[1];
 let imgIndex = 0;
 const formData = new FormData();
 
@@ -54,6 +53,7 @@ function loadFile(e) {
             list.setAttribute('id', `img${imgIndex}`);
             button.classList.add('img-cancel-btn');
             oImg2.setAttribute('src', 'src/png/x.png');
+            oImg2.setAttribute('class', 'cancel-btn');
             oImg2.setAttribute('alt', '사진 업로드 취소 버튼');
             oImg.setAttribute('src', URL.createObjectURL(file));
             oImg.setAttribute('alt', 'previewimg');
@@ -141,8 +141,7 @@ async function createPost(e) {
 // 수정할 게시물 불러오기
 
 async function getPostData() {
-    const queryString = location.href.split('?')[1]
-    const res = await fetch(`http://146.56.183.55:5050/post/${queryString}`, {
+    const res = await fetch(`http://146.56.183.55:5050/post/${postId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -152,7 +151,7 @@ async function getPostData() {
     const data = await res.json();
     console.log("data: ", data);
     profileImg.src = data.post.author.image
-    txtContent.value = data.post.content;
+    $content.value = data.post.content;
     dataImg = data.post.image.split(',');
     if (data.post.image === '') {
         //이미지 없을때
@@ -160,23 +159,25 @@ async function getPostData() {
     } else {
         for (const contentImg of dataImg) {
             prevImg.innerHTML += `
-         <li>
+         <li id="${dataImg}">
             <img src="${contentImg}"  alt="업로드 할 이미지1" class="upload-img">
             <button class="img-cancel-btn">
-                <img src="src/png/x.png" alt="사진 업로드 취소 버튼">
+                <img src="src/png/x.png" alt="사진 업로드 취소 버튼" class="cancel-btn">
             </button>
          </li>
          `
         }
+        const cancelBtn = document.querySelectorAll('.cancel-btn');
+        for (const cancel of cancelBtn) {
+            cancel.addEventListener('click', () => {
+                formData.delete(dataImg)
+                document.getElementById(dataImg).remove()
+            })
+        }
+        $submitBtn.classList.add('active')
     }
-    $submitBtn.classList.add('active')
-    deletePrevImg(dataImg);
 }
 
-const queryString = window.location.href.split('?')[1]
-const searchParams = new URLSearchParams(queryString)
-console.log("searchparams: ", searchParams)
-const postId = searchParams.get('id');
 if (postId) {
     getPostData();
 }
@@ -184,8 +185,7 @@ if (postId) {
 // 게시물 수정
 
 async function putData(e) {
-    const queryString = location.href.split('?')[1]
-    const content = textarea.value;
+    const content = $content.value;
     let imageUrls = []; //이미 있는 이미지
     const files = $image.files; //새로 업로드 이미지
 
@@ -203,7 +203,7 @@ async function putData(e) {
         imageUrls.push("http://146.56.183.55:5050" + "/" + imgurl);
     }
 
-    const res = await fetch(`http://146.56.183.55:5050/post/${queryString}`, {
+    const res = await fetch(`http://146.56.183.55:5050/post/${postId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -220,7 +220,7 @@ async function putData(e) {
     console.log("data: ", data);
     if (res.status == 200) {
         alert('업로드 성공');
-        // location.href = `my_profile.html?${accountName}`;
+        location.href = `my_profile.html?${accountName}`;
     } else {
         alert('업로드 실패');
     }
@@ -228,12 +228,12 @@ async function putData(e) {
 
 // 버튼 활성화
 
-txtContent.addEventListener('input', () => {
+$content.addEventListener('input', () => {
     uploadBtnCheck()
 })
 
 function uploadBtnCheck() {
-    if (txtContent.value || $image.value) {
+    if ($content.value || $image.value) {
         $submitBtn.disabled = false;
         $submitBtn.classList.add('active')
     } else {
@@ -243,15 +243,12 @@ function uploadBtnCheck() {
 }
 
 $submitBtn.addEventListener('click', (e) => {
-    const queryString = location.href.split('?')[1]
-    if (queryString) {
+    if (postId) {
         putData()
     } else {
         createPost()
     }
 });
-
-
 
 
 
