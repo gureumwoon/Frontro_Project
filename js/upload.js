@@ -19,7 +19,7 @@ function resize(obj) {
 
 async function getProfile() {
 
-    const url = `http://146.56.183.55:5050/profile/${accountName}`;
+    const url = `https://api.mandarin.cf/profile/${accountName}`;
     const res = await fetch(url, {
         method: "GET",
         headers: {
@@ -91,7 +91,7 @@ const $submitBtn = document.querySelector("#submit-btn")
 async function imageUpload(files, index) {
     const formData = new FormData();
     formData.append("image", files[index]);//formData.append("키이름","값")
-    const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+    const res = await fetch(`https://api.mandarin.cf/image/uploadfile`, {
         method: "POST",
         body: formData
     })
@@ -100,7 +100,7 @@ async function imageUpload(files, index) {
     return productImgName
 }
 async function createPost(e) {
-    const url = "http://146.56.183.55:5050"
+    const url = "https://api.mandarin.cf"
     //입력한 텍스트 불러와야함
     const contentText = $content.value
     //여기는 나중에 이미지 주소가 추가될 예정
@@ -141,7 +141,7 @@ async function createPost(e) {
 // 수정할 게시물 불러오기
 
 async function getPostData() {
-    const res = await fetch(`http://146.56.183.55:5050/post/${postId}`, {
+    const res = await fetch(`https://api.mandarin.cf/post/${postId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -200,10 +200,10 @@ async function putData(e) {
     //새로 업로드 이미지
     for (let index = 0; index < files.length; index++) {
         const imgurl = await imageUpload(files, index);
-        imageUrls.push("http://146.56.183.55:5050" + "/" + imgurl);
+        imageUrls.push("https://api.mandarin.cf" + "/" + imgurl);
     }
 
-    const res = await fetch(`http://146.56.183.55:5050/post/${postId}`, {
+    const res = await fetch(`https://api.mandarin.cf/post/${postId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

@@ -100,7 +100,7 @@ userIdInput.addEventListener('input', isButtonActive);
 
 async function fetchData() {
     try {
-        const res = await fetch(`http://146.56.183.55:5050/profile/${myAccountName}`, {
+        const res = await fetch(`https://api.mandarin.cf/profile/${myAccountName}`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -133,7 +133,7 @@ async function profileImage(e) {
     console.log("files: ", files)
     const result = await imageUpload(files);
     console.log("result: ", result)
-    profileImg.src = `http://146.56.183.55:5050/${result}`;
+    profileImg.src = `https://api.mandarin.cf/${result}`;
 }
 
 
@@ -141,7 +141,7 @@ async function imageUpload(files) {
     const formData = new FormData();
     formData.append('image', files[0]);
 
-    const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+    const res = await fetch(`https://api.mandarin.cf/image/uploadfile`, {
         method: 'POST',
         body: formData,
     });
@@ -162,7 +162,7 @@ async function submitProfileModi() {
     const intro = document.querySelector('#user-info').value;
     const userImgUrl = profileImg.src;
 
-    const res = await fetch(`http://146.56.183.55:5050/user`, {
+    const res = await fetch(`https://api.mandarin.cf/user`, {
         method: 'PUT',
         headers: {
             Authorization: `Bearer ${token}`,
