@@ -804,26 +804,21 @@ async function myFetch(url, method, auth = "", data = "") {
 // - 페이지 들어올 때 토큰 있는 지 확인
 async function checkLoginUser() {
     // 토큰 검사하는 api 사용해서 수정하기
-    // if (localStorage.getItem("Token") || localStorage.getItem("RefreshToken")) { }
-
     const token = localStorage.getItem("Token");
     if (!token) {
         location.href = "login.html";
     }
     // 이 부분은 토큰이 만료됐다 싶을 때 다시 테스트 해보기
-    const res = await myFetch(
-        `${BASE_URL}/user/checktoken`,
-        "get",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTdjNzdiOGJkMTU3NGYwYzkzYWE0MSIsImV4cCI6MTY0Nzc2Mzg0MywiaWF0IjoxNjQyNTc5ODQzfQ.t3ynPiH6o9L-3k1z7iy3GtvUO2r_zCjWHgMR7TnLWQE"
-    );
+    const res = await myFetch(`${BASE_URL}/user/checktoken`, "get", token);
     const result = await res.json();
     if (!result.isValid) {
+        window.alert("만료된 토큰입니다.");
+        console.log(result.isValid);
         location.href = "login.html";
     } else {
         console.log("만료되지 않았습니다.");
     }
 }
-
 // - url에서 원하는 쿼리 값 받아오기
 function getQueryValue(key) {
     const params = new URLSearchParams(location.search);
