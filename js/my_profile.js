@@ -797,3 +797,5 @@ function makeMoneysComma(money) {
 
 // img alt 값은 한국어로!
 // js의 data- attribute를 채영님 코드를 보고 작성해볼 것
+
+// 리펙터링하면서 your_profile, my_profile 한 개로 합치기.
