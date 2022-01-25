@@ -1,6 +1,5 @@
   #html {
     font-size: 62.5%;
-    font-family: 'Noto Sans', sans-serif;
   }
 
   #body {
@@ -119,16 +118,19 @@
   .kakao-box {
     background: #FFF;
     border: 0.1rem solid #F2C94C;
+    cursor: pointer;
   }
 
   .google-box {
     background: #FFF;
     border: 0.1rem solid #767676;
+    cursor: pointer;
   }
 
   .fb-box {
     background: #FFF;
     border: 0.1rem solid #2D9CDB;
+    cursor: pointer;
   }
 
   .link-btn {
@@ -141,11 +143,13 @@
   .link-btn-email {
     text-decoration: none;
     color: #767676;
+    cursor: pointer;
   }
 
   .link-btn-signIn {
     text-decoration: none;
     color: #767676;
+    cursor: pointer;
   }
 
   .link-btn-email::after {

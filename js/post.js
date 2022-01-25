@@ -350,7 +350,7 @@ async function getComment() {
                     }" alt="내 프로필 이미지">
                 <div class="txt-container">
                     <div>
-                        <span class="user-nic">${comment.author.username}</span>
+                        <span class="user-nic" data-accountname="${comment.author.accountname}">${comment.author.username}</span>
                         <span class="comment-time">${getTimeString(
                         comment.createdAt
                     )}</span>
@@ -446,8 +446,9 @@ async function commentDel() {
 // 댓글 프로필 이미지 클릭시 user 계정으로 이동
 const profilePic = document.querySelectorAll(".profile-pic");
 for (const i of profilePic) {
+    const authorAccountname = i.dataset.accountname;
     i.addEventListener('click', () => {
-        window.location.href = `your_profile.html?accountName=${comment.author.accountname}`;
+        window.location.href = `your_profile.html?accountName=${authorAccountname}`;
     })
 }
 

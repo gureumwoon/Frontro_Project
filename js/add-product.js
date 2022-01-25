@@ -104,14 +104,6 @@ function uploadBtnCheck() {
     }
 }
 
-// api 상품 업로드 
-
-// console.log(localStorage.getItem("Token"))
-// if (localStorage.getItem("Token")) {
-//     postData()
-// }
-
-
 async function imageUpload(files, index) {
     let formData = new FormData();
     formData.append('image', files[index]);
@@ -154,7 +146,7 @@ async function postData(e) {
         const json = await res.json();
         console.log("json: ", json)
         if (res.status == 200) {
-            // location.href = 'your_profile.html';
+            location.href = `my_profile.html?${accountName}`;
         } else {
             console.log(json);
         }
