@@ -1,4 +1,4 @@
-const BASE_URL = "http://146.56.183.55:5050";
+const BASE_URL = "https://api.mandarin.cf";
 
 checkLoginUser();
 // - top-bar, 헤더 바

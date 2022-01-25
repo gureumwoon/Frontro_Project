@@ -1,4 +1,4 @@
-const BASE_URL = "http://146.56.183.55:5050";
+const BASE_URL = "https://api.mandarin.cf";
 
 // - top-bar, 헤더 바 -
 
@@ -51,18 +51,13 @@ async function createAndDrawFollowDOM() {
                     <p class="follow_user-introduce">${user.intro}</p>
                 </div>
             </div>`;
-        if (followType == "following") {
-            // followType = following 경우 취소 버튼 DOM 생성
-            userItem.innerHTML += `<button type="button" class="S-Active-button Sbutton-font" data-user=${user.accountname}>취소</button>`;
-        } else {
-            // followType = follower 경우 follow 여부에 따라 취소 또는 팔로우 버튼 DOM 생성
-            userItem.innerHTML += `
+        userItem.innerHTML += `
                 ${
                     accountNameList.includes(user.accountname)
                         ? `<button type="button" class="S-Active-button Sbutton-font" data-user=${user.accountname}>취소</button>`
                         : `<button type="button" class="S-button Sbutton-font" data-user=${user.accountname}>팔로우</button>`
                 }`;
-        }
+
         followersFragment.appendChild(userItem);
     }
     followersList.appendChild(followersFragment);
