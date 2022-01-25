@@ -117,6 +117,7 @@ async function getProfileData() {
         profileName.innerText = result.username;
         profileAccount.innerText = `@ ${result.accountname}`;
         profileIntro.innerText = result.intro ? result.intro : "-";
+        makeTitle(result.accountname);
     } catch (error) {
         console.log(error);
     }
@@ -682,26 +683,62 @@ async function postHeartReq(method, postType, dom, id, count, img) {
 }
 
 // - nav bar, 하단 탭 페이지이동 -
+// 경서님 코드
+const goToReload = document.querySelector("ul > li:first-child");
+console.log(goToReload);
 
-// - 관련 변수
-const goToHome = document.querySelector(".tap-menu-home");
-const goToChat = document.querySelector(".tap-menu-chat");
-const goUpload = document.querySelector(".tap-menu-upload");
-const goMyProfile = document.querySelector(".tap-menu-user");
+const goToChat = document.querySelector("ul > li:nth-child(2)");
+console.log(goToChat);
 
-// - 페이지 이동
-goToHome.addEventListener("click", () => {
+const goUpload = document.querySelector("ul > li:nth-child(3)");
+console.log(goUpload);
+
+const goMyProfile = document.querySelector("ul > li:last-child");
+console.log(goMyProfile);
+
+goToReload.addEventListener("click", () => {
     window.location.href = "index.html";
 });
+
 goToChat.addEventListener("click", () => {
     window.location.href = "chat_list.html";
 });
+
 goUpload.addEventListener("click", () => {
     window.location.href = "upload.html";
 });
+
 goMyProfile.addEventListener("click", () => {
     window.location.href = "my_profile.html";
 });
+
+// 내코드
+// // - 관련 변수
+// const goToHome = document.querySelector(".tap-menu-home");
+// const goToChat = document.querySelector(".tap-menu-chat");
+// const goUpload = document.querySelector(".tap-menu-upload");
+// const goMyProfile = document.querySelector(".tap-menu-user");
+
+// // - 페이지 이동
+// goToHome.addEventListener("click", () => {
+//     window.location.href = "index.html";
+// });
+// goToChat.addEventListener("click", () => {
+//     window.location.href = "chat_list.html";
+// });
+// goUpload.addEventListener("click", () => {
+//     window.location.href = "upload.html";
+// });
+// goMyProfile.addEventListener("click", () => {
+//     window.location.href = "my_profile.html";
+// });
+
+// 제목 만들어주는 함수
+function makeTitle(titleName) {
+    const titleTag = document.querySelector("title");
+    console.log(titleTag);
+    titleTag.innerText = `${titleName} | 은희네문방구`;
+}
 
 // - 공용으로 쓰이는 코드 -
 

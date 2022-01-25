@@ -14,7 +14,7 @@ html {
 
 html,
 button {
-    font-family: "SpoqaHanSansNeo-Regular";
+    /* font-family: "SpoqaHanSansNeo-Regular"; */
     font-size: 62.5%;
 }
 
@@ -465,8 +465,46 @@ button {
 }
 
 /* 하단 탭 메뉴, tab menu */
+/* 경서님  nav 코드 */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 6.169rem;
+    border-top: 1px solid #dbdbdb;
+    background-color: #ffffff;
+}
 
-.tap-menu {
+.footer .icon-item-list {
+    display: flex;
+    margin-top: 0.8rem;
+    justify-content: space-around;
+}
+
+.item-footer {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    color: #767676;
+    gap: 0.4rem;
+    text-align: center;
+    /* align-items: center; */
+}
+.item-footer:nth-child(3) img {
+    padding-left: 1rem;
+}
+.item-footer:nth-child(4) img {
+    width: 3rem;
+    height: 3rem;
+}
+
+.icon-add {
+    width: 25px;
+    /* padding-left: 1rem; */
+}
+/* 내 nav 코드 */
+/* .tap-menu {
     display: flex;
     justify-content: space-between;
     position: fixed;
@@ -475,7 +513,7 @@ button {
     background: #ffffff;
     box-sizing: border-box;
     border-top: 1px solid #dbdbdb;
-}
+} 
 .tap-menu .tap-menu-home,
 .tap-menu .tap-menu-chat,
 .tap-menu .tap-menu-upload,
@@ -526,7 +564,7 @@ button {
 .upload-icon,
 .user-icon {
     width: 24px;
-}
+} */
 
 /* 모달, up-modal */
 .background_up-modal {
