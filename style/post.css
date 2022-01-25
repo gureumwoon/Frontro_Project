@@ -16,6 +16,11 @@ button{
     padding:0;
     cursor: pointer;
 }
+
+.back-btn {
+    cursor: pointer;
+}
+
 .container {
     position: relative;
     height: 100vh;
