@@ -118,6 +118,36 @@
     - 프로필 설정에서도 같은 방식으로 유효성 검사가 진행됩니다. 계정 ID에 대한 중복 유무와 형식을 검사합니다.
 
 
+![회원가입(1)](https://user-images.githubusercontent.com/89507327/150912995-e411f540-3e6f-409a-ba3d-9fc81d8d790c.gif)
+
+<img width="200px" src="https://user-images.githubusercontent.com/89507327/150913204-8b55e16a-81e9-4407-aa6d-d65b2b97222c.gif">
+
+
+<table>
+  <tr>
+    <td align="center">
+        <img
+          src="https://user-images.githubusercontent.com/89507327/150913204-8b55e16a-81e9-4407-aa6d-d65b2b97222c.gif"
+          width="300px;"
+          alt=""
+        /><br/><sub><b>회원가입 유효성</b></sub><br />
+    </td>
+     <td align="center">
+        <img
+          src="https://user-images.githubusercontent.com/89507327/150913204-8b55e16a-81e9-4407-aa6d-d65b2b97222c.gif"
+          width="300px;"
+          alt=""
+        /><br /><sub><b>회원가입 유효성</b></sub><br />
+    </td>
+   <td align="center">
+        <img
+          src="https://user-images.githubusercontent.com/89507327/150913204-8b55e16a-81e9-4407-aa6d-d65b2b97222c.gif"
+          width="300px;"
+          alt=""
+        /><br /><sub><b>회원가입 유효성</b></sub><br />
+    </td>
+  </tr>
+</table>
 
 ### userpage
 
