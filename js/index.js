@@ -67,7 +67,8 @@ else {
 // console.log(localStorage.getItem("Token"))  //요거는 로컬스토리지에 값잘 있나 확인.
 
 async function getFeed() {
-    const url = "http://146.56.183.55:5050"
+    // const url = "http://146.56.183.55:5050"
+    const url = "https://api.mandarin.cf"
     const token = localStorage.getItem("Token")
     // console.log(token)
 
@@ -285,7 +286,8 @@ async function postHeartReq(method, postType, dom, id, count, img) {
     const heartCountDom = dom.querySelector("strong");
     const heartImgDom = dom.querySelector("img");
     const token = localStorage.getItem("Token");
-    const url = "http://146.56.183.55:5050"
+    // const url = "http://146.56.183.55:5050"
+    const url = " https://api.mandarin.cf"
 
     const res = await fetch(url + "/post/" + id + "/" + postType, {
         method,
