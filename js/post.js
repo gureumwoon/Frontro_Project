@@ -11,6 +11,7 @@ const modalWrapper = document.querySelector(".modal-wrapper");
 const postFixButton = document.querySelector(".back-btn");
 const userId = localStorage.getItem("userId");
 const accountName = localStorage.getItem('accountName');
+
 // home_2 page로 이동
 
 postFixButton.addEventListener("click", () => {
@@ -86,9 +87,9 @@ async function getPost() {
             const postDom = document.querySelector('.post')
             postDom.innerHTML = `
             <div class="profile">
-                <img class="profile-pic" src="${post.author.image}" alt="프로필 사진">
+                <img src="${post.author.image}" alt="프로필 사진" class="profile-pic">
                 <div class="user">
-                    <p class="tit-post">${post.author.username}</p>
+                    <p data-username="${post.author.username}" class="tit-post" >${post.author.username}</p>
                     <p class="user-id font-gray">@${post.author.accountname}</p>
                 </div>
             </div>
@@ -167,6 +168,15 @@ async function getPost() {
     getComment();
 }
 
+// 게시물 프로필 이미지 클릭시 user 계정으로 이동
+const profilePic = document.querySelector(".profile-pic");
+// const userAuthorName = document.querySelector(".tit-post")
+const authorUsername = profilePic.dataset.username;
+profilePic.addEventListener('click', () => {
+    window.location.href = `your_profile.html?accountName=${authorAccountname}`;
+})
+
+
 // 게시물 더보기 모달창
 function getPostMoreBtn() {
     const queryString = window.location.href.split('?')[1]
@@ -219,13 +229,6 @@ function getPostMoreBtn() {
     })
 }
 
-// 프로필 이미지 클릭시 이동
-const goPostPage = document.querySelectorAll(".profile-pic")
-for (const [idx, profile] of goPostPage.entries()) {
-    profile.addEventListener('click', () => {
-        window.location.href = `your_profile.html?id=${post[idx].id}`;
-    })
-}
 
 // 이미지 슬라이드
 function slideImgList() {
@@ -350,7 +353,7 @@ async function getComment() {
                     }" alt="내 프로필 이미지">
                 <div class="txt-container">
                     <div>
-                        <span class="user-nic" data-accountname="${comment.author.accountname}">${comment.author.username}</span>
+                        <span class="user-nic" data-accountname="${comment.author.username}">${comment.author.username}</span>
                         <span class="comment-time">${getTimeString(
                         comment.createdAt
                     )}</span>
@@ -442,15 +445,6 @@ async function commentDel() {
     }
 }
 
-
-// 댓글 프로필 이미지 클릭시 user 계정으로 이동
-const profilePic = document.querySelectorAll(".profile-pic");
-for (const i of profilePic) {
-    const authorAccountname = i.dataset.accountname;
-    i.addEventListener('click', () => {
-        window.location.href = `your_profile.html?accountName=${authorAccountname}`;
-    })
-}
 
 // 댓글 입력 프로필 이미지
 async function profileImg() {
