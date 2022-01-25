@@ -73,7 +73,7 @@ async function getPost() {
     console.log("searchparams: ", searchParams)
     const postId = searchParams.get('id');
     // const postId = location.href.split('=')[1]
-    const url = `http://146.56.183.55:5050/post/${postId}`;
+    const url = `https://api.mandarin.cf/post/${postId}`;
     fetch(url, {
         method: 'GET', // or 'PUT'
         headers: {
@@ -280,7 +280,7 @@ async function fullHeart() {
     const searchParams = new URLSearchParams(queryString)
     const postId = searchParams.get('id');
     // const postId = location.href.split('=')[1]
-    await fetch(`http://146.56.183.55:5050/post/${postId}/heart`, {
+    await fetch(`https://api.mandarin.cf/post/${postId}/heart`, {
         method: 'POST',
         headers: {
             Authorization: "Bearer " + localStorage.getItem("Token"),
@@ -294,7 +294,7 @@ async function unHeart() {
     const searchParams = new URLSearchParams(queryString)
     const postId = searchParams.get('id');
     // const postId = location.href.split('=')[1]
-    await fetch(`http://146.56.183.55:5050/post/${postId}/unheart`, {
+    await fetch(`https://api.mandarin.cf/post/${postId}/unheart`, {
         method: 'DELETE',
         headers: {
             Authorization: "Bearer " + localStorage.getItem("Token"),
@@ -313,7 +313,7 @@ async function createComment() {
     const postId = searchParams.get('id');
     console.log("postid: ", postId)
     // const postId = location.href.split('=')[1]
-    await fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
+    await fetch(`https://api.mandarin.cf/post/${postId}/comments`, {
         method: 'POST', // or 'PUT'
         headers: {
             Authorization: "Bearer " + localStorage.getItem("Token"),
@@ -339,7 +339,7 @@ async function getComment() {
     const postId = searchParams.get('id');
     console.log("postid: ", postId)
     // const postId = location.href.split('=')[1]
-    await fetch(`http://146.56.183.55:5050/post/${postId}/comments`, {
+    await fetch(`https://api.mandarin.cf/post/${postId}/comments`, {
         method: 'GET', // or 'PUT'
         headers: {
             Authorization: "Bearer " + localStorage.getItem("Token"),
@@ -430,7 +430,7 @@ async function commentDel() {
     const moreBtn = document.querySelector('.more-btn3')
     const buttonUserId = moreBtn.dataset.commentid;
     const res = await fetch(
-        `http://146.56.183.55:5050/post/${postId}/comments/${buttonUserId}`,
+        `https://api.mandarin.cf/post/${postId}/comments/${buttonUserId}`,
         {
             method: 'DELETE',
             headers: {
@@ -454,7 +454,7 @@ async function commentDel() {
 // 댓글 입력 프로필 이미지
 async function profileImg() {
     const res = await fetch(
-        `http://146.56.183.55:5050/profile/${accountName}`,
+        `https://api.mandarin.cf/profile/${accountName}`,
         {
             method: 'GET',
             headers: {
@@ -468,7 +468,7 @@ async function profileImg() {
     if (data.profile.image.split(':')[0] === 'http') {
         commentUserProfile.src = data.profile.image;
     } else {
-        commentUserProfile.src = 'http://146.56.183.55:5050/' + data.profile.image;
+        commentUserProfile.src = 'https://api.mandarin.cf/' + data.profile.image;
     }
 }
 profileImg();

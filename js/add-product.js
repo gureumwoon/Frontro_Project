@@ -107,7 +107,7 @@ function uploadBtnCheck() {
 async function imageUpload(files, index) {
     let formData = new FormData();
     formData.append('image', files[index]);
-    const res = await fetch("http://146.56.183.55:5050/image/uploadfile", {
+    const res = await fetch("https://api.mandarin.cf/image/uploadfile", {
         method: "POST",
         body: formData
     })
@@ -126,9 +126,9 @@ async function postData(e) {
         for (let index = 0; index < files.length; index++) {
             const imgurl = await imageUpload(files, index)
             //완성된 url을 만들어서 넣어준다.
-            imageUrls.push("http://146.56.183.55:5050" + "/" + imgurl)
+            imageUrls.push("https://api.mandarin.cf" + "/" + imgurl)
         }
-        const res = await fetch(`http://146.56.183.55:5050/product`, {
+        const res = await fetch(`https://api.mandarin.cf/product`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -164,7 +164,7 @@ if (productId) {
 async function getProductData() {
     // const itemPrice = Number(productPriceInput.value.replaceAll(",", ""), 10);
     const res = await fetch(
-        `http://146.56.183.55:5050/product/detail/${productId}`,
+        `https://api.mandarin.cf/product/detail/${productId}`,
         {
             method: 'GET',
             headers: {
@@ -193,7 +193,7 @@ async function productModi() {
     const price = productPriceInput.value;
     const link = productUrlInp.value;
     const productImgUrl = imgBox.src;
-    const res = await fetch(`http://146.56.183.55:5050/product/${productId}`, {
+    const res = await fetch(`https://api.mandarin.cf/product/${productId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
