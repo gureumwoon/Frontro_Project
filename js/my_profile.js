@@ -388,7 +388,7 @@ async function createAndDrawContent() {
         contentItem.innerHTML = `
         <article class="content_user-contents">
             <div class="content-header_user-contents">
-                <img src="${authorImage}" alt="${
+                <img src="${content.author.image}" alt="${
             content.author.username
         }님의 프로필 사진" onerror="this.src='/src/png/Ellipse 6.png';" class="img_content-info" />
                 <p class="name_content-info">${content.author.username}</p>
@@ -613,7 +613,7 @@ function modifyItem(itemId, itemType) {
         // 여쭤보고 작성하기
         location.href = `add_product.html?productid=${itemId}`;
     } else if (itemType === "content") {
-        location.href = `upload.html?postid=${itemId}`;
+        location.href = `upload.html?${itemId}`;
     }
 }
 
@@ -751,13 +751,11 @@ async function checkLoginUser() {
         location.href = "login.html";
     }
     // 이 부분은 토큰이 만료됐다 싶을 때 다시 테스트 해보기
-    const res = await myFetch(
-        `${BASE_URL}/user/checktoken`,
-        "get",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTdjNzdiOGJkMTU3NGYwYzkzYWE0MSIsImV4cCI6MTY0Nzc2Mzg0MywiaWF0IjoxNjQyNTc5ODQzfQ.t3ynPiH6o9L-3k1z7iy3GtvUO2r_zCjWHgMR7TnLWQE"
-    );
+    const res = await myFetch(`${BASE_URL}/user/checktoken`, "get", token);
     const result = await res.json();
     if (!result.isValid) {
+        window.alert("만료된 토큰입니다.");
+        console.log(result.isValid);
         location.href = "login.html";
     } else {
         console.log("만료되지 않았습니다.");
