@@ -1,36 +1,98 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/reset.css">
-    <link rel="stylesheet" href="s_modules.css">
-    <link rel="stylesheet" href="style/post.css">
+    <link rel="stylesheet" href="./style/reset.css">
+    <link rel="stylesheet" href="./style/post.css">
+    <link rel="shortcut icon" href="./src/favicon.ico">
     <title>post</title>
+    <script defer src="js/post.js"></script>
 </head>
-<body>
-    <section class="nav">
-        <img src="src/png/icon-arrow-left.png" alt="뒤로가기">
-        <img src="src/png/icon-more-vertical.png" alt="더보기">
-    </section>
 
-    <section>
-        <img src="src/png/Ellipse 6.png" alt="프로필 이미지">
-        <p>서귀포시 무슨 농장</p>
-        <p>5분 전</p>
-        <p>게시글 답글 ~~ !! 최고최고</p>
-    </section>
-    <section>
-        <img src="src/png/Ellipse 6.png" alt="프로필 이미지">
-        <p>감귤러버</p>
-        <p>15분 전</p>
-        <p>안녕하세요. 사진이 너무 멋있어요. 한라봉 언제 먹을 수 있나요? 기다리기 지쳤어요 땡뻘땡뻘...</p>
-    </section>
-    <section>
-        <img src="src/png/Ellipse 6.png" alt="내 프로필 이미지">
-        <input type="text" placeholder="댓글 입력하기...">
-        <button>게시</button>
-    </section>
+<body>
+    <div class="container">
+        <header class="nav">
+            <img src="src/png/icon-arrow-left.png" alt="뒤로가기" class="back-btn">
+            <button class="more-btn">
+                <img src="src/png/icon-more-vertical.png" alt="더보기" class="icon-more">
+            </button>
+        </header>
+        <article class="post">
+            <div class="profile">
+                <!-- <img class="profile-pic" src="src/png/Ellipse-1.png" alt="프로필 사진"> -->
+                <div class="user">
+                    <!-- <p class="tit-post">애월읍 위니브 감귤농장</p>
+                    <p class="user-id font-gray">@ weniv_Mandarin</p> -->
+                </div>
+            </div>
+            <div class="cont-following">
+                <ul class="img-container">
+                </ul>
+                <ul class="indicator">
+                </ul>
+                <div class="icon-box font-gray">
+                    <button type="button" class="btn btn-like"><img src="./src/svg/Vector.svg"></button>
+                    <span class="count count-heart"></span>
+                    <!-- <button type="button" class="btn btn-comment"><img src="./src/svg/message-circle.svg"></button>
+                    <span class="count count-comment">12</span> -->
+                </div>
+                <!-- <p class="date font-gray">2020년 10월 21일</p> -->
+            </div>
+            <button class="more-btn2 ">
+                <img src="src/svg/s-icon-more-vertical.svg" alt="더보기" class="icon-more2">
+            </button>
+        </article>
+        <section class="comment-container">
+            <div class="comment-view">
+                <!-- <img src="src/png/Ellipse 6.png" alt="내 프로필 이미지"> -->
+                <div class="txt-container">
+                    <!-- 댓글리스트 -->
+                </div>
+            </div>
+        </section>
+        <div class="comment-upload">
+            <img src="src/png/Ellipse 6.png" alt="내 프로필 이미지" class="comment-user-profile">
+            <input type="text" placeholder="댓글 입력하기..." class="comment-inp">
+            <button class="comment-upload-btn">게시</button>
+        </div>
+        <div class="post-modal post-modal-report">
+            <button class="modal-txt-report">신고하기</button>
+        </div>
+        <div class="post-modal post-modal-delete">
+            <button class="modal-txt-delete">삭제</button>
+        </div>
+        <div class="post-modal post-modal-mix">
+            <button class="modal-txt-delete">삭제</button>
+            <button class="modal-txt-modi">수정</button>
+        </div>
+        <div class="alert-box alert-comment-delete">
+            <p class="alert_notice">댓글을 삭제하시겠어요?</p>
+            <button class="alert_cancel-button">취소</button>
+            <button class="alert_action-button alert-action-delete">삭제</button>
+        </div>
+        <div class="alert-box alert-comment-report">
+            <p class="alert_notice">신고하시겠어요?</p>
+            <button class="alert_cancel-button">취소</button>
+            <button class="alert_action-button">신고</button>
+        </div>
+        <div class="alert-box alert-post-delete">
+            <p class="alert_notice">게시글을 삭제하시겠어요?</p>
+            <button class="alert_cancel-button">취소</button>
+            <button class="alert_action-button alert-action-delete">삭제</button>
+        </div>
+        <div class="alert-box alert-post-modi">
+            <p class="alert_notice">게시글을 수정하시겠어요?</p>
+            <button class="alert_cancel-button">취소</button>
+            <button class="alert_action-button alert-action-modi">수정</button>
+        </div>
+        <div class="modal-wrapper">
+
+        </div>
+    </div>
+    </div>
 </body>
+
 </html>

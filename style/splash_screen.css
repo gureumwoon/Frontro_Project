@@ -1,0 +1,93 @@
+#html {
+  font-size: 62.5%;
+}
+
+@font-face {
+  font-family: 'SDSamliphopangche_Basic';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#body {
+  position: relative;
+  background-color: #767676;
+}
+
+.container {
+  font-family: 'SDSamliphopangche_Basic';
+  /* width: 39rem; */
+  height: 100vh;
+  background-color: #F5F4F0;
+  color: var(--yeon-no-word);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sub-txt {
+  font-size: 1.8rem;
+  margin-bottom: 3.7rem;
+}
+
+.main-logo {
+  width: 13rem;
+  margin-bottom: 6rem;
+}
+
+.main-txt {
+  font-size: 6.6rem;
+  line-height: 8rem;
+}
+
+.footer-txt {
+  display: flex;
+  justify-content: center;
+  font-family: 'SDSamliphopangche_Basic';
+  font-size: 2.6rem;
+  text-align: center;
+  margin-top: 14.2rem;
+}
+
+.fade-out{
+  animation: fadeout 5s;
+  -moz-animation: fadeout 5s; /* Firefox */
+  -webkit-animation: fadeout 5s; /* Safari and Chrome */
+  -o-animation: fadeout 5s; /* Opera */
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeout {
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0.4;
+  }
+}
+@-moz-keyframes fadeout { /* Firefox */
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0.4;
+  }
+}
+@-webkit-keyframes fadeout { /* Safari and Chrome */
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0.4;
+  }
+}
+@-o-keyframes fadeout { /* Opera */
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0.4;
+  }
+}

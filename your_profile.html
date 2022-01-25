@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your_Profile(프로필 페이지)</title>
-    <link rel="stylesheet" href="../../resource/styles/profile/your_profile.css">
-    <link rel="stylesheet" href="../../resource/styles/reset.css">
-    <script src="../resource/js/yout_profile.js"></script>
+    <title>은희네문방구</title>
+    <link rel="stylesheet" href="./style/reset.css">
+    <link rel="stylesheet" href="./style/your_profile.css">
+    <link rel="shortcut icon" href="./src/favicon.ico">
+
 </head>
 
 <body>
@@ -24,136 +25,153 @@
         <!-- 모듈화될 수 있는 부분: header 자체. 뒤로가기 버튼, 햄버거 버튼도 별도로 가능 -->
         <header class="top-bar">
             <!-- 뒤로가기 버튼 -->
-            <button type="button" class="button-noneBackground button-back"><img src="../../resource/img/profile/icon-arrow-left.svg"
+            <button type="button" class="button-noneBackground button-back"><img src="./src/png/icon-arrow-left.png"
                     alt="뒤로가기 버튼"></button>
             <!-- 햄버거 버튼 -->
-            <button type="button" class="button-noneBackground button-more"><img src="../../resource/img/profile/icon- more-vertical.svg" alt="더보기 버튼"></button>
+            <button type="button" class="button-noneBackground button-more"><img src="./src/png/icon-more-vertical.png"
+                    alt="더보기 버튼"></button>
         </header>
-            <!-- profile-info -->
-            <article class="profile_info">
-                <!-- 
+        <!-- profile-info -->
+        <article class="cont_profile">
+            <!-- 
                     필요한 JS 처리: 
                     - 필요한 html 요소(이름) fetch를 이용해서 받아온 데이터를 추가해서 넣어주기
                 -->
-                <h2 class="ir"><span>oo</span>님의 프로필 정보</h2>
-                <!-- 
+            <h2 class="ir"><span>oo</span>님의 프로필 정보</h2>
+            <!-- 
                     여기도 js로 처리해야할까? js로 받아와야할 것들이 뭐가 있을까?
                     필요한 JS 처리: 
                     - 이미지 등록여부를 통해서 기본 이미지를 보여줄 지 안보여줄 지 처리 필요
                     - 팔로워, 팔로잉 숫자도 JS로 받아와야 함
                 -->
-                <div class="profile_header">
-                    <!-- followers & followings -->
-                    <p class="profile_followers">
-                        <!--2950은 나중에 js로 처리-->
-                        <span class="followers_number">2950</span>followers
-                    </p>
-                    <p class="profile_followings">
-                        <!-- 128은 나중에 js로 처리 -->
-                        <span class="followings_number">128</span>followings
-                    </p>
-                    <img src="../../resource/img/profile/basic-profile-img.svg" alt="">
-                </div>
-                <p class="profile_name">애월읍 위니브 감귤농장</p>
-                <p class="profile_email">@ weniv_Madarin</p>
-                <p class="profile_explain">애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장</p>
-                <div class="profile_footer">
-                    <!-- 
+            <div class="header_profile">
+                <!-- followers & followings -->
+                <p class="followings_profile">
+                    <span class="number_followings">0</span>followings
+                </p>
+                <p class="followers_profile">
+                    <span class="number_followers">0</span>followers
+                </p>
+                <!-- <p class="profile_followers">
+                    <span class="followers_number">128</span>followers
+                </p> -->
+                <img src="./src/svg/basic-profile-img.svg" alt="" onerror="this.src='/src/png/Ellipse 6.png';">
+            </div>
+            <p class="name_profile"></p>
+            <p class="account_profile"></p>
+            <p class="explain_profile"></p>
+            <div class="footer_profile">
+                <!-- 
                         필요한 JS 처리: 
                         - 필요한 html 요소(alt값 채워주기: 00님과 채팅 시작하기, 00님의 프로필 공유하기) fetch를 이용해서 받아온 데이터를 추가해서 넣어주기
                         - 클릭에 따라서 버튼 이미지 변경
                     -->
-                    <button type="button" class="button-noneBackground button-profile">
-                        <img src="../../resource/img/profile/icon-message-circle.svg" alt="">
-                    </button>
-                    <button type="button" class="button-noneBackground button-follow">
-                        <img src="../../resource/img/profile/M-button.svg" alt="">
-                    </button>
-                    <button type="button" class="button-noneBackground button-profile">
-                        <!-- <img src="../../resource/img/profile/icon-share.svg" alt=""> -->
-                    </button>
-                </div>
-            </article>
+                <button type="button" class="button-noneBackground button-message">
+                    <img src="./src/png/icon-message-circle.png" alt="">
+                </button>
+                <!-- 경서님 것으로 대체 -->
+                <button type="button" class="S-button Sbutton-font">팔로우</button>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <article class=on-sale>
-            <h2 class="ir">판매 중인 상품</h2>
-            <p>판매 중인 상품</p>
-            <!-- 
-                필요한 JS 처리: 
-                필요한 html 요소 fetch를 이용해서 받아온 데이터를 추가해서 넣어주기
-            -->
-            <ul class="on-sale_list">
-                <!-- js에서 사용할 html 예시 -->
-                <li>
-                    <!-- 판매 상품 사진 -->
-                    <!-- 판매 상품 이름 -->
-                    <!-- 판매 상품 가격 -->
-                </li>
-            </ul>
+                <button type="button" class="button-noneBackground button-share">
+                    <img src="./src/png/icon-share.png" alt="">
+                </button>
+            </div>
         </article>
 
-        <!-- 모듈화될 수 있는 부분: Home 기본 화면과 모듈화 -->
-        <section class="">
-            <h2 class="ir">게시물 정보</h2>
-            <div class="content-view-style">
+        <!-- on-sale-->
+        <article class="cont_on-sale">
+            <div class="item-wrapper_on-sale">
+
+                <h2 class="tit_on-sale">판매 중인 상품</h2>
                 <!-- 
                     필요한 JS 처리: 
-                    click에 따라서 이미지 on, off 상태를 변경해주어야한다.
+                    필요한 html 요소 fetch를 이용해서 받아온 데이터를 추가해서 넣어주기
                 -->
-                <!-- 리스트형 콘텐츠 보여주기 -->
-                <button type="button"><img src="../resource/img/profile/icon-post-list-on.svg" alt=""></button>
-                <!-- 사진형 콘텐츠 보여주기 -->
-                <button type="button"><img src="../resource/img/profile/icon-post-album-off.svg" alt=""></button>
+                <ul class="ul_on-sale"></ul>
             </div>
-            <article>
-                <h3>게시물 상세정보</h3>
-                <!-- 
-                    필요한 JS 처리: 
-                    click에 따라서 리스트에 표시되는 html을 변경해주어야한다.
-                -->
-                <ul>
-                    <li>
-                        <!-- <article></article> -->
-                        <!-- ↑ case 1: js에서 사용할 html 예시: 리스트형 컨텐츠 보여줄 때 표시되는 html ↑-->
-                        <article>
+        </article>
 
-                        </article>
-                        <!-- ↑ case 2: js에서 사용할 html 예시: 사진형 html ↑ -->
-                        <article>
-
-                        </article>
-                    </li>
-                </ul>
+        <!-- content-->
+        <article class="cont_contents">
+            <h2 class="ir">게시물 정보</h2>
+            <div class="cont_view-style">
+                <!-- 리스트형 콘텐츠 보여주기 -->
+                <button type="button" class="button-noneBackground on"><img src="./src/png/icon-post-list-on.png"
+                        alt=""></button>
+                <!-- 사진형 콘텐츠 보여주기 -->
+                <button type="button" class="button-noneBackground off"><img src="./src/png/icon-post-album-off.png"
+                        alt=""></button>
+            </div>
+            <article class="cont_user-contents">
+                <h3 class="ir">게시물 상세정보</h3>
+                <ul class="ul_user-contents"></ul>
+                <ul class="ul-picture_user-contents"></ul>
             </article>
-        </section>
+        </article>
         <!-- 모듈화될 수 있는 부분: 화면 공통 네비게이션 -->
-        <nav class="">
+        <!-- 경서님 코드 -->
+        <footer class="footer">
+            <ul class="icon-item-list">
+                <li class="item-footer"><img src="./src/svg/icon-home-fill.svg">홈</li>
+                <li class="item-footer"><img src="./src/svg/icon-message-circle.svg">채팅</li>
+                <li class="item-footer third"><img src="./src/svg/icon-edit.svg" class="icon-add">게시물 작성</li>
+                <li class="item-footer"><img src="./src/svg/icon-user.svg">프로필</li>
+            </ul>
+        </footer>
 
-        </nav>
+        <!-- p tag는 가상요소로 처리 -->
+        <!-- <nav class="tap-menu">
+            <button class="tap-menu-home">
+                <img src="/src/svg/icon-home-fill.svg" alt="홈으로 가기" class="home-icon">
+            </button>
+
+            <button class="tap-menu-chat">
+                <img src="/src/svg/icon-message-circle.svg" alt="채팅으로 가기" class="chat-icon">
+            </button>
+
+            <button class="tap-menu-upload">
+                <img src="/src/svg/icon-edit.svg" alt="게시물 작성하기" class="upload-icon">
+            </button>
+
+            <button class="tap-menu-user">
+                <img src="/src/svg/icon-user.svg" alt="프로필로 가기" class="user-icon">
+            </button>
+        </nav> -->
+
+        <!-- 업 모달창 -->
+        <div class="background_up-modal">
+        </div>
+        <div class="up-modal">
+            <!-- 가상요소로 작은 이미지('ㅡ') 표현 -->
+            <ul class="cont_modal-item">
+                <li class="item-modal">설정 및 개인정보</li>
+                <li class="item-modal">로그아웃</li>
+            </ul>
+        </div>
+        </div>
+        <div class="up-modal content">
+            <!-- 가상요소로 작은 이미지('ㅡ') 표현 -->
+            <ul class="cont_modal-item">
+                <li class="item-modal">신고하기</li>
+            </ul>
+        </div>
+
+        <!-- 팝업 모달창 -->
+        <div class="background_popup-modal">
+        </div>
+        <div class="popup-modal">
+            <p class="notice_popup">로그아웃</p>
+            <button class="cancel-button_popup">취소</button><button class="action-button_popup">로그아웃</button>
+        </div>
+        </div>
+        <div class="popup-modal content">
+            <p class="notice_popup">게시글을 신고하시겠어요?</p>
+            <button class="cancel-button_popup">취소</button><button class="action-button_popup">신고</button>
+        </div>
     </main>
+    <!-- html을 다 로딩하고 렌더링 할 경우 defer를 사용-->
+    <!-- defer를 사용했을 때 생길 수 있는 이슈 https://velog.io/@yeonnex/Uncaught-TypeError-Cannot-read-property-addEventListener-of-null -->
+    <script defer src="./js/your_profile.js"></script>
 </body>
 
 </html>

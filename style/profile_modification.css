@@ -1,26 +1,54 @@
+* {
+    box-sizing: border-box;
+}
+
 html {
     font-size: 62.5%;
 }
 
 body {
-    width: 39em;
+    background-color: #767676;
+}
+
+button {
+    cursor: pointer;
+}
+
+.btn-back {
+    cursor: pointer;
+}
+
+.invisible {
+    display: none;
+}
+
+.active {
+    background-color: var(--zzin-no);
+    color:  var(--zzin-no-word);
+}
+
+.container {
     height: 100vh;
+    margin: auto;
+    background-color: white;
 }
 
 .nav .btn-back {
     float: left;
-    padding: 1.3em 1.6em;
+    padding: 1.3rem 1.6rem;
 }
 
 .nav .Ms-disabled-button {
     float: right;
-    margin: 0.8em 1.6em;
+    margin: 0.8rem 1.6rem;
 }
 
 .nav {
     overflow: hidden;
-    border-bottom: 0.05em solid #DBDBDB;
+    border-bottom: 0.05rem solid #DBDBDB;
 }
+
+/* 프로필 이미지 업로드 */
 
 .img-profile {
     display: flex;
@@ -28,38 +56,65 @@ body {
 }
 
 .img-profile .img-profile-empty {
-    margin: 3em 0;
+    margin: 3rem 0;
+    width: 11rem;
+    border-radius: 50%;
+}
+.image_inputType_file {
+    display: none;
 }
 
 .img-profile .btn-upload {
-    width: 3.6em;
-    height: 3.6em;
+    width: 3.6rem;
+    height: 3.6rem;
+    position: absolute;
+    left: 98.3rem;
+    top: 15.5rem;
 }
+
+.img-profile .real-input {
+    position: relative;
+}
+
+/* 프로필 입력란 */
 
 .txt-profile {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 32.2rem;
+    margin: auto;
 }
 
 .txt-profile .module-inp {
-    margin-bottom: 1.6em;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.6rem;
 }
 
 .txt-profile .explanation {
     font-weight: 500;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     color: #767676;
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 }
 
 .txt-profile .inp-profile {
-    border-bottom: 0.1em solid #DBDBDB;
-    width: 32.2em;
+    border-bottom: 0.1rem solid #DBDBDB;
+    padding-bottom: 0.9rem;
+    font-size: 1.4rem;
 }
 
-.inp-profile input::placeholder {
-    font-size: 1.4em;
+.warning-text {
+    margin-top: 0.6rem;
+    color: #EB5757;
+    font-size: 1.2rem;
+}
+
+.inp-profile:focus {
+    border-bottom: 0.1rem solid var(--zzin-no);
+}
+
+.txt-profile .inp-profile::placeholder {
     color: #DBDBDB;
-    margin-bottom: 0.8em;
 }

@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>add_product</title>
+    <title>addproduct</title>
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/k_modules.css">
     <link rel="stylesheet" href="style/add_product.css">
+    <link rel="shortcut icon" href="./src/favicon.ico">
+    <script defer src="./js/add-product.js"></script>
 </head>
+
 <body>
-    <div class="nav">
-        <img class="btn-back" src="src/png/icon-arrow-left.png" alt="뒤로가기">
-        <button type="button" class="Ms-disabled-button LMbutton-font">저장</button>
-    </div>
-    <div class="img-post">
-        <div class="module-inp">
-            <label for="inpId" class="explanation">이미지 등록</label>
-            <img class="img-box" src="" alt="상품 이미지">
-            <img class="btn-upload" src="src/png/img-button.png" alt="이미지 등록하기">
-        </div>
-    </div>
-    <div class="txt-post">
-        <div class="module-inp">
-            <label for="inpId" class="explanation">상품명</label>
-            <input type="text" class="inp-post" id="inpId" placeholder="2~15자 이내여야 합니다.">
-        </div>
-        <div class="module-inp">
-            <label for="inpId" class="explanation">가격</label>
-            <input type="text" class="inp-post" id="inpId" placeholder="숫자만 입력 가능합니다.">
-        </div>
-        <div class="module-inp">
-            <label for="inpId" class="explanation">판매 링크</label>
-            <input type="text" class="inp-post" id="inpId" placeholder="URL을 입력해 주세요.">
-        </div>
+    <div class="container">
+        <nav class="nav">
+            <img class="btn-back" src="src/png/icon-arrow-left.png" alt="뒤로가기">
+            <button type="submit" class="Ms-disabled-button LMbutton-font">저장</button>
+        </nav>
+        <form class="contents-post">
+            <div class="img-post">
+                <div class="module-inp">
+                    <span class="explanation">이미지 등록</span>
+                    <img class="img-box" src="src/png/add-product-box.png" alt="상품 이미지">
+                    <input type="file" id="real-input" class="image_inputType_file" accept="img/*">
+                    <label for="real-input">
+                        <img src="src/png/img-button.png" alt="이미지 등록하기" class="btn-upload">
+                    </label>
+                </div>
+            </div>
+            <div class="txt-post">
+                <div class="module-inp">
+                    <label for="product-name" class="explanation">상품명</label>
+                    <input type="text" class="inp-post" id="product-name" placeholder="2~15자 이내여야 합니다.">
+                    <p class="warning-text invisible">*2~15자 이내여야 합니다.</p>
+                </div>
+                <div class="module-inp">
+                    <label for="product-price" class="explanation">가격</label>
+                    <input type="text" class="inp-post" id="product-price" placeholder="숫자만 입력 가능합니다.">
+                    <p class="warning-text invisible">숫자만 입력 가능합니다.</p>
+                </div>
+                <div class="module-inp">
+                    <label for="product-link" class="explanation">판매 링크</label>
+                    <input type="text" class="inp-post" id="product-link" placeholder="URL을 입력해 주세요.">
+                </div>
+            </div>
+        </form>
     </div>
 </body>
+
 </html>

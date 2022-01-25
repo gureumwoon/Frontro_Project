@@ -1,12 +1,174 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My-Profile(내 프로필)</title>
+    <title>은희네문방구</title>
+    <link rel="stylesheet" href="./style/reset.css">
+    <link rel="stylesheet" href="./style/my_profile.css">
+    <link rel="shortcut icon" href="./src/favicon.ico">
 </head>
+
 <body>
-    
+    <!-- 페이지 설명: 홈 화면에 표시되는 게시물을 클릭했을때 나오는 페이지 -->
+    <main>
+        <h1 class="ir">
+            <!-- 
+                필요한 JS 처리: 
+                필요한 html 요소(이름) fetch를 이용해서 받아온 데이터를 추가해서 넣어주기
+            -->
+            <span>oo</span>님의 프로필 페이지 입니다.
+        </h1>
+        <!-- 모듈화될 수 있는 부분: header 자체. 뒤로가기 버튼, 햄버거 버튼도 별도로 가능 -->
+        <header class="top-bar">
+            <!-- 뒤로가기 버튼 -->
+            <button type="button" class="button-noneBackground button-back"><img src="./src/png/icon-arrow-left.png"
+                    alt="뒤로가기 버튼"></button>
+            <!-- 햄버거 버튼 -->
+            <button type="button" class="button-noneBackground button-more"><img src="./src/png/icon-more-vertical.png"
+                    alt="더보기 버튼"></button>
+        </header>
+        <!-- profile-info -->
+        <article class="cont_profile">
+
+            <!-- 
+                    필요한 JS 처리: 
+                    - 필요한 html 요소(이름) fetch를 이용해서 받아온 데이터를 추가해서 넣어주기
+                -->
+            <h2 class="ir"><span>oo</span>님의 프로필 정보</h2>
+            <!-- 
+                    여기도 js로 처리해야할까? js로 받아와야할 것들이 뭐가 있을까?
+                    필요한 JS 처리: 
+                    - 이미지 등록여부를 통해서 기본 이미지를 보여줄 지 안보여줄 지 처리 필요
+                    - 팔로워, 팔로잉 숫자도 JS로 받아와야 함
+                -->
+            <div class="header_profile">
+                <!-- followers & followings -->
+                <p class="followings_profile">
+                    <span class="number_followings">0</span>followings
+                </p>
+                <p class="followers_profile">
+                    <span class="number_followers">0</span>followers
+                </p>
+                <img src="./src/svg/basic-profile-img.svg" alt="" onerror="this.src='/src/png/Ellipse 6.png';">
+            </div>
+            <p class=" name_profile"></p>
+            <p class="account_profile"></p>
+            <p class="explain_profile"></p>
+            <div class="footer_profile">
+                <button type="button" class="S-Active-button Sbutton-font">프로필 수정</button>
+                <button type="button" class="S-Active-button Sbutton-font">상품 등록</button>
+            </div>
+        </article>
+
+
+        <!-- on-sale-->
+        <article class="cont_on-sale">
+            <div class="item-wrapper_on-sale">
+                <h2 class="tit_on-sale">판매 중인 상품</h2>
+                <!-- 필요한 html 요소 fetch를 이용해서 받아온 데이터를 추가해서 넣어주기 -->
+                <ul class="ul_on-sale">
+                </ul>
+            </div>
+        </article>
+
+        <!-- content-->
+        <article class="cont_contents">
+            <h2 class="ir">게시물 정보</h2>
+            <div class="cont_view-style">
+                <!-- 리스트형 콘텐츠 보여주기 -->
+                <button type="button" class="button-noneBackground on"><img src="./src/png/icon-post-list-on.png"
+                        alt=""></button>
+                <!-- 사진형 콘텐츠 보여주기 -->
+                <button type="button" class="button-noneBackground off"><img src="./src/png/icon-post-album-off.png"
+                        alt=""></button>
+            </div>
+            <article class="cont_user-contents">
+                <h3 class="ir">게시물 상세정보</h3>
+                <ul class="ul_user-contents"></ul>
+                <ul class="ul-picture_user-contents"></ul>
+            </article>
+        </article>
+        <!-- 모듈화될 수 있는 부분: 화면 공통 네비게이션 -->
+        <!-- 경서님 코드 -->
+        <footer class="footer">
+            <ul class="icon-item-list">
+                <li class="item-footer"><img src="./src/svg/icon-home.svg">홈</li>
+                <li class="item-footer"><img src="./src/svg/icon-message-circle.svg">채팅</li>
+                <li class="item-footer third"><img src="./src/svg/icon-edit.svg" class="icon-add">게시물 작성</li>
+                <li class="item-footer"><img src="./src/svg/icon-user-fill.svg">프로필</li>
+            </ul>
+        </footer>
+        <!-- 내 코드 -->
+        <!-- p tag는 가상요소로 처리 -->
+        <!-- <nav class="tap-menu">
+            <button class="tap-menu-home">
+                <img src="./src/svg/icon-home.svg" alt="홈으로 가기" class="home-icon">
+            </button>
+
+            <button class="tap-menu-chat">
+                <img src="./src/svg/icon-message-circle.svg" alt="채팅으로 가기" class="chat-icon">
+            </button>
+
+            <button class="tap-menu-upload">
+                <img src="./src/svg/icon-edit.svg" alt="게시물 작성하기" class="upload-icon">
+            </button>
+
+            <button class="tap-menu-user">
+                <img src="./src/svg/icon-user-fill.svg" alt="프로필로 가기" class="user-icon">
+            </button>
+        </nav> -->
+
+        <!-- 업 모달창 -->
+        <div class="background_up-modal">
+        </div>
+        <div class="up-modal">
+            <!-- 가상요소로 작은 이미지('ㅡ') 표현 -->
+            <ul class="cont_modal-item">
+                <li class="item-modal">설정 및 개인정보</li>
+                <li class="item-modal">로그아웃</li>
+            </ul>
+        </div>
+        </div>
+        <div class="up-modal on-sale">
+            <!-- 가상요소로 작은 이미지('ㅡ') 표현 -->
+            <ul class="cont_modal-item">
+                <li class="item-modal">삭제</li>
+                <li class="item-modal">수정</li>
+                <li class="item-modal">웹사이트에서 상품 보기</li>
+            </ul>
+        </div>
+        <div class="up-modal content">
+            <!-- 가상요소로 작은 이미지('ㅡ') 표현 -->
+            <ul class="cont_modal-item">
+                <li class="item-modal">삭제</li>
+                <li class="item-modal">수정</li>
+            </ul>
+        </div>
+
+        <!-- 팝업 모달창 -->
+        <div class="background_popup-modal">
+        </div>
+        <div class="popup-modal">
+            <p class="notice_popup">로그아웃</p>
+            <button class="cancel-button_popup">취소</button><button class="action-button_popup">로그아웃</button>
+        </div>
+        <div class="popup-modal delete_on-sale">
+            <p class="notice_popup">상품을 삭제할까요?</p>
+            <button class="cancel-button_popup">취소</button><button class="action-button_popup">삭제</button>
+        </div>
+        <div class="popup-modal delete_content">
+            <p class="notice_popup">게시글을 삭제할까요?</p>
+            <button class="cancel-button_popup">취소</button><button class="action-button_popup">삭제</button>
+        </div>
+    </main>
+    <script defer src="js/my_profile.js"></script>
 </body>
+
 </html>
+
+<!-- 상품을 나타내는 마크업으로 figure figcpation 사용.. -->
+<!-- 밑에 있는 모달들은 js로 만드는 것이 좋은지 html로 처리하는 것이 좋은지 -->
+<!-- html css js 간 성능 차이!! 뭘로 작성하는 것이 좋으냐! -->

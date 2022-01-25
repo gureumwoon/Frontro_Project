@@ -7,27 +7,33 @@
     <link rel="stylesheet" href="./style/home.css">
     <link rel="stylesheet" href="/style/k_modules.css">
     <link rel="stylesheet" href="./style/reset.css">
-    <title></title>
+    <script defer src="js/home.js"></script>
+    <title>home</title>
 </head>
 <body class="body">
 <article class="container">
     <header class="header">
         <h2 class="tit-intro">은이네 문방구 피드</h2>
-        <a href="search_1.html"><img src="./src/png/icon-search.png" class="icon-search"></a>
+        <!-- js 구현: 검색 아이콘에 search.html로 이동하는 js -->
+        <button type="button" class="btn-search btn-nonebackground">
+            <img src="./src/png/icon-search.png" class="icon-search">
+        </button>
     </header>
     <main class="main">
         <div class="main-icon">
             <img src="./src/svg/logo-Grey.svg" alt="슬라임모양" class="img-slime">
             <p class="p-intro">유저를 검색해 팔로우 해보세요!</p>
-            <button class="btn-search"><a href="./search_1.html">검색하기</a></button>
+            <!-- js구현: search1.html로 페이지 이동 -->
+            <button class="btn-search">검색하기</button>
         </div>
     </main>
+    <!-- js 구현: 페이지 이동: home/chat_list/add_product/My_profile -->
     <footer class="footer">
         <ul class="icon-item-list">
-            <li class="item-footer"><a href="./home.html"><img src="./src/svg/icon-home.svg"></a>홈</li>
-            <li class="item-footer"><a href="./home.html"><img src="./src/svg/icon-message-circle.svg"></a>채팅</li>
-            <li class="item-footer"><a href="./home.html"><img src="./src/svg/icon-edit.svg"></a>게시물 작성</li>
-            <li class="item-footer"><a href="./home.html"><img src="./src/svg/icon-user.svg"></a>프로필</li>       
+            <li class="item-footer"><img src="./src/svg/icon-home.svg">홈</li>
+            <li class="item-footer"><img src="./src/svg/icon-message-circle.svg">채팅</li>
+            <li class="item-footer third"><img src="./src/svg/icon-edit.svg" class="icon-add">게시물 작성</li>
+            <li class="item-footer"><img  src="./src/svg/icon-user.svg">프로필</li>       
         </ul>
     </footer>
 </article>

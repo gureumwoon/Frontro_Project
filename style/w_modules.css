@@ -6,15 +6,17 @@
     font-style: normal;
 }
 
+html {
+    background-color: bisque;
+    /* font-size: 62.5%; */
+}
+
 /* 해당 내용은 reset.css에 작성 */
 body,
 button,
 input {
     font-family: "SpoqaHanSansNeo-Regular";
 }
-/* * {
-    font-family: "SpoqaHanSansNeo-Regular";
-} */
 
 /* 10. comment */
 .comment,
@@ -24,6 +26,7 @@ input {
     align-items: center;
     font-size: 14px;
     line-height: 18px;
+    background: #ffffff;
 }
 .comment_profile-image,
 .input_image {
@@ -149,6 +152,13 @@ input {
     border-bottom: 1px solid #dbdbdb;
     font-size: 14px;
     line-height: 14px;
+    border: none;
+}
+#input-id:active,
+#input-id:focus {
+    outline: none;
+    border-bottom: 1px solid var(--yeon-no);
+    margin-bottom: 5px;
 }
 
 /* js 처리를 통해 에러가 발생한 경우 */
@@ -167,43 +177,41 @@ input {
 }
 
 /* 14. delete-alert */
+/* 띄워지는 모달창, alert box */
 .alert-box {
-    /* .delete-alert { */
     display: inline-block;
-    /* 사용할 때는 얘는 제거해 주셔야합니다. */
-    border: 0.5px solid #dbdbdb;
-    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
     overflow: hidden;
+    z-index: 20;
+    border-radius: 1rem;
     text-align: center;
+    background-color: #ffffff;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 1.6rem;
+    line-height: 2rem;
 }
 .alert-box .alert_notice {
-    margin: 22px 0;
+    margin: 2.2rem 0;
 }
 .alert-box .alert_cancel-button,
-.alert-box .alert_delete-button,
-.alert-box .alert_logout-button {
-    padding: 14px 50px;
+.alert-box .alert_action-button {
+    width: 12.6rem;
+    height: 4.6rem;
     background-color: transparent;
     border: none;
-    border-top: 0.5px solid #dbdbdb;
-    font-size: 14px;
-    line-height: 18px;
+    border-top: 0.05rem solid #dbdbdb;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
 }
-.alert-box .alert_logout-button {
-    padding: 14px 37px;
-    font-weight: 500;
-    color: #f26e22;
-}
-
 .alert-box .alert_cancel-button {
-    border-right: 0.5px solid #dbdbdb;
+    border-right: 0.05rem solid #dbdbdb;
 }
-.alert-box .alert_delete-button {
+.alert-box .alert_action-button {
     font-weight: 500;
-    color: #f26e22;
+    color: var(--zzin-no);
 }
 
 /* 레이아웃 창에 있던 모듈들 입니다. 1개로 통합해서 작성 */
@@ -212,27 +220,28 @@ input {
 /* 모달 3. post-modal (3) */
 
 .post-modal {
+    background-color: #ffffff;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
     position: relative;
-    border: 0.5px solid #dbdbdb;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    overflow: auto; /*마진 겹친 현상을 해결하기 위한 코드*/
 }
 .post-modal:after {
+    background-color: #dbdbdb;
+    border-radius: 0.5em;
     display: inline-block;
     position: absolute;
-    top: 16px;
+    top: 1.6em;
     left: 50%;
-    /* left: 170px; */
     transform: translate(-50%);
     content: "";
-    width: 50px;
-    height: 4px;
-    background: 100% 100% url("../resource/img/module/Rectangle\ 70.svg");
+    width: 5em;
+    height: 0.4em;
+    /* background: 100% 100% url("../resource/img/module/Rectangle\ 70.svg"); */
 }
 .post-modal .modal_item-container {
-    margin-top: 36px;
-    margin-bottom: 10px;
-    list-style: none;
+    margin-top: 3.6em;
+    margin-bottom: 1em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -240,10 +249,10 @@ input {
 }
 
 .modal_item-container .modal_item {
-    padding-left: 26px;
-    height: 46px;
-    line-height: 46px;
-    font-size: 14px;
+    padding-left: 2.6em;
+    height: 4.6em;
+    line-height: 4.6em;
+    font-size: 1.4em;
 }
 
 /* top bar */

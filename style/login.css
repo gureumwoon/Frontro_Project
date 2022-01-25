@@ -1,0 +1,164 @@
+  #html {
+    font-size: 62.5%;
+  }
+
+  #body {
+    position: relative;
+    background-color: #767676;
+  }
+
+  .container {
+    /* width: 39rem; */
+    height: 100vh;
+    background-color: #FFDB81;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    animation: fadein 2s;
+    -moz-animation: fadein 2s;
+    /* Firefox */
+    -webkit-animation: fadein 2 s;
+    /* Safari and Chrome */
+    -o-animation: fadein 2 s;
+    /* Opera */
+  }
+
+  @keyframes fadein {
+    from {
+      opacity: 0.4;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @-moz-keyframes fadein {
+
+    /* Firefox */
+    from {
+      opacity: 0.4;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes fadein {
+
+    /* Safari and Chrome */
+    from {
+      opacity: 0.4;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @-o-keyframes fadein {
+
+    /* Opera */
+    from {
+      opacity: 0.4;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .img-box {
+    display: flex;
+    justify-content: center;
+    margin: auto 0;
+  }
+
+  .login-img {
+    display: block;
+    margin: 0rem auto;
+    height: 11.6rem;
+  }
+
+  .login-box {
+    background-color: #FFF;
+    border-radius: 2rem 2rem 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 0 6.5rem;
+    width: 100%;
+    /* height: 3.18rem; */
+  }
+
+  .login-box-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 4.4rem;
+    width: 90%;
+    height: 3.8rem;
+    margin: 1rem 0 0;
+    font-size: 1.4rem;
+    color: #767676;
+  }
+
+  .sns-img {
+    position: absolute;
+    width: 2.4rem;
+    left: 1.4rem;
+  }
+
+  .kakao-box {
+    background: #FFF;
+    border: 0.1rem solid #F2C94C;
+    cursor: pointer;
+  }
+
+  .google-box {
+    background: #FFF;
+    border: 0.1rem solid #767676;
+    cursor: pointer;
+  }
+
+  .fb-box {
+    background: #FFF;
+    border: 0.1rem solid #2D9CDB;
+    cursor: pointer;
+  }
+
+  .link-btn {
+    display: flex;
+    margin-top: 2rem;
+    /* padding-bottom: 12.5rem; */
+    font-size: 1.2rem;
+  }
+
+  .link-btn-email {
+    text-decoration: none;
+    color: #767676;
+    cursor: pointer;
+  }
+
+  .link-btn-signIn {
+    text-decoration: none;
+    color: #767676;
+    cursor: pointer;
+  }
+
+  .link-btn-email::after {
+    content: "|";
+    float: right;
+    display: block;
+    margin: 0 1.2rem 0;
+  }
+
+  .txt {
+    display: block;
+  }

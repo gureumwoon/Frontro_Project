@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #767676;
+}
+
+button {
+    background: none;
+    cursor: pointer;
+}
+
+label {
+    cursor: pointer;
+}
+
+.active {
+    background-color: var(--zzin-no);
+    color:  var(--zzin-no-word);
+}
+
+.container {
+    position: relative;
+    height: 100vh;
+    margin: auto;
+    background-color: white;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.05rem solid #DBDBDB;
+    padding: 0.8rem 1.6rem;
+}
+
+.back-btn {
+    cursor: pointer;
+}
+
+.Ms-disabled-button {
+    margin: 0;
+}
+
+.post-section {
+    position: relative;
+    display: flex;
+    padding: 2rem 1.6rem;
+}
+
+
+.profile-pic {
+    width: 4.2rem;
+    height: 4.2rem;
+    margin-right: 1.2rem;
+    border-radius: 50%;
+}
+
+.upload-txt {
+    overflow-y: hidden;
+    margin-top: 1.2rem;
+    margin-bottom: 1.6rem;
+    width: 30.4rem;
+    height: 5.4rem;
+    resize: none;
+    border: none;
+    font-size: 1.4rem;
+}
+
+.upload-img {
+    width: 30.4rem;
+    height: 22.8rem;
+    border-radius: 1rem;
+}
+
+.upload-txt::placeholder {
+    color: #DBDBDB;
+}
+
+.btn-upload {
+    position: absolute;
+    bottom:0;
+    right:0;
+    padding: 1.6rem 1.6rem;
+}
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 이미지 한 장 업로드 */
+
+.picture {
+    width: 30.4rem;
+    height: 22.8rem;
+    object-fit: cover;
+}
+
+/* 이미지 3장 업로드 */
+
+.prev-img {
+    display: flex;
+    width: 30.4rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.prev-img img {
+    border-radius: 1rem;
+}
+
+.prev-img li {
+    position:relative;
+    /* width: 16.8rem;
+    height: 12.8rem; */
+    border-radius: 1rem;
+    margin-right: 0.8rem;
+}
+
+.img-cancel-btn {
+    position: absolute;
+    top: 1.15rem;
+    right: 1.15rem;
+    margin: 0;
+}
+
+/* 업로드 할 이미지 첨부 버튼 */
+
+.image_inputType_file {
+    display: none;
+}
+
+/* 모달창 */
+
+.modal-container {
+    width: 39rem;
+    height: 11rem;
+    margin: 3.6rem auto;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    background-color: white;
+}
+
+.modal-txt-report,
+.modal-txt-delete {
+    font-size: 1.4rem;
+    padding: 1.4rem 2.6rem
+}
+
+.modal-container::before {
+    content: '';
+    display: inline-block;
+    width: 5rem;
+    height: 0.4rem;
+    background-color: #DBDBDB;
+    margin: 1.6rem 17rem;
+}

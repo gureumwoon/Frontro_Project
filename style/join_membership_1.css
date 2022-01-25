@@ -1,0 +1,85 @@
+#html {
+  font-size: 62.5%;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+#body {
+  position: relative;
+  background-color: #767676;
+}
+
+.container {
+  /* width: 39rem; */
+  height: 100vh;
+  background-color: #FFF;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.4rem;
+  margin-top: 5.1rem;
+  margin-bottom: 4rem;
+}
+
+#input_info {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  width: 32.2rem;
+  color: #767676;
+  margin-bottom: 1.6rem;
+}
+
+#input_box {
+  border-style: none;
+  border-bottom: 0.1rem solid #DBDBDB;
+  height: 3.3rem;
+}
+
+#input_box_pw {
+  border-style: none;
+  border-bottom: 0.1rem solid #DBDBDB;
+  height: 3.3rem;
+}
+
+.next_btn {
+  width: 32.2rem;
+  height: 4.4rem;
+  background: var(--yeon-no);
+  border-radius: 4.4rem;
+  border-style: none;
+  color: var(--yeon-no-word);
+  font-size: 1.4rem;
+  margin-top: 1.4rem;
+}
+
+#input_box:focus {
+  border-style: none;
+  border-bottom: 0.1rem solid var(--zzin-no);
+  height: 3.3rem;
+}
+
+#input_box_pw:focus {
+  border-style: none;
+  border-bottom: 0.1rem solid var(--zzin-no);
+  height: 3.3rem;
+}
+
+.alert {
+  margin-bottom: 0.6rem;
+  border-bottom: 0.1rem solid #EB5757;
+}
+
+.input_alert {
+  font-size: 1.2rem;
+  color: #EB5757;
+}
+
+.input_alert_pw {
+  font-size: 1.2rem;
+  color: #EB5757;
+}

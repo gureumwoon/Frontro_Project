@@ -1,0 +1,337 @@
+.html {
+    font-size: 62.5%;
+}
+
+.body {
+    position: relative;
+    background-color: #fff;
+    -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar { display: none; }
+
+.btn-nonebackground {
+    border: none;
+    background: transparent;
+}
+
+.container {
+    /* width: 39rem; */
+    height: 100vh;
+    background-color: white;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    border-bottom: 1px solid #DBDBDB;
+    height: 4.8rem;
+    position: relative;
+}
+
+.header .tit-intro {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2.2rem;
+    text-align: left;
+    padding: 1.3rem 1.6rem;
+} 
+
+.header .btn-search {
+    position: absolute;
+    top: 1rem;
+    right: 1.3rem;
+    cursor: pointer;
+}
+
+.main {
+    overflow: scroll;
+    scroll-behavior: smooth;
+    height: 100vh;
+}
+
+.main .post {
+    /* overflow: hidden; */
+    margin: 2rem auto;
+}
+
+.footer {
+    height: 7rem;
+    border-top: 1px solid #dbdbdb;
+
+}
+
+.footer .icon-item-list {
+    display: flex;
+    margin-top: 0.8rem;
+    justify-content: space-around;
+    /* justify-content: space-between; */
+}
+
+.item-footer {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    color: #767676;
+    gap: 0.4rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.icon-add {
+    width: 25px;
+    padding-left: 1rem;
+}
+
+/* 이미지 리스트 */
+/* .post-img-container {
+    position: relative;
+    margin-bottom: 16px;
+    max-height: 228px;
+    border-radius: 10px;
+    overflow: hidden;
+} */
+
+/* .post-img-container .post-img-list {
+    display: flex;
+    transition: all .4s;
+    transform: translateX(0px);
+}
+
+.post-img-list li{
+    min-width: 304px;
+    width: 100%;
+    max-height: 228px;
+    min-height: 228px;
+    border: 0.5px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.post-container .post-img {
+    border-radius: 10px;
+    margin-bottom: 16px;
+    object-fit: cover;
+    height: 100%;
+} */
+
+/* .post-img-btn-list {
+    position: absolute;
+    display: flex;
+    gap: 6px;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+} */
+
+/* .post-img-btn-list button{
+    border-radius: 50%;
+    width: 4px;
+    cursor: pointer;
+    height: 12px;
+    border-style: none;
+} */
+
+/* .post-img-btn-list .second{
+    background-color: var(--zzin-no);
+} */
+
+/* 이미지 쪼마난 슬라이드  */
+.article-post__img {
+    display: block;
+    margin-bottom: 14.5px;
+    max-width: 100%;
+    /* width: 100%; */
+    /* height: 50%; */
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.article-post__img-list {
+    display: flex;
+    column-gap: 1rem;
+    padding: 1px;
+    margin-bottom: 14.5px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.article-post__img-list::-webkit-scrollbar {
+    display: none;
+}
+
+.article-post__img--slide {
+    display: block;
+    width: 92%;
+    height: 30rem;
+    margin: 0;
+    object-fit: cover;
+    border-radius: 1rem;
+    /* scroll-snap-align: start;
+    overflow-x: auto;
+    white-space: nowrap; */
+}
+
+.article-post__img:hover,
+.article-post__img--slide:hover {
+    outline: 1px solid #DBDBDB;
+}
+
+
+/* 업모달창 */
+.hidden-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+.hidden-menu .hidden-menu-list {
+    position: absolute;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    background: #fff;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+
+    transition: all .4s;
+}
+
+.hidden-menu .hidden-menu-list::after {
+    background-color: #dbdbdb;
+    border-radius: 0.5rem;
+    display: inline-block;
+    position: absolute;
+    top: 1.6rem;
+    left: 50%;
+    transform: translate(-50%);
+    content: "";
+    width: 5rem;
+    height: 0.4rem;
+}
+
+.hidden-menu.active .hidden-menu-list {
+    height: auto;
+    width: 100%;
+    padding: 36px 0 16px;
+
+    transition: all .4s;
+}
+
+.hidden-menu .hidden-menu-list li {
+    display: flex;
+    align-items: center;
+    padding-left: 26px;
+    opacity: 0;
+}
+
+.hidden-menu.active .hidden-menu-list li {
+    opacity: 1;
+}
+
+.hidden-menu .hidden-menu-list a, .hidden-menu .hidden-menu-list button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 46px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    cursor: pointer;
+}
+
+/* 팝업모달창 */
+.alert-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.alert-modal .alert-modal-wrap {
+    /* display: none; */
+    margin: 33rem auto;
+    width: 25.2rem;
+    background-color: #fff;
+    border-radius: 1rem;
+}
+
+.alert-modal .alert-msg  {
+    display: block;
+    padding: 22px 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.alert-menu-list {
+    display: flex;
+    width: 100%;
+    border-top: 0.5px solid #dbdbdb;
+}
+
+.alert-menu-list li {
+    width: 50%;
+}
+
+.alert-modal .alert-menu-list button {
+    width: 100%;
+    height: 46px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    cursor: pointer;
+}
+
+.alert-modal .alert-menu-list .do-btn {
+    border-left: 0.5px solid #dbdbdb;
+    color: var(--zzin-no);
+}
+.post-img-btn-list button.current {
+    background-color: var(--zzin-no);
+}
+
+/* innerhtml 좋아요 기능  */
+.post .icon-box {
+    display:  flex;
+}
+
+.button-like {
+    color: #767676;
+}
+
+.count-heart {
+    vertical-align: 5px;
+    padding-left: 3px;
+}
+
+.icon-box .count {
+    padding-top: 6px;
+}
+
+
+
+/* 
+.img-container {
+    display: flex;
+    width: 30.4rem;
+    height: 22.8rem;
+    margin: 1.6rem 0;
+} */

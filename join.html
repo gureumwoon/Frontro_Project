@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" class="html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/join.css">
+    <link rel="stylesheet" href="./style/k_modules.css">
+    <link rel="stylesheet" href="./style/reset.css">
+    <link rel="shortcut icon" href="./src/favicon.ico">
+    <script defer src="js/join.js"></script>
+    <title>회원가입 | 은이네 문방구</title>
+</head>
+<body class="body">
+    <article class="set-profile container">
+        <form class="form-setProfile error"> 
+        <!-- 이메일로 회원가입 join 1  -->
+         <section class="email-pw" style="/* display: none; */">
+                <h2 class="title email-title">이메일로 회원가입</h2>
+                <fieldset class="module-inp">
+                    <label for="input_box" class="inpName">이메일</label>
+                    <input type="email" class="inp-login" id="inpEmail" data-state="0" placeholder="이메일 주소를 입력해 주세요." class="alert">
+                    <p class="input_alert"></p>
+                    <strong class="inp-error warning-text invisible">*이미 가입된 이메일 주소입니다.</strong>
+                  </fieldset>
+                  
+                  <fieldset class="module-inp">
+                    <label for="input_box_pw" class="inpName">비밀번호</label>
+                    <input type="password" class="inp-login" id="inputPw" placeholder="비밀번호를 설정해 주세요." class="alert">
+                    <strong class="inp-error warning-text invisible">*비밀번호는 6자 이상이어야 합니다.</strong>
+                  </fieldset>
+                  <button type="button" class="btn L-disabled-button LMbutton-font next_btn">다음</button>
+         </section>
+         <!-- 프로필 설정 join 2 -->
+          <section class="profile-set" style=" display: none; "> 
+            <h1 class="title">프로필 설정</h1>
+            <p class="intro">나중에 언제든지 변경할 수 있습니다.</p>
+            <div class="set-picture">
+                <input type="file" id="profile-input" class="profile-input" accept="imp/*" required multiple>
+                <label for="profile-input" class="profile-img-label">
+                    <img src="./src/svg/basic-profile-img.svg" alt="프로필 사진" class="picture" id="imagePre">
+                </label> 
+            </div>
+                <fieldset class="module-inp">
+                    <label for="inpName" class="inpName">사용자 이름</label>
+                    <input type="text" minlength="2" maxlength="10" class="inp-login" id="inpName" placeholder="2~10자 이내여야 합니다.">
+                    <strong class="inp-error warning-text invisible">2~10자 이내여야 합니다.</strong>
+                </fieldset>
+                <fieldset class="module-inp error">
+                    <label for="inpID" class="inpName">계정 ID</label>
+                    <input type="text" class="inp-login" id="inpId" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다.">
+                    <strong class="inp-error warning-text invisible">*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.</strong>
+                </fieldset>
+                <fieldset class="module-inp">
+                    <label for="inpIntroduce" class="inpName">소개</label>
+                    <input type="text" class="inp-login" id="inpIntroduce" placeholder="자신과 판매할 상품에 대해 소개해 주세요!">
+                </fieldset>
+                <button type="button" class="btn L-disabled-button LMbutton-font start-btn">은이네 문방구 시작하기</button>
+          </section>
+        </form>
+    </article>
+</body>
+</html>

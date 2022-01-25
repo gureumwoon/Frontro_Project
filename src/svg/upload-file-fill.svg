@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 24 24" style=" enable-background:new 0 0 24 24;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFC022;stroke:#FFC022;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:none;stroke:#FFC022;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+	.st3{fill:#FFC022;}
+	.st4{fill:none;stroke:#FFFFFF;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+<path class="st0" d="M-21.1-40.2l9-7l9,7v11c0,0.5-0.2,1-0.6,1.4s-0.9,0.6-1.4,0.6h-14c-0.5,0-1-0.2-1.4-0.6
+	c-0.4-0.4-0.6-0.9-0.6-1.4V-40.2z"/>
+<path class="st1" d="M-16.1-28.2v-10h8v10"/>
+<path class="st2" d="M-16.1-28.2v-10h8v10"/>
+<image style="overflow:visible;enable-background:new    ;" width="50" height="50" xlink:href="../png/upload-file.png"  transform="matrix(1 0 0 1 90 -22)">
+</image>
+<circle class="st3" cx="12" cy="12" r="12"/>
+<path class="st4" d="M15.9,7H8.1C7.5,7,7,7.5,7,8.1v7.8C7,16.5,7.5,17,8.1,17h7.8c0.6,0,1.1-0.5,1.1-1.1V8.1C17,7.5,16.5,7,15.9,7z"
+	/>
+<path class="st4" d="M10,10.9c0.5,0,0.8-0.4,0.8-0.8c0-0.5-0.4-0.8-0.8-0.8c-0.5,0-0.8,0.4-0.8,0.8C9.2,10.5,9.6,10.9,10,10.9z"/>
+<path class="st4" d="M17,13.7l-2.8-2.8L8.1,17"/>
+</svg>

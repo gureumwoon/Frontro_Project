@@ -1,0 +1,362 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body{
+    background-color: #767676;
+}
+
+button{
+    border: none;
+    background: none;
+    padding:0;
+    cursor: pointer;
+}
+
+.back-btn {
+    cursor: pointer;
+}
+
+.container {
+    position: relative;
+    height: 100vh;
+    background-color: white;
+    margin: auto;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4.8rem;
+    padding: 1.2rem 1.2rem 1.2rem 1.6rem;
+    border-bottom: 0.1rem solid #DBDBDB;
+}
+
+.profile-pic {
+    cursor: pointer;
+}
+
+/* 업로드된 게시물 */
+
+.post {
+    position: relative;
+    width: 35.8rem;
+    height: 43.4rem;
+    margin: auto;
+    padding: 2.5rem 0;
+}
+
+.profile {
+    display: flex;
+}
+
+.profile-pic {
+    width: 4.2rem;
+    height: 4.2rem;
+    border-radius: 50%;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.4rem;
+    margin-left: 1.2rem;
+}
+
+.tit-post {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.user-id {
+    margin-top: 0.2rem;
+    font-size: 1.2rem;
+}
+
+.cont-following{
+    position: relative;
+    width: 30.4rem;
+    margin-left: 5.4rem;
+    overflow: hidden;
+}
+
+.desc {
+    font-size: 1.4rem;
+    line-height: 1.753rem;
+}
+
+.img-container {
+    display: flex;
+    width: 30.4rem;
+    height: 22.8rem;
+    margin: 1.6rem 0;
+}
+
+.picture {
+    position: relative;
+    width: 30.4rem;
+    height: 22.8rem;
+    border-radius: 1rem;
+}
+
+.blind {
+	position: absolute;
+	clip: rect(0 0 0 0);
+	width: 0.1rem;
+	height: 0.1rem;
+	margin: -0.1rem;
+	overflow: hidden;
+}
+
+.indicator {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 3rem;
+    left: 50%;
+    bottom: 7.8rem;
+    transform: translateX(-50%);
+}
+
+.indicator .list-slide {
+    display: block;
+    width: 0.6rem;
+    height: 0.6rem;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+}
+
+.indicator .list-slide.on {
+    background-color: #F26E22;
+}
+
+.icon-box {
+    width: 9.8rem;
+    height: 2rem;
+    margin-bottom: 1.85rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    margin-right: 0.6rem;
+}
+
+.btn-comment {
+    margin-left: 1.6rem;
+}
+
+.font-gray {
+    color: #767676;
+}
+
+.date {
+    font-size: 1rem;
+}
+
+.more-btn2 {
+    position: absolute;
+    left: 34.1rem;
+    top: 2.5rem;
+}
+
+/* 댓글 게시하기 */
+
+.comment-container {
+    border-top: 0.1rem solid #DBDBDB;
+    padding: 2rem 1.6rem;
+    height: calc(100vh - 57.4rem);
+    overflow: scroll;
+    scroll-behavior: smooth;
+}
+
+.comment-container::-webkit-scrollbar {
+    display: none;
+}
+
+.comment-user-profile {
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+}
+
+.comment-view {
+    width: 35.8rem;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.6rem;
+}
+
+.txt-container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    margin-left: 1.2rem;
+}
+
+.txt-container div {
+    margin-top: 0.6rem;
+    margin-bottom: 1.6rem;
+    display: flex;
+}
+
+.comment ,
+.user-nic {
+    font-size: 1.4rem;
+}
+
+.comment {
+    font-weight: 400;
+    line-height: 1.753rem;
+}
+
+.user-nic {
+    margin-right: 0.6rem;
+    font-weight: 500;
+}
+
+.comment-time {
+    font-size: 1rem;
+    color: #767676;
+    line-height:1.3rem ;
+}
+
+.comment-upload {
+    position: fixed;
+    border-top: 0.1rem solid #DBDBDB;
+    padding: 1.3rem 2rem 1.2rem 1.6rem;
+    bottom: 0;
+    width: 100%;
+    height: 6.1rem;
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.comment-upload.comment-user-profile {
+    margin-right:1.6rem;
+}
+
+.comment-inp {
+    flex-grow: 1;
+    padding-left: 1.6rem;
+    border: none;
+}
+
+
+.comment-upload-btn,
+.comment-inp::placeholder{
+    color: #C4C4C4;
+}
+
+.active {
+    color: var(--zzin-no);
+}
+
+.more-btn3{
+    height: 1.8rem;
+    margin-top: 0.5rem;
+}
+
+.post-modal {
+    background-color: #ffffff;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    position: fixed;
+    bottom: -150px;
+    width: 100%;
+    height: 11rem;
+    overflow: auto;
+    /*마진겹친현상을해결하기위한코드*/
+    transition:all 0.5s ease-out;
+    z-index: 100;
+}
+
+.modal-open {
+    bottom: 0;
+}
+
+.modal-wrapper {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.2);
+    display: none;
+}
+
+.modal-txt-report,
+.modal-txt-delete {
+    font-size: 1.4rem;
+    padding: 1.4rem 2.6rem;
+    position: absolute;
+    top: 3.7rem;
+}
+
+.modal-txt-delete {
+    top: 2.4rem;
+}
+
+.modal-txt-modi {
+    font-size: 1.4rem;
+    padding: 1.4rem 2.6rem;
+    position: absolute;
+    top: 6rem;
+}
+
+.post-modal::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 2rem;
+    left: 17rem;
+    width: 5rem;
+    height: 0.4rem;
+    background-color: #DBDBDB;
+}
+
+/* alert창 */
+
+.alert-box {
+    display: inline-block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    overflow: hidden;
+    z-index: 20;
+    border-radius: 1rem;
+    text-align: center;
+    background-color: #ffffff;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    display: none;
+}
+.alert-box .alert_notice {
+    margin: 2.2rem 0;
+}
+.alert-box .alert_cancel-button,
+.alert-box .alert_action-button {
+    width: 12.6rem;
+    height: 4.6rem;
+    background-color: transparent;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+}
+.alert-box .alert_cancel-button {
+    border: 0.1rem solid #dbdbdb;
+}
+.alert-box .alert_action-button {
+    font-weight: 500;
+    color: var(--zzin-no);
+}

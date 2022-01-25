@@ -1,14 +1,73 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/search_2.css">
+    <link rel="stylesheet" href="./style/k_modules.css">
     <link rel="stylesheet" href="./style/reset.css">
-    <title></title>
+    <script defer src="js/search2.js"></script>
+    <link rel="shortcut icon" href="./src/favicon.ico">
+    <title>search_2</title>
 </head>
-<body>
-    
+<body class="body">
+<article class="container">
+            <!-- js 구현
+            도전과제 : 입력창에 텍스트를 입력하면 해당하는 사용자가 나오도록 합니다.
+                        검색어와 같은 단어에는 주황색 글씨가 표시됩니다. -->
+    <header class="header">
+        <h1 class="sr-only">감귤마켓 홈</h1>
+        <div class="box-search">
+                <img src="./src/svg/icon-arrow-left.svg">
+            <form action="" class="form-search">
+                <input type="search" placeholder="계정 검색" value="애월읍" class="inp-search">
+            </form>
+        </div>
+    </header>
+    <main class="main">
+        <section class="user-list">
+            <h2 class="sr-only">검색 유저 목록</h2>
+            
+            <div class="user-search">
+                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="search_profile-image"/>
+                <div class="search_text-info">
+                    <p class="search_searched-word">
+                        <span class="search_search-word">애월읍</span> 위니브 감귤농장
+                    </p>
+                    <p class="search_user-email">@ weniv_Mandarin</p>
+                </div>
+            </div>
+
+            <div class="user-search">
+                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="search_profile-image"/>
+                <div class="search_text-info">
+                    <p class="search_searched-word">
+                        <span class="search_search-word">애월읍</span> 검색 기능 구현
+                    </p>
+                    <p class="search_user-email">@ weniv_Mandarin</p>
+                </div>
+            </div>
+
+            <div class="user-search">
+                <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="search_profile-image"/>
+                <div class="search_text-info">
+                    <p class="search_searched-word">
+                        <span class="search_search-word">애월읍</span> 어떻게 하나요
+                    </p>
+                    <p class="search_user-email">@ weniv_Mandarin</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <ul class="icon-item-list">
+            <li class="item-footer"><img src="./src/svg/icon-home.svg">홈</li>
+            <li class="item-footer"><img src="./src/svg/icon-message-circle.svg">채팅</li>
+            <li class="item-footer third"><img src="./src/svg/icon-edit.svg" class="icon-add">게시물 작성</li>
+            <li class="item-footer"><img  src="./src/svg/icon-user.svg">프로필</li>       
+        </ul>
+    </footer>
+</article>
 </body>
 </html>

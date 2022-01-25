@@ -1,0 +1,127 @@
+.html {
+    font-size: 62.5%;
+}
+
+.body {
+    position: relative;
+    background-color: #767676;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
+.container {
+    /* width: 39rem; */
+    height: 100vh;
+    background-color: white;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    height: 5.2rem;
+    position: relative;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.header .box-search {
+    padding: 0.8rem 1.9rem 0.8rem 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* max-width: 39rem; */
+}
+
+.form-search {
+    /* width: 31.6rem; */
+    width: 100%;
+    background: #F2F2F2;
+    border-radius: 3.2rem;
+    padding-left: 1rem;
+    margin-left: 2.4rem;
+}
+
+.inp-search {
+    width: 96%;
+    padding-top: 0.7rem;
+    background: #f2f2f2;
+    padding-left: 1.6rem;
+    padding-bottom: 0.7rem;
+    border-style: none;
+}
+
+.main {
+    height: 100%;
+}
+
+/* 유저 모듈 */
+.user-list {
+    margin: 2rem 1.6rem;
+}
+
+.user-search {
+    display: flex;
+    justify-content: space-between;
+    height: 5rem;
+    margin-bottom: 1.6rem;
+    cursor: pointer;
+}
+
+.search_profile-image {
+    width: 5rem;
+    height: 5rem;
+}
+
+.search_text-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.search_searched-word {
+    display: inline-block;
+    margin: 0.5rem 0 0.6rem 1.2rem;
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+}
+
+.search_search-word {
+    color: var(--zzin-no);
+}
+
+.search_user-email {
+    display: inline-block;
+    margin: 0 0 0.6rem 1.2rem;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    color: #767676;
+}
+
+.footer {
+    height: 7rem;
+    border-top: 1px solid #dbdbdb;
+}
+
+.footer .icon-item-list {
+    display: flex;
+    margin-top: 0.8rem;
+    justify-content: space-around;
+}
+
+.item-footer {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    color: #767676;
+    gap: 0.4rem;
+    text-align: center;
+}
+
+.icon-add {
+    width: 25px;
+    padding-left: 1rem;
+}

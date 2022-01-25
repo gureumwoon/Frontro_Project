@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../resource/styles/reset.css" />
-    <link rel="stylesheet" href="../modules/module.css" />
+    <link rel="stylesheet" href="./style/reset.css" />
+    <link rel="stylesheet" href="./style/w_modules.css" />
     <title>Module HTML & CSS</title>
 </head>
 
@@ -19,7 +19,7 @@
     </h1>
     <!-- input-label field-set 사용하는 것은 로그인 폼 공부 후 수정 필요 -->
     <form method="get" action="index.html" class="comment">
-        <img src="/frontend/resource/img/module/basic-profile.svg" alt="내 프로필 사진" class="comment_profile-image" />
+        <img src="./src/png/basic-profile-img.png" alt="내 프로필 사진" class="comment_profile-image" />
         <label for="comment_write"></label>
         <input type="text" name="" id="comment_write" placeholder="댓글 입력하기..." />
         <button class="comment_submit-button">게시</button>
@@ -31,7 +31,7 @@
     </h1>
 
     <div class="user-search">
-        <img src="/frontend/resource/img/module/follow-profile.svg" alt="oo님의 프로필 사진" class="search_profile-image" />
+        <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="search_profile-image" />
         <div class="search_text-info">
             <p class="search_searched-word">
                 <span class="search_search-word">애월읍</span> 위니브
@@ -47,7 +47,7 @@
     </h1>
 
     <div class="user-follow">
-        <img src="/frontend/resource/img/module/follow-profile.svg" alt="oo님의 프로필 사진" class="follow_profile-image" />
+        <img src="./src/png/Ellipse 6.png" alt="oo님의 프로필 사진" class="follow_profile-image" />
         <div class="follow_text-info">
             <p class="follow_user-name">애월읍 위니브 감귤농장</p>
             <p class="follow_user-email">@ weniv_Mandarin</p>
@@ -72,11 +72,11 @@
         delete-alert: 테두리는 제거 예정
     </h1>
 
+    <!-- 띄워지는 모달창 -->
     <div class="alert-box">
-        <p class="alert_notice">필요한 문구로 대체</p>
+        <p class="alert_notice">적고 싶은 내용</p>
         <!-- ex: <p class="alert_notice">상품을 삭제할까요?</p> -->
-        <button class="alert_cancel-button">취소</button><button class="alert_delete-button">삭제</button>
-        <!-- ><button class="alert_logout-button">로그아웃</button> -->
+        <button class="alert_cancel-button">취소</button><button class="alert_action-button">액션 버튼</button>
     </div>
 
     <!-- 레이아웃 창에 있던 모듈들 입니다. 1개로 통합해서 작성 -->
@@ -100,23 +100,12 @@
     <!-- 프로필 헤더, 채팅방 헤더 -->
     <header class="top-bar">
         <!-- 뒤로가기 버튼 -->
-        <button type="button" class="button-noneBackground button-back">
-            <img src="/frontend/resource/img/profile/icon-arrow-left.svg" alt="뒤로가기 버튼" />
-        </button>
+        <button type="button" class="button-noneBackground button-back"><img src="./src/png/icon-arrow-left.png"
+                alt="뒤로가기 버튼"></button>
         <!-- 햄버거 버튼 -->
-        <button type="button" class="button-noneBackground button-more">
-            <img src="/frontend/resource/img/profile/icon- more-vertical.svg" alt="더보기 버튼" />
-        </button>
+        <button type="button" class="button-noneBackground button-more"><img src="./src/png/icon-more-vertical.png"
+                alt="더보기 버튼"></button>
     </header>
-
-    <!-- 뒤로가기 버튼: 경로는 수정해서 사용 -->
-    <button type="button" class="button-back">
-        <img src="/frontend/resource/img/profile/icon-arrow-left.svg" alt="뒤로가기 버튼" />
-    </button>
-    <!-- 더보기 버튼: 경로는 수정해서 사용 -->
-    <button type="button" class="button-more">
-        <img src="/frontend/resource/img/profile/icon- more-vertical.svg" alt="더보기 버튼" />
-    </button>
 </body>
 
 </html>

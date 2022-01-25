@@ -1,0 +1,55 @@
+.html {
+  font-size: 62.5%;
+}
+
+.body {
+  position: relative;
+  background-color: #fff;
+}
+
+.container {
+  /* width: 39rem; */
+  height: 100vh;
+  background-color: white;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+  margin: auto 0;
+}
+
+.main-contents {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.btn-back {
+  width: 12rem;
+  height: 4rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 3.2rem;
+  background-color: var(--zzin-no);
+  border: none;
+  color: var(--zzin-no-word);
+}
+
+.img-404-slime {
+  width: 15rem;
+}
+
+.p_txt {
+  color: #767676;
+  font-size: 1.2rem;
+}

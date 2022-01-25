@@ -1,14 +1,45 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/search_1.css">
+    <link rel="stylesheet" href="./style/k_modules.css">
     <link rel="stylesheet" href="./style/reset.css">
+    <script defer src="js/search.js"></script>
+    <link rel="shortcut icon" href="./src/favicon.ico">
     <title></title>
 </head>
-<body>
-    
+<body class="body">
+<article class="container">
+    <header class="header">
+        <h1 class="sr-only">감귤마켓 홈</h1>
+        <!-- js 구현: 뒤로가기 아이콘 click 하면 home.html 이동 -->
+        <div class="box-search">
+            <img src="./src/svg/icon-arrow-left.svg">
+            <form action="" class="form-search">
+                <input type="search" placeholder="계정 검색" class="inp-search">
+            </form>
+        </div>
+    </header>
+    <div class="main">
+        <!-- 
+            검색 결과를 불러와야 합니다
+         -->
+            <section class="user-list">
+              <h2 class="sr-only">검색 유저 목록</h2>
+            </section>
+    </div>
+    <!-- js 구현: 페이지 이동: home/chat_list/add_product/My_profile -->
+    <footer class="footer">
+        <ul class="icon-item-list">
+            <li class="item-footer"><img src="./src/svg/icon-home.svg">홈</li>
+            <li class="item-footer"><img src="./src/svg/icon-message-circle.svg">채팅</li>
+            <li class="item-footer third"><img src="./src/svg/icon-edit.svg" class="icon-add">게시물 작성</li>
+            <li class="item-footer"><img src="./src/svg/icon-user.svg">프로필</li>       
+        </ul>
+    </footer>
+</article>
 </body>
 </html>
