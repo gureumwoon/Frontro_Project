@@ -62,27 +62,56 @@ Array.from(chatRoomItem).forEach((room) => {
 });
 
 // - nav bar, 하단 탭 페이지이동 -
-const goToHome = document.querySelector(".tap-menu-home");
-console.log(goToHome);
-const goToChat = document.querySelector(".tap-menu-chat");
+// 경서님 코드
+const goToReload = document.querySelector(".icon-item-list > li:first-child");
+console.log(goToReload);
+
+const goToChat = document.querySelector(".icon-item-list > li:nth-child(2)");
 console.log(goToChat);
-const goUpload = document.querySelector(".tap-menu-upload");
+
+const goUpload = document.querySelector(".icon-item-list > li:nth-child(3)");
 console.log(goUpload);
-const goMyProfile = document.querySelector(".tap-menu-user");
+
+const goMyProfile = document.querySelector(".icon-item-list > li:last-child");
 console.log(goMyProfile);
 
-goToHome.addEventListener("click", () => {
+goToReload.addEventListener("click", () => {
     window.location.href = "index.html";
 });
+
 goToChat.addEventListener("click", () => {
     window.location.href = "chat_list.html";
 });
+
 goUpload.addEventListener("click", () => {
     window.location.href = "upload.html";
 });
+
 goMyProfile.addEventListener("click", () => {
     window.location.href = "my_profile.html";
 });
+// 내코드
+// const goToHome = document.querySelector(".tap-menu-home");
+// console.log(goToHome);
+// const goToChat = document.querySelector(".tap-menu-chat");
+// console.log(goToChat);
+// const goUpload = document.querySelector(".tap-menu-upload");
+// console.log(goUpload);
+// const goMyProfile = document.querySelector(".tap-menu-user");
+// console.log(goMyProfile);
+
+// goToHome.addEventListener("click", () => {
+//     window.location.href = "index.html";
+// });
+// goToChat.addEventListener("click", () => {
+//     window.location.href = "chat_list.html";
+// });
+// goUpload.addEventListener("click", () => {
+//     window.location.href = "upload.html";
+// });
+// goMyProfile.addEventListener("click", () => {
+//     window.location.href = "my_profile.html";
+// });
 
 // chatRoomItem.addEventListener("click", () => {
 //     location.href = `/chat_room.html?name=할로할로`;

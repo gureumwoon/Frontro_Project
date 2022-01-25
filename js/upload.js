@@ -219,7 +219,6 @@ async function putData(e) {
     const data = await res.json();
     console.log("data: ", data);
     if (res.status == 200) {
-        alert('업로드 성공');
         location.href = `my_profile.html?${accountName}`;
     } else {
         alert('업로드 실패');
