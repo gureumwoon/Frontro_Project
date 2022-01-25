@@ -169,12 +169,12 @@ async function getPost() {
 }
 
 // 게시물 프로필 이미지 클릭시 user 계정으로 이동
-const profilePic = document.querySelector(".profile-pic");
+// const profilePic = document.querySelector(".profile-pic");
 // const userAuthorName = document.querySelector(".tit-post")
-const authorUsername = profilePic.dataset.username;
-profilePic.addEventListener('click', () => {
-    window.location.href = `your_profile.html?accountName=${authorAccountname}`;
-})
+// const authorUsername = profilePic.dataset.username;
+// profilePic.addEventListener('click', () => {
+//     window.location.href = `your_profile.html?accountName=${authorAccountname}`;
+// })
 
 
 // 게시물 더보기 모달창
@@ -221,6 +221,11 @@ function getPostMoreBtn() {
         }
         modalTxtReport.addEventListener('click', () => {
             alertCommentReport.style.display = 'block';
+        })
+        alertCancelBtn[1].addEventListener('click', () => {
+            alertCommentReport.style.display = 'none';
+            modalWrapper.style.display = 'none';
+            modalReport.classList.remove('modal-open');
         })
     })
     modalWrapper.addEventListener('click', () => {

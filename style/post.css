@@ -318,7 +318,7 @@ button{
     display: inline-block;
     position: absolute;
     top: 2rem;
-    left: 50%;
+    left: 17rem;
     width: 5rem;
     height: 0.4rem;
     background-color: #DBDBDB;
@@ -350,13 +350,11 @@ button{
     width: 12.6rem;
     height: 4.6rem;
     background-color: transparent;
-    border: none;
-    border-top: 0.05rem solid #dbdbdb;
     font-size: 1.4rem;
     line-height: 1.8rem;
 }
 .alert-box .alert_cancel-button {
-    border-right: 0.05rem solid #dbdbdb;
+    border: 0.1rem solid #dbdbdb;
 }
 .alert-box .alert_action-button {
     font-weight: 500;

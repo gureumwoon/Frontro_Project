@@ -29,7 +29,7 @@ const isUserIdInputValid = () => {
     const reg1 = /[A-Z]/g;
     const reg2 = /[a-z]/g;
     const reg3 = /[0-9]/g;
-    const reg4 = /[._]/g;
+    const reg4 = /[\.\_]/g;
     const isValid = reg1.test(userId) || reg2.test(userId) || reg3.test(userId) || reg4.test(userId);
     return isValid;
 }
@@ -48,7 +48,7 @@ const isUserIdInputValid = () => {
 //         return;
 //     }
 //     warningTextList[1].classList.add('invisible');
-//     window.location.href = "my_profile.html";
+//     submitProfileModi();
 // })
 
 // imput에 입력시 유효성 검사
