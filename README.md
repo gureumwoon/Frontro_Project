@@ -308,17 +308,17 @@
     - 상품을 클릭하면 상품의 판매 링크를 새 창으로 띄워줍니다.
 
 
-<center>
+<div align="center">
 <table>
   <tr>
-    <td align="center">
+    <td>
         <img
           src="https://user-images.githubusercontent.com/42796944/150986599-d7846eb6-20e2-4a57-8290-5accc9c4b6f9.gif"
           width="300px;"
           alt=""
         /><br/><sub><b>사용자 계정 프로필 화면</b></sub><br />
     </td>
-     <td align="center">
+     <td>
         <img
           src="https://user-images.githubusercontent.com/42796944/150986607-d346085f-4ec6-4e41-848a-f4ec1b7b024b.gif"
           width="300px;"
@@ -327,7 +327,7 @@
     </td>
   </tr>
 </table>
-</center>
+</div>
 
 **게시글**
 
