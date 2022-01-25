@@ -1,6 +1,4 @@
-const AUTH =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxY2E2MzhhYjVjNmNkMTgwODRlNDQ3ZCIsImV4cCI6MTY0NzUwNzQ5MSwiaWF0IjoxNjQyMzIzNDkxfQ.IpERmWzo8--G6k-6pBBj5FUtxRJD1UqY_CNFIGc35zQ";
-const BASE_URL = "http://146.56.183.55:5050";
+const BASE_URL = "https://api.mandarin.cf";
 const ACCOUNT_MYNAME = "hey_binky";
 const MYID = "61ca638ab5c6cd18084e447d";
 const ACCOUNT_NAME = "halo_halo";
