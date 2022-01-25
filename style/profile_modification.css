@@ -56,7 +56,6 @@ button {
 }
 
 .img-profile .img-profile-empty {
-    position: relative;
     margin: 3rem 0;
     width: 11rem;
     border-radius: 50%;
@@ -69,8 +68,12 @@ button {
     width: 3.6rem;
     height: 3.6rem;
     position: absolute;
-    left: 39.6rem;
-    top: 15.6rem;
+    left: 98.3rem;
+    top: 15.5rem;
+}
+
+.img-profile .real-input {
+    position: relative;
 }
 
 /* 프로필 입력란 */

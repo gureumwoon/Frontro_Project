@@ -62,17 +62,17 @@ userNameInput.addEventListener('input', () => {
         return;
     }
     warningTextList[0].classList.add('invisible');
-    userIdInput.addEventListener('input', () => {
-        if (!isUserIdInputValid()) {
-            warningTextList[1].classList.remove('invisible');
-            if (userIdInput.value === "") {
-                warningTextList[1].classList.add('invisible');
-            }
-            return;
+})
+userIdInput.addEventListener('input', () => {
+    if (!isUserIdInputValid()) {
+        warningTextList[1].classList.remove('invisible');
+        if (userIdInput.value === "") {
+            warningTextList[1].classList.add('invisible');
         }
-        saveButton.classList.add('active');
-        warningTextList[1].classList.add('invisible');
-    })
+        return;
+    }
+    saveButton.classList.add('active');
+    warningTextList[1].classList.add('invisible');
 })
 
 
