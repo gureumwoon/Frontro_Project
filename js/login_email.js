@@ -9,7 +9,7 @@ function getInput() {
 async function login() {
   const email = document.querySelector("#input-box-id").value
   const pw = document.querySelector("#input-box-pw").value
-  const url = "http://146.56.183.55:5050"
+  const url = "https://api.mandarin.cf"
   const loginData = {
     "user": {
       "email": email,
