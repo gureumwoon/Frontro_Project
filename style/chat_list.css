@@ -17,6 +17,9 @@ body {
     /* border: 1px solid white; */
 }
 
+button {
+    cursor: pointer;
+}
 /* utility */
 /* 요소를 완전히 없애면 안되고.. 글자만 없애는 걸로.. */
 
@@ -72,6 +75,7 @@ body {
     align-items: flex-start;
     margin-bottom: 1.6rem;
     position: relative;
+    cursor: pointer;
 }
 
 .item_chat-room .profile-image_chat-room {
@@ -121,8 +125,47 @@ body {
 }
 
 /* 하단 탭 메뉴, tab menu */
+/* 경서님  nav 코드 */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 6.169rem;
+    border-top: 1px solid #dbdbdb;
+    background-color: #ffffff;
+}
 
-.tap-menu {
+.footer .icon-item-list {
+    display: flex;
+    margin-top: 0.8rem;
+    justify-content: space-around;
+}
+
+.item-footer {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    color: #767676;
+    gap: 0.4rem;
+    text-align: center;
+    /* align-items: center; */
+}
+.item-footer:nth-child(3) img {
+    padding-left: 1rem;
+}
+.item-footer:nth-child(4) img {
+    width: 3rem;
+    height: 3rem;
+}
+
+.icon-add {
+    width: 25px;
+    /* padding-left: 1rem; */
+}
+
+/* 내 코드 */
+/* .tap-menu {
     display: flex;
     justify-content: space-between;
     position: fixed;
@@ -182,7 +225,7 @@ body {
 .upload-icon,
 .user-icon {
     width: 24px;
-}
+} */
 
 /* 모달, up-modal */
 .background_up-modal {

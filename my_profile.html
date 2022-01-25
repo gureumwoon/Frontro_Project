@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My_Profile(프로필 페이지)</title>
+    <title>은희네문방구</title>
     <link rel="stylesheet" href="./style/reset.css">
     <link rel="stylesheet" href="./style/my_profile.css">
     <link rel="shortcut icon" href="./src/favicon.ico">
@@ -92,28 +92,34 @@
             </article>
         </article>
         <!-- 모듈화될 수 있는 부분: 화면 공통 네비게이션 -->
+        <!-- 경서님 코드 -->
+        <footer class="footer">
+            <ul class="icon-item-list">
+                <li class="item-footer"><img src="./src/svg/icon-home.svg">홈</li>
+                <li class="item-footer"><img src="./src/svg/icon-message-circle.svg">채팅</li>
+                <li class="item-footer third"><img src="./src/svg/icon-edit.svg" class="icon-add">게시물 작성</li>
+                <li class="item-footer"><img src="./src/svg/icon-user-fill.svg">프로필</li>
+            </ul>
+        </footer>
+        <!-- 내 코드 -->
         <!-- p tag는 가상요소로 처리 -->
-        <nav class="tap-menu">
+        <!-- <nav class="tap-menu">
             <button class="tap-menu-home">
                 <img src="./src/svg/icon-home.svg" alt="홈으로 가기" class="home-icon">
-                <!-- <p class="tap-menu-home-title">홈</p> -->
             </button>
 
             <button class="tap-menu-chat">
                 <img src="./src/svg/icon-message-circle.svg" alt="채팅으로 가기" class="chat-icon">
-                <!-- <p class="tap-menu-chat-title">채팅</p> -->
             </button>
 
             <button class="tap-menu-upload">
                 <img src="./src/svg/icon-edit.svg" alt="게시물 작성하기" class="upload-icon">
-                <!-- <p class="tap-menu-edit-title">게시물 작성</p> -->
             </button>
 
             <button class="tap-menu-user">
                 <img src="./src/svg/icon-user-fill.svg" alt="프로필로 가기" class="user-icon">
-                <!-- <p class="tap-menu-user-title">프로필</p> -->
             </button>
-        </nav>
+        </nav> -->
 
         <!-- 업 모달창 -->
         <div class="background_up-modal">
@@ -164,3 +170,5 @@
 </html>
 
 <!-- 상품을 나타내는 마크업으로 figure figcpation 사용.. -->
+<!-- 밑에 있는 모달들은 js로 만드는 것이 좋은지 html로 처리하는 것이 좋은지 -->
+<!-- html css js 간 성능 차이!! 뭘로 작성하는 것이 좋으냐! -->

@@ -84,15 +84,6 @@ profileFollowingsBtn.addEventListener("click", () => {
     location.href = `follow.html?accountName=${accountName}&follow=following`;
 });
 
-// - 메세지 창으로 이동_얘는 수정 필요
-profileMessageBtn.addEventListener("click", () => {
-    // 추후 백엔드 개발 시
-    // const accountname =
-    // location.href = `chat_room.html?name=할로할로&accountname=halo_halo`;
-    // const username = getQueryValue("name");
-    location.href = `chat_room.html?name=할로할로`;
-});
-
 // - 팔로우 기능
 profileFollowBtn.addEventListener("click", () => {
     if (profileFollowBtn.innerText === "언팔로우") {
@@ -137,6 +128,12 @@ async function getProfileData() {
                 );
             }
         });
+        // - 메세지 창으로 이동_얘는 수정 필요
+        profileMessageBtn.addEventListener("click", () => {
+            location.href = `chat_room.html?name=${result.username}`;
+        });
+
+        makeTitle(result.accountname);
     } catch (error) {
         console.log(error);
     }
@@ -750,25 +747,61 @@ async function postHeartReq(method, postType, dom, id, count, img) {
 
 // - nav bar, 하단 탭 페이지이동 -
 
-// - 관련 변수
-const goToHome = document.querySelector(".tap-menu-home");
-const goToChat = document.querySelector(".tap-menu-chat");
-const goUpload = document.querySelector(".tap-menu-upload");
-const goMyProfile = document.querySelector(".tap-menu-user");
+// 경서님 코드
+const goToReload = document.querySelector("ul > li:first-child");
+console.log(goToReload);
 
-// - 페이지 이동
-goToHome.addEventListener("click", () => {
+const goToChat = document.querySelector("ul > li:nth-child(2)");
+console.log(goToChat);
+
+const goUpload = document.querySelector("ul > li:nth-child(3)");
+console.log(goUpload);
+
+const goMyProfile = document.querySelector("ul > li:last-child");
+console.log(goMyProfile);
+
+goToReload.addEventListener("click", () => {
     window.location.href = "index.html";
 });
+
 goToChat.addEventListener("click", () => {
     window.location.href = "chat_list.html";
 });
+
 goUpload.addEventListener("click", () => {
     window.location.href = "upload.html";
 });
+
 goMyProfile.addEventListener("click", () => {
     window.location.href = "my_profile.html";
 });
+// 내 코드
+// // - 관련 변수
+// const goToHome = document.querySelector(".tap-menu-home");
+// const goToChat = document.querySelector(".tap-menu-chat");
+// const goUpload = document.querySelector(".tap-menu-upload");
+// const goMyProfile = document.querySelector(".tap-menu-user");
+
+// // - 페이지 이동
+// goToHome.addEventListener("click", () => {
+//     window.location.href = "index.html";
+// });
+// goToChat.addEventListener("click", () => {
+//     window.location.href = "chat_list.html";
+// });
+// goUpload.addEventListener("click", () => {
+//     window.location.href = "upload.html";
+// });
+// goMyProfile.addEventListener("click", () => {
+//     window.location.href = "my_profile.html";
+// });
+
+// 제목 만들어주는 함수
+function makeTitle(titleName) {
+    const titleTag = document.querySelector("title");
+    console.log(titleTag);
+    titleTag.innerText = `${titleName} | 은희네문방구`;
+}
 
 // - 공용으로 쓰이는 코드 -
 
@@ -868,3 +901,5 @@ function makeMoneysComma(money) {
 
 // 클래스, 생성자 함수 언제 사용해야할까?
 // 컨텐츠나 프로필 같이 반복적으로 사용되는 것은 클래스나 생성자 함수를 사용해서 구현해보기
+
+// github 이슈 위키등 gitpage를 100% 활용하는 방법 찾아보기
