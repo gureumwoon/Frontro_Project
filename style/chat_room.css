@@ -15,6 +15,9 @@ button {
     font-family: "SpoqaHanSansNeo-Regular";
     font-size: 62.5%;
 }
+button {
+    cursor: pointer;
+}
 
 /* utility */
 /* 요소를 완전히 없애면 안되고.. 글자만 없애는 걸로.. */
