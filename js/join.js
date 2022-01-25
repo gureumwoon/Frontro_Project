@@ -22,7 +22,9 @@ const $profile = document.querySelector(".profile-set")
 const $imagePre = document.querySelector("#imagePre")
 // console.log($imagePre);
 
-const url = "http://146.56.183.55:5050";
+// const url = "http://146.56.183.55:5050";
+const url = "https://api.mandarin.cf";
+
 
 // 이메일 중복 체크 함수 
 async function checkEmailValid(email) {
@@ -209,7 +211,7 @@ document.querySelector('.profile-input').addEventListener('change', (e) => {
 async function imageUpload(files) {
     const formData = new FormData();
     formData.append("image", files[0]);//formData.append("키이름","값")
-    const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+    const res = await fetch(`https://api.mandarin.cf/image/uploadfile`, {
         method: "POST",
         body: formData
     })
@@ -222,7 +224,7 @@ async function imageUpload(files) {
 async function profileImage(e) {
     const files = e.target.files
     const result = await imageUpload(files)
-    imagePre.src = "http://146.56.183.55:5050/" + result
+    imagePre.src = "https://api.mandarin.cf/" + result
     console.log(result)
 }
 document.querySelector("#profile-input").addEventListener("change", profileImage)
@@ -237,7 +239,7 @@ async function join() {
     const intro = document.querySelector('#inpIntroduce').value;
     const imageUrl = document.querySelector('.picture').src;
 
-        const res = await fetch("http://146.56.183.55:5050/user", {
+        const res = await fetch("https://api.mandarin.cf/user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
