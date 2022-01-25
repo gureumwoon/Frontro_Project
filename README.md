@@ -275,17 +275,17 @@
     - 공유 버튼은 구현되지 않았습니다.
 
 
-<p align="center">
+<div align="center">
   <table>
     <tr>
-      <td align="center">
+      <td>
           <img
             src="https://user-images.githubusercontent.com/42796944/150986599-d7846eb6-20e2-4a57-8290-5accc9c4b6f9.gif"
             width="300px;"
             alt=""
           /><br/><sub><b>사용자 계정 프로필 화면</b></sub><br />
       </td>
-       <td align="center">
+       <td>
           <img
             src="https://user-images.githubusercontent.com/42796944/150986607-d346085f-4ec6-4e41-848a-f4ec1b7b024b.gif"
             width="300px;"
@@ -294,7 +294,7 @@
       </td>
     </tr>
   </table>
-</p>
+</div>
 
 **판매 중인 상품**
 
@@ -374,15 +374,17 @@
 - 수정을 완료하고 저장 버튼을 클릭하면 my profile 페이지에서 프로필이 수정된 걸 확인 할 수 있습니다.
   
 
-<table>
-  <tr>
-    <td align="center">
-<img width="300px" style = "border : 1px solid" src= "https://images.velog.io/images/codns1223/post/335897f6-8e8e-46ca-acc8-aa4b6b8cfa84/profile_modification.gif"><br/><sub><b>사용자 이름 유효성</b></sub><br />
-    </td>
-    <td align="center">
-<img width="300px" style = "border : 1px solid" src= "https://images.velog.io/images/codns1223/post/bcd4e54b-bc57-4731-91b5-3b60340208b6/profile_modification2.gif"><br/><sub><b>계정ID유효성</b></sub><br />
-    </td>
-<table>
+<div align="center" >
+  <table>
+    <tr>
+      <td>
+  <img width="300px" style = "border : 1px solid" src= "https://images.velog.io/images/codns1223/post/335897f6-8e8e-46ca-acc8-aa4b6b8cfa84/profile_modification.gif"><br/><sub><b>사용자 이름 유효성</b></sub><br />
+      </td>
+      <td>
+  <img width="300px" style = "border : 1px solid" src= "https://images.velog.io/images/codns1223/post/bcd4e54b-bc57-4731-91b5-3b60340208b6/profile_modification2.gif"><br/><sub><b>계정ID유효성</b></sub><br />
+      </td>
+  <table>
+</div>
 
 <h2>💧게시물 업로드 페이지(김채운)</h2>
 </br>
@@ -431,15 +433,18 @@
   - 본인 게시물에서 ‘삭제’ 버튼을 클릭하면 게시물이 삭제되고,
   - ‘수정’ 버튼을 클릭하면 게시물 수정 페이지로 넘어갑니다.
   - ‘취소’ 버튼을 클릭하면 모달창이 사라진다.
+
+<div align="center">
   <table>
-  <tr>
-    <td align="center">
-<img width="300px" style = "border : 1px solid" src= "https://images.velog.io/images/codns1223/post/ae514def-5ae9-478d-9fa3-c26d2414b011/post.gif"><br/><sub><b>다른 user 게시글</b></sub><br />
-    </td>
-    <td align="center">
-<img width="300px" style = "border : 1px solid" src= "https://images.velog.io/images/codns1223/post/3fa8a3b7-24f0-4546-b097-376e4abacc0d/post2.gif"><br/><sub><b>본인 게시물</b></sub><br />
-    </td>
-<table>
+    <tr>
+      <td>
+  <img width="300px" style = "border : 1px solid" src= "https://images.velog.io/images/codns1223/post/ae514def-5ae9-478d-9fa3-c26d2414b011/post.gif"><br/><sub><b>다른 user 게시글</b></sub><br />
+      </td>
+      <td>
+  <img width="300px" style = "border : 1px solid" src= "https://images.velog.io/images/codns1223/post/3fa8a3b7-24f0-4546-b097-376e4abacc0d/post2.gif"><br/><sub><b>본인 게시물</b></sub><br />
+      </td>
+  <table>
+</div>
 
   <h3>댓글</h3>
 
