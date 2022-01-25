@@ -10,6 +10,14 @@ body {
     background-color: #767676;
 }
 
+button {
+    cursor: pointer;
+}
+
+.btn-back {
+    cursor: pointer;
+}
+
 .invisible {
     display: none;
 }
@@ -20,7 +28,6 @@ body {
 }
 
 .container {
-    width: 39rem;
     height: 100vh;
     margin: auto;
     background-color: white;
@@ -44,12 +51,12 @@ body {
 /* 프로필 이미지 업로드 */
 
 .img-profile {
-    position: relative;
     display: flex;
     justify-content: center;
 }
 
 .img-profile .img-profile-empty {
+    position: relative;
     margin: 3rem 0;
     width: 11rem;
     border-radius: 50%;
@@ -62,8 +69,8 @@ body {
     width: 3.6rem;
     height: 3.6rem;
     position: absolute;
-    left: 21.4rem;
-    top: 10.7rem;
+    left: 39.6rem;
+    top: 15.6rem;
 }
 
 /* 프로필 입력란 */
