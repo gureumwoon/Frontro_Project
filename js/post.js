@@ -468,7 +468,7 @@ async function profileImg() {
     if (data.profile.image.split(':')[0] === 'http') {
         commentUserProfile.src = data.profile.image;
     } else {
-        commentUserProfile.src = 'https://api.mandarin.cf/' + data.profile.image;
+        commentUserProfile.src = data.profile.image;
     }
 }
 profileImg();
