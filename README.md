@@ -471,7 +471,7 @@
 
 <p align="center">
 <kbd>
-<img width="300px" style = "border : 1px solid" src= "(https://images.velog.io/images/codns1223/post/9c4d3127-09f6-4afc-8b7c-b83fc0b26a98/comment.gif">
+<img width="300px" style = "border : 1px solid" src= "https://images.velog.io/images/codns1223/post/9c4d3127-09f6-4afc-8b7c-b83fc0b26a98/comment.gif">
 </kbd>
 </p>
 
